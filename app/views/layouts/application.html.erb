@@ -4,11 +4,39 @@
   <title>TeamManager</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= javascript_include_tag "bootstrap" %>
   <%= csrf_meta_tags %>
 </head>
-<body>
-
-<%= yield %>
-
+<body id = "page">
+	<div id="banner">
+		<%= image_tag("logo3.png", id: "logo", class: "banner-image"); %>
+		<%= image_tag("title.png", id: "title", class: "banner-image"); %>
+		<nav>
+			<ul> 
+				<li><a href="#">HOME</a></li>
+				<li><a href="#">GYMRATZ</a></li>
+				<li><a href="#">TRAINING</a>
+				<li><a href="#">PARTY CENTRAL</a></li>
+				<li><a href="#">SHOP</a>
+				<li><a href="#">CONTACT</a></li>
+			</ul>
+		</nav>
+	</div>
+	<%= yield %>
+	<footer>
+		<p>
+		Down Town Sports Athletic Club <br />
+		7 Leighton Place, Mahwah, NJ (201)848-0017
+		</p>
+		<ul>
+				<li><a href="#">Home</a></li>
+				<li><a href="#">Gymratz</a></li>
+				<li><a href="#">Training</a>
+				<li><a href="#">Party Central</a></li>
+				<li><a href="#">Shop</a></li>
+				<li><a href="#">Contact</a></li>
+		</ul>
+	</footer>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.js"></script>
 </body>
 </html>

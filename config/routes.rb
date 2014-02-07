@@ -1,4 +1,5 @@
 TeamManager::Application.routes.draw do
+  get "page/home"
   resources :teams
 
   resources :eventtypes
