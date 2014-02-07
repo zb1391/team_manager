@@ -1,0 +1,27 @@
+<h1>Listing eventtypes</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @eventtypes.each do |eventtype| %>
+      <tr>
+        <td><%= eventtype.name %></td>
+        <td><%= link_to 'Show', eventtype %></td>
+        <td><%= link_to 'Edit', edit_eventtype_path(eventtype) %></td>
+        <td><%= link_to 'Destroy', eventtype, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Eventtype', new_eventtype_path %>
