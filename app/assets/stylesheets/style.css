@@ -11,6 +11,9 @@
 .float-right{
 	float:right;
 }
+.text-right{
+	text-align: right;
+}
 
 .block-display{
 	display:block;
@@ -26,60 +29,127 @@
 #page{
 	margin:auto;
 	width:960px;
+	color:white;
 	font-family: "AvenirNextRoundedW01-Md", helvetica, arial, sans-serif;
 	border:1px solid black;
 	background: #1b1b1b;
 }
 #banner{
+	width: inherit;
+	height: 130px;
 	position:relative;
-	overflow: hidden;
 	background:black;
 }
-#logo{
-	position:relative;
-	width:150px;
+#banner-container{
+	background:black;
+	height:130px;
+}
 
+#logo{
+	float:left;
+	max-width: 150px;
 }
 #title{
-	position:relative;
-	top:50px;
+	margin:auto;
+	padding-top: 40px;
+	float:left;
 	width: 130px;
-
 }
+
 .banner-image{
 	float:left;
 	padding-bottom:0;
 	margin-bottom:0;
 }
-nav{
+
+#main-menu{
 	position:relative;
-	float:right;
+	top:10px;
+}
+
+#main-menu {
+	position: relative;
+	margin:0 5px 0;
+	padding:0;
+}
+#main-menu li:last-of-type{
+	border-right:1px solid white;
+}
+#main-menu  li{
+	padding: 0 10px;
+	border-left:1px solid white;
+}
+#main-menu li a{
+	padding:0px;
+	margin:0;
+	font-size:15px;
+	color:white;
+	text-decoration: none;
+}
+#main-menu li a:hover{
+	background: black;
+	color: #52CC52;
+	text-decoration: none;
+}
+
+#main-menu ul{
+	background: black;
+	width:inherit;
+}
+#main-menu ul li:first-of-type{
+	border-top:1px solid white;
+}
+#main-menu ul li:last-of-type{
+	border-right:none;
+}
+#main-menu ul li{
+width:inherit;
+	border-left: none;
+	padding:5px;
+}
+.nav > li > a:focus {
+  text-decoration: none;
+  background-color: black;
+}
+
+.nav .open>a, .nav .open>a:hover, .nav .open>a:focus{
+	background-color:black 
+}
+
+
+
+.mnav{
+	position:relative;
+	float:left;
 	margin: 0;
 	padding:0;
-	top:70px;
 }
-nav ul{
+.mnav ul{
 	position:relative;
 	margin:0;
 	padding:0;
 	list-style-type:none;
 }
-nav ul li{
-
-	float:left;
-	padding-right: 15px;
+.mnav ul li:first-of-type{
+	border-left:none;
 }
-nav ul ul{
+.mnav ul li{
+	padding: 0 10px;
+	border-left:1px solid white;
+	float:left;
+
+}
+.mnav ul ul{
 	display:none;
 }
-nav ul li a{
-	font-size:20px;
+.mnav ul li a{
+	font-size:12px;
 	color:white;
 	text-decoration: none;
 	display:block;
 }
-nav ul li a:visited{color:white;}
-nav ul li a:hover{
+.mnav ul li a:visited{color:white;}
+.mnav ul li a:hover{
 	backgound:black; 
 	color: #52CC52;
 	text-decoration: none;

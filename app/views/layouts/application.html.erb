@@ -4,24 +4,36 @@
   <title>TeamManager</title>
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "bootstrap" %>
+  <%= javascript_include_tag "bootstrap.min" %>
   <%= csrf_meta_tags %>
 </head>
 <body id = "page">
-	<div id="banner">
-		<%= image_tag("logo3.png", id: "logo", class: "banner-image"); %>
-		<%= image_tag("title.png", id: "title", class: "banner-image"); %>
-		<nav>
-			<ul> 
-				<li><a href="#">HOME</a></li>
-				<li><a href="#">GYMRATZ</a></li>
-				<li><a href="#">TRAINING</a>
-				<li><a href="#">PARTY CENTRAL</a></li>
-				<li><a href="#">SHOP</a>
-				<li><a href="#">CONTACT</a></li>
-			</ul>
-		</nav>
-	</div>
+		<div id="banner-container">
+			<%= image_tag("logo3.png", id: "logo", class: "banner-image"); %>
+			<%= image_tag("title.png", id: "title", class: "banner-image"); %>
+				<h5 class="float-right text-right">7 Leighton Place, Mahwah, NJ <br /> (201)848-0017</h5>
+				<div>
+					<ul class="nav navbar-nav  navbar-right" id="main-menu">
+					<li class="dropdown">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gym Ratz AAU <b class="caret"></b></a>
+						<ul class="dropdown-menu">
+							<li><a href="#">About</a></li>
+							<li><a href="#">Gym Ratz AAU Boys</a></li>
+							<li><a href="#">Gym Ratz AAU Girls</a></li>
+						</ul>
+
+					</li>
+					<li><a href="#">Clinics</a>
+					<li><a href="#">Court Rentals</a>
+					<li><a href="#">Parties</a></li>
+					<li><a href="#">Camps</a>
+										<li><a href="#">Leagues</a>
+					<li><a href="#">Shop</a>
+					<li><a href="#">Contact</a></li>
+
+					</ul>
+				</div>
+		</div>
 	<%= yield %>
 	<footer>
 		<p>

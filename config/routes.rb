@@ -1,5 +1,4 @@
 TeamManager::Application.routes.draw do
-  get "page/home"
   resources :teams
 
   resources :eventtypes
@@ -7,6 +6,8 @@ TeamManager::Application.routes.draw do
   resources :events
 
   resources :players
+
+  root 'page#home'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
