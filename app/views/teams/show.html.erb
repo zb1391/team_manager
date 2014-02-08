@@ -1,9 +1,74 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Team name:</strong>
-  <%= @team.team_name %>
-</p>
+<table>
+    <tr>
+      <th><%=@team.team_name%></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+    <tr>
+    	<td>NAME</td>
+    	<td>EMAIL</td>
+    	<td>PHONE</td>
+    	<td>OPTIONS</td>
+    </tr>
+    <% @team.players.each do |player| %>
+    <tr>
+      <td><%="#{player.last_name}, #{player.first_name}"%>
+      <td><%=player.email%></td>
+      <td><%=player.phone%></td>
+      <td>
+      	<%= link_to 'Show', player %><br />
+      	<%= link_to 'Edit',  edit_player_path(player) %><br />
+      	<%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %>
+      </td>
+    </tr>
+    <% end %>
+</table>
+<ul>
+  <li class="dropdown">
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Player<strong class="caret"></strong></a>
+      <div class="dropdown-menu" style="padding:2px;">
+        <%= form_for (player=Player.new),:html => {:class => "manager-form"} do |f| %>
+          <% if player.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
 
+              <ul>
+              <% player.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field">
+            <%= f.label :first_name %><br>
+            <%= f.text_field :first_name %>
+          </div>
+          <div class="field">
+            <%= f.label :last_name %><br>
+            <%= f.text_field :last_name %>
+          </div>
+          <div class="field">
+            <%= f.label :phone %><br>
+            <%= f.text_field :phone %>
+          </div>
+          <div class="field">
+            <%= f.label :email %><br>
+            <%= f.text_field :email %>
+          </div>
+          <div class="field">
+            <%= f.label :team_id %><br>
+            <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, {:prompt => @team.id, :selected=> @team.id}%>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
+  </li>
+</ul>
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

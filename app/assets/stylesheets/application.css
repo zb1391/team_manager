@@ -11,3 +11,41 @@
  *= require_self
  *= require_tree .
  */
+table{
+	border:2px solid white;
+}
+table th{
+	padding:5px;
+}
+table tr{
+	border: 1px solid white;
+}
+
+table td{
+	border: 1px solid white;
+	padding:5px;
+}
+
+form input{
+	color:black;
+}
+
+form{
+	padding:2px;
+	background: #1b1b1b;
+}
+form label{
+	color:#ffe77d;
+}
+form input{
+	color:black;
+}
+
+form select{
+	color:black;
+}
+
+.dropdown-small{
+	border:2px solid orange;
+	padding:0;
+}

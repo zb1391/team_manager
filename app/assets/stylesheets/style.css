@@ -116,45 +116,6 @@ width:inherit;
 	background-color:black 
 }
 
-
-
-.mnav{
-	position:relative;
-	float:left;
-	margin: 0;
-	padding:0;
-}
-.mnav ul{
-	position:relative;
-	margin:0;
-	padding:0;
-	list-style-type:none;
-}
-.mnav ul li:first-of-type{
-	border-left:none;
-}
-.mnav ul li{
-	padding: 0 10px;
-	border-left:1px solid white;
-	float:left;
-
-}
-.mnav ul ul{
-	display:none;
-}
-.mnav ul li a{
-	font-size:12px;
-	color:white;
-	text-decoration: none;
-	display:block;
-}
-.mnav ul li a:visited{color:white;}
-.mnav ul li a:hover{
-	backgound:black; 
-	color: #52CC52;
-	text-decoration: none;
-}
-
 h1{
 	letter-spacing: -2px;
 	font-size:40px;
