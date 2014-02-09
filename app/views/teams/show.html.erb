@@ -70,5 +70,26 @@
       </div>
   </li>
 </ul>
+
+<h1>Schdule</h1>
+<table>
+<tr>
+  <td>Date</td>
+  <td>Location</td>
+  <td>Type</td>
+  <td>Options</td>
+</tr>
+  <% @team.events.each do |event| %>
+<tr>
+  <td><%= event.event_time%></td>
+  <td><%= event.event_location%></td>
+  <td><%= event.eventtype.name%></td>
+  <td><%= link_to 'Show', event %><br />
+      <%= link_to 'Edit',  edit_event_path(event) %><br />
+      <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+   </td>
+</tr>
+<% end %>
+</table>
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

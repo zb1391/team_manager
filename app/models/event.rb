@@ -1,4 +1,4 @@
 class Event < ActiveRecord::Base
 	belongs_to :team
-	has_one :eventtype
+	belongs_to :eventtype
 end

@@ -14,7 +14,7 @@
     <% @teams.each do |team| %>
       <tr>
         <td><%= team.team_name %></td>
-        <td><%= link_to 'Show Roster', team %></td>
+        <td><%= link_to 'Manage', team %></td>
         <td><%= link_to 'Edit Name', edit_team_path(team) %></td>
         <td><%= link_to 'Destroy Team', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>

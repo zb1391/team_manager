@@ -28,7 +28,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event.team, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
@@ -54,9 +54,10 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
+    team = @event.team
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_url }
+      format.html { redirect_to team }
       format.json { head :no_content }
     end
   end
