@@ -3,7 +3,8 @@
 <table>
   <thead>
     <tr>
-      <th>Event time</th>
+      <th>Event Date</th>
+      <th>Event Time</th>
       <th>Event location</th>
       <th>Eventtype</th>
       <th>Team</th>
@@ -16,7 +17,8 @@
   <tbody>
     <% @events.each do |event| %>
       <tr>
-        <td><%= event.event_time %></td>
+        <td><%= event.the_date %></td>
+        <td><%= event.the_time.strftime('%H:%M:%S %P')%></td>
         <td><%= event.event_location %></td>
         <td><%= event.eventtype.name %></td>
         <td><%= event.team.team_name %></td>
