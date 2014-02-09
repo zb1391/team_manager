@@ -1,4 +1,3 @@
-<p id="notice"><%= notice %></p>
 
 <table>
     <tr>
@@ -71,25 +70,60 @@
   </li>
 </ul>
 
-<h1>Schdule</h1>
-<table>
-<tr>
-  <td>Date</td>
-  <td>Location</td>
-  <td>Type</td>
-  <td>Options</td>
-</tr>
-  <% @team.events.each do |event| %>
-<tr>
-  <td><%= event.the_date%> <br /> <%= event.the_time.strftime('%H:%M:%S %P') %></td>
-  <td><%= event.event_location%></td>
-  <td><%= event.eventtype.name%></td>
-  <td><%= link_to 'Show', event %><br />
-      <%= link_to 'Edit',  edit_event_path(event) %><br />
-      <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-   </td>
-</tr>
+<h1>Schedule</h1>
+<%= calendar @team.events do |event| %>
+  <%logger.debug "Events start_time: #{event.start_time}" %>
+  <ul>
+    <dd><%= "#{event.eventtype.name}: "%></dd>
+    <dt><%= "#{event.event_location} @ #{event.the_time.strftime('%H:%M %P')}"%></dt>
+            <%= link_to 'Edit', edit_event_path(event) %>
+        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </ul>
 <% end %>
-</table>
+
+<ul>
+  <li class="dropdown">
+    <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
+      <div class="dropdown-menu" style="padding:2px;">
+        <%= form_for (event=Event.new),:html => {:class => "manager-form"} do |f| %>
+          <% if event.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+              <ul>
+              <% event.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="field ">
+            <%= f.label :the_date %><br>
+            <%= f.text_field :the_date %>
+          </div>
+            <div class="field">
+            <%= f.label :the_time %><br>
+            <%= f.time_field :the_time %>
+          </div>
+          <div class="field">
+            <%= f.label :event_location %><br>
+            <%= f.text_field :event_location %>
+          </div>
+          <div class="field">
+            <%= f.label :eventtype_id %><br>
+            <%= f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, include_blank: false %>
+          </div>
+          <div class="field">
+            <%= f.label :team_id %><br>
+            <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, include_blank: false %>
+          </div>
+          <div class="actions">
+            <%= f.submit %>
+          </div>
+        <% end %>
+      </div>
+  </li>
+</ul>
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>

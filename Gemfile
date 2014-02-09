@@ -32,8 +32,11 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-  gem 'jquery-ui-rails'
+#for datepicker()
+gem 'jquery-ui-rails'
 
+#for displaying a calendar
+gem "simple_calendar", "~> 0.1.9"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

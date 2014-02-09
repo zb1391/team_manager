@@ -32,4 +32,15 @@
 
 <br>
 
+<%= calendar @events do |event| %>
+  <ul>
+    <dd><%= "#{event.team.team_name}-#{event.eventtype.name}: "%></dd>
+    <dt><%= "#{event.event_location} @ #{event.the_time.strftime('%H:%M %P')}"%></dt>
+        <%= link_to 'Edit', edit_event_path(event) %>
+        <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+  </ul>
+<% end %>
+
 <%= link_to 'New Event', new_event_path %>
+
+
