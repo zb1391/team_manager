@@ -119,7 +119,7 @@ form select{
   font-size: 11px;
   text-align: center;
 }
-.calendar dd,dt,a{
+.calendar dd,.calendar dt,.calendar a{
     font-size:10px;
 }
 .calendar dd{
