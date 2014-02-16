@@ -39,7 +39,7 @@
 
               <ul>
               <% player.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
+                <li class="black-text"><%= msg %></li>
               <% end %>
               </ul>
             </div>
@@ -65,6 +65,10 @@
             <%= f.label :team_id %><br>
             <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, {:prompt => @team.id, :selected=> @team.id}%>
           </div>
+          <div class="field">
+            <%= f.label :password %><br>
+            <%= f.password_field :password %>
+         </div>
           <div class="actions">
             <%= f.submit %>
           </div>
