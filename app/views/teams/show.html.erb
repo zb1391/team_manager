@@ -1,7 +1,9 @@
   <%= stylesheet_link_tag "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css", "application" %>
   <%= javascript_include_tag "//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js", "//ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js" , "application" %>
 <%= javascript_include_tag "bootstrap" %>
-
+<h1><%=@team.team_name%></h1>
+<h2>Coach</h2>
+<h3><%= "#{@team.coach.first_name} #{@team.coach.last_name}"%> </h3>
 <table>
     <tr>
       <th><%=@team.team_name%></th>

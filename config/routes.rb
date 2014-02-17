@@ -1,4 +1,6 @@
 TeamManager::Application.routes.draw do
+  resources :coaches
+
   resources :teams
 
   resources :eventtypes

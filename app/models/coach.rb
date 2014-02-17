@@ -1,13 +1,12 @@
 require 'digest'
+class Coach < ActiveRecord::Base
 
-class Team < ActiveRecord::Base
-	has_many :players
-	has_many :events
-
-	belongs_to :coach
+	has_many :teams
+	
 	attr_accessor :password 
 	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}
-
+	validates :first_name, :last_name, :phone, :email, presence: true
+	validates :phone, length: {is: 10}
 	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
 
 	#return true if the user's password matches the submitted password
