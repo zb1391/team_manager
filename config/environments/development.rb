@@ -26,4 +26,15 @@ TeamManager::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+  #for action mailer
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :authentication => :plain,
+  :address => "smtp.mailgun.org",
+  :port => 587,
+  :domain => "sandbox56335.mailgun.org",
+  :user_name => "postmaster@sandbox56335.mailgun.org",
+  :password => "6s1ukk04ea29"
+}
 end
