@@ -85,7 +85,13 @@
   <%logger.debug "Events start_time: #{event.start_time}" %>
   <ul>
     <dd><%= "#{event.eventtype.name}: "%></dd>
-    <dt><%= "#{event.event_location} @ #{event.the_time.strftime('%H:%M %P')}"%></dt>
+    <dt>
+      <%= "#{event.event_location}:" %> <br />
+      <%= "#{event.the_time.strftime('%l:%M %P')}"%>
+      <% if !event.end_time.nil? %>
+      <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
+      <% end %>
+    </dt>
         <% if proper_coach?(@team.coach) %>
           <%= link_to 'Edit', edit_event_path(event) %>
           <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -117,6 +123,10 @@
             <div class="field">
             <%= f.label :the_time %><br>
             <%= f.time_field :the_time %>
+          </div>
+           <div class="field">
+            <%= f.label :end_time %> (optional)<br>
+            <%= f.time_field :end_time %>
           </div>
           <div class="field">
             <%= f.label :event_location %><br>
