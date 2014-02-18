@@ -1,4 +1,5 @@
 TeamManager::Application.routes.draw do
+  resources :sessions, :only => [:new, :create, :destroy]
   resources :coaches
 
   resources :teams

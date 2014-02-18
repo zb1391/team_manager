@@ -37,6 +37,12 @@
 </table>
 
 <br>
-
+<% if signed_in? %>
+  <h1>YOU ARE SIGNED IN! </h1>
+  <%= link_to "Sign Out", session_path(:id), :method => :delete %>
+<% else %>
+  <%= link_to "Sign In", new_session_path %>
+<% end %>
+<br />
 <%= link_to 'New Coach', new_coach_path %>
 
