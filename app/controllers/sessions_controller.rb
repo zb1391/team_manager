@@ -7,7 +7,7 @@ class SessionsController < ApplicationController
   	user = Coach.authenticate(params[:session][:email], params[:session][:password])
 
   	if user.nil?
-  		@my_status = "ERROR invalid login credentials"
+  		@my_status = "ERROR: invalid email/password"
   		render 'new'
   	else
   		sign_in user

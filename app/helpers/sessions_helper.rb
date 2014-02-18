@@ -21,6 +21,10 @@ module SessionsHelper
 		!current_user.nil?
 	end
 
+	def proper_coach?(coach)
+		signed_in? && current_user.id == coach.id
+	end
+	
 	private
 		def user_from_remember_token
 			Coach.authenticate_with_salt(*remember_token)

@@ -1,3 +1,8 @@
+<% if signed_in? %>
+  <h1>Welcome <%= current_user.first_name %> </h1>
+<% end %>
+<br />
+
 <h1>Listing coaches</h1>
 
 <table>
@@ -8,9 +13,7 @@
       <th>Phone</th>
       <th>Email</th>
       <th>Teams</th>
-      <th></th>
-      <th></th>
-      <th></th>
+      <th>Options</th>
     </tr>
   </thead>
 
@@ -28,9 +31,15 @@
             <% end %>
           </ul>
         </td>
-        <td><%= link_to 'Show', coach %></td>
-        <td><%= link_to 'Edit', edit_coach_path(coach) %></td>
-        <td><%= link_to 'Destroy', coach, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td>
+        <% if proper_coach?(coach) %>
+        <ul>
+          <li><%= link_to 'Show', coach %></li>
+          <li><%= link_to 'Edit', edit_coach_path(coach) %></li>
+          <li><%= link_to 'Destroy', coach, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+        </ul>
+        <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
@@ -38,11 +47,9 @@
 
 <br>
 <% if signed_in? %>
-  <h1>YOU ARE SIGNED IN! </h1>
   <%= link_to "Sign Out", session_path(:id), :method => :delete %>
 <% else %>
   <%= link_to "Sign In", new_session_path %>
 <% end %>
 <br />
 <%= link_to 'New Coach', new_coach_path %>
-

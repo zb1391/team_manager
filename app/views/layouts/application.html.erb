@@ -15,7 +15,13 @@
 		<div id="banner-container">
 			<%= image_tag("logo3.png", id: "logo", class: "banner-image"); %>
 			<%= image_tag("title.png", id: "title", class: "banner-image"); %>
+			<% if signed_in? %>
+			  <p class= "float-right text-right">Welcome <%= current_user.first_name %> <br />
+			  	<%= link_to "Sign Out", session_path(:id), :method => :delete %>
+			  </p>
+			<% else %>
 				<h5 class="float-right text-right">7 Leighton Place, Mahwah, NJ <br /> (201)848-0017</h5>
+			<% end %>
 				<div>
 					<ul class="nav navbar-nav  navbar-right" id="main-menu">
 					<li class="dropdown">
