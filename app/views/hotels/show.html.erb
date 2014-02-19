@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+<div class="green-content no-padding">
+  <div class="smaller-content">
+ <h2>Hotel Information</h2>
+  <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{@hotel.glocation}&zoom=13&size=200x200&markers=#{@hotel.glocation}&sensor=false", class: "float-right"); %>
+<p>
+  <strong>Name:</strong>
+  <%= @hotel.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @hotel.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @hotel.city %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%= @hotel.state %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @hotel.price %>
+</p>
+<p>
+  <strong> Directions:</strong>
+  <%= link_to 'Click Here!', "https://maps.google.com/maps?f=d&daddr=#{@hotel.glocation}" %>
+</p>
+<p>
+  <strong>Addtional link:</strong>
+  <%= @hotel.addtional_link %>
+</p>
+</div>
+</div>
+
+<%= link_to 'Edit', edit_hotel_path(@hotel) %> |
+<%= link_to 'Back', hotels_path %>

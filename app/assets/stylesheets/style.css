@@ -153,11 +153,22 @@ img{
 	float:right;
 }
 
+.smaller-content{
+	padding:0px;
+	margin:auto;
+	margin-top:0;
+	margin-bottom:0;
+	width:75%;
+
+}
+.carousel-padding{
+	padding-top:40px;
+	padding-bottom:40px;
+}
 .green-content{
 	overflow:hidden;
 	background:#52CC52;
-	padding-top:40px;
-	padding-bottom:40px;
+
 }
 
 .green-content h1{
@@ -172,6 +183,9 @@ img{
 	border: 3px solid #006600;
 	float:right;
 	width:45%;
+}
+.green-content a{
+	color:#ffe77d;
 }
 .green-content p{
 	background: #009933;

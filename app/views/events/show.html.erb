@@ -1,20 +1,64 @@
 <p id="notice"><%= notice %></p>
+<div class="gray-content no-padding">
+	<div class = "smaller-content">
+		<h2><%= @event.eventtype.name.split.map(&:capitalize).join(' ') %></h2>
+		<p>
+		  <strong>Where:</strong>
+		  <%= @event.event_location %>
+		</p>
+
+		<p>
+		  <strong>When:</strong>
+		    <%= "#{@event.the_date}"%> <br />
+		    <%=  "#{@event.the_time.strftime('%l:%M %P')}"%>
+		    <% if !@event.end_time.nil? %>
+		      <%= "-#{@event.end_time.strftime('%l:%M %P')}" %>
+		    <% end %>
+		</p>
+	</div>
+</div>
 
 
+<% if !@event.hotel.nil? %>
+<div class="green-content no-padding">
+  <div class="smaller-content">
+ <h2>Hotel Information</h2>
+  <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{@event.hotel.glocation}&zoom=13&size=200x200&markers=#{@event.hotel.glocation}&sensor=false", class: "float-right"); %>
 <p>
-  <strong>Event location:</strong>
-  <%= @event.event_location %>
+  <strong>Name:</strong>
+  <%= @event.hotel.name %>
 </p>
 
 <p>
-  <strong>Eventtype:</strong>
-  <%= @event.eventtype_id %>
+  <strong>Address:</strong>
+  <%= @event.hotel.address %>
 </p>
 
 <p>
-  <strong>Team:</strong>
-  <%= @event.team_id %>
+  <strong>City:</strong>
+  <%= @event.hotel.city %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%= @event.hotel.state %>
 </p>
 
+<p>
+  <strong>Price:</strong>
+  <%= @event.hotel.price %>
+</p>
+<p>
+  <strong> Directions:</strong>
+  <%= link_to 'Click Here!', "https://maps.google.com/maps?f=d&daddr=#{@event.hotel.glocation}" %>
+</p>
+<% if !@event.hotel.addtional_link.nil? %>
+	<p>
+	  <strong>Addtional link:</strong>
+	  <%= @event.hotel.addtional_link %>
+	</p>
+<% end %>
+</div>
+</div>
+<% end %>
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
