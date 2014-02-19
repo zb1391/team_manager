@@ -22,7 +22,7 @@
     <tr>
       <td><%="#{player.last_name}, #{player.first_name}"%>
       <td><%=player.email%></td>
-      <td><%=player.phone%></td>
+      <td><%=number_to_phone(player.phone, area_code: true)%></td>
       <td>
       	<%= link_to 'Show', player %><br />
       	<%= link_to 'Edit',  edit_player_path(player) %><br />
@@ -57,7 +57,7 @@
             <%= f.text_field :last_name %>
           </div>
           <div class="field">
-            <%= f.label :phone %><br>
+            <%= f.label :phone %><em>(ex. 2018480017)</em><br>
             <%= f.text_field :phone %>
           </div>
           <div class="field">
@@ -85,16 +85,17 @@
   <%logger.debug "Events start_time: #{event.start_time}" %>
   <div class="calendar-details">
       <div class="calendar-sub-details">
-      <p><%=event.location.name%></p>
-      <dt><%= event.location.unformatted_location %></dt>
-      <dd><%= link_to "directions", event.location.directions %></dd>
-      <% if event.has_hotel? %>
-        <p><%=event.hotel.name%></p>
-        <dt> <%=event.hotel.unformatted_location %></dt>
-        <dt> <%="#{number_to_currency(event.hotel.price)}/Night"%></dt>
-        <dd><%= link_to "hotel directions", event.hotel.directions %></dd>
-      <% end %>
-      <dd><%= link_to "more details", event_path %></dd>
+        <p><%=event.location.name%></p>
+        <dt><%= event.location.unformatted_location %></dt>
+        <dd><%= link_to "directions", event.location.directions %></dd>
+        <% if event.has_hotel? %>
+          <p><%=event.hotel.name%></p>
+          <dt><%= number_to_phone(hotel.phone, area_code: true) %></dt>
+          <dt> <%=event.hotel.unformatted_location %></dt>
+          <dt> <%="#{number_to_currency(event.hotel.price)}/Night"%></dt>
+          <dd><%= link_to "hotel directions", event.hotel.directions %></dd>
+        <% end %>
+        <dd><%= link_to "more details", event_path %></dd>
     </div> 
     <ul>
       <dd><%= "#{event.eventtype.name}: "%></dd>
@@ -170,5 +171,3 @@
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
 <% end %>
-<p id="test">THIS IS A TEST
-</p>

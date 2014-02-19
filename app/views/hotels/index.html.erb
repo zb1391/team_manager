@@ -8,6 +8,7 @@
       <th>City</th>
       <th>State</th>
       <th>Price</th>
+      <th>Phone</th>
       <th>Addtional link</th>
       <th></th>
       <th></th>
@@ -23,6 +24,7 @@
         <td><%= hotel.city %></td>
         <td><%= hotel.state %></td>
         <td><%= "#{number_to_currency(hotel.price)}/Night"%></td>
+        <td><%= number_to_phone(hotel.phone, area_code: true) %></td>
         <td><%= hotel.addtional_link %></td>
         <td><%= link_to 'Show', hotel %></td>
         <td><%= link_to 'Edit', edit_hotel_path(hotel) %></td>

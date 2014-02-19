@@ -12,7 +12,7 @@
 
 <p>
   <strong>Phone:</strong>
-  <%= @player.phone %>
+  <%= number_to_phone(@player.phone, area_code: true) %>
 </p>
 
 <p>

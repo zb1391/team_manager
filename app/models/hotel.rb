@@ -1,8 +1,9 @@
 class Hotel < ActiveRecord::Base
 
 	has_many :events
-	validates :price, :address, :city, :state, presence: true
+	validates :price, :address, :city, :state, :phone, presence: true
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
+	validates :phone, length: {is: 10}
 	def glocation
 		gaddress = ""+"#{address}"
 		gcity = ""+"#{city}"
@@ -28,5 +29,9 @@ class Hotel < ActiveRecord::Base
 	def formatted_price
 		newprice = number_to_currency(price)
 		"#{newprice}/night"
+	end
+
+	def collection_format
+		"#{name}-#{unformatted_location}"
 	end
 end

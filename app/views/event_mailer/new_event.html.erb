@@ -8,7 +8,7 @@
     <p>
     Hi <%= @player.first_name %>, <br />
     A <%= @event.eventtype.name %> has been scheduled for
-    <b><%= @event.the_date %></b> at <b><%= @event.the_time.strftime('%H:%M %P')%></b> will be held at <b><%=@event.event_location%></b> <br />
+    <b><%= @event.the_date %></b> at <b><%= @event.the_time.strftime('%H:%M %P')%></b> will be held at <b><%=@event.location.name%></b> <br />
     More information can be found be checking the schedule <%=link_to "here", @player.team %>
     </p>
     <p>

@@ -22,7 +22,7 @@
       <tr>
         <td><%= coach.first_name %></td>
         <td><%= coach.last_name %></td>
-        <td><%= coach.phone %></td>
+        <td><%= number_to_phone(coach.phone, area_code: true) %></td>
         <td><%= coach.email %></td>
         <td>
           <ul>

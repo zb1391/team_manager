@@ -23,6 +23,11 @@
 </p>
 
 <p>
+  <strong>Phone:</strong>
+  <%= number_to_phone(@hotel.phone, area_code: true) %>
+</p>
+
+<p>
   <strong>Price:</strong>
   <%= "#{number_to_currency(@hotel.price)}/Night" %>
 </p>

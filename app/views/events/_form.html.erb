@@ -41,7 +41,7 @@
   </div>
     <div class="field">
     <%= f.label :hotel_id %><br>
-    <%= f.collection_select :hotel_id, Hotel.order(:id),:id,:name, include_blank: true %>
+    <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
     <%= link_to "New Hotel", new_hotel_path %>
   </div>
   <div class="actions">

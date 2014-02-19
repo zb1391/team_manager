@@ -19,7 +19,7 @@
       <tr>
         <td><%= player.first_name %></td>
         <td><%= player.last_name %></td>
-        <td><%= player.phone %></td>
+        <td><%= number_to_phone(player.phone, area_code: true) %></td>
         <td><%= player.email %></td>
         <td><%= link_to player.team.team_name, player.team%></td>
         <td><%= link_to 'Show', player %></td>

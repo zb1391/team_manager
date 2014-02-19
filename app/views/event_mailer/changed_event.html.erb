@@ -8,9 +8,9 @@
     <p>
     Hi <%= @player.first_name %>, <br />
     This is to inform you that the <%= @oldevent.eventtype.name %> has been changed: <br />
-    <%= @oldevent.eventtype.name %>: <%= @oldevent.the_date %>, <%= @oldevent.the_time.strftime('%H:%M %P')%> at <%=@oldevent.event_location %> <br /> 
+    <%= @oldevent.eventtype.name %>: <%= @oldevent.the_date %>, <%= @oldevent.the_time.strftime('%H:%M %P')%> at <%=@oldevent.location.name %> <br /> 
     is now<br />
-    <b><%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%H:%M %P')%> at <%=@event.event_location %></b>
+    <b><%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%H:%M %P')%> at <%=@event.location.name %></b>
     <br /> 
     
     More information can be found be checking the schedule <%=link_to "here", @player.team %>

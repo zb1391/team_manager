@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219011715) do
+ActiveRecord::Schema.define(version: 20140219145834) do
 
   create_table "coaches", force: true do |t|
     t.string   "first_name"
@@ -51,6 +51,7 @@ ActiveRecord::Schema.define(version: 20140219011715) do
     t.string   "addtional_link"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phone"
   end
 
   create_table "locations", force: true do |t|

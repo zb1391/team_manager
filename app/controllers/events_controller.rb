@@ -28,9 +28,9 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-       # @event.team.players.each do |player|
-         # EventMailer.new_event(player,@event).deliver
-         # end
+       @event.team.players.each do |player|
+         EventMailer.new_event(player,@event).deliver
+        end
         format.html { redirect_to @event.team, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
@@ -46,9 +46,9 @@ class EventsController < ApplicationController
     oldevent = @event
     respond_to do |format|
       if @event.update(event_params)
-       # @event.team.players.each do |player|
-        #  EventMailer.changed_event(player,oldevent,@event).deliver
-        #end
+       @event.team.players.each do |player|
+          EventMailer.changed_event(player,oldevent,@event).deliver
+        end
         format.html { redirect_to @event, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
@@ -62,9 +62,9 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     team = @event.team
-    #@event.team.players.each do |player|
-     # EventMailer.destroyed_event(player,@event).deliver
-   # end
+    @event.team.players.each do |player|
+     EventMailer.destroyed_event(player,@event).deliver
+    end
     @event.destroy
     respond_to do |format|
       format.html { redirect_to team }
