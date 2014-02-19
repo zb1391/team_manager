@@ -17,4 +17,10 @@ class Location < ActiveRecord::Base
 		end
 		return "#{gaddress},#{gcity},#{gstate}"
 	end
+	def unformatted_location
+		"#{address},#{city},#{state}"
+	end
+	def directions
+		"https://maps.google.com/maps?f=d&daddr=#{glocation}"
+	end
 end

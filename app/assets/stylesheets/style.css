@@ -144,10 +144,10 @@ p{
 
 }
 a{
-	color:#52CC52;
+	color:#008F00;
 }
 a:hover{
-	color:#006600;
+	color:#52CC52;
 }
 img{
 	float:right;
@@ -380,4 +380,30 @@ footer ul li a:hover{
 	font-size: small;
 	color: white;
 	
+}
+.calendar-details{
+	position:relative;
+}
+
+.calendar-sub-details{
+	margin:0;
+	padding:5px;
+	position:absolute;
+	top:-50px;
+	left:60%;
+	border: 1px solid black;
+	background: white;
+	width:220px;
+}
+
+.calendar-sub-details p{
+	margin:0px;
+	padding:0px;
+	color:black;
+	width: 100%;
+}
+
+.calendar-sub-details dt{
+	color:gray;
+	font-style: italic;
 }

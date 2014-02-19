@@ -26,7 +26,6 @@
     <%= f.label :end_time %>(optional)<br>
     <%= f.time_field :end_time %>
   </div>
-  </div>
     <div class="field">
     <%= f.label :location_id %><br>
     <%= f.collection_select :location_id, Location.order(:id),:id,:name, include_blank: false %>

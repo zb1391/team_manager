@@ -1,8 +1,8 @@
 class Hotel < ActiveRecord::Base
 
 	has_many :events
-	validates :address, :city, :state, presence: true
-
+	validates :price, :address, :city, :state, presence: true
+	validates :price, numericality: {greater_than_or_equal_to: 0.01}
 	def glocation
 		gaddress = ""+"#{address}"
 		gcity = ""+"#{city}"
@@ -17,5 +17,16 @@ class Hotel < ActiveRecord::Base
 			gstate=gstate.gsub!(' ','+')
 		end
 		return "#{gaddress},#{gcity},#{gstate}"
+	end
+	def unformatted_location
+		"#{address},#{city},#{state}"
+	end
+	def directions
+		"https://maps.google.com/maps?f=d&daddr=#{glocation}"
+	end
+
+	def formatted_price
+		newprice = number_to_currency(price)
+		"#{newprice}/night"
 	end
 end

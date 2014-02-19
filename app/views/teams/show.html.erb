@@ -83,20 +83,34 @@
 <h1>Schedule</h1>
 <%= calendar @team.events do |event| %>
   <%logger.debug "Events start_time: #{event.start_time}" %>
-  <ul>
-    <dd><%= "#{event.eventtype.name}: "%></dd>
-    <dt>
-      <%= "#{event.location.name}:" %> <br />
-      <%= "#{event.the_time.strftime('%l:%M %P')}"%>
-      <% if !event.end_time.nil? %>
-      <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
+  <div class="calendar-details">
+      <div class="calendar-sub-details">
+      <p><%=event.location.name%></p>
+      <dt><%= event.location.unformatted_location %></dt>
+      <dd><%= link_to "directions", event.location.directions %></dd>
+      <% if event.has_hotel? %>
+        <p><%=event.hotel.name%></p>
+        <dt> <%=event.hotel.unformatted_location %></dt>
+        <dt> <%="#{number_to_currency(event.hotel.price)}/Night"%></dt>
+        <dd><%= link_to "hotel directions", event.hotel.directions %></dd>
       <% end %>
-    </dt>
-        <% if proper_coach?(@team.coach) %>
-          <%= link_to 'Edit', edit_event_path(event) %>
-          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <dd><%= link_to "more details", event_path %></dd>
+    </div> 
+    <ul>
+      <dd><%= "#{event.eventtype.name}: "%></dd>
+      <dt>
+        <%= "#{event.location.name}:" %> <br />
+        <%= "#{event.the_time.strftime('%l:%M %P')}"%>
+        <% if !event.end_time.nil? %>
+        <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
         <% end %>
-  </ul>
+      </dt>
+          <% if proper_coach?(@team.coach) %>
+            <%= link_to 'Edit', edit_event_path(event) %>
+            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
+    </ul>
+  </div>
 <% end %>
 <% if proper_coach?(@team.coach) %>
 <ul>
@@ -116,38 +130,39 @@
             </div>
           <% end %>
 
-          <div class="field">
-            <%= f.label :the_date %><br>
-            <%= f.text_field :the_date %>
-          </div>
-          <div class="field">
-            <%= f.label :the_time %><br>
-            <%= f.time_field :the_time %>
-          </div>
-          <div class="field">
-            <%= f.label :end_time %>(optional)<br>
-            <%= f.time_field :end_time %>
-          </div>
-          </div>
-            <div class="field">
-            <%= f.label :location_id %><br>
-            <%= f.collection_select :location_id, Location.order(:id),:id,:name, include_blank: false %>
-          </div>
-          <div class="field">
-            <%= f.label :eventtype_id %><br>
-            <%= f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, include_blank: false %>
-          </div>
-          <div class="field">
-            <%= f.label :team_id %><br>
-            <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, include_blank: false %>
-          </div>
-            <div class="field">
-            <%= f.label :hotel_id %><br>
-            <%= f.collection_select :hotel_id, Hotel.order(:id),:id,:name, include_blank: true %>
-          </div>
-          <div class="actions">
-            <%= f.submit %>
-          </div>
+  <div class="field">
+    <%= f.label :the_date %><br>
+    <%= f.text_field :the_date %>
+  </div>
+  <div class="field">
+    <%= f.label :the_time %><br>
+    <%= f.time_field :the_time %>
+  </div>
+  <div class="field">
+    <%= f.label :end_time %>(optional)<br>
+    <%= f.time_field :end_time %>
+  </div>
+    <div class="field">
+    <%= f.label :location_id %><br>
+    <%= f.collection_select :location_id, Location.order(:id),:id,:name, include_blank: false %>
+    <%= link_to "New Location", new_location_path %>
+  </div>
+  <div class="field">
+    <%= f.label :eventtype_id %><br>
+    <%= f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, include_blank: false %>
+  </div>
+  <div class="field">
+    <%= f.label :team_id %><br>
+    <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, include_blank: false %>
+  </div>
+    <div class="field">
+    <%= f.label :hotel_id %><br>
+    <%= f.collection_select :hotel_id, Hotel.order(:id),:id,:name, include_blank: true %>
+    <%= link_to "New Hotel", new_hotel_path %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
         <% end %>
       </div>
   </li>
@@ -155,3 +170,5 @@
 <%= link_to 'Edit', edit_team_path(@team) %> |
 <%= link_to 'Back', teams_path %>
 <% end %>
+<p id="test">THIS IS A TEST
+</p>

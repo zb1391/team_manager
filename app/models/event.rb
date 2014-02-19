@@ -7,4 +7,7 @@ class Event < ActiveRecord::Base
 	def start_time
 		DateTime.new(the_date.year, the_date.month, the_date.day, the_time.hour, the_time.min, the_time.sec)
 	end
+	def has_hotel?
+		!hotel.nil?
+	end
 end

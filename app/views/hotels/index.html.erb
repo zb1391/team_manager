@@ -22,7 +22,7 @@
         <td><%= hotel.address %></td>
         <td><%= hotel.city %></td>
         <td><%= hotel.state %></td>
-        <td><%= hotel.price %></td>
+        <td><%= "#{number_to_currency(hotel.price)}/Night"%></td>
         <td><%= hotel.addtional_link %></td>
         <td><%= link_to 'Show', hotel %></td>
         <td><%= link_to 'Edit', edit_hotel_path(hotel) %></td>

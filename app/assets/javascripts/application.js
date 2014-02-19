@@ -22,3 +22,20 @@ $(function() {
   	dateFormat: "yy-mm-dd"
   });
 });
+
+
+$(function (){
+ 	var sub = $(".calendar-sub-details");
+ 	sub.hide();
+
+ 	$(".calendar-details").on('mouseenter', function() {
+ 		$(this).children(":first").show();
+ 	});
+ 	$(".calendar-sub-details").on('mouseenter', function() {
+ 		$(this).children(":first").show();
+ 	});
+ 	$(".calendar-details").on('mouseleave', function() {
+ 		$(this).children(":first").hide();
+ 	});
+});
+

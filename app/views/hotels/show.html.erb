@@ -24,7 +24,7 @@
 
 <p>
   <strong>Price:</strong>
-  <%= @hotel.price %>
+  <%= "#{number_to_currency(@hotel.price)}/Night" %>
 </p>
 <p>
   <strong> Directions:</strong>
