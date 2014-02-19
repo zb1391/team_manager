@@ -1,4 +1,6 @@
 TeamManager::Application.routes.draw do
+  resources :locations
+
   resources :hotels
 
   resources :sessions, :only => [:new, :create, :destroy]

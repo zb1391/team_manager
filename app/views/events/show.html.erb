@@ -1,12 +1,7 @@
-<p id="notice"><%= notice %></p>
 <div class="gray-content no-padding">
 	<div class = "smaller-content">
 		<h2><%= @event.eventtype.name.split.map(&:capitalize).join(' ') %></h2>
-		<p>
-		  <strong>Where:</strong>
-		  <%= @event.event_location %>
-		</p>
-
+		<h1><%= @event.location.name %></h1>
 		<p>
 		  <strong>When:</strong>
 		    <%= "#{@event.the_date}"%> <br />
@@ -14,6 +9,10 @@
 		    <% if !@event.end_time.nil? %>
 		      <%= "-#{@event.end_time.strftime('%l:%M %P')}" %>
 		    <% end %>
+		</p>
+		<p>
+		  <strong> Directions:</strong>
+		  <%= link_to 'Click Here!', "https://maps.google.com/maps?f=d&daddr=#{@event.location.glocation}" %>
 		</p>
 	</div>
 </div>

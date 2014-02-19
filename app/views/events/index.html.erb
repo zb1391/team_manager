@@ -19,7 +19,7 @@
       <tr>
         <td><%= event.the_date %></td>
         <td><%= event.the_time.strftime('%l:%M %P')%></td>
-        <td><%= event.event_location %></td>
+        <td><%= event.location.name %></td>
         <td><%= event.eventtype.name %></td>
         <td><%= event.team.team_name %></td>
         <td><%= link_to 'Show', event %></td>
@@ -38,7 +38,7 @@
     <dd><%= "#{event.eventtype.name}: "%></dd>
     <dt>
       <%= "#{event.team.team_name}" %> <br />
-      <%= "#{event.event_location}:" %> <br />
+      <%= "#{event.location.name}:" %> <br />
       <%= "#{event.the_time.strftime('%l:%M %P')}"%>
       <% if !event.end_time.nil? %>
       <%= "-#{event.end_time.strftime('%l:%M %P')}" %>

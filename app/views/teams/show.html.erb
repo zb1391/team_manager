@@ -86,7 +86,7 @@
   <ul>
     <dd><%= "#{event.eventtype.name}: "%></dd>
     <dt>
-      <%= "#{event.event_location}:" %> <br />
+      <%= "#{event.location.name}:" %> <br />
       <%= "#{event.the_time.strftime('%l:%M %P')}"%>
       <% if !event.end_time.nil? %>
       <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
@@ -116,21 +116,22 @@
             </div>
           <% end %>
 
-          <div class="field ">
+          <div class="field">
             <%= f.label :the_date %><br>
             <%= f.text_field :the_date %>
           </div>
-            <div class="field">
+          <div class="field">
             <%= f.label :the_time %><br>
             <%= f.time_field :the_time %>
           </div>
-           <div class="field">
-            <%= f.label :end_time %> (optional)<br>
+          <div class="field">
+            <%= f.label :end_time %>(optional)<br>
             <%= f.time_field :end_time %>
           </div>
-          <div class="field">
-            <%= f.label :event_location %><br>
-            <%= f.text_field :event_location %>
+          </div>
+            <div class="field">
+            <%= f.label :location_id %><br>
+            <%= f.collection_select :location_id, Location.order(:id),:id,:name, include_blank: false %>
           </div>
           <div class="field">
             <%= f.label :eventtype_id %><br>
@@ -139,6 +140,10 @@
           <div class="field">
             <%= f.label :team_id %><br>
             <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, include_blank: false %>
+          </div>
+            <div class="field">
+            <%= f.label :hotel_id %><br>
+            <%= f.collection_select :hotel_id, Hotel.order(:id),:id,:name, include_blank: true %>
           </div>
           <div class="actions">
             <%= f.submit %>

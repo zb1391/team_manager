@@ -26,9 +26,11 @@
     <%= f.label :end_time %>(optional)<br>
     <%= f.time_field :end_time %>
   </div>
-  <div class="field">
-    <%= f.label :event_location %><br>
-    <%= f.text_field :event_location %>
+  </div>
+    <div class="field">
+    <%= f.label :location_id %><br>
+    <%= f.collection_select :location_id, Location.order(:id),:id,:name, include_blank: false %>
+    <%= link_to "New Location", new_location_path %>
   </div>
   <div class="field">
     <%= f.label :eventtype_id %><br>
@@ -41,6 +43,7 @@
     <div class="field">
     <%= f.label :hotel_id %><br>
     <%= f.collection_select :hotel_id, Hotel.order(:id),:id,:name, include_blank: true %>
+    <%= link_to "New Hotel", new_hotel_path %>
   </div>
   <div class="actions">
     <%= f.submit %>

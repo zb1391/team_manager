@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+<div class="green-content no-padding">
+  <div class="smaller-content">
+ <h2>Location Information</h2>
+  <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{@location.glocation}&zoom=13&size=200x200&markers=#{@location.glocation}&sensor=false", class: "float-right"); %>
+<p>
+  <strong>Name:</strong>
+  <%= @location.name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @location.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @location.city %>
+</p>
+<p>
+  <strong>State:</strong>
+  <%= @location.state %>
+</p>
+
+<p>
+  <strong> Directions:</strong>
+  <%= link_to 'Click Here!', "https://maps.google.com/maps?f=d&daddr=#{@location.glocation}" %>
+</p>
+<p>
+  <strong>Addtional link:</strong>
+  <%= @location.additional_link %>
+</p>
+</div>
+</div>
+
+<%= link_to 'Edit', edit_location_path(@location) %> |
+<%= link_to 'Back', locations_path %>
