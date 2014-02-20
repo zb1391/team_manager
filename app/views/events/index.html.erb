@@ -84,7 +84,6 @@
                   <%= "-#{e.end_time.strftime('%l:%M %P')}" %>
                 <% end %>
               </li>
-              <li><%= e.location.name %></li>
               <% if e.court.nil? %>
                 <li> <%="#{e.formatted_eventtype}" %></li>
               <% else %>
