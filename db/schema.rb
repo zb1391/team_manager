@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140219145834) do
+ActiveRecord::Schema.define(version: 20140220004605) do
 
   create_table "coaches", force: true do |t|
     t.string   "first_name"
@@ -34,6 +34,7 @@ ActiveRecord::Schema.define(version: 20140219145834) do
     t.time     "end_time"
     t.integer  "hotel_id"
     t.integer  "location_id"
+    t.integer  "court"
   end
 
   create_table "eventtypes", force: true do |t|

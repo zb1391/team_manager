@@ -29,9 +29,9 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
        @event.team.players.each do |player|
-         EventMailer.new_event(player,@event).deliver
+         #EventMailer.new_event(player,@event).deliver
         end
-        format.html { redirect_to @event.team, notice: 'Event was successfully created.' }
+        format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
@@ -80,6 +80,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:the_date, :the_time, :location_id, :eventtype_id, :end_time,:team_id, :hotel_id)
+      params.require(:event).permit(:the_date, :the_time, :location_id, :eventtype_id, :end_time,:team_id, :hotel_id, :court)
     end
 end

@@ -90,12 +90,12 @@
         <dd><%= link_to "directions", event.location.directions %></dd>
         <% if event.has_hotel? %>
           <p><%=event.hotel.name%></p>
-          <dt><%= number_to_phone(hotel.phone, area_code: true) %></dt>
+          <dt><%= number_to_phone(event.hotel.phone, area_code: true) %></dt>
           <dt> <%=event.hotel.unformatted_location %></dt>
           <dt> <%="#{number_to_currency(event.hotel.price)}/Night"%></dt>
           <dd><%= link_to "hotel directions", event.hotel.directions %></dd>
         <% end %>
-        <dd><%= link_to "more details", event_path %></dd>
+        <dd><%= link_to "more details", event %></dd>
     </div> 
     <ul>
       <dd><%= "#{event.eventtype.name}: "%></dd>

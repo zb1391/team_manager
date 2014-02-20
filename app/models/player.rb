@@ -3,8 +3,9 @@ class Player < ActiveRecord::Base
 	belongs_to :team
 
 	validates :first_name, :last_name, :phone, :email, presence: true
-	validates :phone, length: {is: 10}
+	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validate :password_matches_team
+
 
 	def password_matches_team
 		team = Team.find(team_id)

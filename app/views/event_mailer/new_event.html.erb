@@ -9,7 +9,12 @@
     Hi <%= @player.first_name %>, <br />
     A <%= @event.eventtype.name %> has been scheduled for
     <b><%= @event.the_date %></b> at <b><%= @event.the_time.strftime('%H:%M %P')%></b> will be held at <b><%=@event.location.name%></b> <br />
-    More information can be found be checking the schedule <%=link_to "here", @player.team %>
+
+    More information
+    <%if @event.has_hotel? %>
+      including hotel information
+    <%end%>
+    can be found be checking the schedule <%=link_to "here", @player.team %>
     </p>
     <p>
       This is an automated email. Please do not reply

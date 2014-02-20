@@ -13,7 +13,11 @@
     <b><%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%H:%M %P')%> at <%=@event.location.name %></b>
     <br /> 
     
-    More information can be found be checking the schedule <%=link_to "here", @player.team %>
+        More information
+    <%if @event.has_hotel? %>
+      including hotel information
+    <%end%>
+    can be found be checking the schedule <%=link_to "here", @player.team %>
     </p>
     <p>
       This is an automated email. Please do not reply

@@ -36,6 +36,10 @@
     <%= f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, include_blank: false %>
   </div>
   <div class="field">
+    <%= f.label :court %><br>
+    <%= f.number_field :court, min:1 %>
+  </div>
+  <div class="field">
     <%= f.label :team_id %><br>
     <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, include_blank: false %>
   </div>

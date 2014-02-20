@@ -3,7 +3,7 @@ class Hotel < ActiveRecord::Base
 	has_many :events
 	validates :price, :address, :city, :state, :phone, presence: true
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
-	validates :phone, length: {is: 10}
+	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	def glocation
 		gaddress = ""+"#{address}"
 		gcity = ""+"#{city}"

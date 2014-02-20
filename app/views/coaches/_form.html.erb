@@ -5,7 +5,7 @@
 
       <ul>
       <% @coach.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <li class="black-text"><%= msg %></li>
       <% end %>
       </ul>
     </div>
@@ -30,6 +30,10 @@
   <div class="field">
     <%= f.label :password %><br>
     <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmation" %><br />
+    <%= f.password_field :password_confirmation %>
   </div>
   <div class="actions">
     <%= f.submit %>

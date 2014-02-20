@@ -10,4 +10,27 @@ class Event < ActiveRecord::Base
 	def has_hotel?
 		!hotel.nil?
 	end
+
+	#starting day
+	def self.start_of_week
+		Date.today.beginning_of_week(start_day= :sunday).strftime('%b-%d-%y')
+	end
+
+	#endingru day
+	def self.end_of_week
+		Date.today.end_of_week(start_day= :sunday).strftime('%b-%d-%y')
+	end
+
+	#def all 
+	#find all events on a given date
+	def self.todays_events(cur_date)
+	    Event.where("the_date = ?", cur_date).order(:the_time)
+	end
+
+	def formatted_date
+		the_date.strftime("%b-%d-%y")
+	end
+	def formatted_eventtype
+		eventtype.name.split.map(&:capitalize).join(' ')
+	end
 end

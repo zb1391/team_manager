@@ -4,12 +4,18 @@
 		<h1><%= @event.location.name %></h1>
 		<p>
 		  <strong>When:</strong>
-		    <%= "#{@event.the_date}"%> <br />
+		    <%= @event.formatted_date%> <br />
 		    <%=  "#{@event.the_time.strftime('%l:%M %P')}"%>
 		    <% if !@event.end_time.nil? %>
 		      <%= "-#{@event.end_time.strftime('%l:%M %P')}" %>
 		    <% end %>
 		</p>
+		<% if !@event.court.nil? %>
+			<p>
+				<strong>Court:</strong>
+				<%= @event.court %>
+			</p>
+		<% end %>
 		<p>
 		  <strong> Directions:</strong>
 		  <%= link_to 'Click Here!', "https://maps.google.com/maps?f=d&daddr=#{@event.location.glocation}" %>

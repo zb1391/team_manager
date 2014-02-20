@@ -386,7 +386,6 @@ footer ul li a:hover{
 }
 
 .calendar-sub-details{
-	display:hidden;
 	margin:0;
 	padding:5px;
 	position:absolute;
@@ -407,4 +406,55 @@ footer ul li a:hover{
 .calendar-sub-details dt{
 	color:gray;
 	font-style: italic;
+}
+.weekly-calendar{
+	margin: auto;
+}
+.centered{
+	letter-spacing: 0px;
+	padding: 0px;
+	margin: 0px;
+	text-align: center;
+}
+.weekly-calendar th{
+	background:#338533;
+	color:white;
+}
+.weekly-calendar td{
+	vertical-align: top;
+	padding: 0px;
+	margin: 0px;
+	width:135px;
+	background:#f9f9f9;
+	border: 1px solid #cccccc;
+}
+.weekly-calendar dl{
+	vertical-align: top;
+	padding: 0px;
+	margin: 0px;
+}
+.weekly-calendar ul{
+	text-decoration: none;
+	padding: 0;
+}
+.weekly-calendar li{
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	font-size: 11px;
+	color:gray;
+}
+.weekly-calendar dd{
+	padding: 0;
+	margin: 0;
+	list-style-type: none;
+	font-size: 11px;
+	color:gray;
+}
+.weekly-calendar dt{
+	font-size: 8px;
+	margin-left:2px;
+	margin-top:10px;
+	font-size:14px;
+
 }
