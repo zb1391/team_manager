@@ -1,58 +1,18 @@
-<h1>Listing events</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Event Date</th>
-      <th>Event Time</th>
-      <th>Event location</th>
-      <th>Eventtype</th>
-      <th>Team</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.the_date %></td>
-        <td><%= event.the_time.strftime('%l:%M %P')%></td>
-        <td><%= event.location.name %></td>
-        <td><%= event.eventtype.name %></td>
-        <td><%= event.team.team_name %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= calendar @events do |event| %>
-  <%logger.debug "Events start_time: #{event.start_time}" %>
-  <ul>
-    <dd><%= "#{event.eventtype.name}: "%></dd>
-    <dt>
-      <%= "#{event.team.team_name}" %> <br />
-      <%= "#{event.location.name}:" %> <br />
-      <%= "#{event.the_time.strftime('%l:%M %P')}"%>
-      <% if !event.end_time.nil? %>
-      <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
-      <% end %>
-    </dt>
-        <% if proper_coach?(event.team.coach) %>
-          <%= link_to 'Edit', edit_event_path(event) %>
-          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-  </ul>
+<% if !@my_teams.nil? %>
+<% @my_teams.each do |team| %>
+  <%= team.team_name %>
 <% end %>
-
+<% end %>
 <h1 class="centered">Down Town Sports Practice Schedule</h1>
 <h3 class="centered"> <%="#{Event.start_of_week} --- #{Event.end_of_week}"%></h3>
+<%= form_tag(page_weekly_calendar_path, method: "get") do %>
+  <%= label_tag(:which_teams, "Teams:") %> <br />
+  <% @teams.each do |team| %>
+    <%= check_box_tag(:which_teams) %>
+    <%= label_tag(:which_teams, team.team_name) %> 
+  <% end %>  <br />
+  <%= submit_tag("die") %>
+<% end %>
 <table class="weekly-calendar">
   <tr>
     <th>Sunday</th>
@@ -122,7 +82,3 @@
     <%end %>
   </tr>
 </table>
-
-<%= link_to 'New Event', new_event_path %>
-
-

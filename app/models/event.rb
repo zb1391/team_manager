@@ -11,6 +11,7 @@ class Event < ActiveRecord::Base
 		!hotel.nil?
 	end
 
+	#Times for Creating Weekly Calendar
 	def self.begin_time
 		Time.utc(2000,"jan",1,8,0,0)
 	end
@@ -18,15 +19,44 @@ class Event < ActiveRecord::Base
 	def self.stopping_time
 		Time.utc(2000,"jan",1,22,0,0)
 	end
-	#starting day
+
+
+	#Days for Creating Weekly Calendar
 	def self.start_of_week
 		Date.today.beginning_of_week(start_day= :sunday).strftime('%b-%d-%y')
 	end
 
-	#endingru day
+	
 	def self.end_of_week
 		Date.today.end_of_week(start_day= :sunday).strftime('%b-%d-%y')
 	end
+
+	#Return all Events on A Particular Date on a Particular Time on A Particular Court
+	def self.events_on_court_at_time(cur_date,cur_time,cur_court)
+		Event.where("the_date =? AND the_time >= ? AND the_time < ? AND court = ? AND eventtype_id = ?", cur_date, cur_time, 
+			(cur_time+30.minutes), cur_court, 1 ).order(:the_time 	)
+	end
+
+	#Return a Single Event on A Particular Date on a Particular Time on A Particular Court
+	def self.unique_event_on_court_at_time(cur_date,cur_time,cur_court)
+		the_events = Event.where("the_date =? AND the_time >= ? AND the_time < ? AND court = ? AND eventtype_id = ?", cur_date, cur_time, 
+			(cur_time+30.minutes), cur_court,1 ).order(:the_time 	)
+		if the_events.nil?
+			return nil 
+		else
+			return the_events[0]
+		end
+	end
+	#Return a String of all TeamNames for an Event at a Particular Time On A Particular Court
+	def self.teams_on_court_at_time(cur_date, cur_time, cur_court)
+		the_event = events_on_court_at_time(cur_date,cur_time,cur_court)
+		the_teams = ""
+		the_event.each do |e|
+			the_teams += "#{e.team.team_name}/"
+		end
+		return the_teams[0..-2]
+	end
+
 
 	#def all 
 	#find all events on a given date
@@ -35,12 +65,18 @@ class Event < ActiveRecord::Base
 	end
 
 	def self.current_events(cur_date, cur_time)
-		Event.where("the_date =? AND the_time >= ? AND the_time < ?", cur_date, cur_time, (cur_time+1.hour) ).order(:the_time)
+		Event.where("the_date =? AND the_time >= ? AND the_time < ?", cur_date, cur_time, (cur_time+1.hour) ).order(:the_time 	)
 	end
 	def formatted_date
 		the_date.strftime("%b-%d-%y")
 	end
 	def formatted_eventtype
 		eventtype.name.split.map(&:capitalize).join(' ')
+	end
+
+	def self.team_search(search)
+		if search
+			Team.find(:all, :conditions => ['team_name = ?', "%#{search}"])
+		end
 	end
 end
