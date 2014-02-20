@@ -11,6 +11,13 @@ class Event < ActiveRecord::Base
 		!hotel.nil?
 	end
 
+	def self.begin_time
+		Time.utc(2000,"jan",1,8,0,0)
+	end
+
+	def self.stopping_time
+		Time.utc(2000,"jan",1,22,0,0)
+	end
 	#starting day
 	def self.start_of_week
 		Date.today.beginning_of_week(start_day= :sunday).strftime('%b-%d-%y')
@@ -27,6 +34,9 @@ class Event < ActiveRecord::Base
 	    Event.where("the_date = ?", cur_date).order(:the_time)
 	end
 
+	def self.current_events(cur_date, cur_time)
+		Event.where("the_date =? AND the_time >= ? AND the_time < ?", cur_date, cur_time, (cur_time+1.hour) ).order(:the_time)
+	end
 	def formatted_date
 		the_date.strftime("%b-%d-%y")
 	end

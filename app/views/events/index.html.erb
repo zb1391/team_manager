@@ -70,12 +70,13 @@
         </td>
       <% end %>
   </tr>
+    <% cur_time = Event.begin_time; while cur_time <= (Event.stopping_time) %>
     <tr>
     <% (begin_weekly_calendar..end_weekly_calendar(1)).each do |d| %>
       <% if d.wday == 0 %></tr><tr><% end %>
         <td>
-            <% Event.todays_events(d).each do |e| %>
-            <ul>
+          <ul>
+            <% Event.current_events(d,cur_time).each do |e| %>
               <li id="dark-green-text"><%= e.team.team_name %></li>
               <li class="bold-text">      
                 <%= "#{e.the_time.strftime('%l:%M %P')}"%>
@@ -89,10 +90,12 @@
               <% else %>
                 <li> <%="#{e.formatted_eventtype}-Court #{e.court}" %></li>
               <% end %>
-            </ul>
-            <% end %>
+            </ul>          
+          <% end %>
         </td>
       <% end %>
+      <% cur_time += 1.hour; %>
+      <%end %>
   </tr>
 </table>
 
