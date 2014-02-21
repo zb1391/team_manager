@@ -54,6 +54,9 @@ class TeamsController < ApplicationController
   # DELETE /teams/1
   # DELETE /teams/1.json
   def destroy
+    @team.events.each do |e|
+      e.destroy
+    end
     @team.destroy
     respond_to do |format|
       format.html { redirect_to teams_url }
@@ -69,6 +72,7 @@ class TeamsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
-      params.require(:team).permit(:team_name, :encrpyted_password, :password, :password_confirmation, :coach_id)
+      params.require(:team).permit(:team_name, :encrpyted_password, :password, :password_confirmation, 
+        :coach_id, :gender, :grade, :team_type)
     end
 end

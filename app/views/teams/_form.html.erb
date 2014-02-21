@@ -10,10 +10,11 @@
       </ul>
     </div>
   <% end %>
-
   <div class="field">
     <%= f.label :team_name %><br>
-    <%= f.text_field :team_name %>
+    <%= f.select :gender, options_for_select(%w[Boys Girls])%>
+    <%= f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th 10th 11th 12th])%>
+    <%= f.select :team_type, options_for_select(%w[Elite Select])%>
   </div>
   <div class="field">
     <%= f.label :coach_id %><br>

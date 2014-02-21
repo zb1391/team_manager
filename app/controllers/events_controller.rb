@@ -71,7 +71,7 @@ class EventsController < ApplicationController
     end
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to team }
+      format.html { redirect_to events_path }
       format.json { head :no_content }
     end
   end

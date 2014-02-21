@@ -1,14 +1,22 @@
 require 'digest'
 
 class Team < ActiveRecord::Base
+	attr_accessor :team_name
+	attr_accessor :password 
 	has_many :players
 	has_many :events
 
 	belongs_to :coach
-	attr_accessor :password 
+
 	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}
 
 	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
+
+
+	#Team Name Composed of Gender, Grade, Type
+	def team_name
+		"Gym Ratz #{gender} #{grade} Grade #{team_type}"
+	end
 
 	#return true if the user's password matches the submitted password
 	def has_password?(submitted_password)

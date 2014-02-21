@@ -63,19 +63,18 @@
 }
 
 #main-menu{
-	position:relative;
-	top:10px;
-}
-
-#main-menu {
 	position: relative;
+	float:right;
+	top:-45px;
 	margin:0 5px 0;
 	padding:0;
 }
+
 #main-menu li:last-of-type{
 	border-right:1px solid white;
 }
 #main-menu  li{
+	display: inline;
 	padding: 0 10px;
 	border-left:1px solid white;
 }
@@ -103,6 +102,7 @@
 	border-right:none;
 }
 #main-menu ul li{
+	display: block;
 width:inherit;
 	border-left: none;
 	padding:5px;
@@ -424,7 +424,7 @@ footer ul li a:hover{
 	vertical-align: top;
 	padding: 0px;
 	margin: 0px;
-	width:135px;
+	min-width:135px;
 	height: 20px;
 	background:#f9f9f9;
 	border: 1px solid #cccccc;
@@ -461,4 +461,26 @@ footer ul li a:hover{
 	margin-top:10px;
 	font-size:14px;
 
+}
+.open>.dropdown-menu{
+	padding: 0;
+}
+
+.weekly-calendar-search{
+	background: white;
+	padding: 10px 20px;
+	color: black;
+}
+.weekly-calendar-search table{
+	border:1px solid black;
+}
+.weekly-calendar-search h3{
+	color: #006600;
+	margin: 0px;
+}
+.weekly-calendar-search h6{
+	margin: 0px;
+}
+.weekly-calendar-search table{
+	margin: 0px;
 }
