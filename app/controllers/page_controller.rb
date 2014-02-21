@@ -3,7 +3,7 @@ class PageController < ApplicationController
   end
 
   def weekly_calendar
-  	@teams = Team.find(:all)
-  	@my_teams = Event.team_search(params[:which_teams])
+  	@q = Event.search(params[:q])
+  	@teams = @q.result(distinct: true)
   end
 end

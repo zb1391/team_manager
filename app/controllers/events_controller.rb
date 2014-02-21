@@ -5,6 +5,10 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+    @q = Event.search(params[:q])
+    @filtered_events = @q.result(distinct: true)
+    @filtered_ids = @filtered_events.to_a.map(&:team_id).uniq
+    @filtered_teams = Event.search(:team_id_in => @filtered_events.to_a.map(&:team_id).uniq).result.to_a
   end
 
   # GET /events/1

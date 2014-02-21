@@ -33,12 +33,13 @@ class Event < ActiveRecord::Base
 
 	#Return all Events on A Particular Date on a Particular Time on A Particular Court
 	def self.events_on_court_at_time(cur_date,cur_time,cur_court)
-		Event.where("the_date =? AND the_time >= ? AND the_time < ? AND court = ? AND eventtype_id = ?", cur_date, cur_time, 
-			(cur_time+30.minutes), cur_court, 1 ).order(:the_time 	)
+		Event.where("the_date =? AND the_time >= ? AND the_time < ? AND court = ?", cur_date, cur_time, 
+			(cur_time+30.minutes), cur_court,).order(:the_time 	)
 	end
 
 	#Return a Single Event on A Particular Date on a Particular Time on A Particular Court
 	def self.unique_event_on_court_at_time(cur_date,cur_time,cur_court)
+		
 		the_events = Event.where("the_date =? AND the_time >= ? AND the_time < ? AND court = ? AND eventtype_id = ?", cur_date, cur_time, 
 			(cur_time+30.minutes), cur_court,1 ).order(:the_time 	)
 		if the_events.nil?
@@ -58,15 +59,13 @@ class Event < ActiveRecord::Base
 	end
 
 
-	#def all 
-	#find all events on a given date
-	def self.todays_events(cur_date)
-	    Event.where("the_date = ?", cur_date).order(:the_time)
-	end
 
-	def self.current_events(cur_date, cur_time)
-		Event.where("the_date =? AND the_time >= ? AND the_time < ?", cur_date, cur_time, (cur_time+1.hour) ).order(:the_time 	)
-	end
+
+
+
+
+
+	##KEEP THIS
 	def formatted_date
 		the_date.strftime("%b-%d-%y")
 	end
@@ -74,9 +73,4 @@ class Event < ActiveRecord::Base
 		eventtype.name.split.map(&:capitalize).join(' ')
 	end
 
-	def self.team_search(search)
-		if search
-			Team.find(:all, :conditions => ['team_name = ?', "%#{search}"])
-		end
-	end
 end

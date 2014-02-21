@@ -35,6 +35,7 @@ end
 #for datepicker()
 gem 'jquery-ui-rails'
 
+gem "ransack"
 #for displaying a calendar
 gem "simple_calendar", "~> 0.1.9"
 # Use ActiveModel has_secure_password

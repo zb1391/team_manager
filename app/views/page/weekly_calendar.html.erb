@@ -1,18 +1,16 @@
-<% if !@my_teams.nil? %>
-<% @my_teams.each do |team| %>
-  <%= team.team_name %>
+<% if !@teams.nil? %>
+  <%@teams.each do |team| %>
+    <%= team.team.team_name %>
+  <% end %>
 <% end %>
+<%= search_form_for @q do |f| %>
+  <%= f.label :team_team_name_cont %>
+  <%= f.text_field :team_team_name_cont %>
+  <%= f.submit %>
 <% end %>
 <h1 class="centered">Down Town Sports Practice Schedule</h1>
 <h3 class="centered"> <%="#{Event.start_of_week} --- #{Event.end_of_week}"%></h3>
-<%= form_tag(page_weekly_calendar_path, method: "get") do %>
-  <%= label_tag(:which_teams, "Teams:") %> <br />
-  <% @teams.each do |team| %>
-    <%= check_box_tag(:which_teams) %>
-    <%= label_tag(:which_teams, team.team_name) %> 
-  <% end %>  <br />
-  <%= submit_tag("die") %>
-<% end %>
+
 <table class="weekly-calendar">
   <tr>
     <th>Sunday</th>

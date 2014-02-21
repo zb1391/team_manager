@@ -1,3 +1,103 @@
+
+<%= search_form_for @q, url: events_path do |f| %>
+  <%= f.label "Teams:" %> <br />
+  <% Team.order(:team_name).each do |team| %>
+    <%= check_box_tag('q[team_id_eq_any[]', team.id) %>
+    <%= team.team_name %>
+  <% end %> <br />
+
+  <%= f.label "Type:" %> <br />
+  <% Eventtype.order(:name).each do |e| %>
+    <%= check_box_tag('q[eventtype_id_eq_any[]', e.id) %>
+    <%= e.name %>
+  <% end %> <br />
+
+  <%= f.label "Location:" %> <br />
+  <% Location.order(:name).each do |l| %>
+    <%= check_box_tag('q[location_id_eq_any[]', l.id) %>
+    <%= "#{l.name}-#{l.city}" %> <br />
+  <% end %> <br />
+  <%= f.submit "Search" %>
+<% end %>
+<h1 class="centered">Gym Ratz AAU Schedule</h1>
+<h3 class="centered"> <%="#{Event.start_of_week} --- #{Event.end_of_week}"%></h3>
+<table class="weekly-calendar">
+  <tr>
+    <th>Sunday</th>
+    <th>Monday</th>
+    <th>Tuesday</th>
+    <th>Wednesday</th>
+    <th>Thursday</th>
+    <th>Friday</th>
+    <th>Saturday</th>
+  </tr>
+  <tr>
+    <% (begin_weekly_calendar..end_weekly_calendar(1)).each do |d| %>
+      <% if d.wday == 0 %></tr><tr><% end %>
+        <td>
+          <dd><%= d.day %></dd>
+        </td>
+    <% end %>
+  </tr>
+    <% cur_time = Event.begin_time; while cur_time <= (Event.stopping_time) %>
+    <tr>
+    <% (begin_weekly_calendar..end_weekly_calendar(1)).each do |d| %>
+      <% if d.wday == 0 %></tr><tr><% end %>
+        <td>
+          <ul>
+            <% Event.events_on_court_at_time(d, cur_time, 1).search(params[:q]).result(distinct: true).to_a.each do |p| %>
+               <li style = "color:#006600;"><%=p.team.team_name %></li>
+              <%end%>
+            <% unique_event = Event.events_on_court_at_time(d, cur_time, 1).search(params[:q]).result(distinct: true).to_a.first %>
+              <% if !unique_event.nil? %>
+                <li class="bold-text">      
+                  <%= "#{unique_event.the_time.strftime('%l:%M %P')}-#{unique_event.end_time.strftime('%l:%M %P')}"%>
+                </li>
+                <li> <%="Court 1" %></li>
+              <% end %>
+            </ul>
+          <ul>
+            <% Event.events_on_court_at_time(d, cur_time+30.minutes, 1).search(params[:q]).result(distinct: true).to_a.each do |p| %>
+               <li style = "color:#006600;"><%=p.team.team_name %></li>
+              <%end%>
+            <% unique_event = Event.events_on_court_at_time(d, cur_time+30.minutes, 1).search(params[:q]).result(distinct: true).to_a.first %>
+              <% if !unique_event.nil? %>
+                <li class="bold-text">      
+                  <%= "#{unique_event.the_time.strftime('%l:%M %P')}-#{unique_event.end_time.strftime('%l:%M %P')}"%>
+                </li>
+                <li> <%="Court 1" %></li>
+              <% end %>
+            </ul>
+          <ul>
+            <% Event.events_on_court_at_time(d, cur_time, 2).search(params[:q]).result(distinct: true).to_a.each do |p| %>
+               <li style = "color:#006600;"><%=p.team.team_name %></li>
+              <%end%>
+            <% unique_event = Event.events_on_court_at_time(d, cur_time, 2).search(params[:q]).result(distinct: true).to_a.first %>
+              <% if !unique_event.nil? %>
+                <li class="bold-text">      
+                  <%= "#{unique_event.the_time.strftime('%l:%M %P')}-#{unique_event.end_time.strftime('%l:%M %P')}"%>
+                </li>
+                <li> <%="Court 2" %></li>
+              <% end %>
+            </ul>
+          <ul>
+            <% Event.events_on_court_at_time(d, cur_time+30.minutes, 2).search(params[:q]).result(distinct: true).to_a.each do |p| %>
+               <li style = "color:#006600;"><%=p.team.team_name %></li>
+              <%end%>
+            <% unique_event = Event.events_on_court_at_time(d, cur_time+30.minutes, 2).search(params[:q]).result(distinct: true).to_a.first %>
+              <% if !unique_event.nil? %>
+                <li class="bold-text">      
+                  <%= "#{unique_event.the_time.strftime('%l:%M %P')}-#{unique_event.end_time.strftime('%l:%M %P')}"%>
+                </li>
+                <li> <%="Court 2" %></li>
+              <% end %>
+            </ul>
+
+      <%end%>
+      <% cur_time += 1.hour; %>
+    <%end %>
+  </tr>
+</table>
 <h1>Listing events</h1>
 
 <table>
@@ -77,18 +177,34 @@
       <% if d.wday == 0 %></tr><tr><% end %>
         <td>
           <ul>
-            <li style = "color:#006600;"><%= Event.teams_on_court_at_time(d, cur_time, 1) %></li>
-            <% unique_event = Event.unique_event_on_court_at_time(d,cur_time,1)%>
+            <% Event.events_on_court_at_time(d, cur_time, 1).search(params[:q]).result(distinct: true).to_a.each do |p| %>
+               <li style = "color:#006600;"><%=p.team.team_name %></li>
+              <%end%>
+            <% unique_event = Event.events_on_court_at_time(d, cur_time, 1).search(params[:q]).result(distinct: true).to_a.first %>
               <% if !unique_event.nil? %>
                 <li class="bold-text">      
                   <%= "#{unique_event.the_time.strftime('%l:%M %P')}-#{unique_event.end_time.strftime('%l:%M %P')}"%>
                 </li>
                 <li> <%="Court 1" %></li>
               <% end %>
-            </ul>          
+            </ul>
           <ul>
-            <li style = "color:#006600;"><%= Event.teams_on_court_at_time(d, cur_time, 2) %></li>
-            <% unique_event = Event.unique_event_on_court_at_time(d,cur_time,2)%>
+            <% Event.events_on_court_at_time(d, cur_time+30.minutes, 1).search(params[:q]).result(distinct: true).to_a.each do |p| %>
+               <li style = "color:#006600;"><%=p.team.team_name %></li>
+              <%end%>
+            <% unique_event = Event.events_on_court_at_time(d, cur_time+30.minutes, 1).search(params[:q]).result(distinct: true).to_a.first %>
+              <% if !unique_event.nil? %>
+                <li class="bold-text">      
+                  <%= "#{unique_event.the_time.strftime('%l:%M %P')}-#{unique_event.end_time.strftime('%l:%M %P')}"%>
+                </li>
+                <li> <%="Court 1" %></li>
+              <% end %>
+            </ul>
+          <ul>
+            <% Event.events_on_court_at_time(d, cur_time, 2).search(params[:q]).result(distinct: true).to_a.each do |p| %>
+               <li style = "color:#006600;"><%=p.team.team_name %></li>
+              <%end%>
+            <% unique_event = Event.events_on_court_at_time(d, cur_time, 2).search(params[:q]).result(distinct: true).to_a.first %>
               <% if !unique_event.nil? %>
                 <li class="bold-text">      
                   <%= "#{unique_event.the_time.strftime('%l:%M %P')}-#{unique_event.end_time.strftime('%l:%M %P')}"%>
@@ -97,18 +213,10 @@
               <% end %>
             </ul>
           <ul>
-            <li style = "color:#006600;"><%= Event.teams_on_court_at_time(d, cur_time+30.minutes, 1) %></li>
-            <% unique_event = Event.unique_event_on_court_at_time(d,cur_time+30.minutes,1)%>
-              <% if !unique_event.nil? %>
-                <li class="bold-text">      
-                  <%= "#{unique_event.the_time.strftime('%l:%M %P')}-#{unique_event.end_time.strftime('%l:%M %P')}"%>
-                </li>
-                <li> <%="Court 1" %></li>
-              <% end %>
-            </ul>          
-          <ul>
-            <li style = "color:#006600;"><%= Event.teams_on_court_at_time(d, cur_time+30.minutes, 2) %></li>
-            <% unique_event = Event.unique_event_on_court_at_time(d,cur_time+30.minutes,2)%>
+            <% Event.events_on_court_at_time(d, cur_time+30.minutes, 2).search(params[:q]).result(distinct: true).to_a.each do |p| %>
+               <li style = "color:#006600;"><%=p.team.team_name %></li>
+              <%end%>
+            <% unique_event = Event.events_on_court_at_time(d, cur_time+30.minutes, 2).search(params[:q]).result(distinct: true).to_a.first %>
               <% if !unique_event.nil? %>
                 <li class="bold-text">      
                   <%= "#{unique_event.the_time.strftime('%l:%M %P')}-#{unique_event.end_time.strftime('%l:%M %P')}"%>
@@ -116,7 +224,7 @@
                 <li> <%="Court 2" %></li>
               <% end %>
             </ul>
-        </td>
+
       <%end%>
       <% cur_time += 1.hour; %>
     <%end %>
