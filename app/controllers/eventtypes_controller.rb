@@ -54,6 +54,9 @@ class EventtypesController < ApplicationController
   # DELETE /eventtypes/1
   # DELETE /eventtypes/1.json
   def destroy
+    @eventtype.events.each do |e|
+      e.destroy
+    end
     @eventtype.destroy
     respond_to do |format|
       format.html { redirect_to eventtypes_url }

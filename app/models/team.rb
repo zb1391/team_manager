@@ -18,6 +18,15 @@ class Team < ActiveRecord::Base
 		"Gym Ratz #{gender} #{grade} Grade #{team_type}"
 	end
 
+	def short_team_name
+		"#{gender} #{grade} Grade #{team_type}"
+	end
+
+	#return an array of all teams of Gender g
+	def self.all_teams_of_gender(g)
+		Team.where("gender = ?",g).to_a
+	end
+
 	#return true if the user's password matches the submitted password
 	def has_password?(submitted_password)
 		#compare encrypted_password with the encrypted version of the submitted password

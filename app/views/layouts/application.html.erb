@@ -31,17 +31,17 @@
 							<li class="dropdown-submenu">
 							    <a tabindex="-1" href="#">Gym Ratz AAU Boys</a>
 							    <ul class="dropdown-menu">
-							      <li><a href="#">Boys 3rd</a></li>
-							      <li><a href="#">Boys 4th</a></li>
-							      <li><a href="#">Boys 5th</a></li>
+							    	<% Team.all_teams_of_gender("Boys").each do |t| %>
+							    		<li><%= link_to t.short_team_name, t %></li>
+							    	<% end %>
 							    </ul>
 							</li>
 							<li class="dropdown-submenu">
 							    <a tabindex="-1" href="#">Gym Ratz AAU Girls</a>
 							    <ul class="dropdown-menu">
-							      <li><a href="#">Girls 3rd</a></li>
-							      <li><a href="#">Girls 4th</a></li>
-							      <li><a href="#">Girls 5th</a></li>
+							    	<% Team.all_teams_of_gender("Girls").each do |t| %>
+							    		<li><%= link_to t.short_team_name, t %></li>
+							    	<% end %>
 							    </ul>
 							</li>
 						</ul>

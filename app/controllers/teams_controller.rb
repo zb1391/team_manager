@@ -57,6 +57,9 @@ class TeamsController < ApplicationController
     @team.events.each do |e|
       e.destroy
     end
+    @team.players.each do |p|
+      p.destroy
+    end
     @team.destroy
     respond_to do |format|
       format.html { redirect_to teams_url }
