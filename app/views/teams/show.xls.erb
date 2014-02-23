@@ -1,30 +1,32 @@
-<h1>Listing players</h1>
-
 <table>
-  <thead>
     <tr>
-      <th>First name</th>
-      <th>Last name</th>
-      <th>Phone</th>
-      <th>Email</th>
-      <th>Team</th>
-      <th>Uniform Number</td>
-      <th>Parent</th>
-      <th>Parent Cell</th>
-      <th>Parent Email</th>
-      <th>Emergency Phone</th>
+      <th><%=@team.short_team_name%></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
       <th></th>
     </tr>
-  </thead>
-
+    <tr>
+    	<td>NAME</td>
+    	<td>PHONE</td>
+    	<td>EMAIL</td>
+    	<td>NUMBER</td>
+      <td>PARENT</td>
+      <td>PARENT CELL</td>
+      <td>PARENT EMAIL</td>
+      <td>EMERGENCY PHONE</td>
+      <td></td>
+    </tr>
   <tbody>
-    <% @players.each do |player| %>
+    <% @team.players.each do |player| %>
       <tr>
-        <td><%= player.first_name %></td>
-        <td><%= player.last_name %></td>
+        <td><%= "#{player.last_name},#{player.first_name}" %></td>
         <td><%= number_to_phone(player.phone, area_code: true) %></td>
         <td><%= player.email %></td>
-        <td><%= link_to player.team.team_name, player.team%></td>
         <td><%= player.uniform_number %></td>
         <td><%= player.parent_first_name %></td>
         <td><%= player.parent_cell %></td>
@@ -38,10 +40,3 @@
     <% end %>
   </tbody>
 </table>
-<p>
-  Download:
-  <%= link_to "Excel", players_path(format: "xls") %>
-</p>
-<br>
-
-<%= link_to 'New Player', new_player_path %>

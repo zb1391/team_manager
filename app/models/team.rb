@@ -27,6 +27,9 @@ class Team < ActiveRecord::Base
 		Team.where("gender = ?",g).to_a
 	end
 
+	def my_id 
+		return id
+	end
 	#return true if the user's password matches the submitted password
 	def has_password?(submitted_password)
 		#compare encrypted_password with the encrypted version of the submitted password
@@ -38,6 +41,15 @@ class Team < ActiveRecord::Base
 		team = find_by_teamname(teamname)
 		return nil if team.nil?
 		return team if team.has_password?(submitted_password)
+	end
+
+	def self.to_csv(options = {})
+		CSV.generate(options) do |csv|
+			csv << Player.column_names
+			players.each do |player|
+				csv << player.attributes.values_at(*Player.column_names)
+			end
+		end
 	end
 
 	private

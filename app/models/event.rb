@@ -41,7 +41,7 @@ class Event < ActiveRecord::Base
 	def self.unique_event_on_court_at_time(cur_date,cur_time,cur_court)
 		
 		the_events = Event.where("the_date =? AND the_time >= ? AND the_time < ? AND court = ? AND eventtype_id = ?", cur_date, cur_time, 
-			(cur_time+30.minutes), cur_court,1 ).order(:the_time 	)
+			(cur_time+30.minutes), cur_court,1 ).order(:the_time)
 		if the_events.nil?
 			return nil 
 		else

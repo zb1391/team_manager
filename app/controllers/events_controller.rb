@@ -9,6 +9,10 @@ class EventsController < ApplicationController
     @filtered_events = @q.result(distinct: true)
     @filtered_ids = @filtered_events.to_a.map(&:team_id).uniq
     @filtered_teams = Event.search(:team_id_in => @filtered_events.to_a.map(&:team_id).uniq).result.to_a
+    respond_to do |format|
+      format.html
+      format.xls
+    end
   end
 
   # GET /events/1

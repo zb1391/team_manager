@@ -5,6 +5,10 @@ class PlayersController < ApplicationController
   # GET /players.json
   def index
     @players = Player.all
+    respond_to do |format|
+      format.html
+      format.xls 
+    end
   end
 
   # GET /players/1
