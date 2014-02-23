@@ -1,3 +1,4 @@
+
 <% if signed_in? %>
   <h1>Welcome <%= current_user.first_name %> </h1>
 <% end %>
@@ -32,9 +33,8 @@
           </ul>
         </td>
         <td>
-        <% if proper_coach?(coach) %>
+        <% if proper_coach?(coach) || is_admin? %>
         <ul>
-          <li><%= link_to 'Show', coach %></li>
           <li><%= link_to 'Edit', edit_coach_path(coach) %></li>
           <li><%= link_to 'Destroy', coach, method: :delete, data: { confirm: 'Are you sure?' } %></li>
         </ul>
@@ -52,4 +52,7 @@
   <%= link_to "Sign In", new_session_path %>
 <% end %>
 <br />
+
+<%if is_admin? %>
 <%= link_to 'New Coach', new_coach_path %>
+<% end %>

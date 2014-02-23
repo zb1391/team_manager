@@ -1,5 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_filter :authenticate, :only => [:new, :destroy,:edit, :update]
 
   # GET /events
   # GET /events.json
@@ -57,7 +58,7 @@ class EventsController < ApplicationController
        @event.team.players.each do |player|
           EventMailer.changed_event(player,oldevent,@event).deliver
         end
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
+        format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

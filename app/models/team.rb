@@ -5,13 +5,12 @@ class Team < ActiveRecord::Base
 	attr_accessor :password 
 	has_many :players
 	has_many :events
-
 	belongs_to :coach
-
-	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}
+	validate :unique_name
+	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}, :on => :create
 
 	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
-
+	
 
 	#Team Name Composed of Gender, Grade, Type
 	def team_name
@@ -36,6 +35,12 @@ class Team < ActiveRecord::Base
 		encrypted_password == encrypt(submitted_password)
 
 	end
+
+	#Return all teams by gender
+	def self.teams_by_gender(gender)
+		Team.where("gender = ?", gender).to_a
+	end
+
 
 	def self.authenticate(email,submitted_password)
 		team = find_by_teamname(teamname)
@@ -68,5 +73,12 @@ class Team < ActiveRecord::Base
 
 		def secure_hash(string)
 			Digest::SHA2.hexdigest(string)
+		end
+
+		def unique_name
+			name = Team.where("gender = ? AND grade = ? AND team_type = ?", gender,grade,team_type).to_a
+			if !name.empty?
+				errors.add(:team_name,'team already exists')
+			end
 		end
 end

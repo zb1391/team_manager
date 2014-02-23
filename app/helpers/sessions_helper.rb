@@ -25,6 +25,26 @@ module SessionsHelper
 		signed_in? && current_user.id == coach.id
 	end
 	
+	def is_admin?
+		signed_in? && current_user.admin?
+	end
+
+	def current_coach?(user)
+		user== current_user
+	end
+	def deny_access
+		redirect_to new_session_path, :notice => "You do not have access to this page"
+	end
+
+	def authenticate
+      deny_access unless is_admin?
+    end
+
+    def correct_user
+      @coach = Coach.find(params[:id])
+      redirect_to(new_session_path) unless (current_coach?(@coach) || is_admin?)
+    end
+	
 	private
 		def user_from_remember_token
 			Coach.authenticate_with_salt(*remember_token)

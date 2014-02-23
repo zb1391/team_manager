@@ -20,6 +20,17 @@
   <%= @coach.email %>
 </p>
 
+<p>
+  <strong>Teams</strong>
+  <ul>
+  	<% @coach.teams.each do |team| %>
+  		<li><%= link_to team.team_name, edit_team_path(team.id) %></li>
+  	<%end %>
+
+  </ul>
+</p>
+
+
 
 <%= link_to 'Edit', edit_coach_path(@coach) %> |
 <%= link_to 'Back', coaches_path %>

@@ -1,6 +1,6 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate
   # GET /locations
   # GET /locations.json
   def index
@@ -55,9 +55,13 @@ class LocationsController < ApplicationController
   # DELETE /locations/1.json
   def destroy
     @location.destroy
-    respond_to do |format|
-      format.html { redirect_to locations_url }
-      format.json { head :no_content }
+    if @location.check_for_events
+      respond_to do |format|
+        format.html { redirect_to locations_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to @location, "Location is still be used by events"
     end
   end
 

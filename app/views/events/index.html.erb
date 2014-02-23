@@ -1,4 +1,13 @@
- <%= Team.search(:id_eq => 11, :players_uniform_number_eq => 2).result.to_sql %>
+<h1> Gym Ratz AAU Basketball </h1>
+<h2> Our Mission </h2>
+<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis quam lacus. Nunc dolor enim, hendrerit non tortor non, mollis vestibulum mauris. Vivamus ut mi non sem pharetra lacinia ac eu sapien. Nunc non porttitor est, et faucibus orci. Pellentesque in mauris sed tortor lobortis cursus ullamcorper in sem. In faucibus iaculis urna dignissim pharetra. Suspendisse eleifend eleifend metus vel eleifend. Vivamus nec consectetur mi. Aenean sit amet libero eros. Proin bibendum auctor volutpat.
+</p>
+
+<h2> Another Header </h2>
+<p>
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis quam lacus. Nunc dolor enim, hendrerit non tortor non, mollis vestibulum mauris. Vivamus ut mi non sem pharetra lacinia ac eu sapien. Nunc non porttitor est, et faucibus orci. Pellentesque in mauris sed tortor lobortis cursus ullamcorper in sem. In faucibus iaculis urna dignissim pharetra. Suspendisse eleifend eleifend metus vel eleifend. Vivamus nec consectetur mi. Aenean sit amet libero eros. Proin bibendum auctor volutpat.
+</p>
+
   <li class="dropdown no-bullet">
     <a class="dropdown-toggle huge bright-green-text" href="#" data-toggle="dropdown">Schedule Search<strong class="caret"></strong></a>
     <div class="dropdown-menu" style="padding:2px;">
@@ -70,8 +79,12 @@
         <td>
           <ul>
             <% Event.events_on_court_at_time(d, cur_time, 1).search(params[:q]).result(distinct: true).to_a.each do |p| %>
-               <li style = "color:#006600;"><%=p.team.short_team_name %></li>
-              <%end%>
+              <%if is_admin? %>
+                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id)%></li>
+              <% else %>
+                <li style = "color:#006600;"><%=p.team.short_team_name%></li>
+               <%end %>
+            <%end%>
             <% unique_event = Event.events_on_court_at_time(d, cur_time, 1).search(params[:q]).result(distinct: true).to_a.first %>
               <% if !unique_event.nil? %>
                   <li class="bold-text">      
@@ -85,8 +98,12 @@
             </ul>
           <ul>
             <% Event.events_on_court_at_time(d, cur_time+30.minutes, 1).search(params[:q]).result(distinct: true).to_a.each do |p| %>
-               <li style = "color:#006600;"><%=p.team.short_team_name %></li>
-              <%end%>
+              <%if is_admin? %>
+                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id)%></li>
+              <% else %>
+                <li style = "color:#006600;"><%=p.team.short_team_name%></li>
+               <%end %>
+            <%end%>
             <% unique_event = Event.events_on_court_at_time(d, cur_time+30.minutes, 1).search(params[:q]).result(distinct: true).to_a.first %>
               <% if !unique_event.nil? %>
                   <li class="bold-text">      
@@ -100,7 +117,11 @@
             </ul>
           <ul>
             <% Event.events_on_court_at_time(d, cur_time, 2).search(params[:q]).result(distinct: true).to_a.each do |p| %>
-               <li style = "color:#006600;"><%=p.team.short_team_name %></li>
+              <%if is_admin? %>
+                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id)%></li>
+              <% else %>
+                <li style = "color:#006600;"><%=p.team.short_team_name%></li>
+               <%end %>
               <%end%>
             <% unique_event = Event.events_on_court_at_time(d, cur_time, 2).search(params[:q]).result(distinct: true).to_a.first %>
               <% if !unique_event.nil? %>
@@ -115,7 +136,11 @@
             </ul>
           <ul>
             <% Event.events_on_court_at_time(d, cur_time+30.minutes, 2).search(params[:q]).result(distinct: true).to_a.each do |p| %>
-               <li style = "color:#006600;"><%=p.team.short_team_name %></li>
+              <%if is_admin? %>
+                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id)%></li>
+              <% else %>
+                <li style = "color:#006600;"><%=p.team.short_team_name%></li>
+               <%end %>
               <%end%>
             <% unique_event = Event.events_on_court_at_time(d, cur_time+30.minutes, 2).search(params[:q]).result(distinct: true).to_a.first %>
               <% if !unique_event.nil? %>
@@ -138,40 +163,10 @@
   Download:
   <%= link_to "Excel", events_path(params.merge(format: 'xls')) %>
 </p>
-<h1>Listing events</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Event Date</th>
-      <th>Event Time</th>
-      <th>Event location</th>
-      <th>Eventtype</th>
-      <th>Team</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @events.each do |event| %>
-      <tr>
-        <td><%= event.the_date %></td>
-        <td><%= event.the_time.strftime('%l:%M %P')%></td>
-        <td><%= event.location.name %></td>
-        <td><%= event.eventtype.name %></td>
-        <td><%= event.team.team_name %></td>
-        <td><%= link_to 'Show', event %></td>
-        <td><%= link_to 'Edit', edit_event_path(event) %></td>
-        <td><%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
 
 <br>
 
+<% if is_admin? %>
 <%= calendar @events do |event| %>
   <%logger.debug "Events start_time: #{event.start_time}" %>
   <ul>
@@ -184,13 +179,33 @@
       <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
       <% end %>
     </dt>
-        <% if proper_coach?(event.team.coach) %>
+        <% if proper_coach?(event.team.coach) || is_admin? %>
           <%= link_to 'Edit', edit_event_path(event) %>
-          <%= link_to 'Destroy', event, method: :cancel_practice, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
   </ul>
 <% end %>
+  <%= link_to 'New Event', new_event_path %>
+<% end %>
 
-<%= link_to 'New Event', new_event_path %>
+<div id="columns-container">
+  <div class="row main-row">
+    <div class="col-xs-6 column3">
+      <h3>Gym Ratz AAU Boys</h3>
+      <ul class= "centered">
+        <% Team.teams_by_gender("Boys").each do |team| %>
+          <li> <%= link_to team.short_team_name, team %></li>
+        <% end %>
+      </ul>
 
-
+    </div>
+    <div class="col-xs-6 column3">
+      <h3>Gym Ratz AAU Girls</h3>
+      <ul class= "centered">
+        <% Team.teams_by_gender("Girls").each do |team| %>
+          <li> <%= link_to team.short_team_name, team %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+</div>

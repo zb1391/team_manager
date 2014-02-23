@@ -64,8 +64,8 @@
 
 #main-menu{
 	position: relative;
-	float:right;
-	top:-45px;
+	float:left;
+	
 	margin:0 5px 0;
 	padding:0;
 }
@@ -325,7 +325,7 @@ footer ul{
 }
 footer ul li{
 	display:inline;
-	margin-right:50px;
+	margin-right:35px;
 }
 
 footer ul li a{
@@ -359,6 +359,7 @@ footer ul li a:hover{
 	margin: 0;
 }
 .column3 ul{
+	list-style-type: none;
 	padding-top: 5px;
 	margin:0;
 }

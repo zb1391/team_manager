@@ -1,7 +1,14 @@
 class Location < ActiveRecord::Base
 	has_many :events
 	validates :address, :city, :state, presence: true
+	before_destroy :check_for_events
 
+	def check_for_events
+		unless events.empty?
+			return false
+		end
+	end
+	
 	def glocation
 		gaddress = ""+"#{address}"
 		gcity = ""+"#{city}"

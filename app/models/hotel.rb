@@ -4,6 +4,13 @@ class Hotel < ActiveRecord::Base
 	validates :price, :address, :city, :state, :phone, presence: true
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
 	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
+	before_destroy :check_for_events
+
+	def check_for_events
+		unless events.empty?
+			return false
+		end
+	end
 	def glocation
 		gaddress = ""+"#{address}"
 		gcity = ""+"#{city}"

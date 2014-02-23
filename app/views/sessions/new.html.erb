@@ -1,5 +1,7 @@
 <h1><%= @my_status %></h1>
-
+<% flash.each do |name, msg| %>
+	<%= content_tag :div, msg, class: name %>
+<% end %>
 <%= form_for(:session, :url => sessions_path) do |f| %>
 <div class="field">
 	<%= f.label :email %> <br />
@@ -14,4 +16,3 @@
 </div>
 <% end %>
 
-<p>New Coach? <%=link_to "Sign up now!", new_coach_path %></p>

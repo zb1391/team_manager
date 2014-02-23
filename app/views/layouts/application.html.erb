@@ -13,8 +13,8 @@
 </head>
 <body id = "page">
 		<div id="banner-container">
-			<%= image_tag("logo3.png", id: "logo", class: "banner-image"); %>
-			<%= image_tag("title.png", id: "title", class: "banner-image"); %>
+			<%= link_to(image_tag("logo3.png", id: "logo", class: "banner-image"), root_path); %>
+			<%= link_to(image_tag("title.png", id: "title", class: "banner-image"), root_path); %>
 			<% if signed_in? %>
 			  <p class= "float-right text-right">Welcome <%= current_user.first_name %> <br />
 			  	<%= link_to "Sign Out", session_path(:id), :method => :delete %>
@@ -27,7 +27,7 @@
 					<li class="dropdown">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown">Gym Ratz AAU <b class="caret"></b></a>
 						<ul class="dropdown-menu">
-							<li><a href="#">About</a></li>
+							<li><%=link_to "About", events_path %></li>
 							<li class="dropdown-submenu">
 							    <a tabindex="-1" href="#">Gym Ratz AAU Boys</a>
 							    <ul class="dropdown-menu">
@@ -44,16 +44,20 @@
 							    	<% end %>
 							    </ul>
 							</li>
+							<% if is_admin? %>
+							<li><%= link_to "Manage Teams", teams_path %></li>
+							<li><%= link_to "All Players", players_path %></li>
+							<% end %>
 						</ul>
 
 					</li>
-					<li><a href="#">Clinics</a>
-					<li><a href="#">Court Rentals</a>
-					<li><a href="#">Parties</a></li>
-					<li><a href="#">Camps</a>
-										<li><a href="#">Leagues</a>
+					<li><%=link_to "Clinics", page_clinics_path %></li>
+					<li><%=link_to "Court Rentals", page_court_rentals_path %></li>
+					<li><%=link_to "Parties", page_parties_path %></li>
+					<li><%=link_to "Camps", page_camps_path %> </li>
+					<li><%=link_to "Leagues/Tournaments", page_leagues_path %></li>
 					<li><a href="#">Shop</a>
-					<li><a href="#">Contact</a></li>
+					<li><%=link_to "Contact", coaches_path %></li>
 
 					</ul>
 				</div>
@@ -65,12 +69,15 @@
 		7 Leighton Place, Mahwah, NJ (201)848-0017
 		</p>
 		<ul>
-				<li><a href="#">Home</a></li>
-				<li><a href="#">Gymratz</a></li>
-				<li><a href="#">Training</a>
-				<li><a href="#">Party Central</a></li>
-				<li><a href="#">Shop</a></li>
-				<li><a href="#">Contact</a></li>
+			<li><%=link_to "Home", root_path%></li>
+			<li><%=link_to "Gym Ratz AAU", events_path%></li>
+			<li><%=link_to "Clinics", page_clinics_path %></li>
+			<li><%=link_to "Court Rentals", page_court_rentals_path %></li>
+			<li><%=link_to "Parties", page_parties_path %></li>
+			<li><%=link_to "Camps", page_camps_path %> </li>
+			<li><%=link_to "Leagues/Tournaments", page_leagues_path %></li>
+			<li><a href="#">Shop</a>
+			<li><%=link_to "Contact", coaches_path %></li>
 		</ul>
 	</footer>
 </body>

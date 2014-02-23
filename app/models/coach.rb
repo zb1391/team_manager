@@ -8,6 +8,7 @@ class Coach < ActiveRecord::Base
 	validates :first_name, :last_name, :phone, :email, presence: true
 	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
+	before_destroy :check_for_teams #before deleting make sure hes not running any teams
 
 	#return true if the user's password matches the submitted password
 	def has_password?(submitted_password)
@@ -27,6 +28,12 @@ class Coach < ActiveRecord::Base
 		(user && user.salt == cookie_salt) ? user : nil
 	end
 
+	def check_for_teams
+		unless teams.empty?
+			return false
+		end
+	end
+
 	private
 		def encrypt_password
 			self.salt = make_salt if new_record?
@@ -44,4 +51,6 @@ class Coach < ActiveRecord::Base
 		def secure_hash(string)
 			Digest::SHA2.hexdigest(string)
 		end
+
+
 end

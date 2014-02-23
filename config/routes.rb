@@ -15,7 +15,12 @@ TeamManager::Application.routes.draw do
   resources :players
 
   root 'page#home'
-  get "page/weekly_calendar"
+
+  get "page/clinics"
+  get "page/court_rentals"
+  get "page/parties"
+  get "page/camps"
+  get "page/leagues"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

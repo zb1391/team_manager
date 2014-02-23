@@ -2,8 +2,18 @@ class PageController < ApplicationController
   def home
   end
 
-  def weekly_calendar
-  	@q = Event.search(params[:q])
-  	@teams = @q.result(distinct: true)
+  def clinics
+  end
+
+  def court_rentals
+  end
+
+  def parties
+  end
+
+  def leagues
+  end
+
+  def camps
   end
 end

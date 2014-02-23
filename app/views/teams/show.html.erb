@@ -4,7 +4,7 @@
 <h1><%=@team.team_name%></h1>
 <h2>Coach</h2>
 <h3><%= "#{@team.coach.first_name} #{@team.coach.last_name}"%> </h3>
-<% if proper_coach?(@team.coach) %>
+<% if proper_coach?(@team.coach) || is_admin? %>
 <table>
     <tr>
       <th><%=@team.short_team_name%></th>
@@ -52,8 +52,8 @@
   <% to_xls = "#{team_path(@team.id)}.xls" %>
   <%= link_to "Excel", to_xls %>
 </p>
-
-
+<% end %>
+<% if is_admin? %>
 <ul>
   <li class="dropdown">
     <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Player<strong class="caret"></strong></a>
@@ -129,14 +129,14 @@
         <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
         <% end %>
       </dt>
-          <% if proper_coach?(@team.coach) %>
+          <% if is_admin? %>
             <%= link_to 'Edit', edit_event_path(event) %>
             <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
           <% end %>
     </ul>
   </div>
 <% end %>
-<% if proper_coach?(@team.coach) %>
+<% if is_admin? %>
 <ul>
   <li class="dropdown">
     <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
@@ -192,5 +192,5 @@
   </li>
 </ul>
 <%= link_to 'Edit', edit_team_path(@team) %> |
-<%= link_to 'Back', teams_path %>
+
 <% end %>

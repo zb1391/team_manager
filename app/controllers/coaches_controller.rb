@@ -1,6 +1,7 @@
 class CoachesController < ApplicationController
   before_action :set_coach, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate, :only => [:show, :new, :destroy]
+  before_filter :correct_user, :only => [:edit, :update]
   # GET /coaches
   # GET /coaches.json
   def index
@@ -29,7 +30,7 @@ class CoachesController < ApplicationController
     respond_to do |format|
       if @coach.save
         sign_in @coach
-        format.html { redirect_to @coach, notice: 'Coach was successfully created.' }
+        format.html { redirect_to coaches_path, notice: 'Coach was successfully created.' }
         format.json { render action: 'show', status: :created, location: @coach }
       else
         format.html { render action: 'new' }
@@ -43,7 +44,7 @@ class CoachesController < ApplicationController
   def update
     respond_to do |format|
       if @coach.update(coach_params)
-        format.html { redirect_to @coach, notice: 'Coach was successfully updated.' }
+        format.html { redirect_to coaches_path, notice: 'Coach was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -56,9 +57,13 @@ class CoachesController < ApplicationController
   # DELETE /coaches/1.json
   def destroy
     @coach.destroy
-    respond_to do |format|
-      format.html { redirect_to coaches_url }
-      format.json { head :no_content }
+    if @coach.check_for_teams
+      respond_to do |format|
+        format.html { redirect_to coaches_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to @coach, :notice => "Coach is still managing teams."
     end
   end
 
@@ -72,4 +77,5 @@ class CoachesController < ApplicationController
     def coach_params
       params.require(:coach).permit(:first_name, :last_name, :phone, :email, :password, :password_confirmation)
     end
+
 end

@@ -1,6 +1,6 @@
 class HotelsController < ApplicationController
   before_action :set_hotel, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate
   # GET /hotels
   # GET /hotels.json
   def index
@@ -55,9 +55,13 @@ class HotelsController < ApplicationController
   # DELETE /hotels/1.json
   def destroy
     @hotel.destroy
-    respond_to do |format|
-      format.html { redirect_to hotels_url }
-      format.json { head :no_content }
+    if @hotel.check_for_events
+      respond_to do |format|
+        format.html { redirect_to hotels_url }
+        format.json { head :no_content }
+      end
+    else
+      redirect_to @hotel, :notice => "Hotel is still being used by events"
     end
   end
 
