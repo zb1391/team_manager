@@ -495,24 +495,50 @@ footer ul li a:hover{
 	background: #E6782E;
 
 }
+.static-green-content{
+	overflow: hidden;
+	background:#009933;
+}
+
+.static-gray-content{
+	overflow: hidden;
+	background: #d1d1d1;
+}
+
 .static-orange-content strong{
 	color: #ffe77d;	
 }
+.static-green-content strong{
+	color: #ffe77d;
+}
+.static-gray-content strong{
+	color:#ffe77d;
+}
+
 .static-orange-content h1{
 	font-size: 50px;
 	font-weight: bold;
 	color: #903A00;
 }
-.static-orange-content h2{
+.static-green-content h1{
+	font-size: 50px;
+	font-weight: bold;
+	color: #006600;
+}
+.static-gray-content h1{
+	font-size: 50px;
+	font-weight: bold;
+	color: #353535;
+}
+.static-orange-content h2, .static-green-content h2{
 	color:#ffe77d;
 	border-bottom: 4px solid #ffe77d;
 	margin-bottom: 5px;
 }
-.static-cols-orange h3{
-	font-weight: bold;
-	color:#E6782E;
-	text-decoration: underline;
-	margin: 0;
+.static-gray-content h2{
+	color:#006600;
+	border-bottom: 4px solid #006600;
+	margin-bottom: 5px;
 }
 .static-orange-content p{
 	text-align: justify;
@@ -522,13 +548,54 @@ footer ul li a:hover{
 	border-radius:10px;
 	border: 1px solid #903A00;
 }
+.static-green-content p{
+	text-align: justify;
+	font-size: 14px;
+	background: #006600;
+	padding:10px;
+	border-radius:10px;
+	border: 1px solid #006600;
+}
+.static-gray-content p{
+	text-align: justify;
+	font-size: 14px;
+	background: #353535;
+	padding:10px;
+	border-radius:10px;
+	border: 1px solid #353535;
+}
 
-.static-cols-orange{
+.static-cols-orange, .static-cols-green, .static-cols-gray{
 	background: white;
 	padding: 20px 70px 5px;
 }
+.static-cols-green{
+	border-bottom: 4px solid #006600;
+}
+.static-cols-gray{
+	border-bottom: 4px solid #353535;
+}
+.static-cols-orange h3{
+	font-weight: bold;
+	color:#E6782E;
+	text-decoration: underline;
+	margin: 0;
+}
+.static-cols-green h3{
+	font-weight: bold;
+	color:#006600;
+	text-decoration: underline;
+	margin: 0;
+}
+.static-cols-green h3 strong{
+	font-size: 120%;
+	color:#E6782E;
+}
+.static-cols-green h4{
+	color: #E6782E;
+}
 
-.static-cols-orange p{
+.static-cols-orange p, .static-cols-green p{
 	margin: 0px;
 	padding: 0px;
 	color: black;
@@ -537,7 +604,11 @@ footer ul li a:hover{
 	border:none;
 	font-size: 14px;
 }
-.static-cols-orange dd{
+.static-cols-green p strong{
+	color:#E6782E;
+}
+
+.static-cols-orange dd, .static-cols-green dd, .static-cols-gray dd{
 	color:black;
 }
 
@@ -557,6 +628,10 @@ footer ul li a:hover{
 
 .static-cols-orange dt{
 	color:black;
+}
+.static-cols-green dt, .static-cols-gray dt{
+
+	color: #006600;
 }
 .static-cols-orange dd{
 	display: inline;
