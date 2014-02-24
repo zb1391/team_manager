@@ -38,7 +38,7 @@ class EventsController < ApplicationController
     respond_to do |format|
       if @event.save
        @event.team.players.each do |player|
-         #EventMailer.new_event(player,@event).deliver
+         EventMailer.new_event(player,@event).deliver
         end
         format.html { redirect_to @event, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
