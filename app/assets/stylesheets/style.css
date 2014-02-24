@@ -142,6 +142,7 @@ p{
 	width:45%;
 	margin-left:25px;
 
+
 }
 a{
 	color:#008F00;
@@ -375,6 +376,7 @@ footer ul li a:hover{
 }
 .column3 p{
 	padding:5px 25px;
+	text-align: justify;
 	width:100%;
 	margin:0;
 	text-align: left;
@@ -484,5 +486,85 @@ footer ul li a:hover{
 	margin: 0px;
 }
 .weekly-calendar-search table{
-	margin: 0px;
+	margin: auto;
 }
+
+
+.static-orange-content{
+	overflow:hidden;
+	background: #E6782E;
+
+}
+.static-orange-content strong{
+	color: #ffe77d;	
+}
+.static-orange-content h1{
+	font-size: 50px;
+	font-weight: bold;
+	color: #903A00;
+}
+.static-orange-content h2{
+	color:#ffe77d;
+	border-bottom: 4px solid #ffe77d;
+	margin-bottom: 5px;
+}
+.static-cols-orange h3{
+	font-weight: bold;
+	color:#E6782E;
+	text-decoration: underline;
+	margin: 0;
+}
+.static-orange-content p{
+	text-align: justify;
+	font-size: 14px;
+	background: #903A00;
+	padding:10px;
+	border-radius:10px;
+	border: 1px solid #903A00;
+}
+
+.static-cols-orange{
+	background: white;
+	padding: 20px 70px 5px;
+}
+
+.static-cols-orange p{
+	margin: 0px;
+	padding: 0px;
+	color: black;
+	width: 100%;
+	background: none;
+	border:none;
+	font-size: 14px;
+}
+.static-cols-orange dd{
+	color:black;
+}
+
+.static-cols-orange table{
+	border:none;
+}
+.static-cols-orange tr{
+	border: none;
+}
+.static-cols-orange td{
+	padding: 0 5px;
+	color:black;
+	border:none;
+	font-weight: none;
+	font-size: 14px;
+}
+
+.static-cols-orange dt{
+	color:black;
+}
+.static-cols-orange dd{
+	display: inline;
+}
+.static-cols-orange a{
+	color:#E6782E;
+}
+.centered-orange{
+	text-align: center;
+}
+

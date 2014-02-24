@@ -34,6 +34,9 @@
 .black-text{
   color:black;
 }
+.inline{
+  display: inline;
+}
 table{
 	border:2px solid white;
 }
