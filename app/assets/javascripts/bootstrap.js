@@ -14,7 +14,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
-$(function (){
++(function ($){
   var sub = $(".calendar-sub-details");
   sub.hide();
 
