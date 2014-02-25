@@ -50,56 +50,7 @@
   <%= link_to "Excel", to_xls %>
 </p>
 <% end %>
-<% if is_admin? %>
-<ul>
-  <li class="dropdown">
-    <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Player<strong class="caret"></strong></a>
-      <div class="dropdown-menu" style="padding:2px;">
-        <%= form_for (player=Player.new),:html => {:class => "manager-form"} do |f| %>
-          <% if player.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
 
-              <ul>
-              <% player.errors.full_messages.each do |msg| %>
-                <li class="black-text"><%= msg %></li>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
-
-          <div class="field">
-            <%= f.label :first_name %><br>
-            <%= f.text_field :first_name %>
-          </div>
-          <div class="field">
-            <%= f.label :last_name %><br>
-            <%= f.text_field :last_name %>
-          </div>
-          <div class="field">
-            <%= f.label :phone %><em>(ex. 2018480017)</em><br>
-            <%= f.text_field :phone %>
-          </div>
-          <div class="field">
-            <%= f.label :email %><br>
-            <%= f.text_field :email %>
-          </div>
-          <div class="field">
-            <%= f.label :team_id %><br>
-            <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, {:prompt => @team.id, :selected=> @team.id}%>
-          </div>
-          <div class="field">
-            <%= f.label :password %><br>
-            <%= f.password_field :password %>
-         </div>
-          <div class="actions">
-            <%= f.submit %>
-          </div>
-        <% end %>
-      </div>
-  </li>
-</ul>
-<% end %>
 <h1>Schedule</h1>
 <%= calendar @team.events do |event| %>
   <%logger.debug "Events start_time: #{event.start_time}" %>
@@ -173,12 +124,16 @@
     <%= f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, include_blank: false %>
   </div>
   <div class="field">
+    <%= f.label :court %><br>
+    <%= f.number_field :court, min:1 %>
+  </div>
+  <div class="field">
     <%= f.label :team_id %><br>
     <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, include_blank: false %>
   </div>
     <div class="field">
     <%= f.label :hotel_id %><br>
-    <%= f.collection_select :hotel_id, Hotel.order(:id),:id,:name, include_blank: true %>
+    <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
     <%= link_to "New Hotel", new_hotel_path %>
   </div>
   <div class="actions">
