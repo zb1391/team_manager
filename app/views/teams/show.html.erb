@@ -52,56 +52,7 @@
   <%= link_to "Excel", to_xls %>
 </p>
 <% end %>
-<% if is_admin? %>
-<ul>
-  <li class="dropdown">
-    <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Player<strong class="caret"></strong></a>
-      <div class="dropdown-menu" style="padding:2px;">
-        <%= form_for (player=Player.new),:html => {:class => "manager-form"} do |f| %>
-          <% if player.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(player.errors.count, "error") %> prohibited this player from being saved:</h2>
 
-              <ul>
-              <% player.errors.full_messages.each do |msg| %>
-                <li class="black-text"><%= msg %></li>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
-
-          <div class="field">
-            <%= f.label :first_name %><br>
-            <%= f.text_field :first_name %>
-          </div>
-          <div class="field">
-            <%= f.label :last_name %><br>
-            <%= f.text_field :last_name %>
-          </div>
-          <div class="field">
-            <%= f.label :phone %><em>(ex. 2018480017)</em><br>
-            <%= f.text_field :phone %>
-          </div>
-          <div class="field">
-            <%= f.label :email %><br>
-            <%= f.text_field :email %>
-          </div>
-          <div class="field">
-            <%= f.label :team_id %><br>
-            <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, {:prompt => @team.id, :selected=> @team.id}%>
-          </div>
-          <div class="field">
-            <%= f.label :password %><br>
-            <%= f.password_field :password %>
-         </div>
-          <div class="actions">
-            <%= f.submit %>
-          </div>
-        <% end %>
-      </div>
-  </li>
-</ul>
-<% end %>
 <h1>Schedule</h1>
 <%= calendar @team.events do |event| %>
   <%logger.debug "Events start_time: #{event.start_time}" %>
@@ -136,60 +87,7 @@
   </div>
 <% end %>
 <% if is_admin? %>
-<ul>
-  <li class="dropdown">
-    <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
-      <div class="dropdown-menu" style="padding:2px;">
-        <%= form_for (event=Event.new),:html => {:class => "manager-form"} do |f| %>
-          <% if event.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
-              <ul>
-              <% event.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
-
-  <div class="field">
-    <%= f.label :the_date %><br>
-    <%= f.text_field :the_date %>
-  </div>
-  <div class="field">
-    <%= f.label :the_time %><br>
-    <%= f.time_field :the_time %>
-  </div>
-  <div class="field">
-    <%= f.label :end_time %>(optional)<br>
-    <%= f.time_field :end_time %>
-  </div>
-    <div class="field">
-    <%= f.label :location_id %><br>
-    <%= f.collection_select :location_id, Location.order(:id),:id,:name, include_blank: false %>
-    <%= link_to "New Location", new_location_path %>
-  </div>
-  <div class="field">
-    <%= f.label :eventtype_id %><br>
-    <%= f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, include_blank: false %>
-  </div>
-  <div class="field">
-    <%= f.label :team_id %><br>
-    <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, include_blank: false %>
-  </div>
-    <div class="field">
-    <%= f.label :hotel_id %><br>
-    <%= f.collection_select :hotel_id, Hotel.order(:id),:id,:name, include_blank: true %>
-    <%= link_to "New Hotel", new_hotel_path %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-        <% end %>
-      </div>
-  </li>
-</ul>
 <%= link_to 'Edit', edit_team_path(@team) %> |
 
 <% end %>
