@@ -8,8 +8,8 @@ development:
   encoding: unicode
   database: team_manager
   pool: 5
-  username: zacharybrown
-  password: george
+  password: "jenova77"
+
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".

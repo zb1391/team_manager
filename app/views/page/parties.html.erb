@@ -1,13 +1,82 @@
-<h1>Parties</h1>
 
-<h3>Birthdays</h3>
-<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis quam lacus. Nunc dolor enim, hendrerit non tortor non, mollis vestibulum mauris. Vivamus ut mi non sem pharetra lacinia ac eu sapien. Nunc non porttitor est, et faucibus orci. Pellentesque in mauris sed tortor lobortis cursus ullamcorper in sem. In faucibus iaculis urna dignissim pharetra. Suspendisse eleifend eleifend metus vel eleifend. Vivamus nec consectetur mi. Aenean sit amet libero eros. Proin bibendum auctor volutpat.
-</p>
 
-<h3>Bar/Bat Mitzvahs</h3>
-<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis quam lacus. Nunc dolor enim, hendrerit non tortor non, mollis vestibulum mauris. Vivamus ut mi non sem pharetra lacinia ac eu sapien. Nunc non porttitor est, et faucibus orci. Pellentesque in mauris sed tortor lobortis cursus ullamcorper in sem. In faucibus iaculis urna dignissim pharetra. Suspendisse eleifend eleifend metus vel eleifend. Vivamus nec consectetur mi. Aenean sit amet libero eros. Proin bibendum auctor volutpat.
-</p>
+<div id="main-carousel" class="carousel slide" data-ride="carousel">
 
-<h3>Any Occassion</h3>
-<p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum quis quam lacus. Nunc dolor enim, hendrerit non tortor non, mollis vestibulum mauris. Vivamus ut mi non sem pharetra lacinia ac eu sapien. Nunc non porttitor est, et faucibus orci. Pellentesque in mauris sed tortor lobortis cursus ullamcorper in sem. In faucibus iaculis urna dignissim pharetra. Suspendisse eleifend eleifend metus vel eleifend. Vivamus nec consectetur mi. Aenean sit amet libero eros. Proin bibendum auctor volutpat.
-</p>
+	<ol class="carousel-indicators">
+		<li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+		<li data-target="#main-carousel" data-slide-to="1"></li>
+		<li data-target="#main-carousel" data-slide-to="2"></li>
+	</ol>
+
+	<div class="carousel-inner">
+		<div class=" item active carousel-padding party-image content-height">
+			<%= image_tag("party1.jpg"); %>
+		</div>
+		<div class="item content-padding party-image content-height">
+			<%= image_tag("party4.jpg"); %>
+		</div>
+		<div class="item content-padding party-image content-height">
+			<%= image_tag("party3.jpg"); %>
+		</div>
+	</div>
+
+	<a class="carousel-control left" href="#main-carousel" data-slide="prev"> < </a>
+
+	<a class="carousel-control right" href="#main-carousel" data-slide="next"> > </a>
+</div>
+<h1 id = "party-header">Party Central</h1>
+<div class = "static-cols-green" id = "party-content">
+	<div class = "row">
+		<div class = "col-xs-6">
+			<h3 class = "centered party" id="party-sub-header">We Do All The Work</h3>
+		</div>
+		<div class = "col-xs-6">
+			<h3 class = "centered" id="party-sub-header">You Have All The Fun</h3>
+		</div>
+	</div>
+	<div class = "row">
+		<div class = "col-xs-6 white-background">
+				<dt>Birthdays, Bar/Bat Mitzvahs, Any Special Occassion</dt>
+				<p> <br />
+					Come celebrate your next party at Down Town Sports!
+			
+			
+					Our professional staff will provide an exciting sports environment
+					for a fun, memorable event. <br /> <br />
+					Take advantage of our 
+					Party Staff, spacious Private Party Room and Two Full Basketball Courts!
+					
+
+				</p>
+
+		</div>
+		<div class = "col-xs-6 white-background">
+				<dt> 1 Hour of Court Use</dt>
+				<dd>Play any sports you like with our professional staff:</dd>
+				<table class = "centered-table">
+					<tr>
+						<td>Basketball</td>
+						<td>Soccer</td>
+					</tr>
+					<tr>
+						<td>Dodge Ball</td>
+						<td>"Tee" Ball</td>
+					</tr>
+					<tr>
+						<td>Football</td>
+						<td>Tennis</td>
+					</tr>
+					<tr>
+						<td>Hockey</td>
+						<td>Tug-O-War</td>
+					</tr>
+					<tr>
+						<td>Kickball</td>
+						<td>Volleyball</td>
+					</tr>
+				</table>
+				<dt>1/2 Hour in Our Private Party Room</dt>
+				<dd>Celebrate with pizza and cake while we provide all paper goods and unlimited Juice/Water/Soda.</dd>
+		</div>
+	</div>
+</div>

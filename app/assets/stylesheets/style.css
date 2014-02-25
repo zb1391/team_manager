@@ -642,4 +642,94 @@ footer ul li a:hover{
 .centered-orange{
 	text-align: center;
 }
+.party-image{
+	padding: 0px;
+}
+.party-image img{
+	float:none;
+	margin: auto;
+	position: relative;
+	z-index: -2;
+}
+.party-image h1{
+	position: relative;
+	color:red;
+	z-index: 1;
+	top:-200px;
+}
+#party-carousel{
+	background: #009933;
+}
+#party-header{
+	padding-bottom: 5px;
+	background: #009933;
+	font-size: 60px;
+	text-align: center;
+	color: #ffe77d;
+}
 
+#party-content{
+	padding: 15px 70px;
+	background: #009933;
+}
+#party-content h3{
+	color:#ffe77d;
+}
+#party-content table{
+	border:none;
+}
+#party-content tr{
+	border: none;
+}
+.party-left-content{
+	width: 45%;
+	border: 2px solid #006600;
+	padding: 20px 20px;
+	border-radius: 10px;
+	background: white;
+	color:black;
+	position: relative;
+	z-index: 2;
+	top:-445px;
+	left: 20px;
+}
+.party-left-content h2{
+	font-style: bold;
+	color: #006600;
+	text-decoration: underline;
+
+}
+.party-left-content dt{
+	color: #006600;
+
+}
+.party-left-content dd{
+	margin-left: 10px;
+}
+.party-left-content td{
+	padding: 5px 50px;
+}
+.white-background{
+	margin-top: 5px;
+	border-radius: 10px;
+  	background: white;
+  	padding: 5px;
+ 	border: 2px solid #006600;
+ 	height:220px;
+}
+#party-content strong{
+	color: #006600;
+}
+#party-content p{
+	text-align: justify;
+}
+#party-content td{
+	padding: 0 40px;
+	color:black;
+	border:none;
+	font-weight: none;
+	font-size: 14px;
+}
+#party-content dd{
+	margin-left: 10px;
+}
