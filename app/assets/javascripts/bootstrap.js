@@ -14,6 +14,20 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap requires jQuery'
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  * ======================================================================== */
 
+$(function (){
+  var sub = $(".calendar-sub-details");
+  sub.hide();
+
+  $(".calendar-details").on('mouseenter', function() {
+    $(this).children(":first").show();
+  });
+  $(".calendar-sub-details").on('mouseenter', function() {
+    $(this).children(":first").show();
+  });
+  $(".calendar-details").on('mouseleave', function() {
+    $(this).children(":first").hide();
+  });
+});
 
 +function ($) {
   'use strict';
