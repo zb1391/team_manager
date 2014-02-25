@@ -39,6 +39,8 @@ gem "ransack"
 #for displaying a calendar
 gem "simple_calendar", "~> 0.1.9"
 
+gem 'jquery-turbolinks'
+
 gem "rails_12factor", group: :production
 
 ruby "2.0.0"

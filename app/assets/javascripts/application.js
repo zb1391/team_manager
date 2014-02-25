@@ -15,6 +15,7 @@
 //= require jquery.ui.all
 //= require jquery_ujs
 //= require jquery-ui
+//= require jquery.turbolinks
 //= require_tree .
 
 $(function() {
