@@ -71,7 +71,7 @@
           <ul>
             <% Event.events_on_court_at_time(d, cur_time, 1).search(params[:q]).result(distinct: true).to_a.each do |p| %>
               <%if is_admin? %>
-                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id)%></li>
+                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id), :id => "black-link" %></li>
               <% else %>
                 <li style = "color:#006600;"><%=p.team.short_team_name%></li>
                <%end %>
@@ -84,13 +84,14 @@
                     <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
                   <%end%>
                   </li>
+                <li> <%= unique_event.eventtype %></li>
                 <li> <%="#{unique_event.location.name}-Court 1" %></li>
               <% end %>
             </ul>
           <ul>
             <% Event.events_on_court_at_time(d, cur_time+30.minutes, 1).search(params[:q]).result(distinct: true).to_a.each do |p| %>
               <%if is_admin? %>
-                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id)%></li>
+                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id), :id => "black-link"%></li>
               <% else %>
                 <li style = "color:#006600;"><%=p.team.short_team_name%></li>
                <%end %>
@@ -103,13 +104,14 @@
                     <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
                   <%end%>
                   </li>
+                <li> <%= unique_event.eventtype %></li>
                 <li> <%="#{unique_event.location.name}-Court 1" %></li>
               <% end %>
             </ul>
           <ul>
             <% Event.events_on_court_at_time(d, cur_time, 2).search(params[:q]).result(distinct: true).to_a.each do |p| %>
               <%if is_admin? %>
-                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id)%></li>
+                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id), :id => "black-link"%></li>
               <% else %>
                 <li style = "color:#006600;"><%=p.team.short_team_name%></li>
                <%end %>
@@ -122,13 +124,14 @@
                     <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
                   <%end%>
                   </li>
+                <li> <%= unique_event.eventtype %></li>
                 <li> <%="#{unique_event.location.name}-Court 2" %></li>
               <% end %>
             </ul>
           <ul>
             <% Event.events_on_court_at_time(d, cur_time+30.minutes, 2).search(params[:q]).result(distinct: true).to_a.each do |p| %>
               <%if is_admin? %>
-                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id)%></li>
+                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id), :id => "black-link"%></li>
               <% else %>
                 <li style = "color:#006600;"><%=p.team.short_team_name%></li>
                <%end %>
@@ -141,6 +144,7 @@
                     <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
                   <%end%>
                   </li>
+                <li> <%= unique_event.eventtype %></li>
                 <li> <%="#{unique_event.location.name}-Court 2" %></li>
               <% end %>
             </ul>
@@ -198,7 +202,7 @@
       <h3 class ="centered">Gym Ratz AAU Boys</h3>
       <div class ="row">
         <ul>
-        <% Team.teams_by_gender("Girls").each do |team| %>
+        <% Team.teams_by_gender("Boys").each do |team| %>
           <li class = "no-bullet centered"> <%= link_to team.short_team_name, team, :class => "black-text" %></li>
         <% end %>
       </ul>
