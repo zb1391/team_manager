@@ -16,4 +16,7 @@ class PageController < ApplicationController
 
   def camps
   end
+
+  def gym_ratz_about
+  end
 end

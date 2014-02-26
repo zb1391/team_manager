@@ -145,7 +145,7 @@ p{
 
 }
 a{
-	color:#008F00;
+	color:#ffe77d;
 }
 a:hover{
 	color:#52CC52;
@@ -384,6 +384,15 @@ footer ul li a:hover{
 	color: white;
 	
 }
+#calendar-sub p{
+	padding: 0;
+	margin: 0;
+	background: white;
+	border: none;
+}
+#calendar-sub a{
+	color: #006600;
+}
 .calendar-details{
 	position:relative;
 }
@@ -401,6 +410,8 @@ footer ul li a:hover{
 }
 
 .calendar-sub-details p{
+	background: white;
+	border: none;
 	margin:0px;
 	padding:0px;
 	color:black;
@@ -612,25 +623,26 @@ footer ul li a:hover{
 	color:black;
 }
 
-.static-cols-orange table{
+.static-cols-orange table, .static-cols-green table{
 	border:none;
 }
-.static-cols-orange tr{
+.static-cols-orange tr, .static-cols-green tr{
 	border: none;
 }
-.static-cols-orange td{
+.static-cols-orange td, .static-cols-green td{
 	padding: 0 5px;
 	color:black;
 	border:none;
 	font-weight: none;
 	font-size: 14px;
 }
-
-.static-cols-orange dt{
+#party-table td{
+	padding: 5px 20px;
+}
+.static-cols-orange dt,.static-cols-green li{
 	color:black;
 }
 .static-cols-green dt, .static-cols-gray dt{
-
 	color: #006600;
 }
 .static-cols-orange dd{
