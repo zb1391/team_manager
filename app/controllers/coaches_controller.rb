@@ -5,7 +5,7 @@ class CoachesController < ApplicationController
   # GET /coaches
   # GET /coaches.json
   def index
-    @coaches = Coach.all
+    @coaches = Coach.all.order(:last_name)
   end
 
   # GET /coaches/1

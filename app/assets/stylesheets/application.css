@@ -34,9 +34,11 @@
 .no-bullet{
   list-style: none;
 }
-
+.large-padding{
+  padding: 10px 80px;
+}
 .bright-green-text{
-  color:#52CC52
+  color:#52CC52;
 }
 .huge{
   font-size: 30px;  
@@ -47,8 +49,21 @@
 .centered-table{
   margin: auto;
 }
+#black-link{
+  color:black;
+}
+#black-link:hover{
+  color:#E6782E;
+}
+
 .black-text{
   color:black;
+}
+.dark-orange-background{
+  background:#903A00;
+  padding: 10px;
+  border: 1px solid #903A00;
+  border-radius: 10px;
 }
 .inline{
   display: inline;
