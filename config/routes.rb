@@ -22,6 +22,7 @@ TeamManager::Application.routes.draw do
   get "page/camps"
   get "page/leagues"
   get "page/gym_ratz_about"
+  get "page/contact"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

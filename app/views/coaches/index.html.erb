@@ -1,19 +1,14 @@
 
-<div class = "static-orange-content">
+<div class = "static-green-content">
   <% if signed_in? %>
     <h2>Welcome <%= current_user.first_name %> </h2>
   <% end %>
   <h1 class = "centered">Contact Information</h1>
-  <h2>Down Town Sports</h2>
-  <p>
-    7 Leighton Place <br />
-    Mahwah, NJ 07430 <br />
-    (201) 848-0017 <br />
-    <%= link_to "Directions", "https://maps.google.com/maps?f=d&daddr=7+Leighton+Place,Mahwah,NJ" %>
-  </p>
+  <h2>Gym Ratz AAU Coaches</h2>
+  <br /> <br />
 </div>
 <% @coaches.each do |coach| %>
-<div class = "static-cols-orange">
+<div class = "static-cols-green" id ="no-border">
     <div class = "row">
       <div class ="col-xs-8">
         <h3><%= "#{coach.first_name} #{coach.last_name}" %></h3>
@@ -22,8 +17,8 @@
           <%= number_to_phone(coach.phone, area_code: true) %>
           <% if proper_coach?(coach) || is_admin? %>
             <ul>
-              <li><%= link_to 'Edit', edit_coach_path(coach) %></li>
-              <li><%= link_to 'Destroy', coach, method: :delete, data: { confirm: 'Are you sure?' } %></li>
+              <li><%= link_to 'Edit', edit_coach_path(coach),:id => "black-link" %></li>
+              <li><%= link_to 'Destroy', coach, method: :delete, data: { confirm: 'Are you sure?' },:id => "black-link" %></li>
             </ul>
         <% end %>
         </p>
@@ -37,15 +32,15 @@
     </div>
 </div>
 <% end %>
-<div class ="static-cols-orange">
+<div class ="static-cols-green no-border">
   <% if signed_in? %>
-    <%= link_to "Sign Out", session_path(:id), :method => :delete %>
+    <%= link_to "Sign Out", session_path(:id), :method => :delete, :id => "black-link" %>
   <% else %>
-    <%= link_to "Sign In", new_session_path %>
+    <%= link_to "Sign In", new_session_path,:id => "black-link" %>
   <% end %>
   <br />
 
   <%if is_admin? %>
-  <%= link_to 'New Coach', new_coach_path %>
+  <%= link_to 'New Coach', new_coach_path,:id => "black-link" %>
   <% end %>
 </div>

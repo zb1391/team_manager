@@ -1,0 +1,31 @@
+<div class = "static-orange-content">
+  <% if signed_in? %>
+    <h2>Welcome <%= current_user.first_name %> </h2>
+  <% end %>
+  <h1 class = "centered">Contact Information</h1>
+  <h2>Down Town Sports</h2>
+  <p>
+    7 Leighton Place <br />
+    Mahwah, NJ 07430 <br />
+    (201) 848-0017 <br />
+    <%= link_to "Directions", "https://maps.google.com/maps?f=d&daddr=7+Leighton+Place,Mahwah,NJ" %>
+  </p>
+</div>
+<div class = "static-cols-orange">
+    <div class = "row">
+      <div class ="col-xs-6">
+        <h3>Danny Brown</h3>
+        <p>
+          dbrown@downtownsports.org<br />
+          (201) 341-1959 <br />
+        </p>
+      </div>
+      <div class ="col-xs-6">
+        <h3> Adam Brown</h3>
+        <p>
+          abrown@downtownsports.org<br />
+          (585) 303-8053 <br />
+        </p>
+      </div>
+    </div>
+</div>

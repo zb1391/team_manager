@@ -19,4 +19,7 @@ class PageController < ApplicationController
 
   def gym_ratz_about
   end
+
+  def contact
+  end
 end

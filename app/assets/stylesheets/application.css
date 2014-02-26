@@ -55,7 +55,9 @@
 #black-link:hover{
   color:#E6782E;
 }
-
+#no-border{
+  border-bottom: none;
+}
 .black-text{
   color:black;
 }
