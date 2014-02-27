@@ -1,5 +1,5 @@
 class EventMailer < ActionMailer::Base
-  default from: "zmb1391@gmail.com"
+  default from: "postmaster@sandbox56335.mailgun.org"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

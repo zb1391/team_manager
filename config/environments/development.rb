@@ -5,7 +5,6 @@ TeamManager::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
-  config.action_mailer.perform_deliveries = true, 
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -28,21 +27,14 @@ TeamManager::Application.configure do
   # number of complex assets.
   config.assets.debug = true
 
-config.action_mailer.default_url_options = { :host => 'http://young-island-7101.herokuapp.com' }
-config.action_mailer.delivery_method = :smtp
-config.action_mailer.perform_deliveries = true
-config.action_mailer.raise_delivery_errors = false
-config.action_mailer.default :charset => "utf-8"
-config.action_mailer.smtp_settings = {
-  address: "smtp.gmail.com",
-  port: 587,
-  domain: "http://young-island-7101.herokuapp.com",
-  authentication: "plain",
-  enable_starttls_auto: true,
-  user_name: ENV["my_email"],
-  password: ENV["my_email_pw"]
+  #for action mailer
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  :authentication => :plain,
+  :address => "smtp.mailgun.org",
+  :port => 587,
+  :domain => "sandbox56335.mailgun.org",
+  :user_name => "postmaster@sandbox56335.mailgun.org",
+  :password => "6s1ukk04ea29"
 }
-
-
-
 end
