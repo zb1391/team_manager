@@ -18,7 +18,7 @@
   </div>
   <div class="field">
     <%= f.label :coach_id %><br>
-    <%= f.collection_select :coach_id, Coach.order(:first_name),:id,:first_name, include_blank: false %>
+    <%= f.collection_select :coach_id, @not_me,:id,:first_name, include_blank: false %>
   </div>  
   <div class="field">
     <%= f.label :password %><br>

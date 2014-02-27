@@ -16,10 +16,12 @@ end
 danny = Coach.create(first_name: "Danny", last_name: "Brown", email: "dbrown@downtownsports.org", phone: "2013411959",
 	password: "dbrown", password_confirmation: "dbrown")
 danny.toggle!(:admin)
-adam = Coach.create(first_name: "Adam", last_name: "Brown", email: "abrown@downtownsports.org", phone: "2013411959",
+adam = Coach.create(first_name: "Adam", last_name: "Brown", email: "abrown@downtownsports.org", phone: "5853038053",
 	password: "abrown", password_confirmation: "abrown")
 adam.toggle!(:admin)
-
+zac = Coach.create(first_name: "Zac", last_name: "Brown", email: "zmb1391@gmail.com", phone: "2018350411",
+	password: "**ph0335", password_confirmation: "**ph0335")
+zac.toggle!(:admin)
 eventtypes = Eventtype.create([{name: "practice"}, {name: "game"}, {name: "tournament"}])
 
 Location.create(name: "Down Town Sports", address: "7 Leighton Place", city: "Mahwah",state: "NJ")

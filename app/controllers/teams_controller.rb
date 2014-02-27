@@ -19,11 +19,13 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
+    @not_me = Coach.search(:email_not_eq =>"zmb1391@gmail.com").result.to_a
     @team = Team.new
   end
 
   # GET /teams/1/edit
   def edit
+    @not_me = Coach.search(:email_not_eq =>"zmb1391@gmail.com").result.to_a
   end
 
   # POST /teams
