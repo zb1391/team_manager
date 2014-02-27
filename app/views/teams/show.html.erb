@@ -53,6 +53,20 @@
 </p>
 <% end %>
 
+<h2>Roster</h2>
+<table class ="weekly-calendar">
+  <tr>
+    <th>Player</th>
+    <th>Number</th>
+  </tr>
+ <% @team.players.each do |player| %>
+      <tr>
+        <td class ="black-text"><%= "#{player.last_name},#{player.first_name}" %></td>
+        <td class ="black-text"><%= player.uniform_number %></td>
+      </tr>
+    <% end %>
+</table>
+
 <%= calendar @team.events do |event| %>
   <%logger.debug "Events start_time: #{event.start_time}" %>
   <div class="calendar-details" id="calendar-sub">

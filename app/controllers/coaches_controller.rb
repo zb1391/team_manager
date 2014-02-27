@@ -30,7 +30,6 @@ class CoachesController < ApplicationController
 
     respond_to do |format|
       if @coach.save
-        sign_in @coach
         format.html { redirect_to coaches_path, notice: 'Coach was successfully created.' }
         format.json { render action: 'show', status: :created, location: @coach }
       else

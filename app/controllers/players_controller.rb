@@ -29,9 +29,9 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.new(player_params)
-    EventMailer.new_player(@player).deliver
     respond_to do |format|
       if @player.save
+        EventMailer.new_player(@player).deliver
         format.html { redirect_to page_thank_you_path }
         format.json { render action: 'show', status: :created, location: @player }
       else

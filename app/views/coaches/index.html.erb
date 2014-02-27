@@ -14,7 +14,9 @@
         <h3><%= "#{coach.first_name} #{coach.last_name}" %></h3>
         <p>
           <%= coach.email %> <br />
-          <%= number_to_phone(coach.phone, area_code: true) %>
+          <% if coach.admin == true %>
+            Phone: (201) 848-0017
+          <% end %>
           <% if proper_coach?(coach) || is_admin? %>
             <ul>
               <li><%= link_to 'Edit', edit_coach_path(coach),:id => "black-link" %></li>

@@ -25,4 +25,7 @@ class PageController < ApplicationController
 
   def thank_you
   end
+
+  def page_unavailable
+  end
 end

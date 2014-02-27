@@ -181,6 +181,12 @@ form{
 .green-content h2{
 	color:#ffe77d;
 }
+.green-content strong{
+	color:#ffe77d;
+}
+.gray-content strong{
+	color: #52CC52;
+}
 .green-content img{
 	margin-right: 15px;
 	border-radius: 10px;
