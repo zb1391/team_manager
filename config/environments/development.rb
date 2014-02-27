@@ -31,7 +31,7 @@ TeamManager::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :domain               => "anythingworks",
+    :domain               => "heroku.com",
     :user_name            => "zmb1391@gmail.com",
     :password             => ENV["MAIL_KEY"],
     :authentication       => "plain",
