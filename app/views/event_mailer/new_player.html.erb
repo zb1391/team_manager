@@ -9,7 +9,7 @@
     Hi <%= "#{@player.first_name} #{@player.last_name}" %>, <br />
     Congratulations for making the <%= @player.team.team_name %> team! This is an automatic email confirming that you have successfully registered with the new Gym Ratz Team Manager System. You will frequently receive automatic emails from this address detailing changes to your Game, Practice, and Tournament Schedule.    
     <br />
-    Please click <%=link_to "this link", @player.team, host: 'http://young-island-7101.herokuapp.com' %> to view your team page and monthly schedule.
+    Please click <%= team_url(@player.team, host: 'http://young-island-7101.herokuapp.com') to view your team page and monthly schedule.
     </p>
     <p>
       This is an automated email. Please do not reply

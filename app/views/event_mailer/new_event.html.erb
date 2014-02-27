@@ -13,7 +13,7 @@
     <%if @event.has_hotel? %>
       including hotel information
     <%end%>
-    can be found be checking the schedule 
+    can be found be checking the schedule <%=link_to "here", @player.team,host: 'http://young-island-7101.herokuapp.com' %>
     </p>
     <p>
       This is an automated email. Please do not reply
