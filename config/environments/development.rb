@@ -39,8 +39,8 @@ config.action_mailer.smtp_settings = {
   domain: "http://young-island-7101.herokuapp.com",
   authentication: "plain",
   enable_starttls_auto: true,
-  user_name: zmb1391@gmail.com,
-  password: ENV["MAIL_KEY"]
+  user_name: ENV["my_email"],
+  password: ENV["my_email_pw"]
 }
 
 
