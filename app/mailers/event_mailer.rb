@@ -1,5 +1,5 @@
 class EventMailer < ActionMailer::Base
-ActionMailer::Base.smtp_settings = {
+  ActionMailer::Base.smtp_settings = {
     :port =>           '587',
     :address =>        'smtp.mandrillapp.com',
     :user_name =>      ENV['MANDRILL_USERNAME'],
@@ -8,6 +8,8 @@ ActionMailer::Base.smtp_settings = {
     :authentication => :plain
 }
 ActionMailer::Base.delivery_method = :smtp
+  default from: "app22531466@heroku.com"
+
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
