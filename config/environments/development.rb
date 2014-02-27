@@ -33,8 +33,10 @@ TeamManager::Application.configure do
     :port                 => 587,
     :domain               => "anythingworks",
     :user_name            => "zmb1391@gmail.com",
-    :password             => ENV["MAIL_KEY]",
+    :password             => ENV["MAIL_KEY"],
     :authentication       => "plain",
     :enable_starttls_auto => true        
   }
+
+
 end
