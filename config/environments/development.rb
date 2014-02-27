@@ -5,6 +5,7 @@ TeamManager::Application.configure do
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
   config.cache_classes = false
+  config.action_mailer.perform_deliveries = true, 
 
   # Do not eager load code on boot.
   config.eager_load = false
@@ -26,15 +27,14 @@ TeamManager::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
-
-  #for action mailer
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-  :authentication => :plain,
-  :address => "smtp.mailgun.org",
-  :port => 587,
-  :domain => "sandbox56335.mailgun.org",
-  :user_name => "postmaster@sandbox56335.mailgun.org",
-  :password => "6s1ukk04ea29"
-}
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :domain               => "anythingworks",
+    :user_name            => "zmb1391@gmail.com",
+    :password             => ENV["MAIL_KEY]",
+    :authentication       => "plain",
+    :enable_starttls_auto => true        
+  }
 end

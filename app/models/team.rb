@@ -6,7 +6,6 @@ class Team < ActiveRecord::Base
 	has_many :players
 	has_many :events
 	belongs_to :coach
-	validate :unique_name
 	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}, :on => :create
 
 	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
@@ -75,10 +74,4 @@ class Team < ActiveRecord::Base
 			Digest::SHA2.hexdigest(string)
 		end
 
-		def unique_name
-			name = Team.where("gender = ? AND grade = ? AND team_type = ?", gender,grade,team_type).to_a
-			if !name.empty?
-				errors.add(:team_name,'team already exists')
-			end
-		end
 end

@@ -153,6 +153,9 @@ a:hover{
 img{
 	float:right;
 }
+form{
+	background: #009933;
+}
 
 .smaller-content{
 	padding:0px;

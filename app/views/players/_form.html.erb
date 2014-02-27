@@ -10,7 +10,7 @@
       </ul>
     </div>
   <% end %>
-  <h1>Player Info </h1>
+  <h2>Player Info </h2>
   <div class="field">
     <%= f.label :first_name %><br>
     <%= f.text_field :first_name %>
@@ -36,7 +36,7 @@
     <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, include_blank: false %>
   </div>
 
-  <h1>Parent Info</h1>
+  <h2>Parent Info</h2>
   <h3>Please Fill The Following For One Parent </h3>
   <div class="field">
     <%= f.label :parent_first_name %><br>
@@ -54,12 +54,16 @@
     <%= f.label :parent_email %><br>
     <%= f.text_field :parent_email %>
   </div>
+    <div class="field">
+    <%= f.label :parent_email2 %> (Optional Email Address for Second Parent/Guardian)<br>
+    <%= f.text_field :parent_email2 %>
+  </div>
   <div class="field">
     <%= f.label :emergency_phone %><em>(ex. 2018480017)</em><br>
     <%= f.text_field :emergency_phone %>
   </div>
 
-  <h1>Team Password</h1>
+  <h2>Team Password</h2>
   <h3>You Received the Team Password in an Email </h3>
   <div class="field">
     <%= f.label :password %><br>

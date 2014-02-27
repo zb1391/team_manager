@@ -6,18 +6,17 @@
   <body>
     <h1><%= @oldevent.eventtype.name %> Changed</h1>
     <p>
-    Hi <%= @player.first_name %>, <br />
-    This is to inform you that the <%= @oldevent.eventtype.name %> has been changed: <br />
-    <%= @oldevent.eventtype.name %>: <%= @oldevent.the_date %>, <%= @oldevent.the_time.strftime('%H:%M %P')%> at <%=@oldevent.location.name %> <br /> 
+    This is to inform you The <%=@player.team.team_name%> has changed. <br />
+    <%= @oldevent.eventtype.name %>: <%= @oldevent.the_date %>, <%= @oldevent.the_time.strftime('%l:%M %P')%> at <%=@oldevent.location.name %> <br /> 
     is now<br />
-    <b><%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%H:%M %P')%> at <%=@event.location.name %></b>
+    <b><%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%l:%M %P')%> at <%=@event.location.name %></b>
     <br /> 
     
         More information
     <%if @event.has_hotel? %>
       including hotel information
     <%end%>
-    can be found be checking the schedule <%=link_to "here", @player.team %>
+    can be found be checking the schedule <%=link_to "here", @player.team,host: 'http://young-island-7101.herokuapp.com' %>
     </p>
     <p>
       This is an automated email. Please do not reply

@@ -6,10 +6,9 @@
   <body>
     <h1><%= @event.eventtype.name %> Cancelled</h1>
     <p>
-    Hi <%= @player.first_name %>, <br />
-    This is to inform you that the <%= @event.eventtype.name %> scheduled for
-    <%= @event.the_date %> at <%= @event.the_time.strftime('%H:%M:%S %P')%> <b> has been cancelled.</b><br />
-    More information can be found be checking the schedule <%=link_to "here", @player.team %>
+    This is to inform you that the <%=@player.team.team_name%>'s <%= @event.eventtype.name %> scheduled for
+    <%= @event.the_date %> at <%= @event.the_time.strftime('%l:%M %P')%> <b> has been cancelled.</b><br />
+    More information can be found be checking the schedule <%=link_to "here", @player.team,host: 'http://young-island-7101.herokuapp.com' %>
     </p>
     <p>
       This is an automated email. Please do not reply

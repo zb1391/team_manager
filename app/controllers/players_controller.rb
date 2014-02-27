@@ -29,10 +29,10 @@ class PlayersController < ApplicationController
   # POST /players.json
   def create
     @player = Player.new(player_params)
-
+    EventMailer.new_player(@player).deliver
     respond_to do |format|
       if @player.save
-        format.html { redirect_to @player.team, notice: 'Player was successfully created.' }
+        format.html { redirect_to page_thank_you_path }
         format.json { render action: 'show', status: :created, location: @player }
       else
         format.html { render action: 'new' }
@@ -75,6 +75,6 @@ class PlayersController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
       params.require(:player).permit(:first_name, :last_name, :phone, :email, :team_id, :password,
-        :parent_first_name, :parent_last_name, :parent_email, :parent_cell, :emergency_phone, :uniform_number)
+        :parent_first_name, :parent_last_name, :parent_email, :parent_email2,:parent_cell, :emergency_phone, :uniform_number)
     end
 end

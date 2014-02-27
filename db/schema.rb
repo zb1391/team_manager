@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140223153707) do
+ActiveRecord::Schema.define(version: 20140226210532) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -83,6 +83,7 @@ ActiveRecord::Schema.define(version: 20140223153707) do
     t.string   "parent_email"
     t.string   "parent_cell"
     t.string   "emergency_phone"
+    t.string   "parent_email2"
   end
 
   create_table "teams", force: true do |t|

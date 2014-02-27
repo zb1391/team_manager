@@ -1,5 +1,5 @@
 class EventMailer < ActionMailer::Base
-  default from: "postmaster@sandbox56335.mailgun.org"
+  default from: "zmb1391@gmail.com"
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
@@ -9,7 +9,8 @@ class EventMailer < ActionMailer::Base
   def new_event(player, event)
     @player=player
     @event = event
-    mail(to: @player.email, subject: "#{event.eventtype.name} scheduled #{event.the_date}")
+    emails = "#{player.email},#{player.parent_email},#{player.parent_email2}"
+    mail(to: emails, subject: "#{event.eventtype.name} scheduled #{event.the_date}")
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -21,7 +22,8 @@ class EventMailer < ActionMailer::Base
     @player=player
     @event = newevent
     @oldevent = oldevent
-    mail(to: @player.email, subject: "#{@oldevent.eventtype.name} on #{oldevent.the_date} has changed")
+    emails = "#{player.email},#{player.parent_email},#{player.parent_email2}"
+    mail(to: emails, subject: "#{@oldevent.eventtype.name} on #{oldevent.the_date} has changed")
   end
 
   # Subject can be set in your I18n file at config/locales/en.yml
@@ -32,6 +34,13 @@ class EventMailer < ActionMailer::Base
   def destroyed_event(player,event)
     @player=player
     @event = event
-    mail(to: @player.email, subject: "Cancelled #{@event.eventtype.name} on #{event.the_date}")
+    emails = "#{player.email},#{player.parent_email},#{player.parent_email2}"
+    mail(to: emails, subject: "Cancelled #{@event.eventtype.name} on #{event.the_date}")
+  end
+
+  def new_player(player)
+    @player = player
+    emails = "#{player.email},#{player.parent_email},#{player.parent_email2}"
+    mail(to: emails, subject: "Registration Complete!")
   end
 end
