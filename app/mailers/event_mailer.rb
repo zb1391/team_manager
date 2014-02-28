@@ -5,6 +5,8 @@ class EventMailer < ActionMailer::Base
     :user_name =>      ENV['DWN_TWN_ADDR'],
     :password =>       ENV['DWN_TWN_PW'],
     :authentication => :plain
+    :enable_starttls_auto => true,
+    :openssl_verify_mode  => 'none'
 }
 ActionMailer::Base.delivery_method = :smtp
   default from: ENV['DWN_TWN_ADDR']
