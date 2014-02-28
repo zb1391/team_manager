@@ -12,11 +12,15 @@ class Team < ActiveRecord::Base
 
 	#Team Name Composed of Gender, Grade, Type
 	def team_name
-		"Gym Ratz #{gender} #{grade} Grade #{team_type}"
+		"#{grade} Grade #{gender} #{team_type}"
 	end
 
 	def short_team_name
 		"#{gender} #{grade} Grade #{team_type}"
+	end
+
+	def dropdown_name
+		"#{grade} Grade #{gender} #{team_type}"
 	end
 
 	#return an array of all teams of Gender g

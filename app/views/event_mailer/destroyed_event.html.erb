@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @event.eventtype.name %> Cancelled</h1>
+    <h1><%= @event.eventtype.formatted_name %> Cancelled</h1>
     <p>
     This is to inform you that the <%=@player.team.team_name%>'s <%= @event.eventtype.name %> scheduled for
     <%= @event.the_date %> at <%= @event.the_time.strftime('%l:%M %P')%> <b> has been cancelled.</b><br />

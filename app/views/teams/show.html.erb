@@ -61,7 +61,7 @@
   </tr>
  <% @team.players.each do |player| %>
       <tr>
-        <td class ="black-text"><%= "#{player.last_name},#{player.first_name}" %></td>
+        <td class ="black-text"><%= player.formatted_name %></td>
         <td class ="black-text"><%= player.uniform_number %></td>
       </tr>
     <% end %>

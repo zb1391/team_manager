@@ -21,6 +21,12 @@ class Player < ActiveRecord::Base
 		end
 	end
 
+	def formatted_name
+		last = last_name.slice(0,1).capitalize + last_name.slice(1..-1)
+		first = first_name.slice(0,1).capitalize + first_name.slice(1..-1)
+		return "#{last}, #{first}"
+	end
+
 	#No Player can have a uniform number with any digit > 5
 	#Therefore the highest number a player can have is 55
 	#This also confirms that the number is unique to the team
@@ -30,13 +36,15 @@ class Player < ActiveRecord::Base
 		if !number.empty?
 			errors.add(:uniform_number, "is already taken")
 		end
-
+		if uniform_number < 0
+			errors.add(:uniform_number, "can't be negative")
+		end
 		if uniform_number > 55
 			errors.add(:uniform_number, "can't be greater than 55")
 		end
 
 		if 5 % ones_digit == 5
-			errors.add(:uniform_number, "can't have a digit greater than 5 (e.g. 17 is invalid)")
+			errors.add(:uniform_number, "c- AAU Regulation no digit greter than 5 (use numbers 0-5,10-15,20-25...)")
 		end
 	end
 

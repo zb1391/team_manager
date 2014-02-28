@@ -4,7 +4,7 @@
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
   </head>
   <body>
-    <h1><%= @oldevent.eventtype.name %> Changed</h1>
+    <h1><%= @oldevent.eventtype.formatted_name %> Changed</h1>
     <p>
     This is to inform you The <%=@player.team.team_name%> has changed. <br />
     <%= @oldevent.eventtype.name %>: <%= @oldevent.the_date %>, <%= @oldevent.the_time.strftime('%l:%M %P')%> at <%=@oldevent.location.name %> <br /> 
