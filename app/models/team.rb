@@ -26,7 +26,7 @@ class Team < ActiveRecord::Base
 	end
 
 	def self.all_teams_of_gender_and_type(g,t)
-		Team.where("gender = ? AND team_type = ?",g,t).to_a
+		Team.where("gender = ? AND team_type = ?",g,t).order(:id)
 	end
 
 	def my_id 
