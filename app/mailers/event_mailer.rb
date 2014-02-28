@@ -1,14 +1,13 @@
 class EventMailer < ActionMailer::Base
   ActionMailer::Base.smtp_settings = {
     :port =>           '25',
-    :address =>        'smtp.mandrillapp.com',
-    :user_name =>      ENV['MANDRILL_USERNAME'],
-    :password =>       ENV['MANDRILL_APIKEY'],
-    :domain =>         'heroku.com',
+    :address =>        'mail.downtownsports.org',
+    :user_name =>      ENV['DWN_TWN_ADDR'],
+    :password =>       ENV['DWN_TWN_PW'],
     :authentication => :plain
 }
 ActionMailer::Base.delivery_method = :smtp
-  default from: "app22531466@heroku.com"
+  default from: ENV['DWN_TWN_ADDR']
 
 
   # Subject can be set in your I18n file at config/locales/en.yml
