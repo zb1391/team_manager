@@ -33,7 +33,7 @@
   </div>
   <div class="field">
     <%= f.label :team_id %><br>
-    <%= f.collection_select :team_id, Team.order(:team_name),:id,:team_name, include_blank: false %>
+    <%= f.collection_select :team_id, Team.order(:id),:id,:team_name, include_blank: false %>
   </div>
 
   <h2>Parent Info</h2>
