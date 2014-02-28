@@ -451,13 +451,12 @@ footer ul li a:hover{
 	padding: 0px;
 	margin: 0px;
 	min-width:135px;
+	min-height: 100px;
 	height: 20px;
 	background:#f9f9f9;
 	border: 1px solid #cccccc;
 }
-.weekly-calendar tr{
-	min-height: 100px;
-}
+
 .weekly-calendar dl{
 	vertical-align: top;
 	padding: 0px;
