@@ -175,8 +175,8 @@
       <% end %>
     </dt>
         <% if proper_coach?(event.team.coach) || is_admin? %>
-          <%= link_to 'Edit', edit_event_path(event) %>
-          <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <%= link_to 'Edit', edit_event_path(event),  :id => "black-link" %>
+          <%= link_to 'Destroy', event,  :id => "black-link", method: :delete, data: { confirm: 'Are you sure?' } %>
         <% end %>
   </ul>
 <% end %>
