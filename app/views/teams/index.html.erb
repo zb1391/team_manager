@@ -4,7 +4,7 @@
 <table>
   <thead>
     <tr>
-      <th>Team name</th>
+      <th>Boys Elite</th>
       <th></th>
       <th></th>
       <th></th>
@@ -13,7 +13,96 @@
   </thead>
 
   <tbody>
-    <% @teams.each do |team| %>
+    <% Team.all_teams_of_gender_and_type("Boys","Elite").each do |team| %>
+      <tr>
+        <td><%= team.short_team_name %></td>
+        <td><%= link_to 'Manage', team %></td>
+        <% if proper_coach?(team.coach) || is_admin? %>
+          <td><%= link_to 'Edit Name', edit_team_path(team) %></td>
+          <td><%= link_to 'Destroy Team', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <% if is_admin? %>
+            <ul>
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
+                <div class="dropdown-menu" style="padding:2px;">
+                    <%= form_for (event=Event.new),:html => {:class => "manager-form"} do |f| %>
+                      <% if event.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+                          <ul>
+                          <% event.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                          <% end %>
+                          </ul>
+                        </div>
+                      <% end %>
+
+              <div class="field">
+                <%= f.label :the_date %><br>
+                <%= f.text_field :the_date, :class => "datepicker", :id => team.team_name %>
+              </div>
+              <div class="field">
+                <%= f.label :the_time %><br>
+                <%= f.time_field :the_time %>
+              </div>
+              <div class="field">
+                <%= f.label :end_time %>(optional)<br>
+                <%= f.time_field :end_time %>
+              </div>
+                <div class="field">
+                <%= f.label :location_id %><br>
+                <%= f.collection_select :location_id, Location.order(:id),:id,:name, include_blank: false %>
+                <%= link_to "New Location", new_location_path %>
+              </div>
+              <div class="field">
+                <%= f.label :eventtype_id %><br>
+                <%= f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, include_blank: false %>
+              </div>
+              <div class="field">
+                <%= f.label :court %><br>
+                <%= f.number_field :court, min:1 %>
+              </div>
+              <div class="field">
+                <%= f.label :team_id %><br>
+                <%= f.collection_select :team_id, Team.order(:id),:id,:team_name, {:selected => team.id} %>
+              </div>
+                <div class="field">
+                <%= f.label :hotel_id %><br>
+                <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
+                <%= link_to "New Hotel", new_hotel_path %>
+              </div>
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+                    <% end %>
+                  </div>
+              </li>
+            </ul>
+
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Boys Select</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Team.all_teams_of_gender_and_type("Boys","Select").each do |team| %>
       <tr>
         <td><%= team.short_team_name %></td>
         <td><%= link_to 'Manage', team %></td>
@@ -91,4 +180,180 @@
 
 <br>
 
+<table>
+  <thead>
+    <tr>
+      <th>Girls Elite</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Team.all_teams_of_gender_and_type("Girls","Elite").each do |team| %>
+      <tr>
+        <td><%= team.short_team_name %></td>
+        <td><%= link_to 'Manage', team %></td>
+        <% if proper_coach?(team.coach) || is_admin? %>
+          <td><%= link_to 'Edit Name', edit_team_path(team) %></td>
+          <td><%= link_to 'Destroy Team', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <% if is_admin? %>
+            <ul>
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
+                <div class="dropdown-menu" style="padding:2px;">
+                    <%= form_for (event=Event.new),:html => {:class => "manager-form"} do |f| %>
+                      <% if event.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+                          <ul>
+                          <% event.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                          <% end %>
+                          </ul>
+                        </div>
+                      <% end %>
+
+              <div class="field">
+                <%= f.label :the_date %><br>
+                <%= f.text_field :the_date, :class => "datepicker", :id => team.team_name %>
+              </div>
+              <div class="field">
+                <%= f.label :the_time %><br>
+                <%= f.time_field :the_time %>
+              </div>
+              <div class="field">
+                <%= f.label :end_time %>(optional)<br>
+                <%= f.time_field :end_time %>
+              </div>
+                <div class="field">
+                <%= f.label :location_id %><br>
+                <%= f.collection_select :location_id, Location.order(:id),:id,:name, include_blank: false %>
+                <%= link_to "New Location", new_location_path %>
+              </div>
+              <div class="field">
+                <%= f.label :eventtype_id %><br>
+                <%= f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, include_blank: false %>
+              </div>
+              <div class="field">
+                <%= f.label :court %><br>
+                <%= f.number_field :court, min:1 %>
+              </div>
+              <div class="field">
+                <%= f.label :team_id %><br>
+                <%= f.collection_select :team_id, Team.order(:id),:id,:team_name, {:selected => team.id} %>
+              </div>
+                <div class="field">
+                <%= f.label :hotel_id %><br>
+                <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
+                <%= link_to "New Hotel", new_hotel_path %>
+              </div>
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+                    <% end %>
+                  </div>
+              </li>
+            </ul>
+
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br>
+
+<table>
+  <thead>
+    <tr>
+      <th>Girls Select</th>
+      <th></th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% Team.all_teams_of_gender_and_type("Girls","Select").each do |team| %>
+      <tr>
+        <td><%= team.short_team_name %></td>
+        <td><%= link_to 'Manage', team %></td>
+        <% if proper_coach?(team.coach) || is_admin? %>
+          <td><%= link_to 'Edit Name', edit_team_path(team) %></td>
+          <td><%= link_to 'Destroy Team', team, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <td>
+            <% if is_admin? %>
+            <ul>
+              <li class="dropdown">
+                <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
+                <div class="dropdown-menu" style="padding:2px;">
+                    <%= form_for (event=Event.new),:html => {:class => "manager-form"} do |f| %>
+                      <% if event.errors.any? %>
+                        <div id="error_explanation">
+                          <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
+
+                          <ul>
+                          <% event.errors.full_messages.each do |msg| %>
+                            <li><%= msg %></li>
+                          <% end %>
+                          </ul>
+                        </div>
+                      <% end %>
+
+              <div class="field">
+                <%= f.label :the_date %><br>
+                <%= f.text_field :the_date, :class => "datepicker", :id => team.team_name %>
+              </div>
+              <div class="field">
+                <%= f.label :the_time %><br>
+                <%= f.time_field :the_time %>
+              </div>
+              <div class="field">
+                <%= f.label :end_time %>(optional)<br>
+                <%= f.time_field :end_time %>
+              </div>
+                <div class="field">
+                <%= f.label :location_id %><br>
+                <%= f.collection_select :location_id, Location.order(:id),:id,:name, include_blank: false %>
+                <%= link_to "New Location", new_location_path %>
+              </div>
+              <div class="field">
+                <%= f.label :eventtype_id %><br>
+                <%= f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, include_blank: false %>
+              </div>
+              <div class="field">
+                <%= f.label :court %><br>
+                <%= f.number_field :court, min:1 %>
+              </div>
+              <div class="field">
+                <%= f.label :team_id %><br>
+                <%= f.collection_select :team_id, Team.order(:id),:id,:team_name, {:selected => team.id} %>
+              </div>
+                <div class="field">
+                <%= f.label :hotel_id %><br>
+                <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
+                <%= link_to "New Hotel", new_hotel_path %>
+              </div>
+              <div class="actions">
+                <%= f.submit %>
+              </div>
+                    <% end %>
+                  </div>
+              </li>
+            </ul>
+
+            <% end %>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
 <%= link_to 'New Team', new_team_path %>
