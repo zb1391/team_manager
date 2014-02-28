@@ -25,49 +25,96 @@ zac.toggle!(:admin)
 eventtypes = Eventtype.create([{name: "practice"}, {name: "game"}, {name: "tournament"}])
 
 #Boys Elite
-Team.create(gender: "Boys", grade:"3rd", team_type:"Elite", password:"*gratzb3e", password_confirmation:"*gratzb3e")
-Team.create(gender: "Boys", grade:"4th", team_type:"Elite", password:"*gratzb4e", password_confirmation:"*gratzb4e")
-Team.create(gender: "Boys", grade:"5th", team_type:"Elite", password:"*gratzb5e", password_confirmation:"*gratzb5e")
-Team.create(gender: "Boys", grade:"6th", team_type:"Elite", password:"*gratzb6e", password_confirmation:"*gratzb6e")
-Team.create(gender: "Boys", grade:"7th", team_type:"Elite", password:"*gratzb7e", password_confirmation:"*gratzb7e")
-Team.create(gender: "Boys", grade:"8th", team_type:"Elite", password:"*gratzb8e", password_confirmation:"*gratzb8e")
-Team.create(gender: "Boys", grade:"9th", team_type:"Elite", password:"*gratzb9e", password_confirmation:"*gratzb9e")
-Team.create(gender: "Boys", grade:"10th", team_type:"Elite", password:"*gratzb10e", password_confirmation:"*gratzb10e")
-Team.create(gender: "Boys", grade:"11th", team_type:"Elite", password:"*gratzb11e", password_confirmation:"*gratzb11e")
-Team.create(gender: "Boys", grade:"12th", team_type:"Elite", password:"*gratzb12e", password_confirmation:"*gratzb12e")
+be3 = Team.create(gender: "Boys", grade:"3rd", team_type:"Elite", password:"*gratzb3e", password_confirmation:"*gratzb3e")
+be4 = Team.create(gender: "Boys", grade:"4th", team_type:"Elite", password:"*gratzb4e", password_confirmation:"*gratzb4e")
+be5 = Team.create(gender: "Boys", grade:"5th", team_type:"Elite", password:"*gratzb5e", password_confirmation:"*gratzb5e")
+be6 = Team.create(gender: "Boys", grade:"6th", team_type:"Elite", password:"*gratzb6e", password_confirmation:"*gratzb6e")
+be7 = Team.create(gender: "Boys", grade:"7th", team_type:"Elite", password:"*gratzb7e", password_confirmation:"*gratzb7e")
+be8 = Team.create(gender: "Boys", grade:"8th", team_type:"Elite", password:"*gratzb8e", password_confirmation:"*gratzb8e")
+be9 = Team.create(gender: "Boys", grade:"9th", team_type:"Elite", password:"*gratzb12e", password_confirmation:"*gratzb12e")
+be10 = Team.create(gender: "Boys", grade:"10th", team_type:"Elite", password:"*gratzb10e", password_confirmation:"*gratzb10e")
+be11 = Team.create(gender: "Boys", grade:"11th", team_type:"Elite", password:"*gratzb11e", password_confirmation:"*gratzb11e")
+be12 = Team.create(gender: "Boys", grade:"12th", team_type:"Elite", password:"*gratzb12e", password_confirmation:"*gratzb12e")
+
 #Boys Select
-Team.create(gender: "Boys", grade:"3rd", team_type:"Select", password:"*gratzb3e", password_confirmation:"*gratzb3e")
-Team.create(gender: "Boys", grade:"4th", team_type:"Select", password:"*gratzb4e", password_confirmation:"*gratzb4e")
-Team.create(gender: "Boys", grade:"5th", team_type:"Select", password:"*gratzb5e", password_confirmation:"*gratzb5e")
-Team.create(gender: "Boys", grade:"6th", team_type:"Select", password:"*gratzb6e", password_confirmation:"*gratzb6e")
-Team.create(gender: "Boys", grade:"7th", team_type:"Select", password:"*gratzb7e", password_confirmation:"*gratzb7e")
-Team.create(gender: "Boys", grade:"8th", team_type:"Select", password:"*gratzb8e", password_confirmation:"*gratzb8e")
-Team.create(gender: "Boys", grade:"9th", team_type:"Select", password:"*gratzb9e", password_confirmation:"*gratzb9e")
-Team.create(gender: "Boys", grade:"10th", team_type:"Select", password:"*gratzb10e", password_confirmation:"*gratzb10e")
-Team.create(gender: "Boys", grade:"11th", team_type:"Select", password:"*gratzb11e", password_confirmation:"*gratzb11e")
-Team.create(gender: "Boys", grade:"12th", team_type:"Select", password:"*gratzb12e", password_confirmation:"*gratzb12e")
+bs3 = Team.create(gender: "Boys", grade:"3rd", team_type:"Select", password:"*gratzb3e", password_confirmation:"*gratzb3e")
+bs4 = Team.create(gender: "Boys", grade:"4th", team_type:"Select", password:"*gratzb4e", password_confirmation:"*gratzb4e")
+bs5 = Team.create(gender: "Boys", grade:"5th", team_type:"Select", password:"*gratzb5e", password_confirmation:"*gratzb5e")
+bs6 = Team.create(gender: "Boys", grade:"6th", team_type:"Select", password:"*gratzb6e", password_confirmation:"*gratzb6e")
+bs7 = Team.create(gender: "Boys", grade:"7th", team_type:"Select", password:"*gratzb7e", password_confirmation:"*gratzb7e")
+bs8 = Team.create(gender: "Boys", grade:"8th", team_type:"Select", password:"*gratzb8e", password_confirmation:"*gratzb8e")
+bs9 = Team.create(gender: "Boys", grade:"9th", team_type:"Select", password:"*gratzb9e", password_confirmation:"*gratzb9e")
+bs10 = Team.create(gender: "Boys", grade:"10th", team_type:"Select", password:"*gratzb10e", password_confirmation:"*gratzb10e")
+bs11 = Team.create(gender: "Boys", grade:"11th", team_type:"Select", password:"*gratzb11e", password_confirmation:"*gratzb11e")
+bs12 = Team.create(gender: "Boys", grade:"12th", team_type:"Select", password:"*gratzb12e", password_confirmation:"*gratzb12e")
 
 #Girls Elite
-Team.create(gender: "Girls", grade:"3rd", team_type:"Elite", password:"*gratzg3e", password_confirmation:"*gratzg3e")
-Team.create(gender: "Girls", grade:"4th", team_type:"Elite", password:"*gratzg4e", password_confirmation:"*gratzg4e")
-Team.create(gender: "Girls", grade:"5th", team_type:"Elite", password:"*gratzg5e", password_confirmation:"*gratzg5e")
-Team.create(gender: "Girls", grade:"6th", team_type:"Elite", password:"*gratzg6e", password_confirmation:"*gratzg6e")
-Team.create(gender: "Girls", grade:"7th", team_type:"Elite", password:"*gratzg7e", password_confirmation:"*gratzg7e")
-Team.create(gender: "Girls", grade:"8th", team_type:"Elite", password:"*gratzg8e", password_confirmation:"*gratzg8e")
-Team.create(gender: "Girls", grade:"9th", team_type:"Elite", password:"*gratzg9e", password_confirmation:"*gratzg9e")
-Team.create(gender: "Girls", grade:"10th", team_type:"Elite", password:"*gratzg10e", password_confirmation:"*gratzg10e")
-Team.create(gender: "Girls", grade:"11th", team_type:"Elite", password:"*gratzg11e", password_confirmation:"*gratzg11e")
-Team.create(gender: "Girls", grade:"12th", team_type:"Elite", password:"*gratzg12e", password_confirmation:"*gratzg12e")
+ge3 = Team.create(gender: "Girls", grade:"3rd", team_type:"Elite", password:"*gratzg3e", password_confirmation:"*gratzg3e")
+ge4 = Team.create(gender: "Girls", grade:"4th", team_type:"Elite", password:"*gratzg4e", password_confirmation:"*gratzg4e")
+ge5 = Team.create(gender: "Girls", grade:"5th", team_type:"Elite", password:"*gratzg5e", password_confirmation:"*gratzg5e")
+ge6 = Team.create(gender: "Girls", grade:"6th", team_type:"Elite", password:"*gratzg6e", password_confirmation:"*gratzg6e")
+ge7 = Team.create(gender: "Girls", grade:"7th", team_type:"Elite", password:"*gratzg7e", password_confirmation:"*gratzg7e")
+ge8 = Team.create(gender: "Girls", grade:"8th", team_type:"Elite", password:"*gratzg8e", password_confirmation:"*gratzg8e")
+ge9 = Team.create(gender: "Girls", grade:"9th", team_type:"Elite", password:"*gratzg9e", password_confirmation:"*gratzg9e")
+ge10 = Team.create(gender: "Girls", grade:"10th", team_type:"Elite", password:"*gratzg10e", password_confirmation:"*gratzg10e")
+ge11 = Team.create(gender: "Girls", grade:"11th", team_type:"Elite", password:"*gratzg11e", password_confirmation:"*gratzg11e")
+ge12 = Team.create(gender: "Girls", grade:"12th", team_type:"Elite", password:"*gratzg12e", password_confirmation:"*gratzg12e")
 #Girls Select
-Team.create(gender: "Girls", grade:"3rd", team_type:"Select", password:"*gratzg3e", password_confirmation:"*gratzg3e")
-Team.create(gender: "Girls", grade:"4th", team_type:"Select", password:"*gratzg4e", password_confirmation:"*gratzg4e")
-Team.create(gender: "Girls", grade:"5th", team_type:"Select", password:"*gratzg5e", password_confirmation:"*gratzg5e")
-Team.create(gender: "Girls", grade:"6th", team_type:"Select", password:"*gratzg6e", password_confirmation:"*gratzg6e")
-Team.create(gender: "Girls", grade:"7th", team_type:"Select", password:"*gratzg7e", password_confirmation:"*gratzg7e")
-Team.create(gender: "Girls", grade:"8th", team_type:"Select", password:"*gratzg8e", password_confirmation:"*gratzg8e")
-Team.create(gender: "Girls", grade:"9th", team_type:"Select", password:"*gratzg9e", password_confirmation:"*gratzg9e")
-Team.create(gender: "Girls", grade:"10th", team_type:"Select", password:"*gratzg10e", password_confirmation:"*gratzg10e")
-Team.create(gender: "Girls", grade:"11th", team_type:"Select", password:"*gratzg11e", password_confirmation:"*gratzg11e")
-Team.create(gender: "Girls", grade:"12th", team_type:"Select", password:"*gratzg12e", password_confirmation:"*gratzg12e")
+gs3 = Team.create(gender: "Girls", grade:"3rd", team_type:"Select", password:"*gratzg3e", password_confirmation:"*gratzg3e")
+gs4 = Team.create(gender: "Girls", grade:"4th", team_type:"Select", password:"*gratzg4e", password_confirmation:"*gratzg4e")
+gs5 = Team.create(gender: "Girls", grade:"5th", team_type:"Select", password:"*gratzg5e", password_confirmation:"*gratzg5e")
+gs6 = Team.create(gender: "Girls", grade:"6th", team_type:"Select", password:"*gratzg6e", password_confirmation:"*gratzg6e")
+gs7 = Team.create(gender: "Girls", grade:"7th", team_type:"Select", password:"*gratzg7e", password_confirmation:"*gratzg7e")
+gs8 = Team.create(gender: "Girls", grade:"8th", team_type:"Select", password:"*gratzg8e", password_confirmation:"*gratzg8e")
+gs9 = Team.create(gender: "Girls", grade:"9th", team_type:"Select", password:"*gratzg9e", password_confirmation:"*gratzg9e")
+gs10 = Team.create(gender: "Girls", grade:"10th", team_type:"Select", password:"*gratzg10e", password_confirmation:"*gratzg10e")
+gs11 = Team.create(gender: "Girls", grade:"11th", team_type:"Select", password:"*gratzg11e", password_confirmation:"*gratzg11e")
+gs12 = Team.create(gender: "Girls", grade:"12th", team_type:"Select", password:"*gratzg12e", password_confirmation:"*gratzg12e")
+
+#add coach to every team 
+danny.teams<<be3
+danny.teams<<be4
+danny.teams<<be5
+danny.teams<<be6
+danny.teams<<be7
+danny.teams<<be8
+danny.teams<<be9
+danny.teams<<be10
+danny.teams<<be11
+danny.teams<<be12
+
+danny.teams<<bs3
+danny.teams<<bs4
+danny.teams<<bs5
+danny.teams<<bs6
+danny.teams<<bs7
+danny.teams<<bs8
+danny.teams<<bs9
+danny.teams<<bs10
+danny.teams<<bs11
+danny.teams<<bs12
+
+danny.teams<<ge3
+danny.teams<<ge4
+danny.teams<<ge5
+danny.teams<<ge6
+danny.teams<<ge7
+danny.teams<<ge8
+danny.teams<<ge9
+danny.teams<<ge10
+danny.teams<<ge11
+danny.teams<<ge12
+
+danny.teams<<gs3
+danny.teams<<gs4
+danny.teams<<gs5
+danny.teams<<gs6
+danny.teams<<gs7
+danny.teams<<gs8
+danny.teams<<gs9
+danny.teams<<gs10
+danny.teams<<gs11
+danny.teams<<gs12
+
 Location.create(name: "Down Town Sports", address: "7 Leighton Place", city: "Mahwah",state: "NJ")
 Location.create(name: "Saddle River Day", address: "147 Chestnut Ridge Rd", city: "Saddle River", state: "NJ")
