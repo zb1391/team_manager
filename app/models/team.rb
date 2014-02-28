@@ -6,8 +6,7 @@ class Team < ActiveRecord::Base
 	has_many :players
 	has_many :events
 	belongs_to :coach
-	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}, :on => :create
-
+	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}
 	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
 	
 
