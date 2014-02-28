@@ -19,9 +19,9 @@
 //= require_tree .
 
 $(function() {
-  $("#event_the_date").datepicker({
-  	dateFormat: "yy-mm-dd"
-  });
+	$('.datepicker').each(function(){
+    $(this).datepicker({ dateFormat: "yy-mm-dd"});
+	});
 });
 
 

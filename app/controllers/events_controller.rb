@@ -40,7 +40,7 @@ class EventsController < ApplicationController
        @event.team.players.each do |player|
          EventMailer.new_event(player,@event).deliver
         end
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
+        format.html { redirect_to teams_path, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
         format.html { render action: 'new' }
@@ -76,7 +76,7 @@ class EventsController < ApplicationController
     end
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to events_path }
+      format.html { redirect_to teams_path }
       format.json { head :no_content }
     end
   end
