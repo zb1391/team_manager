@@ -25,6 +25,10 @@ class Team < ActiveRecord::Base
 		Team.where("gender = ?",g).to_a
 	end
 
+	def self.all_teams_of_gender_and_type(g,t)
+		Team.where("gender = ? AND team_type = ?",g,t).to_a
+	end
+
 	def my_id 
 		return id
 	end

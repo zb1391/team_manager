@@ -189,23 +189,45 @@
   </div>
   <div class ="row">
     <div class = "col-xs-6">
-      <h3 class ="centered"> Gym Ratz AAU Girls</h3>
+      <h3 class ="centered"> Gym Ratz AAU Girls Elite</h3>
       <div class ="row">
         <ul>
-        <% Team.teams_by_gender("Girls").each do |team| %>
+        <% Team.all_teams_of_gender_and_type("Girls","Elite").each do |team| %>
           <li class = "no-bullet centered"> <%= link_to team.short_team_name, team, :class => "black-text" %></li>
         <% end %>
       </ul>
       </div>
     </div>
     <div class = "col-xs-6">
-      <h3 class ="centered">Gym Ratz AAU Boys</h3>
+      <h3 class ="centered">Gym Ratz AAU Boys Elite</h3>
       <div class ="row">
         <ul>
-        <% Team.teams_by_gender("Boys").each do |team| %>
+        <% Team.all_teams_of_gender_and_type("Boys","Elite").each do |team| %>
+          <li class = "no-bullet centered"> <%= link_to team.short_team_name, team, :class => "black-text" %></li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class ="row">
+    <div class = "col-xs-6">
+      <h3 class ="centered"> Gym Ratz AAU Girls Select</h3>
+      <div class ="row">
+        <ul>
+        <% Team.all_teams_of_gender_and_type("Girls","Select").each do |team| %>
           <li class = "no-bullet centered"> <%= link_to team.short_team_name, team, :class => "black-text" %></li>
         <% end %>
       </ul>
+      </div>
+    </div>
+    <div class = "col-xs-6">
+      <h3 class ="centered">Gym Ratz AAU Boys Select</h3>
+      <div class ="row">
+        <ul>
+        <% Team.all_teams_of_gender_and_type("Boys","Select").each do |team| %>
+          <li class = "no-bullet centered"> <%= link_to team.short_team_name, team, :class => "black-text" %></li>
+        <% end %>
+        </ul>
       </div>
     </div>
   </div>
