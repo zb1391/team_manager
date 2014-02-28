@@ -6,9 +6,19 @@ class Team < ActiveRecord::Base
 	has_many :players
 	has_many :events
 	belongs_to :coach
-	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}
-	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
+	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}, :on => :create
+	validate :check_for_team
+	before_create :encrypt_password #before we save the row to the database, we will encrypt the password
 	
+
+	def check_for_team
+		already_a_row = Team.where("gender = ? AND grade = ? AND team_type = ?",gender,grade,team_type).to_a
+		if !already_a_row.empty?
+			if already_a_row[0].my_id != my_id
+				errors.add(:team_name, "team already exists")
+			end
+		end
+	end
 
 	#Team Name Composed of Gender, Grade, Type
 	def team_name

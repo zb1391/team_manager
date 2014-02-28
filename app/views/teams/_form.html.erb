@@ -12,13 +12,13 @@
   <% end %>
   <div class="field">
     <%= f.label :team_name %><br>
-    <%= f.select :gender, options_for_select(%w[Boys Girls])%>
-    <%= f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th 10th 11th 12th])%>
+    <%= f.select :gender, options_for_select(%w[Boys Girls], @team.gender)%>
+    <%= f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th 10th 11th 12th],@team.grade)%>
     <%= f.select :team_type, options_for_select(%w[Elite Select])%>
   </div>
   <div class="field">
     <%= f.label :coach_id %><br>
-    <%= f.collection_select :coach_id, @not_me,:id,:first_name, include_blank: false %>
+    <%= f.collection_select :coach_id, Coach.order(:id),:id,:first_name, include_blank: false %>
   </div>  
   <div class="field">
     <%= f.label :password %><br>
