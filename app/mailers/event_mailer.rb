@@ -1,7 +1,7 @@
 class EventMailer < ActionMailer::Base
   ActionMailer::Base.smtp_settings = {
-    :port =>           '465',
-    :address =>        'pancake.on-rev.com',
+    :port =>           '25',
+    :address =>        'mail.downtownsports.org',
     :user_name =>      ENV['DWN_TWN_ADDR'],
     :password =>       ENV['DWN_TWN_PW'],
     :authentication => :plain
