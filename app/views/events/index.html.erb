@@ -186,6 +186,9 @@
       <% if !event.end_time.nil? %>
       <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
       <% end %>
+      <br />
+      <%= "Court #{event.court}" %>
+
     </dt>
         <% if proper_coach?(event.team.coach) || is_admin? %>
           <%= link_to 'Edit', edit_event_path(event),  :id => "black-link" %>
