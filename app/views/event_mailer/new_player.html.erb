@@ -11,7 +11,18 @@
     <br />
     Please click <%= team_url(@player.team, host: 'www.downtownsports.org')%> to view your team page and monthly schedule.
     </p>
+    <h2>Your Profile Information</h2>
+    <dt><%= "#{@player.first_name} #{@player.last_name}" %></dt>
+    <dd><%= "Number : #{@player.uniform_number}" %></dd>
+    <dd><%= number_to_phone(@player.phone, area_code: true) %></dd>
+    <dd><%= "#{@player.parent_first_name} #{@player.parent_last_name}" %></dd>
+    <dd><%= @player.parent_cell %></dd>
+    <dd><%= "Emergency Phone : #{@player.emergency_phone}" %></dd>
+
     <p>
+      If any of this information is incorrect or the recipients of this email are not you, please send an email with the <br />
+      SUBJECT: Player Profile Change <%="#{@player.first_name} #{@player.last_name}" %> <br />
+      to zmb1391@gmail.com <br />
       This is an automated email. Please do not reply
     </p>
     <p>Thanks and have a great day!</p>
