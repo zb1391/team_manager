@@ -44,7 +44,7 @@
                   <%= radio_button_tag('q[location_id_eq_any[]', l.id) %>
                   <%= "#{l.name}-#{l.city}" %> <br />                  
                 <% end %>
-                <dt> You <em>Must</em>Select a Location</dt>
+                <dt> You <em>Must</em> Select a Location</dt>
                 </td>
             </tr>
            <br />
@@ -180,7 +180,7 @@
   <ul>
     <dd><%= "#{event.eventtype.name}: "%></dd>
     <dt>
-      <%= "#{event.team.team_name}" %> <br />
+      <%= "#{event.team.name}" %> <br />
       <%= "#{event.location.name}:" %> <br />
       <%= "#{event.the_time.strftime('%l:%M %P')}"%>
       <% if !event.end_time.nil? %>
