@@ -7,7 +7,8 @@
         <div class = "weekly-calendar-search weekly-calendar">
           <h3> Schedule Search </h3>
           <h4> Leaving A Section Unchecked is Equivaltent to Checking All Boxes </h4> 
-          <h6>Ex) Leaving "Boys" and "Girls" boxes unchecked is the same as checking both</h6>
+          <h6>Ex) Leave All checkboxes unmarked to receive the weekly schedule for all teams and all events </h6>
+          <h6>You must choose a location</h6>
             <table>
             <tr>
               <th>Boys</th>
@@ -35,13 +36,18 @@
               </td>
               <td>
                 <% Eventtype.order(:name).each do |e| %>
+
                   <%= check_box_tag('q[eventtype_id_eq_any[]', e.id) %>
                   <%= e.name %> <br /> 
                 <% end %>
               </td>
               <td>
                 <% Location.order(:id).each do |l| %>
-                  <%= radio_button_tag('q[location_id_eq_any[]', l.id) %>
+                  <% if l.name == "Down Town Sports" %>
+                    <%= radio_button_tag('q[location_id_eq_any[]', l.id, :checked => true) %>
+                  <% else %>
+                    <%= radio_button_tag('q[location_id_eq_any[]', l.id) %>
+                  <% end %>
                   <%= "#{l.name}-#{l.city}" %> <br />                  
                 <% end %>
                 <dt> You <em>Must</em> Select a Location</dt>
