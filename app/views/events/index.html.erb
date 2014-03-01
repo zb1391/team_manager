@@ -97,7 +97,7 @@
                     <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
                   <%end%>
                   </li>
-                <li> <%= unique_event.eventtype.name %></li>
+                <li> <%= unique_event.eventtype.formatted_name %></li>
                 <li> <%="#{unique_event.location.name}-Court 1" %></li>
               <% end %>
             </ul>
@@ -117,7 +117,7 @@
                     <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
                   <%end%>
                   </li>
-                <li> <%= unique_event.eventtype.name %></li>
+                <li> <%= unique_event.eventtype.formatted_name %></li>
                 <li> <%="#{unique_event.location.name}-Court 1" %></li>
               <% end %>
             </ul>
@@ -137,7 +137,7 @@
                     <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
                   <%end%>
                   </li>
-                <li> <%= unique_event.eventtype.name %></li>
+                <li> <%= unique_event.eventtype.formatted_name %></li>
                 <li> <%="#{unique_event.location.name}-Court 2" %></li>
               <% end %>
             </ul>
@@ -157,7 +157,7 @@
                     <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
                   <%end%>
                   </li>
-                <li> <%= unique_event.eventtype.name %></li>
+                <li> <%= unique_event.eventtype.formatted_name %></li>
                 <li> <%="#{unique_event.location.name}-Court 2" %></li>
               <% end %>
             </ul>

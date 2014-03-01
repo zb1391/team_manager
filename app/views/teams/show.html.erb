@@ -91,6 +91,7 @@
         <% if !event.end_time.nil? %>
         <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
         <% end %>
+        <%= "Court #{event.court}" %>
       </dt>
           <% if is_admin? %>
             <%= link_to 'Edit', edit_event_path(event) %>
