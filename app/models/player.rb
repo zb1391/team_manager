@@ -9,7 +9,7 @@ class Player < ActiveRecord::Base
 	validates :parent_cell, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validates :emergency_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validate :password_matches_team
-	validate :valid_uniform_number
+	validate :valid_uniform_number, :on => :create
 
 	def password_matches_team
 		team = Team.find(team_id)
