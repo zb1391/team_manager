@@ -32,6 +32,9 @@ class Player < ActiveRecord::Base
 	#This also confirms that the number is unique to the team
 	def valid_uniform_number
 		ones_digit = uniform_number % 10
+		if ones_digit == 0
+			ones_digit =1;
+		end
 		number = Team.search(:id_eq => team_id, :players_uniform_number_eq => uniform_number).result.to_a
 		if !number.empty?
 			errors.add(:uniform_number, "is already taken")
