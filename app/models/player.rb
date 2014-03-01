@@ -36,7 +36,7 @@ class Player < ActiveRecord::Base
 		if !number.empty?
 			errors.add(:uniform_number, "is already taken")
 		end
-		if uniform_number < 0
+		if uniform_number <= -1
 			errors.add(:uniform_number, "can't be negative")
 		end
 		if uniform_number > 55
