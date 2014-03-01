@@ -7,7 +7,7 @@
     <h1>Congratulations <%="#{@player.first_name}!"%></h1>
     <p>
     Hi <%= "#{@player.first_name} #{@player.last_name}" %>, <br />
-    Congratulations for making the <%= @player.team.team_name %> team! This is an automatic email confirming that you have successfully registered with the new Gym Ratz Team Manager System. You will frequently receive automatic emails from this address detailing changes to your Game, Practice, and Tournament Schedule.    
+    Congratulations for making the <%= @player.team.name %> team! This is an automatic email confirming that you have successfully registered with the new Gym Ratz Team Manager System. You will frequently receive automatic emails from this address detailing changes to your Game, Practice, and Tournament Schedule.    
     <br />
     Please click <%= team_url(@player.team, host: 'www.downtownsports.org')%> to view your team page and monthly schedule.
     </p>

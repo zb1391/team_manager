@@ -6,7 +6,7 @@
   <body>
     <h1><%= @oldevent.eventtype.formatted_name %> Changed</h1>
     <p>
-    This is to inform you The <%=@player.team.team_name%> has changed. <br />
+    This is to inform you The <%=@player.team.name%> has changed. <br />
     <%= @oldevent.eventtype.name %>: <%= @oldevent.the_date %>, <%= @oldevent.the_time.strftime('%l:%M %P')%> at <%=@oldevent.location.name %> <br /> 
     is now<br />
     <b><%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%l:%M %P')%> at <%=@event.location.name %></b>

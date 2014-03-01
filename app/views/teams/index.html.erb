@@ -41,7 +41,7 @@
 
               <div class="field">
                 <%= f.label :the_date %><br>
-                <%= f.text_field :the_date, :class => "datepicker", :id => team.team_name %>
+                <%= f.text_field :the_date, :class => "datepicker", :id => team.name %>
               </div>
               <div class="field">
                 <%= f.label :the_time %><br>
@@ -66,7 +66,7 @@
               </div>
               <div class="field">
                 <%= f.label :team_id %><br>
-                <%= f.collection_select :team_id, Team.order(:id),:id,:team_name, {:selected => team.id} %>
+                <%= f.collection_select :team_id, Team.order(:id),:id,:name, {:selected => team.id} %>
               </div>
                 <div class="field">
                 <%= f.label :hotel_id %><br>
@@ -130,7 +130,7 @@
 
               <div class="field">
                 <%= f.label :the_date %><br>
-                <%= f.text_field :the_date, :class => "datepicker", :id => team.team_name %>
+                <%= f.text_field :the_date, :class => "datepicker", :id => team.name %>
               </div>
               <div class="field">
                 <%= f.label :the_time %><br>
@@ -155,7 +155,7 @@
               </div>
               <div class="field">
                 <%= f.label :team_id %><br>
-                <%= f.collection_select :team_id, Team.order(:id),:id,:team_name, {:selected => team.id} %>
+                <%= f.collection_select :team_id, Team.order(:id),:id,:name, {:selected => team.id} %>
               </div>
                 <div class="field">
                 <%= f.label :hotel_id %><br>
@@ -220,7 +220,7 @@
 
               <div class="field">
                 <%= f.label :the_date %><br>
-                <%= f.text_field :the_date, :class => "datepicker", :id => team.team_name %>
+                <%= f.text_field :the_date, :class => "datepicker", :id => team.name %>
               </div>
               <div class="field">
                 <%= f.label :the_time %><br>
@@ -245,7 +245,7 @@
               </div>
               <div class="field">
                 <%= f.label :team_id %><br>
-                <%= f.collection_select :team_id, Team.order(:id),:id,:team_name, {:selected => team.id} %>
+                <%= f.collection_select :team_id, Team.order(:id),:id,:name, {:selected => team.id} %>
               </div>
                 <div class="field">
                 <%= f.label :hotel_id %><br>
@@ -309,7 +309,7 @@
 
               <div class="field">
                 <%= f.label :the_date %><br>
-                <%= f.text_field :the_date, :class => "datepicker", :id => team.team_name %>
+                <%= f.text_field :the_date, :class => "datepicker", :id => team.name %>
               </div>
               <div class="field">
                 <%= f.label :the_time %><br>
@@ -334,7 +334,7 @@
               </div>
               <div class="field">
                 <%= f.label :team_id %><br>
-                <%= f.collection_select :team_id, Team.order(:id),:id,:team_name, {:selected => team.id} %>
+                <%= f.collection_select :team_id, Team.order(:id),:id,:name, {:selected => team.id} %>
               </div>
                 <div class="field">
                 <%= f.label :hotel_id %><br>

@@ -28,7 +28,7 @@
       <div class ="col-xs-4">
         <h3>Teams</h3>
           <% coach.teams.order(:id).each do |team| %>
-            <li class ="no-bullet"> <%= link_to team.team_name, team, :id => "black-link", :class => "underlined" %></li>
+            <li class ="no-bullet"> <%= link_to team.name, team, :id => "black-link", :class => "underlined" %></li>
           <% end %>
       </div>
     </div>

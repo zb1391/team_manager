@@ -6,7 +6,7 @@
   <body>
     <h1><%= @event.eventtype.formatted_name %> Scheduled</h1>
     <p>
-    A <%=@player.team.team_name%> <%= @event.eventtype.name %> has been scheduled for
+    A <%=@player.team.name%> <%= @event.eventtype.name %> has been scheduled for
     <b><%= @event.the_date %></b> at <b><%= @event.the_time.strftime('%l:%M %P')%></b> will be held at <b><%=@event.location.name%></b> <br />
 
     More information

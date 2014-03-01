@@ -1,4 +1,5 @@
-<div class = "static-green-content">
+<%= @filtered_events.to_sql %>
+<div class = "static-green-content" id= "allow-overflow">
 <h1 class="centered">Gym Ratz AAU Schedule</h1>
   <li class="dropdown no-bullet">
     <a class="dropdown-toggle huge" href="#" data-toggle="dropdown">Schedule Search<strong class="caret"></strong></a>
@@ -6,10 +7,12 @@
       <%= search_form_for @q, url: events_path do |f| %>
         <div class = "weekly-calendar-search weekly-calendar">
           <h3> Schedule Search </h3>
-          <h4> Note: Leaving A Section Unchecked is Equivaltent to Checking All Boxes </h4> 
+          <h4> Leaving A Section Unchecked is Equivaltent to Checking All Boxes </h4> 
+          <h6>Ex) Leaving "Boys" and "Girls" boxes unchecked is the same as checking both</h6>
             <table>
             <tr>
-              <th>Teams</th>
+              <th>Boys</th>
+              <th>Girls</th>
               <th>Type</th>
               <th>Location</th>
             </tr>
@@ -17,9 +20,49 @@
             <tr>
               <td>
                 <%= check_box_tag('q[team_gender_matches_any[]', "Boys") %> 
-                <%= "Boys" %> <br />
+                <%= "All Boys Teams" %> <br />
+                <% Team.all_teams_of_gender("Boys").each do |t| %>
+                  <%= check_box_tag('q[team_name_eq_any[]', t.name) %>
+                  <%= t.name %> <br />
+                <% end %>                  
+              </td>
+              <td>
+                <%= check_box_tag('q[team_gender_matches_any[]', "Girls") %> 
+                <%= "All Girls Teams" %> <br />
+                <% Team.all_teams_of_gender("Girls").each do |t| %>
+                  <%= check_box_tag('q[team_name_eq_any[]', t.name) %>
+                  <%= t.name %> <br />
+                <% end %>                  
+              </td>
+              <td>
+
                 <%= check_box_tag('q[team_gender_matches_any[]', "Girls") %>
-                <%= "Girls" %>
+                <%= "Girls" %> <br />
+                <%= check_box_tag('q[team_team_type_matches_any[]', "Elite") %> 
+                <%= "Elite" %> <br />
+                <%= check_box_tag('q[team_team_type_matches_any[]', "Select") %>
+                <%= "Select" %> <br />
+                <dt>Grades</dt>
+                <%= check_box_tag('q[team_grade_matches_any[]', "3rd") %>
+                <%= "3rd" %>   
+                <%= check_box_tag('q[team_grade_matches_any[]', "4th") %>
+                <%= "4th" %> <br />  
+                <%= check_box_tag('q[team_grade_matches_any[]', "5th") %>
+                <%= "5th" %> 
+                <%= check_box_tag('q[team_grade_matches_any[]', "6th") %>
+                <%= "6th" %> <br /> 
+                <%= check_box_tag('q[team_grade_matches_any[]', "7th") %>
+                <%= "7th" %> 
+                <%= check_box_tag('q[team_grade_matches_any[]', "8th") %>
+                <%= "8th" %> <br /> 
+                <%= check_box_tag('q[team_grade_matches_any[]', "9th") %>
+                <%= "9th" %> 
+                <%= check_box_tag('q[team_grade_matches_any[]', "10th") %>
+                <%= "10th" %> <br /> 
+                <%= check_box_tag('q[team_grade_matches_any[]', "11th") %>
+                <%= "11th" %>  
+                <%= check_box_tag('q[team_grade_matches_any[]', "12th") %>
+                <%= "12th" %> <br />              
               </td>
               <td>
                 <% Eventtype.order(:name).each do |e| %>
@@ -28,12 +71,11 @@
                 <% end %>
               </td>
               <td>
-                <% l = Location.find_by name: "Down Town Sports" %>
-                  <%= check_box_tag('q[location_id_eq_any[]', l.id) %>
-                  <%= "#{l.name}-#{l.city}" %> <br />
-                <% l = Location.find_by name: "Saddle River Day" %>
-                  <%= check_box_tag('q[location_id_eq_any[]', l.id) %>
-                  <%= "#{l.name}-#{l.city}" %> <br />
+                <% Location.order(:id).each do |l| %>
+                  <%= radio_button_tag('q[location_id_eq_any[]', l.id) %>
+                  <%= "#{l.name}-#{l.city}" %> <br />                  
+                <% end %>
+                <dt> You <em>Must</em>Select a Location</dt>
                 </td>
             </tr>
            <br />
@@ -43,7 +85,9 @@
       <% end %>
     </div>
   </li>
-
+<% if params[:q].nil? %>
+  <h3>Please Select Calendar Search Fields From Above</h3>
+<% else %>
 <h3 class="centered"> <%="#{Event.start_of_week} --- #{Event.end_of_week}"%></h3>
 <table class="weekly-calendar">
   <tr>
@@ -158,7 +202,7 @@
   Download:
   <%= link_to "Excel", events_path(params.merge(format: 'xls')) %>
 </dd>
-
+<%end%>
 <br>
 
 <% if is_admin? %>

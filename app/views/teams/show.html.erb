@@ -1,5 +1,5 @@
 <div class = "static-green-content" id ="allow-overflow">
-<h1 class = "centered"><%=@team.team_name%></h1>
+<h1 class = "centered"><%=@team.name%></h1>
 <h2>Coach</h2>
 <h3 class = "small-margin-left"><%= "#{@team.coach.first_name} #{@team.coach.last_name}"%> </h3>
 <h4 class = "small-margin-left"><%= @team.coach.email %> </h4>
@@ -144,7 +144,7 @@
   </div>
   <div class="field">
     <%= f.label :team_id %><br>
-    <%= f.collection_select :team_id, Team.order(:id),:id,:team_name, {:selected => @team.id} %>
+    <%= f.collection_select :team_id, Team.order(:id),:id,:name, {:selected => @team.id} %>
   </div>
     <div class="field">
     <%= f.label :hotel_id %><br>
