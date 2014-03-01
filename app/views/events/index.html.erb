@@ -35,36 +35,6 @@
                 <% end %>                  
               </td>
               <td>
-
-                <%= check_box_tag('q[team_gender_matches_any[]', "Girls") %>
-                <%= "Girls" %> <br />
-                <%= check_box_tag('q[team_team_type_matches_any[]', "Elite") %> 
-                <%= "Elite" %> <br />
-                <%= check_box_tag('q[team_team_type_matches_any[]', "Select") %>
-                <%= "Select" %> <br />
-                <dt>Grades</dt>
-                <%= check_box_tag('q[team_grade_matches_any[]', "3rd") %>
-                <%= "3rd" %>   
-                <%= check_box_tag('q[team_grade_matches_any[]', "4th") %>
-                <%= "4th" %> <br />  
-                <%= check_box_tag('q[team_grade_matches_any[]', "5th") %>
-                <%= "5th" %> 
-                <%= check_box_tag('q[team_grade_matches_any[]', "6th") %>
-                <%= "6th" %> <br /> 
-                <%= check_box_tag('q[team_grade_matches_any[]', "7th") %>
-                <%= "7th" %> 
-                <%= check_box_tag('q[team_grade_matches_any[]', "8th") %>
-                <%= "8th" %> <br /> 
-                <%= check_box_tag('q[team_grade_matches_any[]', "9th") %>
-                <%= "9th" %> 
-                <%= check_box_tag('q[team_grade_matches_any[]', "10th") %>
-                <%= "10th" %> <br /> 
-                <%= check_box_tag('q[team_grade_matches_any[]', "11th") %>
-                <%= "11th" %>  
-                <%= check_box_tag('q[team_grade_matches_any[]', "12th") %>
-                <%= "12th" %> <br />              
-              </td>
-              <td>
                 <% Eventtype.order(:name).each do |e| %>
                   <%= check_box_tag('q[eventtype_id_eq_any[]', e.id) %>
                   <%= e.name %> <br /> 
