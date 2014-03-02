@@ -30,6 +30,14 @@
 							    <a tabindex="-1" href="#">Gym Ratz AAU Boys Elite</a>
 							    <ul class="dropdown-menu">
 							    	<% Team.all_teams_of_gender_and_type("Boys","Elite").each do |t| %>
+							    		<li><%= link_to t.name, t %></li>
+							    	<% end %>
+							    </ul>
+							</li>
+							<li class="dropdown-submenu">
+							    <a tabindex="-1" href="#">Gym Ratz AAU Boys Select</a>
+							    <ul class="dropdown-menu">
+							    	<% Team.all_teams_of_gender_and_type("Boys","Select").each do |t| %>
 							    		<li><%= link_to t.short_team_name, t %></li>
 							    	<% end %>
 							    </ul>
@@ -38,6 +46,14 @@
 							    <a tabindex="-1" href="#">Gym Ratz AAU Girls Elite</a>
 							    <ul class="dropdown-menu">
 							    	<% Team.all_teams_of_gender_and_type("Girls","Elite").each do |t| %>
+							    		<li><%= link_to t.short_team_name, t %></li>
+							    	<% end %>
+							    </ul>
+							</li>
+							<li class="dropdown-submenu">
+							    <a tabindex="-1" href="#">Gym Ratz AAU Girls Select</a>
+							    <ul class="dropdown-menu">
+							    	<% Team.all_teams_of_gender_and_type("Girls","Select").each do |t| %>
 							    		<li><%= link_to t.short_team_name, t %></li>
 							    	<% end %>
 							    </ul>

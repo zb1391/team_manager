@@ -2,21 +2,14 @@ require 'digest'
 
 class Team < ActiveRecord::Base
 	attr_accessor :password 
+	attr_accessor :color
 	has_many :players
 	has_many :events
 	belongs_to :coach
 	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}, :on => :create
-	validate :check_for_team
 	before_create :encrypt_password #before we save the row to the database, we will encrypt the password
 	before_save :name_setup
-	def check_for_team
-		already_a_row = Team.where("gender = ? AND grade = ? AND team_type = ?",gender,grade,team_type).to_a
-		if !already_a_row.empty?
-			if already_a_row[0].my_id != my_id
-				errors.add(:name, "team already exists")
-			end
-		end
-	end
+	before_save :age_setup
 
 	def short_team_name
 		"#{gender} #{grade} Grade #{team_type}"
@@ -35,6 +28,9 @@ class Team < ActiveRecord::Base
 		Team.where("gender = ? AND team_type = ?",g,t).order(:id)
 	end
 
+	def my_number
+		grade[0].to_f
+	end
 	def my_id 
 		return id
 	end
@@ -67,8 +63,11 @@ class Team < ActiveRecord::Base
 	end
 
 	private
+		def age_setup
+			self.age = get_age(grade)
+		end
 		def name_setup
-			self.name = namemake("#{grade} Grade #{gender} #{team_type}")
+			self.name = namemake("#{grade} Grade #{gender} #{team_type} #{color}")
 		end
 
 		def encrypt_password
@@ -86,6 +85,10 @@ class Team < ActiveRecord::Base
 
 		def namemake(string)
 			string
+		end
+
+		def get_age(grade)
+			grade[0..-3].to_i
 		end
 
 		def secure_hash(string)

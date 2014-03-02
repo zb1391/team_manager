@@ -21,6 +21,12 @@
 #allow-overflow{
   overflow: visible;
 }
+#red-text{
+  color:red;
+}
+#dark-green-text{
+  color:#006600;
+}
 .full-width{
   width: 90%;
 }

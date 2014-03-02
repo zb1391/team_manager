@@ -770,3 +770,24 @@ footer ul li a:hover{
 #party-content dd{
 	margin-left: 10px;
 }
+
+.home-page-urgent{
+	padding: 10px;
+	background: white;
+	margin-top: 20px;
+	margin: auto;
+	border: 4px solid #006600;
+}
+.home-page-urgent h3{
+	color: red;
+}
+.home-page-urgent h4{
+	color: #006600;
+}
+.home-page-urgen a{
+	color: #006600;
+}
+.home-page-urgent p{
+	width: 100%;
+	color: black;
+}
