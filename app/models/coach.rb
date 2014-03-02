@@ -34,6 +34,10 @@ class Coach < ActiveRecord::Base
 		end
 	end
 
+	def split_email
+		email.split('@',2)
+	end
+
 	private
 		def encrypt_password
 			self.salt = make_salt if new_record?
