@@ -10,7 +10,7 @@ class Player < ActiveRecord::Base
 	validates :emergency_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validate :password_matches_team
 	validate :valid_uniform_number, :on => :create
-
+	validate :unique_name, :on => :create
 	def password_matches_team
 		team = Team.find(team_id)
 		if team.nil?
@@ -27,6 +27,15 @@ class Player < ActiveRecord::Base
 		return "#{last}, #{first}"
 	end
 
+
+	def unique_name
+		already_a_row = Player.where("team_id = ? AND last_name = ? AND first_name = ?",team_id,last_name,first_name).to_a
+		if !already_a_row.empty?
+			errors.add(:first_name, "A player with the name #{first_name} #{last_name} has already registered. 
+				Check the team roster to verify you are already there")			
+		end
+
+	end
 	#No Player can have a uniform number with any digit > 5
 	#Therefore the highest number a player can have is 55
 	#This also confirms that the number is unique to the team
