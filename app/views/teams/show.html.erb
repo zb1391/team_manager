@@ -1,8 +1,6 @@
 <div class = "static-green-content" id ="allow-overflow">
 <h1 class = "centered"><%=@team.name%></h1>
 <h2>Coach</h2>
-<h3 class = "small-margin-left"><%= "#{@team.coach.first_name} #{@team.coach.last_name}"%> </h3>
-<h4 class = "small-margin-left"><%= @team.coach.email %> </h4>
 <% if proper_coach?(@team.coach) || is_admin? %>
 <table>
     <tr>
