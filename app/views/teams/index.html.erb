@@ -15,7 +15,7 @@
   <tbody>
     <% Team.all_teams_of_gender_and_type("Boys","Elite").each do |team| %>
       <tr>
-        <td><%= team.short_team_name %></td>
+        <td><%= team.name %></td>
         <td><%= link_to 'Manage', team %></td>
         <% if proper_coach?(team.coach) || is_admin? %>
           <td><%= link_to 'Edit Name', edit_team_path(team) %></td>
@@ -104,7 +104,7 @@
   <tbody>
     <% Team.all_teams_of_gender_and_type("Boys","Select").each do |team| %>
       <tr>
-        <td><%= team.short_team_name %></td>
+        <td><%= team.name %></td>
         <td><%= link_to 'Manage', team %></td>
         <% if proper_coach?(team.coach) || is_admin? %>
           <td><%= link_to 'Edit Name', edit_team_path(team) %></td>
@@ -194,7 +194,7 @@
   <tbody>
     <% Team.all_teams_of_gender_and_type("Girls","Elite").each do |team| %>
       <tr>
-        <td><%= team.short_team_name %></td>
+        <td><%= team.name %></td>
         <td><%= link_to 'Manage', team %></td>
         <% if proper_coach?(team.coach) || is_admin? %>
           <td><%= link_to 'Edit Name', edit_team_path(team) %></td>
@@ -283,7 +283,7 @@
   <tbody>
     <% Team.all_teams_of_gender_and_type("Girls","Select").each do |team| %>
       <tr>
-        <td><%= team.short_team_name %></td>
+        <td><%= team.name %></td>
         <td><%= link_to 'Manage', team %></td>
         <% if proper_coach?(team.coach) || is_admin? %>
           <td><%= link_to 'Edit Name', edit_team_path(team) %></td>
