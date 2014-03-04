@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @oldevent.eventtype.formatted_name %> Changed</h1>
+    <p>
+    This is to inform you The <%=@team.name%> Schedule has changed. <br />
+    <%= @oldevent.eventtype.name %>: <%= @oldevent.the_date %>, <%= @oldevent.the_time.strftime('%l:%M %P')%> at <%=@oldevent.location.name %> <br /> 
+    is now<br />
+    <b><%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%l:%M %P')%> at <%=@event.location.name %></b>
+    <br /> 
+    
+        More information
+    <%if @event.has_hotel? %>
+      including hotel information
+    <%end%>
+    can be found be checking the schedule by clicking <%= team_url(@team, host: 'www.downtownsports.org')%> 
+    </p>
+    <p>
+      This is an automated email. Please do not reply
+    </p>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>

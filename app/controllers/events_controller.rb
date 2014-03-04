@@ -53,9 +53,7 @@ class EventsController < ApplicationController
     oldevent = @event
     respond_to do |format|
       if @event.update(event_params)
-       @event.team.players.each do |player|
-          #EventMailer.changed_event(player,oldevent,@event).deliver
-        end
+        EventMailer.changed_team_event(@event.team,@event,oldevent)
         format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
@@ -68,13 +66,10 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    team = @event.team
-    @event.team.players.each do |player|
-     #EventMailer.destroyed_event(player,@event).deliver
-    end
+    EventMailer.destroyed_team_event(@event.team,@event)
     @event.destroy
     respond_to do |format|
-      format.html { redirect_to teams_path }
+      format.html { redirect_to events_path }
       format.json { head :no_content }
     end
   end
