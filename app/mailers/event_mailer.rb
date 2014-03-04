@@ -1,11 +1,13 @@
 class EventMailer < ActionMailer::Base
   ActionMailer::Base.smtp_settings = {
-    :port =>           '25',
-    :address =>        'pancake.on-rev.com',
-    :user_name =>      ENV['DWN_TWN_ADDR'],
-    :password =>       ENV['DWN_TWN_PW'],
+    :port =>           '587',
+    :address =>        'smtp.mandrillapp.com',
+    :user_name =>      ENV['MANDRILL_USERNAME'],
+    :password =>       ENV['MANDRILL_APIKEY'],
+    :domain =>         'heroku.com',
     :authentication => :plain
 }
+
 ActionMailer::Base.delivery_method = :smtp
   default from: ENV['DWN_TWN_ADDR']
 
