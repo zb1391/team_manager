@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @event.eventtype.formatted_name %> Scheduled</h1>
+    <p>
+    A <%= @event.eventtype.name %> has been scheduled for
+    <b><%= @event.the_date %></b> at <b><%= @event.the_time.strftime('%l:%M %P')%></b> will be held at <b><%=@event.location.name%></b> <br />
+
+    More information
+    <%if @event.has_hotel? %>
+      including hotel information
+    <%end%>
+    can be found be checking the schedule by clicking <%= team_url(@player.team, host: 'www.downtownsports.org')%> 
+    </p>
+    <p>
+      This is an automated email. Please do not reply
+    </p>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>

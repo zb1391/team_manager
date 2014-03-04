@@ -34,12 +34,10 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-
+    
     respond_to do |format|
       if @event.save
-       @event.team.players.each do |player|
-         EventMailer.new_event(player,@event).deliver
-        end
+        EventMailer.new_team_event(@event.team,@event).deliver
         format.html { redirect_to teams_path, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else

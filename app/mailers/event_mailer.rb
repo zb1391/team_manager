@@ -10,6 +10,18 @@ ActionMailer::Base.delivery_method = :smtp
   default from: ENV['DWN_TWN_ADDR']
 
 
+  def new_team_event(team,event)
+    @event = event
+    @team = team
+    emails = ""
+    team.players.each do |player|
+      emails += "#{player.email},#{player.parent_email},#{player.parent_email2}"
+    end
+
+    mail(to: team.coach.email, bcc: emails, subject: "#{event.eventtype.name} scheduled #{event.the_date}")
+
+  end
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #
