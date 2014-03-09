@@ -603,7 +603,7 @@ footer ul li a:hover{
 
 .static-cols-orange, .static-cols-green, .static-cols-gray{
 	background: white;
-	padding: 20px 70px 5px;
+	padding: 20px 70px;
 }
 .static-cols-green{
 	border-bottom: 4px solid #006600;

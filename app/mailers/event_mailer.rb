@@ -19,7 +19,6 @@ ActionMailer::Base.delivery_method = :smtp
     team.players.each do |player|
       emails += "#{player.email},#{player.parent_email},#{player.parent_email2},"
     end
-    emails+="zmb1391@gmail.com"
     mail(to: team.coach.email, bcc: emails, subject: "#{event.eventtype.name} scheduled #{event.the_date}")
 
   end
