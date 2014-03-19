@@ -317,9 +317,11 @@ form{
 }
 
 footer{
+	font-family: "AvenirNextRoundedW01-Md", helvetica, arial, sans-serif;
 	background: #1D1D1D;
 }
 footer p{
+	font-family: "AvenirNextRoundedW01-Md", helvetica, arial, sans-serif;
 	font-size:14px;
 	padding-top:8px;
 	font-family: x-small;
