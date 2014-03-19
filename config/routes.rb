@@ -1,4 +1,6 @@
 TeamManager::Application.routes.draw do
+  resources :organizations
+
   resources :locations
 
   resources :hotels

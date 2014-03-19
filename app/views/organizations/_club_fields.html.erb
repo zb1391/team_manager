@@ -1,0 +1,8 @@
+<p>
+  <%= f.label :coach, "Coach" %><br />
+  <%= f.text_field :coach %><br />
+  <% if is_admin? %>
+	  <%= f.check_box :_destroy %>
+	  <%= f.label :_destroy, "Remove Team" %>
+  <% end %>
+</p>
