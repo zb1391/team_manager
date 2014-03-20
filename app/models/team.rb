@@ -19,6 +19,10 @@ class Team < ActiveRecord::Base
 		"#{grade} Grade #{gender} #{team_type}"
 	end
 
+	def tournaments
+		Event.search(:eventtype_name_cont => "tournament", :team_id_eq => my_id).result.to_a
+	end
+
 	#return an array of all teams of Gender g
 	def self.all_teams_of_gender(g)
 		Team.where("gender = ?",g).order(:id).to_a

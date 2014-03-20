@@ -16,6 +16,10 @@
     <%= f.label :the_date %><br>
     <%= f.text_field :the_date %>
   </div>
+  <div class ="field">
+    <%= f.label :end_date %> (optional - use for tournaments) <br />
+    <%= f.date_field :end_date %>
+  </div>
   <div class="field">
     <%= f.label :the_time %><br>
     <%= f.time_field :the_time %>
@@ -45,6 +49,10 @@
     <%= f.label :hotel_id %><br>
     <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
     <%= link_to "New Hotel", new_hotel_path %>
+  </div>
+  <div class = "field">
+    <%= f.label :description %>
+    <%= f.text_area :description, rows: 5, :class => "black-text" %>
   </div>
   <div class="actions">
     <%= f.submit %>

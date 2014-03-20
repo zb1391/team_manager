@@ -4,6 +4,13 @@ class Event < ActiveRecord::Base
 	belongs_to :hotel
 	belongs_to :location
 	validates  :the_date, :the_time, presence: true
+	validate   :tournament_has_end_date
+
+	def tournament_has_end_date
+		if eventtype.name == "tournament" && end_date.nil?
+			errors.add(:end_date, "Tournament must have an end_date")
+		end
+	end
 	def start_time
 		DateTime.new(the_date.year, the_date.month, the_date.day, the_time.hour, the_time.min, the_time.sec)
 	end
@@ -66,6 +73,9 @@ class Event < ActiveRecord::Base
 
 
 	##KEEP THIS
+	def formatted_end_date
+		end_date.strftime("%b-%d-%y")
+	end
 	def formatted_date
 		the_date.strftime("%b-%d-%y")
 	end

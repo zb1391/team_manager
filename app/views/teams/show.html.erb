@@ -99,66 +99,26 @@
     </ul>
   </div>
 <% end %>
-<% if is_admin? %>
-<ul>
-  <li class="dropdown">
-    <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
-      <div class="dropdown-menu" style="padding:2px;">
-        <%= form_for (event=Event.new),:html => {:class => "manager-form"} do |f| %>
-          <% if event.errors.any? %>
-            <div id="error_explanation">
-              <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
-
-              <ul>
-              <% event.errors.full_messages.each do |msg| %>
-                <li><%= msg %></li>
-              <% end %>
-              </ul>
-            </div>
-          <% end %>
-
-  <div class="field">
-    <%= f.label :the_date %><br>
-    <%= f.text_field :the_date %>
-  </div>
-  <div class="field">
-    <%= f.label :the_time %><br>
-    <%= f.time_field :the_time %>
-  </div>
-  <div class="field">
-    <%= f.label :end_time %>(optional)<br>
-    <%= f.time_field :end_time %>
-  </div>
-    <div class="field">
-    <%= f.label :location_id %><br>
-    <%= f.collection_select :location_id, Location.order(:id),:id,:name, include_blank: false %>
-    <%= link_to "New Location", new_location_path %>
-  </div>
-  <div class="field">
-    <%= f.label :eventtype_id %><br>
-    <%= f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, include_blank: false %>
-  </div>
-  <div class="field">
-    <%= f.label :court %><br>
-    <%= f.number_field :court, min:1 %>
-  </div>
-  <div class="field">
-    <%= f.label :team_id %><br>
-    <%= f.collection_select :team_id, Team.order(:id),:id,:name, {:selected => @team.id} %>
-  </div>
-    <div class="field">
-    <%= f.label :hotel_id %><br>
-    <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
-    <%= link_to "New Hotel", new_hotel_path %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
-        <% end %>
-      </div>
-  </li>
-</ul>
-<%= link_to 'Edit', edit_team_path(@team) %> |
-
+<% @team.tournaments.each do |my_tournaments| %>
+<div class = "static-cols-green">
+  <h3>Tournament at <%= my_tournaments.location.name %></h3>
+  <p>
+    <%=my_tournaments.formatted_date %>  --- <%=my_tournaments.formatted_end_date %> <br /> <br />
+    <% if !my_tournaments.description.nil? %>
+      <%= my_tournaments.description %> <br /> <br />
+    <% end %>
+  </p>
+  <p><%=my_tournaments.location.name%></p>
+  <dt><%= my_tournaments.location.unformatted_location %></dt>
+  <dd><%= link_to "directions", my_tournaments.location.directions, :id => "black-link", :class => "underlined" %></dd>
+  <% if my_tournaments.has_hotel? %>
+    <p><%=my_tournaments.hotel.name%></p>
+    <dt><%= number_to_phone(my_tournaments.hotel.phone, area_code: true) %></dt>
+    <dt> <%=my_tournaments.hotel.unformatted_location %></dt>
+    <dt> <%="#{number_to_currency(my_tournaments.hotel.price)}/Night"%></dt>
+    <dd><%= link_to "hotel directions", my_tournaments.hotel.directions, :id => "black-link", :class => "underlined" %></dd>
+  <% end %>
+  <dd><%= link_to "more details", my_tournaments, :id => "black-link", :class => "underlined" %></dd>
+</div>
 <% end %>
 </div>
