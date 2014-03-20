@@ -250,7 +250,9 @@ form{
 	background: #E6782E;
 
 }
-
+.orange-content strong{
+	color: #ffe77d;
+}
 .orange-content h2{
 	margin: 20px 30px 0 0;
 	color:#ffe77d;
@@ -278,7 +280,10 @@ form{
 }
 
 .orange-content a:hover{
-	color:#ffe77d;
+	color:black;
+}
+.orange-content strong:hover{
+	color:black;
 }
 
 .darkgreen-content{

@@ -1,14 +1,14 @@
 <div id="main-carousel" class="carousel slide" data-ride="carousel">
 
 	<ol class="carousel-indicators">
-		<li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+		<li data-target="#main-carousel" data-slide-to="0" ></li>
 		<li data-target="#main-carousel" data-slide-to="1"></li>
-		<li data-target="#main-carousel" data-slide-to="2"></li>
+		<li data-target="#main-carousel" data-slide-to="2" class="active"></li>
 		<li data-target="#main-carousel" data-slide-to="3"></li>
 	</ol>
 
 	<div class="carousel-inner">
-		<div class=" item active green-content content-height carousel-padding">
+		<div class=" item green-content content-height carousel-padding">
 			<%= image_tag("court1.jpg"); %>
 			<h2>The Gym</h2>
 			<h1>Two Full Basketball Courts</h1>
@@ -26,14 +26,13 @@
 			<h2>The Team</h2>
 			<h1>GymRatz AAU Basketball</h1>
 		</div>
-		<div class="item orange-content content-height content-padding">
+		<div class="item active orange-content content-height content-padding">
 			<p>
-			Our goal is to help our players be the best that they can be. We
-			offer a wide variety of training programs appropriate for every
-			skill level including private One-On-One lessons and group clinics.
-			<%= link_to "Sign up for our Gym Ratz Boot Camps today!", page_clinics_path, :class => "underlined" %>
-			<h2>The Coaching</h2>
-			<h1>Training That Suits You</h1>
+			<a href="bootcamp2014.pdf"><strong class="underlined">Basketball Boot Camp Is Here!</strong></a>
+			Our Basketball Boot Camps are a progressive training clinic for motivated, dedicated players to reach higher levels of competitive play.
+			Our clinics encompass all <strong>aspects of basketball</strong>, focusing on individual development for competition.
+			<h2>Basketball Boot Camp</h2>
+			<h1>Think You're Ready?</h1>
 
 		</div>
 		<div class = "item gray-content content-height" id="shop-content">
@@ -83,6 +82,7 @@
 			</ul>
 			<h3>Quick Forms</h3>
 			<ul>
+				<li><a href="bootcamp2014.pdf">Basketball Boot Camp</a></li>
 				<li><a href="program_registration.pdf">Program Registration</a> </li>
 				<li><a href="gym_ratz_signup.pdf">Gym Ratz Try Out Form</a> </li>
 				<li> <a href="tournament_form.pdf">Tournament Registration</a></li>
