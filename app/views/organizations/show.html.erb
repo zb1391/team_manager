@@ -1,14 +1,31 @@
+<div class = "static-cols-orange">
 <p id="notice"><%= notice %></p>
+<h2 class = "centered"><%= @organization.tournament.name %></h2>
+<h3 class = "centered"><%= @organization.name %></h3>
 
-<p>
-  <strong>Name:</strong>
-  <%= @organization.name %>
-</p>
-<ol>
+<h2>Contact</h2>
+<dt class = "med-margin-left"> <%= @organization.contact_name %></dt>
+<dd class = "med-margin-left"> <%= @organization.email %></dd> <br />
+<dd class = "med-margin-left"> <%= number_to_phone(@organization.phone, area_code: true) %></dd> <br />
+
+<h2 class = "no-padding"> Teams </h2>
+<table class = "plain-table med-margin-left">
+	<tr>
+		<th>Team</th>
+		<th>Coach</th>
+		<th>Email</th>
+		<th>Phone </th>
+	</tr>
 <% for club in @organization.clubs %>
-
-	<li><%= club.coach %></li>
+	<tr>
+		<td> <%= "#{club.grade} Grade #{club.gender}"  %></td>
+		<td> <%= club.coach %></td>
+		<td> <%= club.email %></td>
+		<td> <%=  number_to_phone(club.cell, area_code: true) %></td>
+	</tr>
 <% end %>
-</ol>
+</table>
+
 <%= link_to 'Edit', edit_organization_path(@organization) %> |
 <%= link_to 'Back', organizations_path %>
+</div>

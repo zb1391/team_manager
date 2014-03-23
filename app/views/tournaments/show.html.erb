@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tournament.name %>
+</p>
+
+<p>
+  <strong>The date:</strong>
+  <%= @tournament.the_date %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @tournament.price %>
+</p>
+<table class = "plain-table">
+	<tr>
+		<th>Gender</th>
+		<th>Age</th>
+		<th>Team</th>
+		<th>Coach</th>
+		<th>Coach Email</th>
+	</tr>
+	<% @tournament.tournament_teams.each do |team|%>
+		<tr>
+			<td> <%= team.gender %></td>
+			<td> <%= team.grade %></td>
+			<td> <%= team.organization.name %></td>
+			<td> <%= team.coach %></td>
+			<td> <%= team.email %></td>
+		</tr>
+	<% end %>
+</table>
+
+<%= link_to 'Edit', edit_tournament_path(@tournament) %> |
+<%= link_to 'Back', tournaments_path %>

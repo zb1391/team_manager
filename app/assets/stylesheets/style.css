@@ -638,6 +638,9 @@ footer ul li a:hover{
 	color: #E6782E;
 }
 
+.static-cols-orange h2{
+	color:black;
+}
 .static-cols-orange p, .static-cols-green p{
 	margin: 0px;
 	padding: 0px;
@@ -797,4 +800,23 @@ footer ul li a:hover{
 .home-page-urgent p{
 	width: 100%;
 	color: black;
+}
+
+.add-club table{
+	border: 1px solid black;
+}
+.add-club{
+	margin-top: 10px;
+	padding: 20px;
+	background:white;
+}
+.add-club label{
+	color: #006600;
+}
+.add-club tr td {
+	border: 1px solid black;
+	color:black;
+}
+.add-club p, .add-club dd{
+	color:black;
 }

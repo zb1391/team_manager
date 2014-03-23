@@ -1,3 +1,4 @@
+<div class = "static-green-content">
 <%= form_for(@organization) do |f| %>
   <% if @organization.errors.any? %>
     <div id="error_explanation">
@@ -5,23 +6,51 @@
 
       <ul>
       <% @organization.errors.full_messages.each do |msg| %>
-        <li><%= msg %></li>
+        <li class="black-text"><%= msg %></li>
       <% end %>
       </ul>
     </div>
   <% end %>
 
+<h2> Tournament </h2>
   <div class="field">
-    <%= f.label :name %><br>
+    <%= f.label :tournament_id %><br>
+    <%= f.collection_select :tournament_id, Tournament.order(:id),:id,:name, include_blank: false %>
+  </div>
+
+<h2>Club/Organization Information</h2>
+  <div class="field">
+    <%= f.label "Club Name" %><br>
     <%= f.text_field :name %>
   </div>
 
+  <div class="field">
+    <%= f.label "Contact Name" %><br>
+    <%= f.text_field :contact_name %>
+  </div>
+
+  <div class="field">
+    <%= f.label "Email" %><br>
+    <%= f.text_field :email %>
+  </div>
+  
+  <div class="field">
+    <%= f.label "Phone Number" %><em>(ex. 2018480017)</em><br> 
+    <%= f.text_field :phone %>
+  </div>
+  
+
+
+<h2>Teams</h2>
+  <strong>Please click the "Add Team" Buttom below</strong> <br /> <br />
   <%= f.fields_for :clubs do |builder| %>
     <%= render 'club_fields', f: builder %>
   <% end %>
+  <strong><%= link_to_add_fields "Add Team", f, :clubs %></strong> <br /> <br />
 
-  <%= link_to_add_fields "Add Team", f, :clubs %>
+
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>

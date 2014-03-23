@@ -1,8 +1,21 @@
-<p>
-  <%= f.label :coach, "Coach" %><br />
-  <%= f.text_field :coach %><br />
-  <% if is_admin? %>
-	  <%= f.check_box :_destroy %>
-	  <%= f.label :_destroy, "Remove Team" %>
-  <% end %>
-</p>
+ <div class = "add-club"> 	
+  	<table>
+  		<tr>
+  			<td><%= f.label :gender, "Boys/Girls" %> </td>
+  			<td><%= f.label :grade, "Grade" %> </td>
+  			<td><%= f.label :coach, "Coach" %> </td>
+  			<td><%= f.label :email, "Coach Email" %></td> 
+  			<td><%= f.label :cell, "Coach Cell" %> <em>(ex. 2018480017)</em></td> 
+  		</tr>
+  		<tr>
+  			<td><%= f.select :gender, options_for_select(%w[Boys Girls], f.object.gender)%></td>
+  			<td><%= f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th 10th 11th 12th],f.object.grade)%></td>
+  			<td><%= f.text_field :coach %></td>
+  			<td><%= f.text_field :email %></td>
+  			<td><%= f.phone_field :cell %></td>
+  		</tr>
+
+  	</table>
+ 	<%= f.check_box :_destroy %>
+  	<%= f.label :_destroy, "Remove Team" %> <em id = "black-text">Check this box if you accidentally added or would like to remove the team above </em><br />
+</div>

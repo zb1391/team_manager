@@ -1,4 +1,6 @@
 TeamManager::Application.routes.draw do
+  resources :tournaments
+
   resources :organizations
 
   resources :locations
