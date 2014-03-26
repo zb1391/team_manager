@@ -58,9 +58,13 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
+    metaclass (0.0.4)
     mime-types (1.25.1)
     minitest (4.7.5)
+    mocha (1.0.0)
+      metaclass (~> 0.0.1)
     multi_json (1.8.4)
+    nifty-generators (0.4.6)
     pg (0.17.1)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
@@ -141,6 +145,8 @@ DEPENDENCIES
   jquery-rails (~> 2.3.0)
   jquery-turbolinks
   jquery-ui-rails
+  mocha
+  nifty-generators
   pg
   rails (= 4.0.2)
   rails_12factor

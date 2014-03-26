@@ -28,6 +28,7 @@
 			<dd> (201)851-7504</dd>
 			<dd> coachozzie34@aol.com</dd>
 			<dt> Please do not delay. Teams are registered on a First Come Basis!</dt>
+			<%= button_to "Register Online", new_organization_path, :method => "get" %>
 		</div>
 	</div>
 </div>
@@ -86,3 +87,10 @@
 		</div>
 	</div>
 </div>
+<% if is_admin? %>
+	<div class ="static-cols-green">
+		<%= link_to "Tournaments Index", tournaments_path %> <br />
+		<%= link_to "Registered Teams Index", organizations_path %> <br />
+		<%= link_to "Online Payment Summary", payment_notifications_path %>
+	</div>
+<% end %>

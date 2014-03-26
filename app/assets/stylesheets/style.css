@@ -612,6 +612,15 @@ footer ul li a:hover{
 	background: white;
 	padding: 20px 70px;
 }
+.static-cols-orange form, .static-cols-green form{
+	background: white;
+}
+.static-cols-green a{
+	color: #006600;
+}
+.static-cols-green a:hover{
+	color:black;
+}
 .static-cols-green{
 	border-bottom: 4px solid #006600;
 }
@@ -638,7 +647,7 @@ footer ul li a:hover{
 	color: #E6782E;
 }
 
-.static-cols-orange h2{
+.static-cols-orange h2, .static-cols-green h2{
 	color:black;
 }
 .static-cols-orange p, .static-cols-green p{

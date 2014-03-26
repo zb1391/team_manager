@@ -3,7 +3,10 @@
 <table>
   <thead>
     <tr>
+      <th>Tournament</th>
       <th>Name</th>
+      <th>Amount Owe</th>
+      <th>Amount Paid</th>
       <th></th>
       <th></th>
       <th></th>
@@ -13,7 +16,10 @@
   <tbody>
     <% @organizations.each do |organization| %>
       <tr>
+        <td><%= organization.tournament.name %></td>
         <td><%= organization.name %></td>
+        <td><%= number_to_currency(organization.amount_owe) %></td>
+        <td><%= number_to_currency(organization.amount_paid) %></td>
         <td><%= link_to 'Show', organization %></td>
         <td><%= link_to 'Edit', edit_organization_path(organization) %></td>
         <td><%= link_to 'Destroy', organization, method: :delete, data: { confirm: 'Are you sure?' } %></td>

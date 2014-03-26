@@ -1,6 +1,5 @@
-TeamManager::Application.routes.draw do
-  resources :tournaments
-
+TeamManager::Application.routes.draw do  resources :tournaments
+  resources :payment_notifications
   resources :organizations
 
   resources :locations

@@ -3,8 +3,8 @@
 	<ol class="carousel-indicators">
 		<li data-target="#main-carousel" data-slide-to="0" ></li>
 		<li data-target="#main-carousel" data-slide-to="1"></li>
-		<li data-target="#main-carousel" data-slide-to="2" class="active"></li>
-		<li data-target="#main-carousel" data-slide-to="3"></li>
+		<li data-target="#main-carousel" data-slide-to="2" ></li>
+		<li data-target="#main-carousel" data-slide-to="3" class="active"></li>
 	</ol>
 
 	<div class="carousel-inner">
@@ -26,7 +26,7 @@
 			<h2>The Team</h2>
 			<h1>GymRatz AAU Basketball</h1>
 		</div>
-		<div class="item active orange-content content-height content-padding">
+		<div class="item orange-content content-height content-padding">
 			<p>
 			<a href="bootcamp2014.pdf"><strong class="underlined">Basketball Boot Camps Are Here!</strong></a>
 			Our Basketball Boot Camps are progressive training clinics for motivated, dedicated players to reach higher levels of competitive play.
@@ -35,12 +35,12 @@
 			<h1>Will You Be Ready?</h1>
 
 		</div>
-		<div class = "item gray-content content-height" id="shop-content">
+		<div class = "item active gray-content content-height" id="shop-content">
 			<%= image_tag("shirt1.png", class: "float-right", id: "shop-img"); %>
 			<h2>The Shop</h2>
 			<h1>All The Best Gymratz Gear</h1>
 			<p class="no-float">
-				<%= link_to "Gear Up at the Gym Ratz Shop!", page_page_unavailable_path, :class =>"block-display underlined" %> 
+				<%= link_to "Gear Up at the Gym Ratz Shop!", "hoodie.pdf", :class =>"block-display underlined" %> 
 				All of the latest and greatest <strong><em>shirts, shorts, hoodies, warm ups, and so much more. </em> </strong></br >
 				Show your Gym Ratz Team Spirit by wearing our Gym Ratz Gear!
 			</p>

@@ -1,10 +1,10 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-
+  before_filter :authenticate, :only => [:index, :destroy]
   # GET /organizations
   # GET /organizations.json
   def index
-    @organizations = Organization.all
+    @organizations = Organization.all.order(:tournament_id)
   end
 
   # GET /organizations/1
@@ -69,6 +69,7 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name, :contact_name, :email, :phone, :tournament_id, clubs_attributes: [:coach, :id, :_destroy, :gender, :grade, :email, :cell])
+      params.require(:organization).permit(:name, :contact_name, :email, :phone, :tournament_id,
+      :amount_owe, :amount_paid, :paid_at, clubs_attributes: [:coach, :id, :_destroy, :gender, :grade, :email, :cell])
     end
 end

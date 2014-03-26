@@ -46,11 +46,11 @@
   <%= f.fields_for :clubs do |builder| %>
     <%= render 'club_fields', f: builder %>
   <% end %>
-  <strong><%= link_to_add_fields "Add Team", f, :clubs %></strong> <br /> <br />
+  <%= link_to_add_fields "Add Team", f, :clubs %><br /> <br />
 
 
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Register For Tournament", :id => "black-text"%>
   </div>
 <% end %>
 </div>

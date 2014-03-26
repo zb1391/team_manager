@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  params: MyText
+  organization_id: 1
+  status: MyString
+  transaction_id: MyString
+  amount: 1.5
+
+two:
+  params: MyText
+  organization_id: 1
+  status: MyString
+  transaction_id: MyString
+  amount: 1.5

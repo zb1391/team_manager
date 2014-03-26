@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140322181331) do
+ActiveRecord::Schema.define(version: 20140323185109) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -90,6 +90,19 @@ ActiveRecord::Schema.define(version: 20140322181331) do
     t.string   "email"
     t.string   "phone"
     t.integer  "tournament_id"
+    t.float    "amount_owe"
+    t.float    "amount_paid"
+    t.time     "paid_at"
+  end
+
+  create_table "payment_notifications", force: true do |t|
+    t.text     "params"
+    t.integer  "organization_id"
+    t.string   "status"
+    t.string   "transaction_id"
+    t.float    "amount"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "players", force: true do |t|

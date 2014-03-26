@@ -47,6 +47,8 @@ gem "figaro"
 
 gem 'unicorn'
 
+gem "nifty-generators", :group => :development
+
 ruby "2.0.0"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
@@ -59,3 +61,5 @@ ruby "2.0.0"
 
 # Use debugger
 # gem 'debugger', group: [:development, :test]
+
+gem "mocha", group: :test
