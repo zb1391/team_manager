@@ -1,10 +1,11 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate, :only => [:index, :destroy]
+  before_filter :authenticate, :only => [:index, :destroy, :edit, :update]
   # GET /organizations
   # GET /organizations.json
   def index
     @organizations = Organization.all.order(:tournament_id)
+    @tournaments = Tournament.all.order(the_date: :desc)
   end
 
   # GET /organizations/1

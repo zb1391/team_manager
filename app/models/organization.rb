@@ -6,12 +6,13 @@ class Organization < ActiveRecord::Base
 	validates :name, :contact_name, :email, :phone, presence: true
 	validate :atleast_one_club
 	before_create :initial_pay_values
-	before_save :amount_owe_setup
+	before_create :amount_owe_setup
 	def atleast_one_club
 		if clubs.empty?
 			errors.add(:clubs, "You Must Register at least One Team --- Please click the Add Team button below")
 		end
 	end
+
 	def paypal_encrypted(return_url, notify_url)
 	  values = {
 	    :business => 'gymratzaau@gmail.com',
@@ -45,10 +46,13 @@ class Organization < ActiveRecord::Base
 	private
 
 	def initial_pay_values
-		self.amount_paid = 0
+		if self.amount_paid.nil?
+			self.amount_paid = 0
+		end
 	end
 
 	def amount_owe_setup
 		self.amount_owe = tournament.price*clubs.size
 	end
+
 end

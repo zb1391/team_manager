@@ -20,7 +20,7 @@ class Team < ActiveRecord::Base
 	end
 
 	def tournaments
-		Event.search(:eventtype_name_cont => "tournament", :team_id_eq => my_id).result.to_a
+		Event.search(:eventtype_name_cont => "tournament", :team_id_eq => my_id).result.order(:the_date).to_a
 	end
 
 	#return an array of all teams of Gender g

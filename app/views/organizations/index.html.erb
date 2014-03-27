@@ -1,9 +1,9 @@
 <h1>Listing organizations</h1>
-
+<% @tournaments.each do |tournament| %>
+<h3><%= "#{tournament.name} --- #{tournament.formatted_date}"  %></h3>
 <table>
   <thead>
     <tr>
-      <th>Tournament</th>
       <th>Name</th>
       <th>Amount Owe</th>
       <th>Amount Paid</th>
@@ -14,9 +14,8 @@
   </thead>
 
   <tbody>
-    <% @organizations.each do |organization| %>
+    <% tournament.organizations.each do |organization| %>
       <tr>
-        <td><%= organization.tournament.name %></td>
         <td><%= organization.name %></td>
         <td><%= number_to_currency(organization.amount_owe) %></td>
         <td><%= number_to_currency(organization.amount_paid) %></td>
@@ -27,7 +26,7 @@
     <% end %>
   </tbody>
 </table>
-
+<% end %>
 <br>
 
 <%= link_to 'New Organization', new_organization_path %>

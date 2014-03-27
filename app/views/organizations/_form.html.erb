@@ -42,13 +42,20 @@
 
 
 <h2>Teams</h2>
-  <strong>Please click the "Add Team" Buttom below</strong> <br /> <br />
+  <strong>Please click the "Add Team" Button below</strong> <br /> <br />
   <%= f.fields_for :clubs do |builder| %>
     <%= render 'club_fields', f: builder %>
   <% end %>
   <%= link_to_add_fields "Add Team", f, :clubs %><br /> <br />
 
-
+<% if is_admin? %>
+  <div class = "field">
+    <%= f.label "Amount Owe" %> <br />
+    <%= f.text_field :amount_owe, :value => @organization.amount_owe%> <br />
+    <%= f.label "Amount Paid" %> <br />
+    <%= f.text_field :amount_paid %> <br />
+  </div>
+<% end %>
   <div class="actions">
     <%= f.submit "Register For Tournament", :id => "black-text"%>
   </div>

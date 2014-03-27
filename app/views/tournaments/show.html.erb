@@ -26,7 +26,7 @@
 		<tr>
 			<td> <%= team.gender %></td>
 			<td> <%= team.grade %></td>
-			<td> <%= team.organization.name %></td>
+			<td> <%= link_to  team.organization.name, team.organization, id: "black-link" %></td>
 			<td> <%= team.coach %></td>
 			<td> <%= team.email %></td>
 		</tr>

@@ -9,7 +9,7 @@
 		<th>Coach</th>
 		<th>Email</th>
 		<th>Phone </th>
-		<th>Pay for Individual Team</th>
+		<th>Price</th>
 	</tr>
 <% cur_amount = @organization.amount_paid %>
 <% for club in @organization.clubs %>
@@ -23,24 +23,14 @@
 			<% if cur_amount >= 0 %>
 				<dd>Paid</dd>
 			<% else %>
-				<%= form_tag "https://www.paypal.com/cgi-bin/webscr" do %>
-				  <%= hidden_field_tag :cmd, "_s-xclick" %>
-				  <%= hidden_field_tag :encrypted, club.paypal_encrypted("www.downtownsports.org", payment_notifications_url) %>
-				  <p><%= submit_tag "Pay With PayPal" %></p>
-				<% end %>
+				<dd><%= number_to_currency(@organization.tournament.price) %></dd>
 			<% end %>
 		</td>
 	</tr>
 <% end %>
 </table>
-<%= link_to 'Add More Teams', edit_organization_path(@organization), id: "large-text", class: "med-margin-left" %> <br /> <br />
-<% if @organization.amount_paid <= 0 %>
-	<dt> Pay For All Teams</dt>
-	<%= form_tag "https://www.paypal.com/cgi-bin/webscr" do %>
-	  <%= hidden_field_tag :cmd, "_s-xclick" %>
-	  <%= hidden_field_tag :encrypted, @organization.paypal_encrypted("www.downtownsports.org", payment_notifications_url) %>
-	  <p><%= submit_tag "Pay With PayPal" %></p>
-	<% end %>
+<% if is_admin? %>
+	<%= link_to 'Add More Teams', edit_organization_path(@organization), id: "large-text", class: "med-margin-left" %> <br /> <br />
 <% end %>
 <div class = "row">
 	<div class = "col-xs-6">
@@ -48,7 +38,6 @@
 		<dt class = "med-margin-left"> <%= @organization.contact_name %></dt>
 		<dd class = "med-margin-left"> <%= @organization.email %></dd>
 		<dd class = "med-margin-left"> <%= number_to_phone(@organization.phone, area_code: true) %></dd>
-		<%= link_to 'Edit', edit_organization_path(@organization), class: "med-margin-left" %> 
 	</div>
 	<div class ="col-xs-6">
 <h2> Summary </h2>
@@ -59,7 +48,7 @@
 		</tr>
 		<tr>
 			<td> <dt>Total</dt></td>
-			<td><dd> <%= number_to_currency @organization.clubs.size*@organization.tournament.price %></dd></td>
+			<td><dd> <%= number_to_currency @organization.amount_owe %></dd></td>
 		</tr>
 		<tr>
 			<td> <dt>Amount Paid</dt></td>
