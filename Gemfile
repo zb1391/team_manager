@@ -39,15 +39,22 @@ gem "ransack"
 #for displaying a calendar
 gem "simple_calendar", "~> 0.1.9"
 
+#to fix the calendar select
 gem 'jquery-turbolinks'
 
 gem "rails_12factor", group: :production
 
+#to hide passwords in ENV
 gem "figaro"
 
+#for faster server instead of webrick
 gem 'unicorn'
 
+#to create a different scaffolding
 gem "nifty-generators", :group => :development
+
+#to monitor web traffic with appneta
+gem 'oboe-heroku'
 
 ruby "2.0.0"
 # Use ActiveModel has_secure_password

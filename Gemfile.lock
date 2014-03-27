@@ -65,6 +65,10 @@ GEM
       metaclass (~> 0.0.1)
     multi_json (1.8.4)
     nifty-generators (0.4.6)
+    oboe (2.6.2.0)
+      json
+    oboe-heroku (0.9.10.0)
+      oboe (>= 2.6.2.0)
     pg (0.17.1)
     polyamorous (0.6.4)
       activerecord (>= 3.0)
@@ -147,6 +151,7 @@ DEPENDENCIES
   jquery-ui-rails
   mocha
   nifty-generators
+  oboe-heroku
   pg
   rails (= 4.0.2)
   rails_12factor
