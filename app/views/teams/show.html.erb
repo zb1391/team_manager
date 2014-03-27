@@ -105,7 +105,8 @@
   <p>
     <%=my_tournaments.formatted_date %>  --- <%=my_tournaments.formatted_end_date %> <br /> <br />
     <% if !my_tournaments.description.nil? %>
-      <%= my_tournaments.description %> <br /> <br />
+      <%=raw sanitize(simple_format(my_tournaments.description), :tags => %w(br p) ) %>
+       <br /> <br />
     <% end %>
   </p>
   <p><%=my_tournaments.location.name%></p>
