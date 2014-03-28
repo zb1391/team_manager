@@ -1,0 +1,79 @@
+<p id="notice"><%= notice %></p>
+<p>
+  Camp: <%= @summer_camper.summer_camp.date_range %>
+</p> 
+<p>
+  <strong> Amount Owe: </strong>
+  <%= @summer_camper.amount_owe %>
+</p>
+<p>
+  <strong> Amount Paid: </strong>
+  <%= @summer_camper.amount_paid %>
+</p>
+<p>
+  <strong>First name:</strong>
+  <%= @summer_camper.first_name %>
+</p>
+
+<p>
+  <strong>Last name:</strong>
+  <%= @summer_camper.last_name %>
+</p>
+
+<p>
+  <strong>Address:</strong>
+  <%= @summer_camper.address %>
+</p>
+
+<p>
+  <strong>City:</strong>
+  <%= @summer_camper.city %>
+</p>
+
+<p>
+  <strong>State:</strong>
+  <%= @summer_camper.state %>
+</p>
+
+<p>
+  <strong>Zip:</strong>
+  <%= @summer_camper.zip %>
+</p>
+
+<p>
+  <strong>Gender:</strong>
+  <%= @summer_camper.gender %>
+</p>
+
+<p>
+  <strong>Grade:</strong>
+  <%= @summer_camper.grade %>
+</p>
+
+<p>
+  <strong>Email:</strong>
+  <%= @summer_camper.email %>
+</p>
+
+<p>
+  <strong>Home phone:</strong>
+  <%= @summer_camper.home_phone %>
+</p>
+
+<p>
+  <strong>Cell phone:</strong>
+  <%= @summer_camper.cell_phone %>
+</p>
+
+<p>
+  <strong>Waiver name:</strong>
+  <%= @summer_camper.waiver_name %>
+</p>
+
+<p>
+  <strong>Waiver date:</strong>
+  <%= @summer_camper.waiver_date %>
+</p>
+
+<%= link_to 'Edit', edit_summer_camper_path(@summer_camper) %> |
+<%= link_to 'Back', summer_campers_path %>

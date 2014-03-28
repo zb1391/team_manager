@@ -1,0 +1,24 @@
+<table>
+	<th>Gender</th>
+	<th>Grade</th>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Home</th>
+	<th>Cell</th>
+	<th>Amount Owe</th>
+	<th>Amount Paid</th>
+	<% @summer_camp.campers.each do |camper| %>
+		<tr>
+			<td><%= camper.gender %></td>
+			<td><%= camper.grade %></td>
+			<td><%= "#{camper.last_name}, #{camper.first_name}" %> </td>
+			<td><%= camper.email %></td>
+			<td><%= number_to_phone camper.home_phone, area_code: true %></td>
+			<td><%= number_to_phone camper.cell_phone, area_code: true %></td>
+			<td><%= number_to_currency camper.amount_owe %></td>
+			<td><%= number_to_currency camper.amount_paid %></td>
+		</tr>
+	<% end %>
+
+
+</table>

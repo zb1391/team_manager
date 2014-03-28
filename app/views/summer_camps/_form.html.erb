@@ -1,0 +1,28 @@
+<%= form_for(@summer_camp) do |f| %>
+  <% if @summer_camp.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@summer_camp.errors.count, "error") %> prohibited this summer_camp from being saved:</h2>
+
+      <ul>
+      <% @summer_camp.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="field">
+    <%= f.label :start_date %><br>
+    <%= f.date_field :start_date %>
+  </div>
+  <div class="field">
+    <%= f.label :end_date %><br>
+    <%= f.date_field :end_date %>
+  </div>
+  <div class="field">
+    <%= f.label :price %><br>
+    $<%= f.text_field :price %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,47 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Start date:</strong>
+  <%= @summer_camp.start_date %>
+</p>
+
+<p>
+  <strong>End date:</strong>
+  <%= @summer_camp.end_date %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @summer_camp.price %>
+</p>
+<p>
+  Download:
+  <% to_xls = "#{summer_camp_path(@summer_camp.id)}.xls" %>
+  <%= link_to "Excel", to_xls %>
+</p>
+<table>
+	<th>Gender</th>
+	<th>Grade</th>
+	<th>Name</th>
+	<th>Email</th>
+	<th>Home</th>
+	<th>Cell</th>
+	<th>Amount Owe</th>
+	<th>Amount Paid</th>
+	<% @summer_camp.campers.each do |camper| %>
+		<tr>
+			<td><%= camper.gender %></td>
+			<td><%= camper.grade %></td>
+			<td><%= "#{camper.last_name}, #{camper.first_name}" %> </td>
+			<td><%= camper.email %></td>
+			<td><%= number_to_phone camper.home_phone, area_code: true %></td>
+			<td><%= number_to_phone camper.cell_phone, area_code: true %></td>
+			<td><%= number_to_currency camper.amount_owe %></td>
+			<td><%= number_to_currency camper.amount_paid %></td>
+		</tr>
+	<% end %>
+
+
+</table>
+<%= link_to 'Edit', edit_summer_camp_path(@summer_camp) %> |
+<%= link_to 'Back', summer_camps_path %>

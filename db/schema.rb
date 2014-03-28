@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140323185109) do
+ActiveRecord::Schema.define(version: 20140328172030) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -120,6 +120,35 @@ ActiveRecord::Schema.define(version: 20140323185109) do
     t.string   "parent_cell"
     t.string   "emergency_phone"
     t.string   "parent_email2"
+  end
+
+  create_table "summer_campers", force: true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "address"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zip"
+    t.string   "gender"
+    t.string   "grade"
+    t.string   "email"
+    t.string   "home_phone"
+    t.string   "cell_phone"
+    t.string   "waiver_name"
+    t.date     "waiver_date"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "summer_camp_id"
+    t.float    "amount_owe"
+    t.float    "amount_paid"
+  end
+
+  create_table "summer_camps", force: true do |t|
+    t.date     "start_date"
+    t.date     "end_date"
+    t.float    "price"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "teams", force: true do |t|

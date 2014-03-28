@@ -1,0 +1,31 @@
+<h1>Listing summer_camps</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Start date</th>
+      <th>End date</th>
+      <th>Price</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @summer_camps.each do |summer_camp| %>
+      <tr>
+        <td><%= summer_camp.start_date %></td>
+        <td><%= summer_camp.end_date %></td>
+        <td><%= summer_camp.price %></td>
+        <td><%= link_to 'Show', summer_camp %></td>
+        <td><%= link_to 'Edit', edit_summer_camp_path(summer_camp) %></td>
+        <td><%= link_to 'Destroy', summer_camp, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Summer camp', new_summer_camp_path %>

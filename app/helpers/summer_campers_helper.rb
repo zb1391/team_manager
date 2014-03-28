@@ -1,0 +1,2 @@
+module SummerCampersHelper
+end

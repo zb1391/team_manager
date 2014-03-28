@@ -1,0 +1,60 @@
+<h1>Listing summer_campers</h1>
+<p>
+  Download:
+  <%= link_to "Excel", summer_campers_path(format: "xls") %>
+</p>
+<% @summer_camps.each do |summer_camp| %>
+  <h3>Camp: <%= summer_camp.date_range %></h3>
+    <table>
+      <thead>
+        <tr>
+          <th>First name</th>
+          <th>Last name</th>
+          <th>Address</th>
+          <th>City</th>
+          <th>State</th>
+          <th>Zip</th>
+          <th>Gender</th>
+          <th>Grade</th>
+          <th>Email</th>
+          <th>Home phone</th>
+          <th>Cell phone</th>
+          <th>Waiver name</th>
+          <th>Waiver date</th>
+          <th>Amount Owe</th>
+          <th>Amount Paid</th>
+          <th></th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% summer_camp.campers.each do |summer_camper| %>
+          <tr>
+            <td><%= summer_camper.first_name %></td>
+            <td><%= summer_camper.last_name %></td>
+            <td><%= summer_camper.address %></td>
+            <td><%= summer_camper.city %></td>
+            <td><%= summer_camper.state %></td>
+            <td><%= summer_camper.zip %></td>
+            <td><%= summer_camper.gender %></td>
+            <td><%= summer_camper.grade %></td>
+            <td><%= summer_camper.email %></td>
+            <td><%= summer_camper.home_phone %></td>
+            <td><%= summer_camper.cell_phone %></td>
+            <td><%= summer_camper.waiver_name %></td>
+            <td><%= summer_camper.waiver_date %></td>
+            <td><%= number_to_currency summer_camper.amount_owe %></td>
+            <td><%= number_to_currency summer_camper.amount_paid %></td>
+            <td><%= link_to 'Show', summer_camper %></td>
+            <td><%= link_to 'Edit', edit_summer_camper_path(summer_camper) %></td>
+            <td><%= link_to 'Destroy', summer_camper, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+<% end %>
+<br>
+
+<%= link_to 'New Summer camper', new_summer_camper_path %>

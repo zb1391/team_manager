@@ -12,6 +12,7 @@ ActionMailer::Base.delivery_method = :smtp
   default from: ENV['DWN_TWN_ADDR']
 
 
+  #FOR TEAM EVENTS
   def new_team_event(team,event)
     @event = event
     @team = team
@@ -48,6 +49,11 @@ ActionMailer::Base.delivery_method = :smtp
 
   end
 
+  #FOR CAMPERS
+  def new_camper(camper)
+    @camper = camper
+    mail(to: camper.email, subject: "Camper Registration (#{camper.summer_camp.date_range})")
+  end
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

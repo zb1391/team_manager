@@ -1,7 +1,8 @@
 TeamManager::Application.routes.draw do  resources :tournaments
   resources :payment_notifications
   resources :organizations
-
+  resources :summer_camps
+  resources :summer_campers
   resources :locations
 
   resources :hotels
