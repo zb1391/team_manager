@@ -834,3 +834,8 @@ footer ul li a:hover{
 	background:white;
 	color:black;
 }
+#today-events{
+	font-weight: bold;
+	letter-spacing: -2px;
+	font-size: 48px;
+}

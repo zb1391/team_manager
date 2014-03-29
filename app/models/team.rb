@@ -45,6 +45,10 @@ class Team < ActiveRecord::Base
 
 	end
 
+	#Return all of todays events
+	def todays_events
+		Event.search(:the_date_eq => Date.today.to_s, :team_id_eq => my_id).result.order(:the_time).to_a
+	end
 	#Return all teams by gender
 	def self.teams_by_gender(gender)
 		Team.where("gender = ?", gender).to_a

@@ -64,7 +64,40 @@
       </tr>
     <% end %>
 </table>
-
+</div>
+<div class = "gray-content">
+  <% if !@team.todays_events.empty? %>
+    <h1 class = "centered" id ="today-events">Today's Events: <%= Date.today.strftime("%B %d, %Y") %></h1>
+    <% @team.todays_events.each do |event| %>
+      <h2><%= event.eventtype.name.split.map(&:capitalize).join(' ') %></h2>
+      <h1><%= event.location.name %></h1>
+      <div class = "row">
+        <div class = "col-xs-6">  
+          <p class ="full-width auto-margin">
+            <strong>When:</strong> <br />
+            <%=  "#{event.the_time.strftime('%l:%M %P')}"%>
+            <% if !event.end_time.nil? %>
+              <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
+            <% end %>
+          </p>
+          <p class = "full-width auto-margin">
+            <strong>Directions:</strong>
+            <%= link_to "Click Here!", event.location.directions %></strong>
+          </p>
+        </div>
+        <div class = "col-xs-6">
+          <% if !event.description.empty? %>
+            <p class = "full-width auto-margin">
+              <strong> Details:</strong> <br />
+              <%=raw sanitize(simple_format(event.description), :tags => %w(br) ) %>
+            </p>
+          <% end %>  
+        </div>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+<div class = "static-green-content">
 <%= calendar @team.events do |event| %>
   <%logger.debug "Events start_time: #{event.start_time}" %>
   <div class="calendar-details" id="calendar-sub">
@@ -90,7 +123,8 @@
         <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
         <% end %>
         <br />
-        <%= "Court #{event.court}" %>
+        <%= "Court #{event.court}" %> <br />
+        <%= link_to "directions", event.location.directions %>
       </dt>
           <% if is_admin? %>
             <%= link_to 'Edit', edit_event_path(event) %>
