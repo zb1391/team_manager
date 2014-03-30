@@ -59,7 +59,7 @@
 <% if !@event.hotel.addtional_link.nil? %>
 	<p>
 	  <strong>Addtional link:</strong>
-	  <%= @event.hotel.addtional_link %>
+	  <%= link_to 'Booking Information', @event.hotel.addtional_link %>
 	</p>
 <% end %>
 </div>
