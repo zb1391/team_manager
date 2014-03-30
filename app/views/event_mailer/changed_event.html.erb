@@ -19,7 +19,7 @@
       <%="#{number_to_currency(@event.hotel.price)}/Night"%> <br />
       <%= link_to "booking information", @event.hotel.addtional_link %> <br />
     <%end%>
-    More information can be found be checking the schedule by clicking <%= team_url(@player.team, host: 'www.downtownsports.org')%> 
+    More information can be found be checking the schedule by clicking <%= team_url(@event.team, host: 'www.downtownsports.org')%> 
     </p>
     <p>
       This is an automated email. Please do not reply
