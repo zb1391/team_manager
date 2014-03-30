@@ -112,6 +112,9 @@
           <dt> <%=event.hotel.unformatted_location %></dt>
           <dt> <%="#{number_to_currency(event.hotel.price)}/Night"%></dt>
           <dd><%= link_to "hotel directions", event.hotel.directions %></dd>
+          <% if !event.hotel.addtional_link.nil? %>
+            <dd><%= link_to "booking information", event.hotel.addtional_link %></dd>
+          <% end %>
         <% end %>
         <dd><%= link_to "more details", event %></dd>
     </div> 

@@ -12,11 +12,14 @@
     <b><%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%l:%M %P')%> at <%=@event.location.name %></b>
     <br /> 
     
-        More information
     <%if @event.has_hotel? %>
-      including hotel information
+      Hotel Information: <br />
+      <%= @event.hotel.name %> <br />
+      <%= @event.hotel.unformatted_location %> <br />
+      <%="#{number_to_currency(@event.hotel.price)}/Night"%> <br />
+      <%= link_to "booking information", @event.hotel.addtional_link %> <br />
     <%end%>
-    can be found be checking the schedule by clicking <%= team_url(@team, host: 'www.downtownsports.org')%> 
+    More information can be found be checking the schedule by clicking <%= team_url(@player.team, host: 'www.downtownsports.org')%>  
     </p>
     <p>
       This is an automated email. Please do not reply
