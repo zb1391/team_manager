@@ -38,7 +38,7 @@ class EventsController < ApplicationController
     
     respond_to do |format|
       if @event.save
-        EventMailer.new_team_event(@event.team,@event).deliver
+        #EventMailer.new_team_event(@event.team,@event).deliver
         format.html { redirect_to teams_path, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
@@ -67,7 +67,7 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    EventMailer.destroyed_team_event(@event.team,@event).deliver
+    #EventMailer.destroyed_team_event(@event.team,@event).deliver
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_path }
