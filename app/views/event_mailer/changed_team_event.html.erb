@@ -7,9 +7,11 @@
     <h1><%= @oldevent.eventtype.formatted_name %> Changed</h1>
     <p>
     This is to inform you The <%=@team.name%> Schedule has changed. <br />
+    <% if @event.eventtype.name != "tournament" %>
     <%= @oldevent.eventtype.name %>: <%= @oldevent.the_date %>, <%= @oldevent.the_time.strftime('%l:%M %P')%> at <%=@oldevent.location.name %> <br /> 
     is now<br />
     <b><%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%l:%M %P')%> at <%=@event.location.name %></b>
+    <% end %>
     <br /> 
     
     <% @event.hotels.each do |hotel| %>

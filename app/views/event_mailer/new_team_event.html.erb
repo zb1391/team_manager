@@ -5,9 +5,15 @@
   </head>
   <body>
     <h1><%= @event.eventtype.formatted_name %> Scheduled</h1>
+    <% if @event.eventtype.name == "tournament" %>
+    A <%=@team.name %> <%= @event.eventtype.name %> has been scheduled for <b><%= @event.the_date %></b>
+    -- <b><%= @event.end_date %> </b>
+    <%else %>
     <p>
     A <%=@team.name %> <%= @event.eventtype.name %> has been scheduled for
-    <b><%= @event.the_date %></b> at <b><%= @event.the_time.strftime('%l:%M %P')%></b> will be held at <b><%=@event.location.name%></b> <br />
+    <b><%= @event.the_date %></b> at <b><%= @event.the_time.strftime('%l:%M %P')%></b> will be held at <b><%=@event.location.name%></b> 
+    <% end %>
+    <br />
 
     <% @event.hotels.each do |hotel| %>
       Hotel Information: <br />

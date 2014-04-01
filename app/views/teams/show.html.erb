@@ -125,12 +125,14 @@
       <dd><%= "#{event.eventtype.name}: "%></dd>
       <dt>
         <%= "#{event.location.name}:" %> <br />
-        <%= "#{event.the_time.strftime('%l:%M %P')}"%>
-        <% if !event.end_time.nil? %>
-        <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
+        <% if event.eventtype.name != "tournament" %>
+          <%= "#{event.the_time.strftime('%l:%M %P')}"%>
+          <% if !event.end_time.nil? %>
+          <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
+          <% end %>
+          <%= "Court #{event.court}" %> <br />
         <% end %>
         <br />
-        <%= "Court #{event.court}" %> <br />
         <%= link_to "directions", event.location.directions %>
       </dt>
           <% if is_admin? %>
@@ -159,6 +161,7 @@
     <dt> <%=hotel.unformatted_location %></dt>
     <dt> <%="#{number_to_currency(hotel.price)}/Night"%></dt>
     <dd><%= link_to "hotel directions", hotel.directions, :id => "black-link", :class => "underlined" %></dd>
+    <dd><%= link_to "booking information", hotel.addtional_link, :id => "black-link", :class => "underlined" %></dd>
   <% end %>
   <dd><%= link_to "more details", my_tournaments, :id => "black-link", :class => "underlined" %></dd>
 </div>
