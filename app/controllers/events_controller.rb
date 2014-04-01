@@ -54,7 +54,7 @@ class EventsController < ApplicationController
     oldevent = @event
     respond_to do |format|
       if @event.update(event_params)
-        EventMailer.changed_team_event(@event.team,@event,oldevent).deliver
+        #EventMailer.changed_team_event(@event.team,@event,oldevent).deliver
         format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
