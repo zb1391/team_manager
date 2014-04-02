@@ -19,6 +19,20 @@ class Team < ActiveRecord::Base
 		"#{grade} Grade #{gender} #{team_type}"
 	end
 
+	def team_color
+		if name.nil?
+			return nil
+		else	
+			array = name.strip.split(/\s+/).to_a
+			color = array[-1]
+			if color == "Elite" || color == "Select"
+				return nil
+			else
+				return color
+			end
+		end
+	end
+
 	def tournaments
 		Event.search(:eventtype_name_cont => "tournament", :team_id_eq => my_id).result.order(:the_date).to_a
 	end

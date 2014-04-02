@@ -55,14 +55,10 @@ class HotelsController < ApplicationController
   # DELETE /hotels/1.json
   def destroy
     @hotel.destroy
-    if @hotel.check_for_events
       respond_to do |format|
         format.html { redirect_to hotels_url }
         format.json { head :no_content }
       end
-    else
-      redirect_to @hotel, :notice => "Hotel is still being used by events"
-    end
   end
 
   private

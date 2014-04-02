@@ -45,11 +45,12 @@
     <%= f.label :team_id %><br>
     <%= f.collection_select :team_id, Team.order(:id),:id,:name, include_blank: false %>
   </div>
-    <div class="field">
-    <%= f.label :hotel_id %><br>
-    <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
-    <%= link_to "New Hotel", new_hotel_path %>
-  </div>
+  <%= f.fields_for :hotelifications do |builder| %>
+    <p>
+      <%= builder.label :content, "Hotel" %> <br />
+      <%= builder.collection_select :hotel_id, Hotel.order(:id),:id,:name, include_blank: true %>
+    </p>
+  <% end %>
   <div class = "field">
     <%= f.label :description %>
     <%= f.text_area :description, rows: 5, :class => "black-text" %>

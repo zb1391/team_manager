@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Camper Registration Confirmation </h1>
+    <p>
+    Thank you for registering <%= "#{@camper.first_name} #{@camper.last_name}"%> for the Down Town Sports Summer Camps<br />
+    Below is a confirmation of the registration form. <br />
+    Please contact Adam at Down Town Sports (201) 848-0017 for payment options and coupon availability. <br />    
+    <br />
+    </p>
+    <h2><%= "#{@camper.first_name} #{@camper.last_name}"%></h2>
+    <dd>Home Phone: <%= number_to_phone(@camper.home_phone, area_code: true) %></dd>
+    <dd>Cell Phone: <%= number_to_phone(@camper.cell_phone, area_code: true) %></dd>
+
+    <h2>Summer Camps</h2>
+    <% @camper.summer_camps.each do |summer_camp| %>
+      <dd><%= summer_camp.date_range %></dd>
+    <% end %>
+
+    <h2>Total</h2>
+      <dt><% @camper.amount_owe %></dt>
+    <p>
+      This is an automated email. Please do not reply
+    </p>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>

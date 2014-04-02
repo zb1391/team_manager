@@ -1,7 +1,10 @@
 <p id="notice"><%= notice %></p>
+<h2>Camps</h2>
+<% @summer_camper.summer_camps.each do |camp| %>
 <p>
-  Camp: <%= @summer_camper.summer_camp.date_range %>
+  Camp: <%= camp.date_range %>
 </p> 
+<% end %>
 <p>
   <strong> Amount Owe: </strong>
   <%= @summer_camper.amount_owe %>

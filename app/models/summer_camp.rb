@@ -1,5 +1,6 @@
 class SummerCamp < ActiveRecord::Base
-	has_many :summer_campers
+	has_many :campifications
+	has_many :summer_campers, :through => :campifications
 
 	def campers
 		self.summer_campers.order(:gender,:grade,:last_name)

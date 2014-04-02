@@ -1,5 +1,7 @@
 class SummerCamper < ActiveRecord::Base
-	belongs_to :summer_camp
+	has_many :campifications
+	has_many :summer_camps, :through => :campifications
+	accepts_nested_attributes_for :campifications
 
 	validates :first_name, :last_name, 
 		:address, :city,:state,:zip,
@@ -9,19 +11,8 @@ class SummerCamper < ActiveRecord::Base
 		presence: true
 	validates :home_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validates :cell_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
-	validate :unique_name, :on => :create
 	before_create :initial_pay_values
 	before_create :amount_owe_setup
-
-	def unique_name
-		already_a_row = SummerCamper.where("summer_camp_id = ? AND last_name = ? AND first_name = ? AND grade = ?",
-			summer_camp_id,last_name,first_name,grade).to_a
-		if !already_a_row.empty?
-			errors.add(:first_name, " - #{first_name} #{last_name}, #{grade} grade, has already registered for the Summer Camp
-				#{summer_camp.date_range}")			
-		end
-
-	end
 
 
 	private
@@ -33,6 +24,9 @@ class SummerCamper < ActiveRecord::Base
 	end
 
 	def amount_owe_setup
-		self.amount_owe = summer_camp.price
+		self.amount_owe = 0
+		self.summer_camps.each do |summer_camp|
+			self.amount_owe += summer_camp.price
+		end
 	end
 end

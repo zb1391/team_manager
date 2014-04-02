@@ -6,6 +6,8 @@ class TeamsController < ApplicationController
   # GET /teams.json
   def index
     @teams = Team.all.order(:gender, :grade, :team_type)
+    @event = Event.new
+    2.times {@event.hotelifications.build}
   end
 
   # GET /teams/1
@@ -83,6 +85,7 @@ class TeamsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
       params.require(:team).permit(:team_name, :encrpyted_password, :password, :password_confirmation, 
-        :coach_id, :gender, :grade, :team_type, :color)
+        :coach_id, :gender, :grade, :team_type, :color,
+        hotelifications_attributes: [:id, :hotel_id, :event_id])
     end
 end

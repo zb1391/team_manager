@@ -225,3 +225,7 @@ form select{
 .dark-green-text{
   color:#006600;
 }
+
+#dropdown-form{
+  width: 500px;
+}

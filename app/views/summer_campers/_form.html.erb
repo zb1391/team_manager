@@ -11,9 +11,14 @@
     </div>
   <% end %>
   <h2>Select a Camp</h2> <br />
-  <div class="field">
-    <%= f.collection_select :summer_camp_id, SummerCamp.order(:start_date),:id,:date_range, include_blank: false %>
-  </div>
+   <% SummerCamp.all.order(:start_date).each do |camp| %>
+    <div>
+      <%= check_box_tag :summer_camp_ids, camp.id, @summer_camper.summer_camps.include?(camp), 
+      :name => 'summer_camper[summer_camp_ids][]' %>
+      <%= label_tag :summer_camp_ids, camp.date_range %>
+      <%= number_to_currency camp.price %>
+    </div>
+  <% end %>
   <h2>Camper Information</h2>
   <div class="field">
     <%= f.label :first_name %><br>

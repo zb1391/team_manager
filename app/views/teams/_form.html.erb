@@ -15,7 +15,11 @@
     <%= f.select :gender, options_for_select(%w[Boys Girls], @team.gender)%>
     <%= f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th 10th 11th 12th],@team.grade)%>
     <%= f.select :team_type, options_for_select(%w[Elite Select])%>
-    <%= f.text_field :color %>
+    <% if @team.team_color.nil? %>
+      <%= f.text_field :color %>
+    <% else %>
+      <%= f.text_field :color, value: @team.team_color %>
+    <% end %>
   </div>
   <div class="field">
     <%= f.label :coach_id %><br>

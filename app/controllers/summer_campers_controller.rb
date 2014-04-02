@@ -75,6 +75,8 @@ class SummerCampersController < ApplicationController
         :address, :city, :state, :zip, 
         :gender, :grade, :email, 
         :home_phone, :cell_phone, :waiver_name, :waiver_date,
-        :amount_owe, :amount_paid)
+        :amount_owe, :amount_paid,
+        {:summer_camp_ids => []},
+        campifications_attributes: [:id,:summer_camp_id, :summer_camper_id])
     end
 end

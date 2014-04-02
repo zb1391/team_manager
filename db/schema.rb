@@ -11,10 +11,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140328172030) do
+ActiveRecord::Schema.define(version: 20140331203106) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "campifications", force: true do |t|
+    t.integer  "summer_camp_id"
+    t.integer  "summer_camper_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "clubs", force: true do |t|
     t.integer  "organization_id"
@@ -47,15 +54,22 @@ ActiveRecord::Schema.define(version: 20140328172030) do
     t.date     "the_date"
     t.time     "the_time"
     t.time     "end_time"
-    t.integer  "hotel_id"
     t.integer  "location_id"
     t.integer  "court"
     t.date     "end_date"
     t.text     "description"
+    t.integer  "hotel_id"
   end
 
   create_table "eventtypes", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "hotelifications", force: true do |t|
+    t.integer  "hotel_id"
+    t.integer  "event_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -138,7 +152,6 @@ ActiveRecord::Schema.define(version: 20140328172030) do
     t.date     "waiver_date"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "summer_camp_id"
     t.float    "amount_owe"
     t.float    "amount_paid"
   end

@@ -98,7 +98,6 @@
     <% end %>
   <% end %>
 </div>
-<div class = "static-green-content">
 <%= calendar @team.events do |event| %>
   <%logger.debug "Events start_time: #{event.start_time}" %>
   <div class="calendar-details" id="calendar-sub">
@@ -106,17 +105,21 @@
         <p><%=event.location.name%></p>
         <dt><%= event.location.unformatted_location %></dt>
         <dd><%= link_to "directions", event.location.directions %></dd>
-        <% if event.has_hotel? %>
-          <p><%=event.hotel.name%></p>
-          <dt><%= number_to_phone(event.hotel.phone, area_code: true) %></dt>
-          <dt> <%=event.hotel.unformatted_location %></dt>
-          <dt> <%="#{number_to_currency(event.hotel.price)}/Night"%></dt>
-          <dd><%= link_to "hotel directions", event.hotel.directions %></dd>
-          <% if !event.hotel.addtional_link.nil? %>
-            <dd><%= link_to "booking information", event.hotel.addtional_link %></dd>
+        <% event.hotels.each do |hotel| %>
+          <p><%=hotel.name%></p>
+          <dt><%= number_to_phone(hotel.phone, area_code: true) %></dt>
+          <dt> <%=hotel.unformatted_location %></dt>
+          <dt> <%="#{number_to_currency(hotel.price)}/Night"%></dt>
+          <dd><%= link_to "hotel directions", hotel.directions %></dd>
+          <% if !hotel.addtional_link.nil? %>
+            <dd><%= link_to "booking information", hotel.addtional_link %></dd>
           <% end %>
         <% end %>
         <dd><%= link_to "more details", event %></dd>
+        <% if is_admin? %>
+            <%= link_to 'Edit', edit_event_path(event) %>
+            <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
     </div> 
     <ul>
       <dd><%= "#{event.eventtype.name}: "%></dd>
@@ -150,14 +153,13 @@
   <p><%=my_tournaments.location.name%></p>
   <dt><%= my_tournaments.location.unformatted_location %></dt>
   <dd><%= link_to "directions", my_tournaments.location.directions, :id => "black-link", :class => "underlined" %></dd>
-  <% if my_tournaments.has_hotel? %>
-    <p><%=my_tournaments.hotel.name%></p>
-    <dt><%= number_to_phone(my_tournaments.hotel.phone, area_code: true) %></dt>
-    <dt> <%=my_tournaments.hotel.unformatted_location %></dt>
-    <dt> <%="#{number_to_currency(my_tournaments.hotel.price)}/Night"%></dt>
-    <dd><%= link_to "hotel directions", my_tournaments.hotel.directions, :id => "black-link", :class => "underlined" %></dd>
+  <% my_tournaments.hotels.each do |hotel| %>
+    <p><%=hotel.name%></p>
+    <dt><%= number_to_phone(hotel.phone, area_code: true) %></dt>
+    <dt> <%=hotel.unformatted_location %></dt>
+    <dt> <%="#{number_to_currency(hotel.price)}/Night"%></dt>
+    <dd><%= link_to "hotel directions", hotel.directions, :id => "black-link", :class => "underlined" %></dd>
   <% end %>
   <dd><%= link_to "more details", my_tournaments, :id => "black-link", :class => "underlined" %></dd>
 </div>
 <% end %>
-</div>

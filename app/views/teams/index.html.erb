@@ -25,14 +25,14 @@
             <ul>
               <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
-                <div class="dropdown-menu" style="padding:2px;">
-                    <%= form_for (event=Event.new),:html => {:class => "manager-form"} do |f| %>
-                      <% if event.errors.any? %>
+                <div class="dropdown-menu" id = "dropdown-form"style="padding:2px;">
+                    <%= form_for (@event),:html => {:class => "manager-form"} do |f| %>
+                      <% if @event.errors.any? %>
                         <div id="error_explanation">
                           <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
                           <ul>
-                          <% event.errors.full_messages.each do |msg| %>
+                          <% @event.errors.full_messages.each do |msg| %>
                             <li><%= msg %></li>
                           <% end %>
                           </ul>
@@ -41,18 +41,14 @@
 
               <div class="field">
                 <%= f.label :the_date %><br>
-                <%= f.text_field :the_date, :class => "datepicker", :id => team.name %>
-              </div>
-              <div class ="field">
-                <%= f.label :end_date %> (optional - use for tournaments) <br />
-                <%= f.date_field :end_date %>
+                <%= f.date_field :the_date %>
+                ---
+                <%= f.date_field :end_date %> (end-date optional)
               </div>
               <div class="field">
                 <%= f.label :the_time %><br>
                 <%= f.time_field :the_time %>
-              </div>
-              <div class="field">
-                <%= f.label :end_time %>(optional)<br>
+                ---
                 <%= f.time_field :end_time %>
               </div>
                 <div class="field">
@@ -72,15 +68,14 @@
                 <%= f.label :team_id %><br>
                 <%= f.collection_select :team_id, Team.order(:id),:id,:name, {:selected => team.id} %>
               </div>
-                <div class="field">
-                <%= f.label :hotel_id %><br>
-                <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
-                <%= link_to "New Hotel", new_hotel_path %>
-              </div>
               <div class = "field">
-                <%= f.label :description %>
-                <%= f.text_area :description, rows: 5, :class => "black-text" %>
+                <%= f.label :description %> <br />
+                <%= f.text_area :description, rows: 5,cols: 50, :class => "black-text" %>
               </div>
+              <%= f.fields_for :hotelifications do |builder| %>
+                <%= render 'event_fields', f: builder %>
+              <% end %>
+              <br />
               <div class="actions">
                 <%= f.submit %>
               </div>
@@ -122,14 +117,14 @@
             <ul>
               <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
-                <div class="dropdown-menu" style="padding:2px;">
-                    <%= form_for (event=Event.new),:html => {:class => "manager-form"} do |f| %>
-                      <% if event.errors.any? %>
+                <div class="dropdown-menu" id = "dropdown-form" style="padding:2px;">
+                    <%= form_for (@event),:html => {:class => "manager-form"} do |f| %>
+                      <% if @event.errors.any? %>
                         <div id="error_explanation">
                           <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
                           <ul>
-                          <% event.errors.full_messages.each do |msg| %>
+                          <% @event.errors.full_messages.each do |msg| %>
                             <li><%= msg %></li>
                           <% end %>
                           </ul>
@@ -138,18 +133,14 @@
 
               <div class="field">
                 <%= f.label :the_date %><br>
-                <%= f.text_field :the_date, :class => "datepicker", :id => team.name %>
-              </div>
-              <div class ="field">
-                <%= f.label :end_date %> (optional - use for tournaments) <br />
-                <%= f.date_field :end_date %>
+                <%= f.date_field :the_date %>
+                ---
+                <%= f.date_field :end_date %> (end-date optional)
               </div>
               <div class="field">
                 <%= f.label :the_time %><br>
                 <%= f.time_field :the_time %>
-              </div>
-              <div class="field">
-                <%= f.label :end_time %>(optional)<br>
+                ---
                 <%= f.time_field :end_time %>
               </div>
                 <div class="field">
@@ -169,15 +160,14 @@
                 <%= f.label :team_id %><br>
                 <%= f.collection_select :team_id, Team.order(:id),:id,:name, {:selected => team.id} %>
               </div>
-                <div class="field">
-                <%= f.label :hotel_id %><br>
-                <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
-                <%= link_to "New Hotel", new_hotel_path %>
-              </div>
               <div class = "field">
-                <%= f.label :description %>
-                <%= f.text_area :description, rows: 5, :class => "black-text" %>
+                <%= f.label :description %> <br />
+                <%= f.text_area :description, rows: 5,cols: 50, :class => "black-text" %>
               </div>
+              <%= f.fields_for :hotelifications do |builder| %>
+                <%= render 'event_fields', f: builder %>
+              <% end %>
+              <br />
               <div class="actions">
                 <%= f.submit %>
               </div>
@@ -220,14 +210,14 @@
             <ul>
               <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
-                <div class="dropdown-menu" style="padding:2px;">
-                    <%= form_for (event=Event.new),:html => {:class => "manager-form"} do |f| %>
-                      <% if event.errors.any? %>
+                <div class="dropdown-menu" id = "dropdown-form" style="padding:2px;">
+                    <%= form_for (@event),:html => {:class => "manager-form"} do |f| %>
+                      <% if @event.errors.any? %>
                         <div id="error_explanation">
                           <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
                           <ul>
-                          <% event.errors.full_messages.each do |msg| %>
+                          <% @event.errors.full_messages.each do |msg| %>
                             <li><%= msg %></li>
                           <% end %>
                           </ul>
@@ -236,18 +226,14 @@
 
               <div class="field">
                 <%= f.label :the_date %><br>
-                <%= f.text_field :the_date, :class => "datepicker", :id => team.name %>
-              </div>
-              <div class ="field">
-                <%= f.label :end_date %> (optional - use for tournaments) <br />
-                <%= f.date_field :end_date %>
+                <%= f.date_field :the_date %>
+                ---
+                <%= f.date_field :end_date %> (end-date optional)
               </div>
               <div class="field">
                 <%= f.label :the_time %><br>
                 <%= f.time_field :the_time %>
-              </div>
-              <div class="field">
-                <%= f.label :end_time %>(optional)<br>
+                ---
                 <%= f.time_field :end_time %>
               </div>
                 <div class="field">
@@ -267,15 +253,14 @@
                 <%= f.label :team_id %><br>
                 <%= f.collection_select :team_id, Team.order(:id),:id,:name, {:selected => team.id} %>
               </div>
-                <div class="field">
-                <%= f.label :hotel_id %><br>
-                <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
-                <%= link_to "New Hotel", new_hotel_path %>
-              </div>
               <div class = "field">
-                <%= f.label :description %>
-                <%= f.text_area :description, rows: 5, :class => "black-text" %>
+                <%= f.label :description %> <br />
+                <%= f.text_area :description, rows: 5,cols: 50, :class => "black-text" %>
               </div>
+              <%= f.fields_for :hotelifications do |builder| %>
+                <%= render 'event_fields', f: builder %>
+              <% end %>
+              <br />
               <div class="actions">
                 <%= f.submit %>
               </div>
@@ -317,14 +302,14 @@
             <ul>
               <li class="dropdown">
                 <a class="dropdown-toggle" href="#" data-toggle="dropdown">New Event<strong class="caret"></strong></a>
-                <div class="dropdown-menu" style="padding:2px;">
-                    <%= form_for (event=Event.new),:html => {:class => "manager-form"} do |f| %>
-                      <% if event.errors.any? %>
+                <div class="dropdown-menu" id = "dropdown-form" style="padding:2px;">
+                    <%= form_for (@event),:html => {:class => "manager-form"} do |f| %>
+                      <% if @event.errors.any? %>
                         <div id="error_explanation">
                           <h2><%= pluralize(event.errors.count, "error") %> prohibited this event from being saved:</h2>
 
                           <ul>
-                          <% event.errors.full_messages.each do |msg| %>
+                          <% @event.errors.full_messages.each do |msg| %>
                             <li><%= msg %></li>
                           <% end %>
                           </ul>
@@ -333,18 +318,14 @@
 
               <div class="field">
                 <%= f.label :the_date %><br>
-                <%= f.text_field :the_date, :class => "datepicker", :id => team.name %>
-              </div>
-              <div class ="field">
-                <%= f.label :end_date %> (optional - use for tournaments) <br />
-                <%= f.date_field :end_date %>
+                <%= f.date_field :the_date %>
+                ---
+                <%= f.date_field :end_date %> (end-date optional)
               </div>
               <div class="field">
                 <%= f.label :the_time %><br>
                 <%= f.time_field :the_time %>
-              </div>
-              <div class="field">
-                <%= f.label :end_time %>(optional)<br>
+                ---
                 <%= f.time_field :end_time %>
               </div>
                 <div class="field">
@@ -364,15 +345,14 @@
                 <%= f.label :team_id %><br>
                 <%= f.collection_select :team_id, Team.order(:id),:id,:name, {:selected => team.id} %>
               </div>
-                <div class="field">
-                <%= f.label :hotel_id %><br>
-                <%= f.collection_select :hotel_id, Hotel.order(:id),:id, :collection_format, include_blank: true %>
-                <%= link_to "New Hotel", new_hotel_path %>
-              </div>
               <div class = "field">
-                <%= f.label :description %>
-                <%= f.text_area :description, rows: 5, :class => "black-text" %>
+                <%= f.label :description %> <br />
+                <%= f.text_area :description, rows: 5,cols: 50, :class => "black-text" %>
               </div>
+              <%= f.fields_for :hotelifications do |builder| %>
+                <%= render 'event_fields', f: builder %>
+              <% end %>
+              <br />
               <div class="actions">
                 <%= f.submit %>
               </div>

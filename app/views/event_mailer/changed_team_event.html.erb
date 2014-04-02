@@ -12,12 +12,14 @@
     <b><%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%l:%M %P')%> at <%=@event.location.name %></b>
     <br /> 
     
-    <%if @event.has_hotel? %>
+    <% @event.hotels.each do |hotel| %>
       Hotel Information: <br />
-      <%= @event.hotel.name %> <br />
-      <%= @event.hotel.unformatted_location %> <br />
-      <%="#{number_to_currency(@event.hotel.price)}/Night"%> <br />
-      <%= link_to "booking information", @event.hotel.addtional_link %> <br />
+      <%= hotel.name %> <br />
+      <%= hotel.unformatted_location %> <br />
+      <%="#{number_to_currency(hotel.price)}/Night"%> <br />
+      <% if !hotel.addtional_link.nil? %>
+        <%= link_to "booking information", hotel.addtional_link %> <br />
+      <% end %>
     <%end%>
     More information can be found be checking the schedule by clicking <%= team_url(@event.team, host: 'www.downtownsports.org')%>  
     </p>

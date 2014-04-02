@@ -1,7 +1,9 @@
 class Event < ActiveRecord::Base
+	has_many :hotelifications
+	has_many :hotels, :through => :hotelifications
+	accepts_nested_attributes_for :hotelifications
 	belongs_to :team
 	belongs_to :eventtype
-	belongs_to :hotel
 	belongs_to :location
 	validates  :the_date, :the_time, presence: true
 	validate   :tournament_has_end_date
@@ -13,9 +15,6 @@ class Event < ActiveRecord::Base
 	end
 	def start_time
 		DateTime.new(the_date.year, the_date.month, the_date.day, the_time.hour, the_time.min, the_time.sec)
-	end
-	def has_hotel?
-		!hotel.nil?
 	end
 
 	#Times for Creating Weekly Calendar

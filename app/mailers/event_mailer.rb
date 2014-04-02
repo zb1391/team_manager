@@ -52,7 +52,7 @@ ActionMailer::Base.delivery_method = :smtp
   #FOR CAMPERS
   def new_camper(camper)
     @camper = camper
-    mail(to: camper.email, subject: "Camper Registration (#{camper.summer_camp.date_range})")
+    mail(to: camper.email, subject: "Camper Registration Confirmation")
   end
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

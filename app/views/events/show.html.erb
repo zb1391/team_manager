@@ -24,42 +24,42 @@
 </div>
 
 
-<% if !@event.hotel.nil? %>
+<% @event.hotels.each do |hotel| %>
 <div class="green-content no-padding">
   <div class="smaller-content">
  <h2>Hotel Information</h2>
-  <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{@event.hotel.glocation}&zoom=13&size=200x200&markers=#{@event.hotel.glocation}&sensor=false", class: "float-right"); %>
+  <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{hotel.glocation}&zoom=13&size=200x200&markers=#{hotel.glocation}&sensor=false", class: "float-right"); %>
 <p>
   <strong>Name:</strong>
-  <%= @event.hotel.name %>
+  <%= hotel.name %>
 </p>
 
 <p>
   <strong>Address:</strong>
-  <%= @event.hotel.address %>
+  <%= hotel.address %>
 </p>
 
 <p>
   <strong>City:</strong>
-  <%= @event.hotel.city %>
+  <%= hotel.city %>
 </p>
 <p>
   <strong>State:</strong>
-  <%= @event.hotel.state %>
+  <%= hotel.state %>
 </p>
 
 <p>
   <strong>Price:</strong>
-  <%= @event.hotel.price %>
+  <%= hotel.price %>
 </p>
 <p>
   <strong> Directions:</strong>
-  <%= link_to 'Click Here!', "https://maps.google.com/maps?f=d&daddr=#{@event.hotel.glocation}" %>
+  <%= link_to 'Click Here!', "https://maps.google.com/maps?f=d&daddr=#{hotel.glocation}" %>
 </p>
-<% if !@event.hotel.addtional_link.nil? %>
+<% if !hotel.addtional_link.nil? %>
 	<p>
 	  <strong>Addtional link:</strong>
-	  <%= link_to 'Booking Information', @event.hotel.addtional_link %>
+	  <%= link_to 'Booking Information', hotel.addtional_link %>
 	</p>
 <% end %>
 </div>
