@@ -12,7 +12,7 @@ class SummerCamper < ActiveRecord::Base
 	validates :home_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validates :cell_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	before_create :initial_pay_values
-	before_create :amount_owe_setup
+	before_save :amount_owe_setup
 
 
 	private
