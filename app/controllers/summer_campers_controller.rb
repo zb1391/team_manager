@@ -26,7 +26,12 @@ class SummerCampersController < ApplicationController
   # POST /summer_campers.json
   def create
     @summer_camper = SummerCamper.new(summer_camper_params)
-
+    if summer_camper_params[:manual_fee_entry] == "0"
+      @summer_camper.amount_owe = 0
+      @summer_camper.summer_camps.each do |summer_camp|
+        @summer_camper.amount_owe += summer_camp.price
+      end
+    end
     respond_to do |format|
       if @summer_camper.save
         EventMailer.new_camper(@summer_camper).deliver
@@ -44,6 +49,13 @@ class SummerCampersController < ApplicationController
   def update
     respond_to do |format|
       if @summer_camper.update(summer_camper_params)
+      if summer_camper_params[:manual_fee_entry] == "0"
+        total = 0
+        @summer_camper.summer_camps.each do |summer_camp|
+          total += summer_camp.price
+        end
+        @summer_camper.update_attribute(:amount_owe, total)
+      end
         format.html { redirect_to @summer_camper, notice: 'Summer camper was successfully updated.' }
         format.json { head :no_content }
       else
@@ -75,7 +87,7 @@ class SummerCampersController < ApplicationController
         :address, :city, :state, :zip, 
         :gender, :grade, :email, 
         :home_phone, :cell_phone, :waiver_name, :waiver_date,
-        :amount_owe, :amount_paid,
+        :amount_owe, :amount_paid, :manual_fee_entry,
         {:summer_camp_ids => []},
         campifications_attributes: [:id,:summer_camp_id, :summer_camper_id])
     end

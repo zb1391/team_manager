@@ -10,22 +10,26 @@
       </ul>
     </div>
   <% end %>
-  <h2>Select a Camp</h2> <br />
+  <h2>Select Camps</h2> <br />
+   <% total = 0; %>
    <% SummerCamp.all.order(:start_date).each do |camp| %>
-    <div>
+      <% total = total+1; %>
       <%= check_box_tag :summer_camp_ids, camp.id, @summer_camper.summer_camps.include?(camp), 
-      :name => 'summer_camper[summer_camp_ids][]' %>
+      :name => 'summer_camper[summer_camp_ids][]', :id => "check-box-margin" %>
       <%= label_tag :summer_camp_ids, camp.date_range %>
       <%= number_to_currency camp.price %>
-    </div>
+      <% if total == 3 %>
+        <br /> <br />
+        <% total = 0; %>
+      <% end %>
   <% end %>
   <h2>Camper Information</h2>
   <div class="field">
-    <%= f.label :first_name %><br>
+    <%= f.label :first_name, "First Name" %><br>
     <%= f.text_field :first_name %>
   </div>
   <div class="field">
-    <%= f.label :last_name %><br>
+    <%= f.label :last_name, "Last Name" %><br>
     <%= f.text_field :last_name %>
   </div>
   <br />
@@ -35,7 +39,7 @@
     <%= f.label :grade %>
     <%= f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th 10th 11th 12th],@summer_camper.grade)%>
   </div>
-  <h2>Contact Information</h2>
+  <h2>Parent Contact Information</h2>
   <div class="field">
     <%= f.label :address %><br>
     <%= f.text_field :address %>
@@ -57,11 +61,11 @@
     <%= f.text_field :email %>
   </div>
   <div class="field">
-    <%= f.label :home_phone %> <em>(ex. 2018480017)</em><br>
+    <%= f.label :home_phone, "Home Phone" %> <em>(ex. 2018480017)</em><br>
     <%= f.text_field :home_phone %>
   </div>
   <div class="field">
-    <%= f.label :cell_phone %> <em>(ex. 2018480017)</em><br>
+    <%= f.label :cell_phone, "Cell Phone" %> <em>(ex. 2018480017)</em><br>
     <%= f.text_field :cell_phone %>
   </div>
   <h2>Waiver and Release</h2>
@@ -82,8 +86,12 @@
 
   <% if is_admin? %>
   <div class = "field">
-    <%= f.label "Amount Owe" %> <br />
-    <%= f.text_field :amount_owe, :value => @summer_camper.amount_owe%> <br />
+    <%= f.label "Amount Owe" %>  <br />
+    <%= f.text_field :amount_owe%>
+    <%= hidden_field_tag :manual_fee_entry, '' %>
+    <%= f.check_box :manual_fee_entry %>
+    <%= f.label :manual_fee_entry, "Enter Amount Manually" %> 
+    <em>Check this box if you want to manually enter the amoune owe </em><br /> <br />
     <%= f.label "Amount Paid" %> <br />
     <%= f.text_field :amount_paid %> <br />
   </div>

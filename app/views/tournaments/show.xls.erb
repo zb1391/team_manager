@@ -1,23 +1,17 @@
-<p id="notice"><%= notice %></p>
-<p>
-  Download:
-  <% to_xls = "#{tournament_path(@tournament.id)}.xls" %>
-  <%= link_to "Excel", to_xls %>
-</p>
-<p>
+<h1>
   <strong>Name:</strong>
   <%= @tournament.name %>
-</p>
+</h1>
 
-<p>
+<h2>
   <strong>The date:</strong>
   <%= @tournament.the_date %>
-</p>
+</h2>
 
-<p>
+<h2>
   <strong>Price:</strong>
   <%= number_to_currency @tournament.price %>
-</p>
+</h2>
 <h1>Club Summary</h1>
 <table class = "plain-table">
 	<tr>
@@ -55,12 +49,9 @@
 		<tr>
 			<td> <%= team.gender %></td>
 			<td> <%= team.grade %></td>
-			<td> <%= link_to  team.organization.name, team.organization, id: "blue-link" %></td>
+			<td> <%= team.organization.name %></td>
 			<td> <%= team.coach %></td>
 			<td> <%= team.email %></td>
 		</tr>
 	<% end %>
 </table>
-
-<%= link_to 'Edit', edit_tournament_path(@tournament) %> |
-<%= link_to 'Back', tournaments_path %>

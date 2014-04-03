@@ -50,8 +50,12 @@
 
 <% if is_admin? %>
   <div class = "field">
-    <%= f.label "Amount Owe" %> <br />
-    <%= f.text_field :amount_owe, :value => @organization.amount_owe%> <br />
+    <%= f.label "Amount Owe" %>  <br />
+    <%= f.text_field :amount_owe%>
+    <%= hidden_field_tag :manual_fee_entry, '' %>
+    <%= f.check_box :manual_fee_entry %>
+    <%= f.label :manual_fee_entry, "Enter Amount Manually" %> 
+    <em>Check this box if you want to manually enter the amoune owe </em><br /> <br />
     <%= f.label "Amount Paid" %> <br />
     <%= f.text_field :amount_paid %> <br />
   </div>

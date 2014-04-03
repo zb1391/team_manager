@@ -85,6 +85,9 @@
 .centered-table{
   margin: auto;
 }
+#check-box-margin{
+  margin-left: 30px;
+}
 #black-link{
   color:black;
 }
@@ -226,6 +229,13 @@ form select{
   color:#006600;
 }
 
+#blue-link{
+  color: blue;
+  text-decoration: underline;
+}
+#blue-link:hover{
+  color:black;
+}
 #dropdown-form{
   width: 500px;
 }

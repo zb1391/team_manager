@@ -1,4 +1,5 @@
 class Organization < ActiveRecord::Base
+	attr_accessor :manual_fee_entry
 	belongs_to :tournament
 	has_many :clubs, :dependent => :destroy
 	accepts_nested_attributes_for :clubs, :reject_if => lambda { |a| a[:coach].blank? }, allow_destroy: true
@@ -6,7 +7,6 @@ class Organization < ActiveRecord::Base
 	validates :name, :contact_name, :email, :phone, presence: true
 	validate :atleast_one_club
 	before_create :initial_pay_values
-	before_create :amount_owe_setup
 	def atleast_one_club
 		if clubs.empty?
 			errors.add(:clubs, "You Must Register at least One Team --- Please click the Add Team button below")
@@ -53,6 +53,13 @@ class Organization < ActiveRecord::Base
 
 	def amount_owe_setup
 		self.amount_owe = tournament.price*clubs.size
+	end
+
+	def check_for_manual
+		if manual_fee_entry == false
+			update_attribute(:amount_owe, tournament.price*clubs.size)
+		end
+
 	end
 
 end

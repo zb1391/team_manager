@@ -1,8 +1,10 @@
 class SummerCamper < ActiveRecord::Base
+	attr_accessor :manual_fee_entry
+
 	has_many :campifications
 	has_many :summer_camps, :through => :campifications
 	accepts_nested_attributes_for :campifications
-
+	
 	validates :first_name, :last_name, 
 		:address, :city,:state,:zip,
 		:gender,:grade,
@@ -12,7 +14,6 @@ class SummerCamper < ActiveRecord::Base
 	validates :home_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validates :cell_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	before_create :initial_pay_values
-	before_save :amount_owe_setup
 
 
 	private

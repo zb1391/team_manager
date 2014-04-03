@@ -26,7 +26,9 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
-
+    if organization_params[:manual_fee_entry] == "0"
+      @organization.amount_owe = @organization.tournament.price*@organization.clubs.size
+    end
     respond_to do |format|
       if @organization.save
         EventMailer.tournament_registration(@organization).deliver
@@ -44,6 +46,9 @@ class OrganizationsController < ApplicationController
   def update
     respond_to do |format|
       if @organization.update(organization_params)
+        if organization_params[:manual_fee_entry] == "0"
+          @organization.update_attribute(:amount_owe, @organization.tournament.price*@organization.clubs.size)
+        end
         format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
         format.json { head :no_content }
       else
@@ -71,7 +76,7 @@ class OrganizationsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
-      params.require(:organization).permit(:name, :contact_name, :email, :phone, :tournament_id,
+      params.require(:organization).permit(:name, :contact_name, :email, :phone, :tournament_id, :manual_fee_entry,
       :amount_owe, :amount_paid, :paid_at, clubs_attributes: [:coach, :id, :_destroy, :gender, :grade, :email, :cell])
     end
 end

@@ -20,14 +20,15 @@
     </p>
     
     <h4>Please Note</h3>
-    <h4>Your team(s) are not guaranteed a spot in the tournament until the payment process is complete</h4>
+    <h3>Your team(s) will not be entered into the tournament until the payment process is complete</h3>
     <h4>Please contact Down Town Sports (201) 848-0017 to complete the registration process</h4>
     
     <h2><%= @organization.name%></h2>
     <h2>Contact</h2>
     <dt> <%= @organization.contact_name %></dt>
-    <dd> <%= number_to_phone(@organization.phone, area_code: true) %></dd>
+    <dt> <%= number_to_phone(@organization.phone, area_code: true) %></dt>
 
+    <h2>Teams Entered</h2>
    <table class = "plain-table med-margin-left">
       <tr>
         <th>Team</th>
@@ -57,7 +58,7 @@
         <td><dd> <%= number_to_currency @organization.amount_owe %></dd></td>
       </tr>
     </table>
-
+    <br />
     This is an automated email. Please do not reply
     </p>
     <p>Thanks and have a great day!</p>
