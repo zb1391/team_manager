@@ -1,11 +1,12 @@
 <div class = "static-cols-green">
 
 <h2 class = "centered"><%= @organization.tournament.name %></h2>
-<h2 class = "centered" id = "dark-green-text"><%= "#{@organization.name} Registration" %></h2>
+<h2 class = "centered" id = "dark-green-text"><%= "#{@organization.name} Registration" %></h2> <br />
 <% if @organization.amount_owe != @organization.amount_paid %>
-	<h3 class ="centered"id = "red-text">
+	<h2 class = "centered" id = "black-text">Please Note</h2>
+	<h4 class ="centered underlined"id = "red-text">
 		Your team(s) will not be entered into the this tournament until payment is received
-	</h3>
+	</h4>
 	<h4 id = "black-text" class = "centered">Please contact Down Town Sports (201) 848-0017 to complete the registration process</h4>
 <% else %>
 

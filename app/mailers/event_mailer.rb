@@ -54,6 +54,14 @@ ActionMailer::Base.delivery_method = :smtp
     @camper = camper
     mail(to: camper.email, subject: "Camper Registration Confirmation")
   end
+
+  #FOR TOURNAMENTS
+  def tournament_registration(organization)
+    @organization = organization
+    mail(to: organization.email, subject: "Tournament Registration")
+  end
+
+
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
   #

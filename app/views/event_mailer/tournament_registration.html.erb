@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style type="text/css" media="screen">
+      h3 { color: #f00; }
+      ul { list-style: none; }
+      table {border:none;}
+      table tr td{
+        border:none;
+        padding: 8px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tournament Registration Confirmation </h1>
+    <p>
+    Thank you for registering for the <%= @organization.tournament.name%> Tournament<br />
+    Below is a confirmation of the registration form. <br />
+    </p>
+    
+    <h4>Please Note</h3>
+    <h4>Your team(s) are not guaranteed a spot in the tournament until the payment process is complete</h4>
+    <h4>Please contact Down Town Sports (201) 848-0017 to complete the registration process</h4>
+    
+    <h2><%= @organization.name%></h2>
+    <h2>Contact</h2>
+    <dt> <%= @organization.contact_name %></dt>
+    <dd> <%= number_to_phone(@organization.phone, area_code: true) %></dd>
+
+   <table class = "plain-table med-margin-left">
+      <tr>
+        <th>Team</th>
+        <th>Coach</th>
+        <th>Email</th>
+        <th>Phone </th>
+        <th>Price</th>
+      </tr>
+    <% for club in @organization.clubs %>
+      <tr>
+        <td> <%= "#{club.grade} Grade #{club.gender}"  %></td>
+        <td> <%= club.coach %></td>
+        <td> <%= club.email %></td>
+        <td> <%=  number_to_phone(club.cell, area_code: true) %></td>
+        <td><%= number_to_currency(@organization.tournament.price) %></td>
+      </tr>
+    <% end %>
+  </table> 
+  <h2> Summary </h2>
+    <table class = "med-margin-left">
+      <tr>
+        <td> <dt>Teams Entered:</dt></td>
+        <td><dd> <%= @organization.clubs.size %></dd>  </td>
+      </tr>
+      <tr>
+        <td> <dt>Total</dt></td>
+        <td><dd> <%= number_to_currency @organization.amount_owe %></dd></td>
+      </tr>
+    </table>
+
+    This is an automated email. Please do not reply
+    </p>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>
