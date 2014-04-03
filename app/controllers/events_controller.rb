@@ -29,6 +29,7 @@ class EventsController < ApplicationController
 
   # GET /events/1/edit
   def edit
+    2.times {@event.hotelifications.build}
   end
 
   # POST /events
