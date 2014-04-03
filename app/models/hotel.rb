@@ -5,6 +5,13 @@ class Hotel < ActiveRecord::Base
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
 	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 
+	def name_and_date
+		if start_date.nil?
+			"#{name}"
+		else
+			"#{name} - #{start_date.strftime("%b-%d-%y")}"
+		end
+	end
 	def glocation
 		gaddress = ""+"#{address}"
 		gcity = ""+"#{city}"

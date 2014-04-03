@@ -48,7 +48,7 @@
   <%= f.fields_for :hotelifications do |builder| %>
     <p>
       <%= builder.label :content, "Hotel" %> <br />
-      <%= builder.collection_select :hotel_id, Hotel.order(:id),:id,:name, include_blank: true %>
+      <%= builder.collection_select :hotel_id, Hotel.order(:id),:id,:name_and_date, include_blank: true %>
     </p>
   <% end %>
   <div class = "field">
