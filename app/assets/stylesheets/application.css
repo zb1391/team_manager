@@ -283,6 +283,57 @@ form select{
   top:1px;
 }
 
+.button-look-orange {
+  -moz-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #fce2c1;
+  box-shadow:inset 0px 1px 0px 0px #fce2c1;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ffc477), color-stop(1, #e6792b) );
+  background:-moz-linear-gradient( center top, #ffc477 5%, #e6792b 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffc477', endColorstr='#e6792b');
+  background-color:#ffc477;
+  -webkit-border-top-left-radius:20px;
+  -moz-border-radius-topleft:20px;
+  border-top-left-radius:20px;
+  -webkit-border-top-right-radius:20px;
+  -moz-border-radius-topright:20px;
+  border-top-right-radius:20px;
+  -webkit-border-bottom-right-radius:20px;
+  -moz-border-radius-bottomright:20px;
+  border-bottom-right-radius:20px;
+  -webkit-border-bottom-left-radius:20px;
+  -moz-border-radius-bottomleft:20px;
+  border-bottom-left-radius:20px;
+  text-indent:0;
+  border:1px solid #eeb44f;
+  display:inline-block;
+  color:#ffffff;
+  font-family:Arial;
+  font-size:15px;
+  font-weight:bold;
+  font-style:normal;
+  height:50px;
+  line-height:50px;
+  width:150px;
+  text-decoration:none;
+  text-align:center;
+  text-shadow:1px 1px 0px #cc9f52;
+}
+.button-look-orange:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e6792b), color-stop(1, #ffc477) );
+  background:-moz-linear-gradient( center top, #e6792b 5%, #ffc477 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#e6792b', endColorstr='#ffc477');
+  background-color:#e6792b;
+}.button-look-orange:active {
+  position:relative;
+  top:1px;
+}
+#no-hover-orange{
+  color:white;
+}
+#no-hover-orange:hover{
+  color:white;
+  text-decoration: none;
+}
 #no-hover-change:hover{
   text-decoration: none;
   color:#006600;

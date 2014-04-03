@@ -20,12 +20,12 @@
 
 <h2>Club/Organization Information</h2>
   <div class="field">
-    <%= f.label "Club Name" %><br>
+    <%= f.label :name, "Club Name" %><br>
     <%= f.text_field :name %>
   </div>
 
   <div class="field">
-    <%= f.label "Contact Name" %><br>
+    <%= f.label :contact_name, "Contact Name" %><br>
     <%= f.text_field :contact_name %>
   </div>
 
@@ -35,7 +35,7 @@
   </div>
   
   <div class="field">
-    <%= f.label "Phone Number" %><em>(ex. 2018480017)</em><br> 
+    <%= f.label :phone, "Phone Number" %> <em>(ex. 2018480017)</em><br> 
     <%= f.text_field :phone %>
   </div>
   
