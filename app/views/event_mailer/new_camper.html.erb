@@ -16,8 +16,8 @@
     
     <h4>Please Note</h3>
     <h4>Your child is not guaranteed a spot in camp until the payment process is complete</h4>
-    <h4>Please contact Down Town Sports (201) 848-0017 to complete the registration process</h4><br />
-    <h3 id = "red-text">Coupons / Special Offers No Longer Valid for Payments After June 1st</h3>
+    <h4>Please contact Down Town Sports (201) 848-0017 to complete the registration process</h4>
+    <h3>Coupons / Special Offers No Longer Valid for Payments After June 1st</h3>
     
     <h2><%= "#{@camper.first_name} #{@camper.last_name}"%></h2>
 
@@ -30,7 +30,7 @@
     <% end %>
 
     <h2>Total</h2>
-    <h3><%= number_to_currency @camper.amount_owe %></h3>
+    <h4><%= number_to_currency @camper.amount_owe %></h4>
     <p>
       This is an automated email. Please do not reply
     </p>
