@@ -24,6 +24,12 @@
         <%= link_to "booking information", hotel.addtional_link %> <br />
       <% end %>
     <%end%>
+    <% if !@event.description.empty? %>
+      <p class = "full-width auto-margin">
+        <strong> Details:</strong> <br />
+        <%=raw sanitize(simple_format(@event.description), :tags => %w(br) ) %>
+      </p>
+    <% end %>
     More information can be found be checking the schedule by clicking <%= team_url(@event.team, host: 'www.downtownsports.org')%> 
     </p>
     <p>
