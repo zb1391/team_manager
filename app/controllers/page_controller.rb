@@ -12,6 +12,7 @@ class PageController < ApplicationController
   end
 
   def leagues
+    @tournament = Tournament.new
   end
 
   def camps

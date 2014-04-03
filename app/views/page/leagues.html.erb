@@ -28,39 +28,43 @@
 			<dd> (201)851-7504</dd>
 			<dd> coachozzie34@aol.com</dd>
 			<dt> Please do not delay. Teams are registered on a First Come Basis!</dt>
-			
+			<%= link_to "Register Online",
+				new_organization_url(:id => Tournament.find_tournament_id("Gym Ratz AAU Spring Invitational")),
+				:class => "button-look",
+				:id => "no-hover-change"%>
 		</div>
 	</div>
 </div>
 <div class = "static-cols-green">
 	<h3>Gym Ratz One Day Shootout Tournaments</h3>
-	<p>The One Day Shootout Tournaments are open to both Boys and Girls Teams</p>
+	<p>The One Day Shootout Tournaments are open to both Boys and Girls Teams Grades 4-8</p>
 	<li class = "no-bullet"><strong>Each Team Guarenteed 3 Games</strong> </li>
 	<p>	<strong>Championship T-Shirts To Any Team Finishing 3-0</strong> <br /> <br /></p>
+
 	<div class = "row">
 		<div class = "col-xs-6">
-			<dt > April 26th</dt>
-			<dd> Boys Grades 5-8</dd>
-			<dt > April 27th</dt>
-			<dd> Girls Grades 5-8</dd>
-			<dt > May 10th</dt>
-			<dd> Boys and Girls Grades 5-6</dd>
-			<dt > June 7th</dt>
-			<dd> Boys Grades 5-8</dd>
-			<dt > June 8th</dt>
-			<dd> Girls Grades 5-8</dd>
-		</div>
-		<div class = "col-xs-6">
+			<dt>When</dt>
+			<dd > May 10th</dd>
+			<dd > June 7th</dd> 
+			<dd > June 8th</dd> 
 			<dt> Where</dt>
 			<dd>Down Town Sports, Mahwah</dd>
 
 			<dt> Entry Free</dt>
 			<dd> $285 per Team</dd>
-			<dt> Contact Coach Ozzie</dt>
-			<dd> (201)851-7504</dd>
-			<dd> coachozzie34@aol.com</dd>
-			<dt> Please do not delay. Teams are registered on a First Come Basis!</dt>
+
 		</div>
+		<div class = "col-xs-6">
+			<dt>Select a Date</dt>
+			<%= form_for @tournament, :url => new_organization_url, :html => { :method => 'GET' } do |f| %>
+				<%= f.collection_select :id, Tournament.find_one_day_shootouts,:id,:formatted_name, include_blank: false %> <br /> <br />
+				<%= f.submit "Register Online",:class => 'button-look'%>
+			<% end %>
+		</div>
+	</div>
+	<br />
+	<div class = "centered">
+			<dt> Please do not delay. Teams are registered on a First Come Basis!</dt>
 	</div>
 </div>
 <div class = "static-cols-green">

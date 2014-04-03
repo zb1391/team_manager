@@ -239,3 +239,51 @@ form select{
 #dropdown-form{
   width: 500px;
 }
+.button-look {
+  -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+  box-shadow:inset 0px 1px 0px 0px #ffffff;
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #ededed), color-stop(1, #bab4ba) );
+  background:-moz-linear-gradient( center top, #ededed 5%, #bab4ba 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#ededed', endColorstr='#bab4ba');
+  background-color:#ededed;
+  -webkit-border-top-left-radius:20px;
+  -moz-border-radius-topleft:20px;
+  border-top-left-radius:20px;
+  -webkit-border-top-right-radius:20px;
+  -moz-border-radius-topright:20px;
+  border-top-right-radius:20px;
+  -webkit-border-bottom-right-radius:20px;
+  -moz-border-radius-bottomright:20px;
+  border-bottom-right-radius:20px;
+  -webkit-border-bottom-left-radius:20px;
+  -moz-border-radius-bottomleft:20px;
+  border-bottom-left-radius:20px;
+  text-indent:0;
+  border:1px solid #dcdcdc;
+  display:inline-block;
+  color:#006600;
+  font-family:Arial;
+  font-size:15px;
+  font-weight:bold;
+  font-style:normal;
+  height:50px;
+  line-height:50px;
+  width:158px;
+  text-decoration:none;
+  text-align:center;
+}
+.button-look:hover {
+  background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bab4ba), color-stop(1, #ededed) );
+  background:-moz-linear-gradient( center top, #bab4ba 5%, #ededed 100% );
+  filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bab4ba', endColorstr='#ededed');
+  background-color:#bab4ba;
+}.button-look:active {
+  position:relative;
+  top:1px;
+}
+
+#no-hover-change:hover{
+  text-decoration: none;
+  color:#006600;
+}

@@ -16,6 +16,16 @@ class OrganizationsController < ApplicationController
   # GET /organizations/new
   def new
     @organization = Organization.new
+    if !params[:id].blank?
+      @tournament = Tournament.find(params[:id])
+      @organization.tournament_id = params[:id]
+    end
+    if !params[:tournament][:id].blank?
+      @t = Tournament.find(params[:tournament][:id])
+      @organization.tournament_id = @t.id
+    end
+
+    #summer_camper_registration_path(:param1 => @summer_camper.id)
   end
 
   # GET /organizations/1/edit
