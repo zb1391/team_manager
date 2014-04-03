@@ -28,4 +28,8 @@ class PageController < ApplicationController
 
   def page_unavailable
   end
+
+  def summer_camper_registration
+    @summer_camper = SummerCamper.find(params[:param1])
+  end
 end

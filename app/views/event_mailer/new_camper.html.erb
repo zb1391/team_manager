@@ -2,16 +2,27 @@
 <html>
   <head>
     <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+    <style>
+      #red-text{ 
+        text-decoration: underline;
+        color:red;
+      }
+    </style>
   </head>
   <body>
     <h1>Camper Registration Confirmation </h1>
     <p>
     Thank you for registering <%= "#{@camper.first_name} #{@camper.last_name}"%> for the Down Town Sports Summer Camps<br />
     Below is a confirmation of the registration form. <br />
-    Please contact Adam at Down Town Sports (201) 848-0017 for payment options and coupon availability. <br />    
-    <br />
     </p>
+    
+    <h3>Please Note</h3>
+    <h4>Your child is not guaranteed a spot in camp until the payment process is complete</h4>
+    <h4>Please contact Down Town Sports (201) 848-0017 to complete the registration process</h4><br />
+    <h4 id = "red-text">Coupons / Special Offers No Longer Valid for Payments After June 1st</h4>
+    
     <h2><%= "#{@camper.first_name} #{@camper.last_name}"%></h2>
+
     <dd>Home Phone: <%= number_to_phone(@camper.home_phone, area_code: true) %></dd>
     <dd>Cell Phone: <%= number_to_phone(@camper.cell_phone, area_code: true) %></dd>
 

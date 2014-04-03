@@ -1,0 +1,46 @@
+<div class = "static-cols-green">
+<h2 class = "centered">Thank You</h2> <br />
+<% if @summer_camper.amount_owe != @summer_camper.amount_paid %>
+  <h3 class = "centered" id = "black-text">Please Note</h3>
+  <h4 id = "black-text" class = "centered">Your child is not guaranteed a spot in camp until the payment process is complete</h4>
+  <h4 id = "black-text" class = "centered">Please contact Down Town Sports (201) 848-0017 to complete the registration process</h4><br />
+  <h4 id = "red-text" class = "centered">Coupons / Special Offers No Longer Valid for Payments After June 1st</h4>
+<% else %>
+
+<% end %>
+
+<div class = "row">
+  <div class = "col-xs-6">
+  <h2 id = "black-text"> Camp Dates</h2>
+    <% @summer_camper.summer_camps.each do |c| %>
+      <dd class = "med-margin-left"> <%= c.date_range %></dd>
+    <% end %>
+    <br />
+<h2> Summary </h2>
+  <table class = "med-margin-left">
+    <tr>
+      <td> <dt>Camps Entered:</dt></td>
+      <td><dd> <%= @summer_camper.summer_camps.size %></dd>  </td>
+    </tr>
+    <tr>
+      <td> <dt>Total</dt></td>
+      <td><dd> <%= number_to_currency @summer_camper.amount_owe %></dd></td>
+    </tr>
+    <tr>
+    </tr>
+  </table>
+  </div>
+  <div class ="col-xs-6">
+    <h2 id = "black-text"> Contact Information</h2>
+      <h4 class = "med-margin-left" id = "black-text"> <%= "#{@summer_camper.first_name} #{@summer_camper.last_name}" %></h4>
+    <dt class = "med-margin-left inline"> Home: </dt>
+    <dd class = "inline"><%= number_to_phone @summer_camper.home_phone, area_code: true %></dd> <br />
+    <dt class = "med-margin-left inline"> Cell: </dt>
+    <dd class = "inline"><%= number_to_phone @summer_camper.cell_phone, area_code: true %></dd> <br /> <br />
+    <dt class = "med-margin-left">
+      An email with this summary has been sent to <%= @summer_camper.email %>
+    </dt>
+  </div>
+  
+</div>
+</div>

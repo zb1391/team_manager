@@ -30,7 +30,7 @@ class SummerCampersController < ApplicationController
     respond_to do |format|
       if @summer_camper.save
         EventMailer.new_camper(@summer_camper).deliver
-        format.html { redirect_to @summer_camper, notice: 'Summer camper was successfully created.' }
+        format.html { redirect_to page_summer_camper_registration_path(:param1 => @summer_camper.id)}
         format.json { render action: 'show', status: :created, location: @summer_camper }
       else
         format.html { render action: 'new' }
