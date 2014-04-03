@@ -19,7 +19,7 @@
       <%= hotel.name %> <br />
       <%= hotel.unformatted_location %> <br />
       <%="#{number_to_currency(hotel.price)}/Night"%> <br />
-      <% if !hotel.addtional_link.nil? %>
+      <% if !hotel.addtional_link.empty? %>
         <%= link_to "booking information", hotel.addtional_link %> <br />
       <% end %>
     <%end%>

@@ -36,8 +36,10 @@
   <%= link_to 'Click Here!', "https://maps.google.com/maps?f=d&daddr=#{@hotel.glocation}" %>
 </p>
 <p>
+  <% if !@hotel.addtional_link.empty? %>
   <strong>Addtional link:</strong>
   <%= link_to 'Booking Information', @hotel.addtional_link %>
+  <% end %>
 </p>
 </div>
 </div>
