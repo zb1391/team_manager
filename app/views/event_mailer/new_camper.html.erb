@@ -32,11 +32,8 @@
     <% end %>
 
     <h2>Total</h2>
-      <% if @camper.amount_owe.nil? %>
-        <dd>Its not working</dd>
-      <% else %>
-      <dd><% number_to_currency @camper.amount_owe %></dd>
-      <% end %>
+    <dd>Home Phone: <%= number_to_phone(@camper.home_phone, area_code: true) %></dd>
+    <h1><%= number_to_currency @camper.amount_owe %></h1>
     <p>
       This is an automated email. Please do not reply
     </p>
