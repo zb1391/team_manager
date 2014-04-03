@@ -17,7 +17,6 @@
       <%= check_box_tag :summer_camp_ids, camp.id, @summer_camper.summer_camps.include?(camp), 
       :name => 'summer_camper[summer_camp_ids][]', :id => "check-box-margin" %>
       <%= label_tag :summer_camp_ids, camp.date_range %>
-      <%= number_to_currency camp.price %>
       <% if total == 3 %>
         <br /> <br />
         <% total = 0; %>
