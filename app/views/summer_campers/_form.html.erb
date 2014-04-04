@@ -36,7 +36,7 @@
     <%= f.label :gender %>
     <%= f.select :gender, options_for_select(%w[Boys Girls], @summer_camper.gender)%>
     <%= f.label :grade %>
-    <%= f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th 10th 11th 12th],@summer_camper.grade)%>
+    <%= f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th],@summer_camper.grade)%>
   </div>
   <h2>Parent Contact Information</h2>
   <div class="field">
@@ -90,7 +90,7 @@
     <%= hidden_field_tag :manual_fee_entry, '' %>
     <%= f.check_box :manual_fee_entry %>
     <%= f.label :manual_fee_entry, "Enter Amount Manually" %> 
-    <em>Check this box if you want to manually enter the amoune owe </em><br /> <br />
+    <em>Check this box if you want to manually enter the amount owe </em><br /> <br />
     <%= f.label "Amount Paid" %> <br />
     <%= f.text_field :amount_paid %> <br />
   </div>
