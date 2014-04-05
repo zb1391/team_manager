@@ -1,6 +1,6 @@
 class SummerCampsController < ApplicationController
   before_action :set_summer_camp, only: [:show, :edit, :update, :destroy]
-
+   before_filter :authenticate
   # GET /summer_camps
   # GET /summer_camps.json
   def index
