@@ -26,7 +26,7 @@ class SummerCampersController < ApplicationController
   # POST /summer_campers.json
   def create
     @summer_camper = SummerCamper.new(summer_camper_params)
-    if summer_camper_params[:manual_fee_entry] == "0"
+    if summer_camper_params[:manual_fee_entry] == "0" || summer_camper_params[:manual_fee_entry].nil?
       @summer_camper.amount_owe = 0
       @summer_camper.summer_camps.each do |summer_camp|
         @summer_camper.amount_owe += summer_camp.price

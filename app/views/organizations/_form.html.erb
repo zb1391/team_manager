@@ -40,7 +40,6 @@
   </div>
   
 
-
 <h2>Teams</h2>
   <strong>Please click the "Add Team" Button below</strong> <br /> <br />
   <%= f.fields_for :clubs do |builder| %>
@@ -52,13 +51,14 @@
   <div class = "field">
     <%= f.label "Amount Owe" %>  <br />
     <%= f.text_field :amount_owe%>
-    <%= hidden_field_tag :manual_fee_entry, '' %>
     <%= f.check_box :manual_fee_entry %>
     <%= f.label :manual_fee_entry, "Enter Amount Manually" %> 
     <em>Check this box if you want to manually enter the amoune owe </em><br /> <br />
     <%= f.label "Amount Paid" %> <br />
     <%= f.text_field :amount_paid %> <br />
   </div>
+<% else %>
+  <% @organization.manual_fee_entry = "0"%>
 <% end %>
   <div class="actions">
     <%= f.submit "Register For Tournament", :id => "black-text"%>

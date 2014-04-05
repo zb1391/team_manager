@@ -37,7 +37,7 @@ class OrganizationsController < ApplicationController
   # POST /organizations.json
   def create
     @organization = Organization.new(organization_params)
-    if organization_params[:manual_fee_entry] == "0"
+    if organization_params[:manual_fee_entry] == "0" || organization_params[:manual_fee_entry].nil?
       @organization.amount_owe = @organization.tournament.price*@organization.clubs.size
     end
     respond_to do |format|
