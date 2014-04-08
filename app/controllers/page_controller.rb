@@ -33,4 +33,8 @@ class PageController < ApplicationController
   def summer_camper_registration
     @summer_camper = SummerCamper.find(params[:param1])
   end
+
+  def tournament_manager
+    @tournaments = Event.search(:eventtype_name_cont => "tournament").result.order(:the_date,:team_id).to_a
+  end
 end

@@ -1,0 +1,21 @@
+<table>
+	<% cur = @tournaments[0] %>
+	<% cur_class = "oddrow" %>
+	<% @tournaments.each do |tournament| %>
+		<% if tournament.the_date != cur.the_date %>
+			<% if cur_class == "evenrow" %>
+				<% cur_class = "oddrow" %>
+			<% else %>
+				<% cur_class = "evenrow" %>
+			<% end %>
+			<% cur = tournament %>
+		<% end %>
+		<tr class ="<%= cur_class %>">
+			<td> <%= tournament.formatted_date %></td>
+			<td> <%= tournament.location.name %></td>
+			<td> <%= tournament.team.name %></td>
+			<td> <%= link_to "Edit", edit_event_url(tournament), id: "black-link" %></td>
+		</tr>
+	<% end %>
+</table>
+<%= link_to "New Event", new_event_url %>
