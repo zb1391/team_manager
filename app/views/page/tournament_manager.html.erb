@@ -2,7 +2,7 @@
 	<% cur = @tournaments[0] %>
 	<% cur_class = "oddrow" %>
 	<% @tournaments.each do |tournament| %>
-		<% if tournament.the_date != cur.the_date %>
+		<% if tournament.location.name != cur.location.name %>
 			<% if cur_class == "evenrow" %>
 				<% cur_class = "oddrow" %>
 			<% else %>

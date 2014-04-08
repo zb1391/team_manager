@@ -35,6 +35,6 @@ class PageController < ApplicationController
   end
 
   def tournament_manager
-    @tournaments = Event.search(:eventtype_name_cont => "tournament").result.order(:the_date,:team_id).to_a
+    @tournaments = Event.search(:eventtype_name_cont => "tournament").result.order(:the_date,:location_id,:team_id).to_a
   end
 end
