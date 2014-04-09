@@ -19,8 +19,8 @@
 .dropdown-submenu:hover>a:after{border-left-color:#ffffff;}
 .dropdown-submenu.pull-left{float:none;}.dropdown-submenu.pull-left>.dropdown-menu{left:-100%;margin-left:10px;-webkit-border-radius:6px 0 6px 6px;-moz-border-radius:6px 0 6px 6px;border-radius:6px 0 6px 6px;}
 
-  table tr.evenrow {background-color: #CCFF66; color:black;}
-  table tr.oddrow {background-color: #FF9933; color:black; }
+  table tr.evenrow {background-color: #66CCFF; color:black;}
+  table tr.oddrow {background-color: #C1C1C1; color:black; }
 #add-teams-button{
   font-size: 50px;
 }
