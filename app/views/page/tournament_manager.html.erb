@@ -3,7 +3,11 @@
 	<% cur_class = "oddrow" %>
 	<% @tournaments.each do |tournament| %>
 		<% if tournament.location.name != cur.location.name %>
-			<tr class = "blackrow"><td></td><td></td><td></td><td></td></tr>
+			<tr class = "blackrow"><td></td><td></td><td></td>
+				<%if is_admin? %>
+					<td></td>
+				<% end %>
+			</tr>
 			<% if cur_class == "evenrow" %>
 				<% cur_class = "oddrow" %>
 			<% else %>
@@ -15,7 +19,9 @@
 			<td> <%= tournament.formatted_date %></td>
 			<td> <%= tournament.location.name %></td>
 			<td> <%= tournament.team.name %></td>
+			<% if is_admin?%>
 			<td> <%= link_to "Edit", edit_event_url(tournament), id: "black-link" %></td>
+			<% end %>
 		</tr>
 	<% end %>
 </table>
