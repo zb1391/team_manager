@@ -3,6 +3,7 @@
 	<% cur_class = "oddrow" %>
 	<% @tournaments.each do |tournament| %>
 		<% if tournament.location.name != cur.location.name %>
+			<tr class = "blackrow"><td></td><td></td><td></td><td></td></tr>
 			<% if cur_class == "evenrow" %>
 				<% cur_class = "oddrow" %>
 			<% else %>

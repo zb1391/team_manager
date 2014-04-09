@@ -21,6 +21,7 @@
 
   table tr.evenrow {background-color: #66CCFF; color:black;}
   table tr.oddrow {background-color: #C1C1C1; color:black; }
+  table tr.blackrow{background: black};
 #add-teams-button{
   font-size: 50px;
 }
