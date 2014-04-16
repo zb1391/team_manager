@@ -13,6 +13,8 @@ class SummerCamper < ActiveRecord::Base
 		presence: true
 	validates :home_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validates :cell_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
+	validate :unique_camper, :on => :create
+	validate :has_one_camp
 	before_create :initial_pay_values
 
 
@@ -30,4 +32,23 @@ class SummerCamper < ActiveRecord::Base
 			self.amount_owe += summer_camp.price
 		end
 	end
+
+	def has_one_camp
+		if summer_camps.empty?
+			errors.add(:summer_camps, ": Please register for at least one camp")
+		end
+	end
+	def unique_camper
+		summer_camps.each do |summer_camp|
+			already_a_row = SummerCamper.includes(:summer_camps).where(
+				:first_name => first_name, 
+				:last_name => last_name, :grade => grade,
+				:summer_camps => {:id => summer_camp.id})
+			if !already_a_row.empty?
+			errors.add(:summer_camps, ": #{first_name} #{last_name}, #{grade} grade, has already registered 
+				for the camp: #{summer_camp.date_range}")			
+			end
+		end
+	end
+
 end
