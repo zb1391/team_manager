@@ -40,6 +40,14 @@ $(function (){
  	});
 });
 
+function displayInstaComment(current){
+ 	var sub = $("ul.instacomments").children("li");
+ 	sub.hide();
+ 	var curComment = $("ul.instacomments").children("li").eq(current);
+ 	curComment.show();
+}
+
+
 function remove_fields (link) {
 	$(link).previous("input[type=hidden]").value = "1"
 	$(link).up(".fields").hide();

@@ -19,6 +19,24 @@ class PageController < ApplicationController
   end
 
   def gym_ratz_about
+    @instagram = Instagram.user_liked_media
+  end
+
+  def photo_gallery
+    @instagram = Instagram.user_liked_media
+    if !params[:img_id].blank?
+      @pic = @instagram[params[:img_id].to_i]
+    else
+      @pic = @instagram[0]
+    end
+    @comments = [];
+    comment=""
+    if @pic.caption
+      comment = @pic.caption
+    else
+      comment = ""
+    end
+    @comments << {:name => @pic.user.name, :comment => comment} 
   end
 
   def contact
@@ -35,6 +53,6 @@ class PageController < ApplicationController
   end
 
   def tournament_manager
-    @tournaments = Event.search(:eventtype_name_cont => "tournament").result.order(:the_date,:location_id,:team_id).to_a
+    @tournaments = Event.search(:eventtype_name_cont => "tournament",:the_date_gteq => Date.today).result.order(:the_date,:location_id,:team_id).to_a
   end
 end

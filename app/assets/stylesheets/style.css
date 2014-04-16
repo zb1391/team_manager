@@ -4,6 +4,51 @@
 	box-sizing:border-box;
 }
 
+.instagram-container{
+	overflow: visible;
+	background:black;
+}
+.instagram-container h1{
+	color: #353535;
+}
+.instagram-container h2{
+	color:#006600;
+}
+.instagram-album{
+	padding: 10px 10px;
+	background: #FFFFB8;
+}
+.instagram-container img{
+	float:none;
+	margin-top:20px;
+	margin-left: 150px;
+	border-radius:10px;
+	border:3px solid #353535;
+}
+
+.instagram-container a{
+	color:white;
+}
+
+.instagram-container a:hover{
+	color:#52CC52;
+}
+.instagram-container p {
+	background: #353535;
+	border-radius:10px;
+	padding: 10px;
+	border: 1px solid #565656;
+}
+.instagram-margin{
+	margin-bottom: 10px;
+}
+#tournament-pic-small{
+	border:4px solid #006600;
+	border-radius: 10px;
+	width: 300px;
+	height: auto;
+	margin: auto;
+}
 .content-padding{
 	padding-top:120px;
 	padding-bottom: 40px;

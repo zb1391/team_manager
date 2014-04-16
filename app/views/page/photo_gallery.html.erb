@@ -1,0 +1,36 @@
+<div class="instagram-container content-height">
+	<%= image_tag @pic.images.standard_resolution.url %>
+	<h2>@<%= @pic.user.username%></h2>
+	<%count=0;%>
+	<ul class = "instacomments">
+		<% if @pic.caption %>
+			<li><%= @pic.caption.text %></li>
+		<% end %>
+
+		<% @pic.comments[:data].each_with_index do |comment, index| %>
+			<li><%=comment.text%></li>
+			<dt> <%=comment[:from].username%></dt>
+		<% end %>
+	</ul>
+
+</div>
+<div class ="instagram-album">
+	<% count = 0; %>
+	<%@instagram.each_with_index do |instagram, index| %>
+		<%if count == 0 %>
+			<div class = "row instagram-margin">
+		<%end%>
+
+		<div class = "col-xs-4">
+			<%= link_to(image_tag(instagram.images.standard_resolution.url, :id =>"tournament-pic-small"),
+			 page_photo_gallery_url(:img_id => index)) %>
+		</div>
+		<%if count == 2 %>
+			</div>
+			<%count = 0; %>
+		<% else %>
+			<% count = count+1;%>
+		<% end %>
+	<% end %>
+</div>
+</div>
