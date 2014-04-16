@@ -4,6 +4,11 @@
 	box-sizing:border-box;
 }
 
+.instagram-content-height{
+	height:800px;
+	box-sizing:border-box;
+}
+
 .instagram-container{
 	overflow: visible;
 	background:black;
@@ -12,7 +17,11 @@
 	color: #353535;
 }
 .instagram-container h2{
-	color:#006600;
+	color:white	;
+	text-align: center;
+}
+.instagram-container dt{
+	text-align: center;
 }
 .instagram-album{
 	padding: 10px 10px;

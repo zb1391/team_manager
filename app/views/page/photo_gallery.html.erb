@@ -1,15 +1,20 @@
-<div class="instagram-container content-height">
+<div class="instagram-container instagram-content-height">
 	<%= image_tag @pic.images.standard_resolution.url %>
-	<h2>@<%= @pic.user.username%></h2>
 	<%count=0;%>
 	<ul class = "instacomments">
 		<% if @pic.caption %>
-			<li><%= @pic.caption.text %></li>
+			<li class = "no-bullet">
+				<h2>@<%= @pic.user.username%></h2>
+				<dt><%= @pic.caption.text %></dt>
+			</li>
 		<% end %>
 
 		<% @pic.comments[:data].each_with_index do |comment, index| %>
-			<li><%=comment.text%></li>
-			<dt> <%=comment[:from].username%></dt>
+			<li class="no-bullet">
+				<h2>@<%=comment[:from].username%></h2>
+				<dt><%=comment.text%></dt>
+			</li>
+			
 		<% end %>
 	</ul>
 

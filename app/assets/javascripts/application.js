@@ -39,6 +39,30 @@ $(function (){
  		$(this).children(":first").hide();
  	});
 });
+$(function (){
+	var current_id = 0;
+
+ 	var sub = $("ul.instacomments").children("li");
+ 	var list_size = sub.length;
+ 	sub.hide();
+ 	var curComment = $("ul.instacomments").children("li").eq(current_id);
+ 	curComment.show();
+
+ 	if(list_size > 1){
+		window.setInterval(function() {
+			var comment = $("ul.instacomments").children("li").eq(current_id);
+	 		comment.hide();
+	 		current_id++;
+	 		if(current_id == list_size){
+	 			current_id = 0;
+	 		}
+	 		var newcomment = $("ul.instacomments").children("li").eq(current_id);
+	 		newcomment.fadeIn(800);
+		}, 9000);
+	}
+});
+
+
 
 function displayInstaComment(current){
  	var sub = $("ul.instacomments").children("li");
