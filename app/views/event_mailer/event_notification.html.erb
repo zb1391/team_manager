@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    Someone has <%= @action %> an event. <br />
+    <%= @event.eventtype.name %>: <%= @event.the_date %>, <%= @event.the_time.strftime('%l:%M %P')%> at <%=@event.location.name %> <br />
+
+    This event is for the <%= @event.team.name %> <br />
+    This was done by <%= @user %> <br />
+    On <%= Date.today %>
+
+  
+  </body>
+</html>

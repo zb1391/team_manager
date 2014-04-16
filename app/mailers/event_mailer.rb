@@ -61,6 +61,27 @@ ActionMailer::Base.delivery_method = :smtp
     mail(to: organization.email, subject: "Tournament Registration")
   end
 
+  #FOR HOTELS AND LOCATIONS
+  def hotel_notification(hotel, action)
+    @user = @current_user
+    @action = action
+    @hotel = hotel
+    mail(to: "zmb1391@gmail.com", subject: "Hotel created/updated/destroyed")
+  end
+
+  def location_notification(location,action)
+    @user = @current_user
+    @action = action
+    @location = location
+    mail(to: "zmb1391@gmail.com", subject: "Location created/updated/destroyed")
+  end
+
+  def event_notification(event,action)
+    @user = @current_user
+    @action = action
+    @event = event
+    mail(to: "zmb1391@gmail.com", subject: "Event created/updated/destroyed")
+  end
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:

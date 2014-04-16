@@ -28,6 +28,7 @@ class LocationsController < ApplicationController
 
     respond_to do |format|
       if @location.save
+        EventMailer.location_notification(@location,"created").deliver
         format.html { redirect_to @location, notice: 'Location was successfully created.' }
         format.json { render action: 'show', status: :created, location: @location }
       else
@@ -42,6 +43,7 @@ class LocationsController < ApplicationController
   def update
     respond_to do |format|
       if @location.update(location_params)
+        EventMailer.location_notification(@location,"changed").deliver
         format.html { redirect_to @location, notice: 'Location was successfully updated.' }
         format.json { head :no_content }
       else
@@ -54,6 +56,7 @@ class LocationsController < ApplicationController
   # DELETE /locations/1
   # DELETE /locations/1.json
   def destroy
+    EventMailer.location_notification(@location,"destroyed").deliver
     @location.destroy
     if @location.check_for_events
       respond_to do |format|

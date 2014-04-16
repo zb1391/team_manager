@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    Someone has <%= @action%> a hotel <br />
+    <%= @hotel.name %>  <br />
+    <%= @hotel.addres %> <br />
+    <%= @hotel.city %> <br />
+    <%= @hotel.state %> <br />
+    <%= "#{number_to_currency(hotel.price)}/Night"%>  <br />
+    <%= number_to_phone(hotel.phone, area_code: true) %> <br />
+    <%if !hotel.addtional_link.empty? %>
+    <%= link_to 'Booking Information', hotel.addtional_link %> <br />
+    <%end%>
+    This one performed by: <%= @user %> <br />
+    On <%= Date.today %>
+  </body>
+</html>
