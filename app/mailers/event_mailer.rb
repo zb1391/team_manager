@@ -62,22 +62,22 @@ ActionMailer::Base.delivery_method = :smtp
   end
 
   #FOR HOTELS AND LOCATIONS
-  def hotel_notification(hotel, action)
-    @user = @current_user
+  def hotel_notification(hotel, action, current_user)
+    @user = current_user
     @action = action
     @hotel = hotel
     mail(to: "zmb1391@gmail.com", subject: "Hotel created/updated/destroyed")
   end
 
-  def location_notification(location,action)
-    @user = @current_user
+  def location_notification(location,action,current_user)
+    @user = current_user
     @action = action
     @location = location
     mail(to: "zmb1391@gmail.com", subject: "Location created/updated/destroyed")
   end
 
-  def event_notification(event,action)
-    @user = @current_user
+  def event_notification(event,action,current_user)
+    @user = current_user
     @action = action
     @event = event
     mail(to: "zmb1391@gmail.com", subject: "Event created/updated/destroyed")

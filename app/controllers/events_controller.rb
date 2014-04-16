@@ -39,7 +39,7 @@ class EventsController < ApplicationController
     
     respond_to do |format|
       if @event.save
-        EventMailer.event_notification(@event,"created").deliver
+        EventMailer.event_notification(@event,"created",@current_user.first_name).deliver
         EventMailer.new_team_event(@event.team,@event).deliver
         format.html { redirect_to teams_path, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
@@ -56,7 +56,7 @@ class EventsController < ApplicationController
     oldevent = @event
     respond_to do |format|
       if @event.update(event_params)
-        EventMailer.event_notification(@event,"changed").deliver
+        EventMailer.event_notification(@event,"changed",@current_user.first_name).deliver
         EventMailer.changed_team_event(@event.team,@event,oldevent).deliver
         format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
@@ -71,7 +71,7 @@ class EventsController < ApplicationController
   # DELETE /events/1.json
   def destroy
     #EventMailer.destroyed_team_event(@event.team,@event).deliver
-    EventMailer.event_notification(@event,"destroyed").deliver
+    EventMailer.event_notification(@event,"destroyed",@current_user.first_name).deliver
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_path }
