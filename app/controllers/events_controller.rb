@@ -68,7 +68,7 @@ class EventsController < ApplicationController
   # DELETE /events/1
   # DELETE /events/1.json
   def destroy
-    EventMailer.event_notification(@event,"destroyed",@current_user.first_name).deliver
+    EventMailer.destroyed_team_event(@event.team,@event).deliver
     @event.destroy
     respond_to do |format|
       format.html { redirect_to events_path }
