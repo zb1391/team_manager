@@ -56,7 +56,7 @@ $(function (){
 	 		}
 	 		var newcomment = $("ul.instacomments").children("li").eq(current_id);
 	 		newcomment.fadeIn(800);
-		}, 9000);
+		}, 7000);
 	}
 });
 

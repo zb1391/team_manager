@@ -16,7 +16,7 @@ ActionMailer::Base.delivery_method = :smtp
   def new_team_event(team,event)
     @event = event
     @team = team
-    emails = ""
+    emails = "zmb1391@gmail.com,"
     team.players.each do |player|
       emails += "#{player.email},#{player.parent_email},#{player.parent_email2},"
     end
@@ -28,7 +28,7 @@ ActionMailer::Base.delivery_method = :smtp
     @event = newevent
     @oldevent = oldevent
     @team = team
-    emails = ""
+    emails = "zmb1391@gmail.com,"
     team.players.each do |player|
       emails += "#{player.email},#{player.parent_email},#{player.parent_email2},"
     end
@@ -40,7 +40,7 @@ ActionMailer::Base.delivery_method = :smtp
    def destroyed_team_event(team,event)
     @event = event
     @team = team
-    emails = ""
+    emails = "zmb1391@gmail.com,"
     team.players.each do |player|
       emails += "#{player.email},#{player.parent_email},#{player.parent_email2},"
     end
@@ -76,12 +76,6 @@ ActionMailer::Base.delivery_method = :smtp
     mail(to: "zmb1391@gmail.com", subject: "Location created/updated/destroyed")
   end
 
-  def event_notification(event,action,current_user)
-    @user = current_user
-    @action = action
-    @event = event
-    mail(to: "zmb1391@gmail.com", subject: "Event created/updated/destroyed")
-  end
 
   # Subject can be set in your I18n file at config/locales/en.yml
   # with the following lookup:
