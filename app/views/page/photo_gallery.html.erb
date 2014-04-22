@@ -46,11 +46,11 @@
 <script>
 	$(document).keydown(function(e){
 	    if (e.keyCode == 37) {
-	    	window.location = "www.downtownsports.org/page/photo_gallery?img_id=" + "<%=@prev%>"; 
+	    	window.location = "/photo_gallery?img_id=" + "<%=@prev%>"; 
 	       return false;
 	    }
 	    if (e.keyCode == 39) {
-	    	window.location = "www.downtownsports.org/page/photo_gallery?img_id=" + "<%=@next%>"; 
+	    	window.location = "/photo_gallery?img_id=" + "<%=@next%>"; 
 	       return false;
 	    }
 	});
