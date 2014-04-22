@@ -25,8 +25,10 @@ class PageController < ApplicationController
   def photo_gallery
     @instagram = Instagram.user_liked_media
     if !params[:img_id].blank?
+      @picid = params[:img_id]
       @pic = @instagram[params[:img_id].to_i]
     else
+      @picid = 0
       @pic = @instagram[0]
     end
     @comments = [];
@@ -36,7 +38,19 @@ class PageController < ApplicationController
     else
       comment = ""
     end
-    @comments << {:name => @pic.user.name, :comment => comment} 
+    @comments << {:name => @pic.user.name, :comment => comment}
+
+    @prev = @picid.to_i;
+    @prev = @prev -1
+    @next = @picid.to_i; 
+    @next = @next + 1
+    if @picid.to_i == 0
+      @prev = @instagram.size-1;
+    end
+    if @picid.to_i == @instagram.size-1
+      @next = 0;
+    end
+
   end
 
   def contact

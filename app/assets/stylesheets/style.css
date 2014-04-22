@@ -14,9 +14,11 @@
 	background:black;
 }
 .instagram-container h1{
+	margin-left: 0px;
 	color: #353535;
 }
 .instagram-container h2{
+	margin-left: 0px;
 	color:white	;
 	text-align: center;
 }
@@ -30,9 +32,11 @@
 .instagram-container img{
 	float:none;
 	margin-top:20px;
-	margin-left: 150px;
 	border-radius:10px;
 	border:3px solid #353535;
+}
+.instagram-leftarrow{
+	margin-left: 145px;
 }
 
 .instagram-container a{
@@ -350,6 +354,9 @@ form{
 	color:#ffe77d;
 	text-align: right;
 }
+.darkgreen-content strong{
+	color:#FFA319;
+}
 
 .darkgreen-content h1{
 	color: #FFA319;
@@ -364,6 +371,7 @@ form{
 	padding:10px;
 	border-radius:10px;
 	border: 1px solid #006600;
+	text-align: justify;
 }
 
 .darkgreen-content a{

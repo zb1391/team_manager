@@ -1,5 +1,9 @@
 <div class="instagram-container instagram-content-height">
-	<%= image_tag @pic.images.standard_resolution.url %>
+
+	<%= link_to "<", page_photo_gallery_url(:img_id => @prev), :class => "instagram-leftarrow float-left" %>
+	<img class = "float-left" src="<%= @pic.images.standard_resolution.url%>" id = "mainpic" picid="<%=@picid%>">
+	<%= link_to ">",page_photo_gallery_url(:img_id => @next), :class => "float-left" %>
+	
 	<%count=0;%>
 	<ul class = "instacomments">
 		<% if @pic.caption %>
@@ -39,3 +43,16 @@
 	<% end %>
 </div>
 </div>
+<script>
+	$(document).keydown(function(e){
+	    if (e.keyCode == 37) {
+	    	window.location = "www.downtownsports.org/page/photo_gallery?img_id=" + "<%=@prev%>"; 
+	       return false;
+	    }
+	    if (e.keyCode == 39) {
+	    	window.location = "www.downtownsports.org/page/photo_gallery?img_id=" + "<%=@next%>"; 
+	       return false;
+	    }
+	});
+
+</script>
