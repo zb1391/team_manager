@@ -28,7 +28,7 @@ class HotelsController < ApplicationController
 
     respond_to do |format|
       if @hotel.save
-        EventMailer.hotel_notification(@hotel,"created",@current_user.first_name).deliver
+        #EventMailer.hotel_notification(@hotel,"created",@current_user.first_name).deliver
         format.html { redirect_to @hotel, notice: 'Hotel was successfully created.' }
         format.json { render action: 'show', status: :created, location: @hotel }
       else
@@ -43,7 +43,7 @@ class HotelsController < ApplicationController
   def update
     respond_to do |format|
       if @hotel.update(hotel_params)
-        EventMailer.hotel_notification(@hotel,"changed",@current_user.first_name).deliver
+        #EventMailer.hotel_notification(@hotel,"changed",@current_user.first_name).deliver
         format.html { redirect_to @hotel, notice: 'Hotel was successfully updated.' }
         format.json { head :no_content }
       else
@@ -56,7 +56,7 @@ class HotelsController < ApplicationController
   # DELETE /hotels/1
   # DELETE /hotels/1.json
   def destroy
-    EventMailer.hotel_notification(@hotel,"destroyed",@current_user.first_name).deliver
+    #EventMailer.hotel_notification(@hotel,"destroyed",@current_user.first_name).deliver
     @hotel.destroy
       respond_to do |format|
         format.html { redirect_to hotels_url }
