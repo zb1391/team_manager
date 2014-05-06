@@ -37,16 +37,34 @@
 </div>
 <div class = "static-cols-green">
 	<h3>Gym Ratz One Day Shootout Tournaments</h3>
-	<p>The One Day Shootout Tournaments are open to both Boys and Girls Teams Grades 4-8</p>
+	<p>The One Day Shootout Tournaments are open to both <strong id="black-text"> Boys and Girls Teams Grades 4th-8th</strong></p>
 	<li class = "no-bullet"><strong>Each Team Guarenteed 2+ Games</strong> </li>
 	<p>	<strong>Championship T-Shirts</strong> <br /> <br /></p>
-
 	<div class = "row">
 		<div class = "col-xs-6">
-			<dt>When</dt>
-			<% Tournament.find_one_day_shootouts.each do |tournament| %>
-				<dd> <%=tournament.formatted_date %></dd>
-			<% end %>
+			<table>
+				<tr>
+					<td><dt> Boys </dt></td>
+					<td ><dt class="med-margin-left"> Girls</dt></td>
+				</tr>
+				<tr>
+					<td>June 7</dd></td>
+					<td><dd class="med-margin-left"> June 8</dd></td>
+				</tr>
+				<tr>
+					<td>June 28</td>
+					<td> <dd class="med-margin-left"> June 29</dd></td>
+				</tr>
+				<tr>
+					<td>July 12</td>
+					<td><dd class="med-margin-left"> July 13</dd></td>
+				</tr>
+				<tr>
+					<td>July 26</td>
+					<td> <dd class="med-margin-left"> July 27</dd></td>
+				</tr>
+			</table>
+
 			<dt> Where</dt>
 			<dd>Down Town Sports, Mahwah</dd>
 
