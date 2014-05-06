@@ -27,7 +27,7 @@
 			<dt> Contact Coach Ozzie</dt>
 			<dd> (201)851-7504</dd>
 			<dd> coachozzie34@aol.com</dd>
-			<dt> Please do not delay. Teams are registered on a First Come Basis!</dt>
+			<dt> Registration Deadline May 9th!!</dt><br />
 			<%= link_to "Register Online",
 				new_organization_url(:id => Tournament.find_tournament_id("Gym Ratz AAU Spring Invitational")),
 				:class => "button-look",
@@ -38,20 +38,20 @@
 <div class = "static-cols-green">
 	<h3>Gym Ratz One Day Shootout Tournaments</h3>
 	<p>The One Day Shootout Tournaments are open to both Boys and Girls Teams Grades 4-8</p>
-	<li class = "no-bullet"><strong>Each Team Guarenteed 3 Games</strong> </li>
-	<p>	<strong>Championship T-Shirts To Any Team Finishing 3-0</strong> <br /> <br /></p>
+	<li class = "no-bullet"><strong>Each Team Guarenteed 2+ Games</strong> </li>
+	<p>	<strong>Championship T-Shirts</strong> <br /> <br /></p>
 
 	<div class = "row">
 		<div class = "col-xs-6">
 			<dt>When</dt>
-			<dd > May 10th</dd>
-			<dd > June 7th</dd> 
-			<dd > June 8th</dd> 
+			<% Tournament.find_one_day_shootouts.each do |tournament| %>
+				<dd> <%=tournament.formatted_date %></dd>
+			<% end %>
 			<dt> Where</dt>
 			<dd>Down Town Sports, Mahwah</dd>
 
 			<dt> Entry Free</dt>
-			<dd> $285 per Team</dd>
+			<dd> $225 per Team</dd>
 
 		</div>
 		<div class = "col-xs-6">
