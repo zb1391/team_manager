@@ -18,9 +18,11 @@ class Tournament < ActiveRecord::Base
 			"#{name}: #{the_date.strftime("%b %d,%Y")} -#{end_date.strftime("%b %d,%Y")}"
 		end
 	end
-
+	def self.find_active_tournaments
+		Tournament.search(:active_eq => true).result.order(:the_date).to_a
+	end
 	def self.find_one_day_shootouts
-		Tournament.search(:name_cont => "One Day", :the_date_gt => DateTime.now).result.order(:the_date).to_a
+		Tournament.search(:name_cont => "One Day", :the_date_gt => DateTime.now, :active_eq => true).result.order(:the_date).to_a
 	end
 
 	def self.find_tournament_id(name)

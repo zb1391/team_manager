@@ -15,7 +15,7 @@
 <h2> Tournament </h2>
   <div class="field">
     <%= f.label :tournament_id %><br>
-    <%= f.collection_select :tournament_id, Tournament.order(:id),:id,:formatted_name, include_blank: false %>
+    <%= f.collection_select :tournament_id, Tournament.find_active_tournaments,:id,:formatted_name, include_blank: false %>
   </div>
 
 <h2>Club/Organization Information</h2>

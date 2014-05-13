@@ -6,6 +6,7 @@
       <th>Name</th>
       <th>The date</th>
       <th>Price</th>
+      <th>Active</th>
       <th></th>
       <th></th>
       <th></th>
@@ -18,6 +19,7 @@
         <td><%= tournament.name %></td>
         <td><%= tournament.the_date %></td>
         <td><%= tournament.price %></td>
+        <td><%= tournament.active %></td>
         <td><%= link_to 'Show', tournament %></td>
         <td><%= link_to 'Edit', edit_tournament_path(tournament) %></td>
         <td><%= link_to 'Destroy', tournament, method: :delete, data: { confirm: 'Are you sure?' } %></td>
