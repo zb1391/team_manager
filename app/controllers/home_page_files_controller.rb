@@ -1,6 +1,6 @@
 class HomePageFilesController < ApplicationController
   before_action :set_home_page_file, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate, :only => [:new, :destroy,:edit, :update]
+  before_filter :authenticate
   # GET /home_page_files
   # GET /home_page_files.json
   def index
