@@ -1,6 +1,6 @@
 class PageController < ApplicationController
   def home
-    @schedule = HomePageFile.search(:name_eq => "Test").result.to_a
+    @schedule = HomePageFile.search(:name_eq => "Spring_Invitational2014").result.to_a
     @key = HomePageFile.search(:name_eq => "Spring_Invitational2014_Key").result.to_a
   end
 
