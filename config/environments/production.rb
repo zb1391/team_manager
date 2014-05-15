@@ -77,4 +77,14 @@ TeamManager::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  # config/environments/production.rb
+  config.paperclip_defaults = {
+    :storage => :s3,
+    :s3_credentials => {
+      :bucket => ENV['BUCKET_NAME'],
+      :access_key_id => ENV['AW_ID'],
+      :secret_access_key => ENV['AW_KEY']
+    }
+  }
 end
