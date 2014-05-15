@@ -4,7 +4,7 @@ TeamManager::Application.routes.draw do  resources :tournaments
   resources :summer_camps
   resources :summer_campers
   resources :locations
-
+  resources :home_page_files
   resources :hotels
 
   resources :sessions, :only => [:new, :create, :destroy]

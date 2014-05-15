@@ -57,6 +57,9 @@ gem "nifty-generators", :group => :development
 #to monitor web traffic with appneta
 gem 'oboe-heroku'
 
+#adding attachments
+gem "paperclip", "~> 4.1"
+
 ruby "2.0.0"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
