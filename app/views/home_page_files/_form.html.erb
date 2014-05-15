@@ -1,4 +1,4 @@
-<%= form_for @home_page_file, :url => home_page_files_path, :html => { :multipart => true } do |f| %>
+<%= form_for @home_page_file, :html => { :multipart => true } do |f| %>
   <% if @home_page_file.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@home_page_file.errors.count, "error") %> prohibited this home_page_file from being saved:</h2>

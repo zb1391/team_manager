@@ -56,6 +56,26 @@
 
 	<a class="carousel-control right" href="#main-carousel" data-slide="next"> > </a>
 </div>
+
+<% if !@schedule.empty? && !@key.empty? %>
+<div class = "static-cols-green">
+	<h1 class="centered">Gym Ratz AAU <strong>Spring </strong> Invitational</h1> <br />
+	<div class = "row">
+		<div class ="col-xs-8">
+			<p> 
+				The Tournament Schedule has now been released and is available to view by clicking the links to the right.
+				<strong id="black-text">This schedule is subject to change <br />Please Check Frequently!</strong>
+			</p>
+		</div>
+		<div class ="col-xs-4">
+			<%= link_to "Tournament Schedule", @schedule[0].the_file.url %>
+			<%= link_to "Tournament Schedule", @key[0].the_file.url %>
+		</div>
+	</div>
+<% end %>
+
+
+</div>
 <div id="columns-container">
 	<div class="row main-row">
 		<div class="col-xs-4 column3">
