@@ -29,6 +29,22 @@
 	padding: 10px 10px;
 	background: #FFFFB8;
 }
+.instagram-album h1{
+	color:#006600;
+	font-weight: bold;
+	font-size: 50px;
+}
+.instagram-album h2{
+	color:#454545;
+	font-weight: bold;
+	font-size: 30px;
+	margin-left: 0px;
+	padding-left: 25px;
+}
+.instagram-album p{
+	color:black;
+	width: 100%;
+}
 .instagram-container img{
 	float:none;
 	margin-top:20px;
