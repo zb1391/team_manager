@@ -20,13 +20,15 @@
 		</div>
 		<div class="item active gray-content content-height content-padding">
 			<p id="gymratz-desc">
-			Dates : May 16 - May 18
-			Open to both Boys and Girls Grades 3-11. <br />
-			Compete against some of the top competitors in the area. <br />
-			<%= link_to "Sign Up Today!", page_leagues_path, :class  => "underlined" %>
+			<%= link_to "The Gym Ratz Ball Club", page_gym_ratz_about_path, :class => "underlined" %>
+			 is a program for serious players to develop <strong>team skills</strong> and maximize <strong>individual potential</strong>. This is accomplished through structured practices, league games, and tournament competition against some of the best teams on the East Coast.
+			<% if !@key.empty? %>
+				<br />
+				<%= link_to "Gym Ratz AAU Summer Tryoutss Schedule", @key[0].the_file.url %>
+			<% end %>
 			</p>
-			<h2>The Gym Ratz AAU</h2>
-			<h1>Spring Invitational Tournament</h1>
+			<h2>The Team</h2>
+			<h1>GymRatz AAU Basketball</h1>
 		</div>
 		<div class="item orange-content content-height content-padding">
 			<p>
@@ -76,6 +78,63 @@
 
 
 </div>
+<div class = "static-cols-green">
+	<div class = "row">
+		<h3 id ="no-underline" class = "centered">Join Us <strong>For Gym Ratz AAU</strong> Summer Tryouts</h3>
+		<br />
+	</div>
+	<div class ="row">
+		<div class = "col-xs-6">
+			<h3 class ="centered">Tuesday June 10th</h3>
+			<div class ="row">
+				<h4 class ="centered">Girls Tryouts</h4>
+				<table class = "centered-table">
+					<tr> 
+						<td>5:30</td>  
+						<td>pm</td>
+						<td> Girls Grade 3-4-5-6-7</td>
+					</tr>
+					<tr> 
+						<td>7:30</td>  
+						<td>pm</td>
+						<td> Girls Grade 8-9-10-11</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+		<div class = "col-xs-6">
+			<h3 class ="centered">Tuesday June 12th</h3>
+			<div class ="row">
+				<h4 class ="centered">Boys Tryouts</h4>
+				<table class = "centered-table">
+					<tr> 
+						<td>5:30</td>  
+						<td>pm</td>
+						<td> Girls Grade 3-4-5-6-7</td>
+					</tr>
+					<tr> 
+						<td>7:30</td>  
+						<td>pm</td>
+						<td> Girls Grade 8-9-10-11</td>
+					</tr>
+				</table>
+			</div>
+		</div>
+
+	</div>
+		<br />
+		<li class="black-text">Teams will train/practice twice per week </li>
+		<li class = "black-text">Teams will be involved in league play / tournament play
+		<br />
+		<dt class = "centered">
+			All Tryouts are Held at Down Town Sports
+		</dt>
+		<dd class = "centered"> Please call for more information</dd>
+		<dd class = "centered"> (201)848-0017</dd>
+
+	</div>
+
+</div>
 <div id="columns-container">
 	<div class="row main-row">
 		<div class="col-xs-4 column3">
@@ -101,15 +160,15 @@
 		<div class="col-xs-4 column3">
 			<h3>Important Dates</h3>
 			<ul>
-				<li><strong>March 1:</strong> Gym Ratz AAU Tryouts
-				<li><strong>May 16:</strong> Gym Ratz AAU Spring Invitational
+				<li><strong>June 10:</strong> Gym Ratz AAU Girls Tryoutss
+				<li><strong>June 12:</strong> Gym Ratz AAU Boys Tryoutss
 				<li><strong>July 7:</strong> Down Town Sports Summer Camp </li>
 			</ul>
 			<h3>Quick Forms</h3>
 			<ul>
 				<li><a href="bootcamp2014.pdf">Basketball Boot Camp</a></li>
 				<li><a href="program_registration.pdf">Program Registration</a> </li>
-				<li><a href="gym_ratz_signup.pdf">Gym Ratz Try Out Form</a> </li>
+				<li><a href="gym_ratz_signup.pdf">Gym Ratz Tryouts Form</a> </li>
 				<li> <a href="tournament_form.pdf">Tournament Registration</a></li>
 			</ul>
 		</div>
