@@ -13,10 +13,12 @@ TeamManager::Application.routes.draw do  resources :tournaments
   resources :teams
 
   resources :eventtypes
+  
+  resources :events do
+    collection { post :import }
+  end
 
-  resources :events
-
-  resources :players
+  resources :players  
 
   root 'page#home'
 

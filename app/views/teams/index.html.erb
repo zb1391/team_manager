@@ -369,3 +369,13 @@
   </tbody>
 </table>
 <%= link_to 'New Team', new_team_path %>
+
+
+<%= form_tag import_events_path, multipart: true do %>
+<h1> Import Events</h1>
+  <p> This is still in testing - it will provide a way to create calendar events
+      by uploading a CSV file - dont use just yet...
+  </p>
+  <%= file_field_tag :file %>
+  <%= submit_tag "Import" %>
+<% end %>

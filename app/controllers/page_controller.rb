@@ -27,6 +27,7 @@ class PageController < ApplicationController
 
   def photo_gallery
     @instagram = Instagram.user_liked_media({:count => 18})
+    
     if !params[:img_id].blank?
       @picid = params[:img_id]
       @pic = @instagram[params[:img_id].to_i]

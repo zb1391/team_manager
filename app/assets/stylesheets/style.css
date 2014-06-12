@@ -71,6 +71,10 @@
 .instagram-margin{
 	margin-bottom: 10px;
 }
+.instagram-link{
+	color:black;
+	text-align: right;
+}
 #tournament-pic-small{
 	border:4px solid #006600;
 	border-radius: 10px;

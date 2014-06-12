@@ -21,6 +21,11 @@ class EventsController < ApplicationController
   def show
   end
 
+  def import
+    Event.import(params[:file])
+    redirect_to teams_path, notice: "Products imported."
+  end
+
   # GET /events/new
   def new
     @event = Event.new
