@@ -103,6 +103,9 @@
 #shop-content h2{
 	margin-top:90px;
 }
+#dark-green-summer-content h1{
+	margin-top: 120px
+}
 
 #page{
 	margin:auto;
@@ -354,7 +357,7 @@ form{
 
 .orange-content a{
 	display:block;
-	color:white;
+	color: white;
 }
 
 .orange-content a:hover{
@@ -773,6 +776,9 @@ footer ul li a:hover{
 }
 #party-table td{
 	padding: 5px 20px;
+}
+#party-table td li{
+	list-style: none;	
 }
 .static-cols-orange dt,.static-cols-green li{
 	color:black;
