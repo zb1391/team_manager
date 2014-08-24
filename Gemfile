@@ -63,7 +63,7 @@ gem "paperclip", "~> 4.1"
 
 #using Amazing file hosting
 gem 'aws-sdk'
-
+gem "kaminari"
 ruby "2.0.0"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
