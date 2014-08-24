@@ -1,5 +1,5 @@
-<div class = "static-green-content">
-<%= form_for(@organization) do |f| %>
+<div id = "organization-form">
+<%= form_for@organization, :html => {:class => "organization-form"} do |f| %>
   <% if @organization.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@organization.errors.count, "error") %> prohibited this organization from being saved:</h2>
@@ -14,38 +14,38 @@
 
 <h2> Tournament </h2>
   <div class="field">
-    <%= f.label :tournament_id %><br>
+    <%= f.label :tournament_id %>
     <%= f.collection_select :tournament_id, Tournament.find_active_tournaments,:id,:formatted_name, include_blank: false %>
   </div>
 
 <h2>Club/Organization Information</h2>
   <div class="field">
-    <%= f.label :name, "Club Name" %><br>
-    <%= f.text_field :name %>
-  </div>
-
-  <div class="field">
-    <%= f.label :contact_name, "Contact Name" %><br>
-    <%= f.text_field :contact_name %>
-  </div>
-
-  <div class="field">
-    <%= f.label "Email" %><br>
-    <%= f.text_field :email %>
-  </div>
-  
-  <div class="field">
-    <%= f.label :phone, "Phone Number" %> <em>(ex. 2018480017)</em><br> 
-    <%= f.text_field :phone %>
+    <table>
+      <tr>
+        <td><%= f.label :name, "Club Name" %></td>
+        <td><%= f.text_field :name, :class=>"text" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :contact_name, "Contact Name" %> </td>
+        <td><%= f.text_field :contact_name, :class=>"text" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :email %></td>
+        <td><%= f.text_field :email, :class=>"text" %></td>
+      </tr>
+      <tr>
+        <td><%= f.label :phone, "Phone Number" %> </td>
+        <td><%= f.text_field :phone, :class=>"text" %><br /><em>(ex. 2018480017)</em></td>
+      </tr>
+    </table>  
   </div>
   
 
 <h2>Teams</h2>
-  <strong>Please click the "Add Team" Button below</strong> <br /> <br />
   <%= f.fields_for :clubs do |builder| %>
-    <%= render 'club_fields', f: builder %>
+    <%= render 'club_fields', f: builder%>
   <% end %>
-  <%= link_to_add_fields "Add Team", f, :clubs %><br /> <br />
+  <%= link_to_add_fields "Add Team", f, :clubs %><br /> <br /> <br />
 
 <% if is_admin? %>
   <div class = "field">

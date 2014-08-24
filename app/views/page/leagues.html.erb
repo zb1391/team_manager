@@ -4,77 +4,67 @@
 	<br />
 </div>
 <div class = "static-cols-green">
-	<h3>Gym Ratz Spring Invitational</h3>
-	<p>The Gym Ratz AAU Spring Invitational is a tournament open to both Boys and Girls Teams Grades 3-12</p>
+	<h3>Gym Ratz Fall Ball Invitationals</h3>
+	<p>The Gym Ratz AAU Spring Invitational is a tournament open to both Boys and Girls Teams Grades 4-12</p>
 	<ul>
-		<li>A Level and B Level Pools - 6 teams per divsion </li>
-		<li>Each Team <strong> Guaranteed 4 Games (Stop Clock)</strong> </li>
-		<li>Individual Championship and Tournament MVPs trophies will be awarded to top competitors</li>
+		<li>A Level and B Level Pools</li>
+		<li>Each Team <strong> Guaranteed 3+ Games</strong> </li>
+		<li><p>	<strong>Championship T-Shirts</strong> will be awarded to top competitors </p></li>
 	</ul>
-	<div class = "row">
-		<div class = "col-xs-6">
-			<dt > When</dt>
-			<dd> May 16-18</dd>
-			<dt> Where</dt>
-			<dd> Ramapo College, Mahwah</dd>
-			<dd>Down Town Sports, Mahwah</dd>
-
-			<dt> Entry Free</dt>
-			<dd> $385 per Team</dd>
-		</div>
-		<div class = "col-xs-6">
-
-			<dt> Contact Coach Ozzie</dt>
-			<dd> (201)851-7504</dd>
-			<dd> coachozzie34@aol.com</dd>
-			<dt> Registration Deadline May 9th!!</dt><br />
-			<dd> Please contact Adam for team availability. (201) 848-0017 </dd>
-		</div>
-	</div>
-</div>
-<div class = "static-cols-green">
-	<h3>Gym Ratz One Day Shootout Tournaments</h3>
-	<p>The One Day Shootout Tournaments are open to both <strong id="black-text"> Boys and Girls Teams Grades 4th-8th</strong></p>
-	<li class = "no-bullet"><strong>Each Team Guarenteed 2+ Games</strong> </li>
-	<p>	<strong>Championship T-Shirts</strong> <br /> <br /></p>
 	<div class = "row">
 		<div class = "col-xs-6">
 			<table>
 				<tr>
 					<td><dt> Boys Tournament Dates</dt></td>
-					<td ><dt class="med-margin-left"> Girls Tournament Dates</dt></td>
 				</tr>
 				<tr>
-					<td>June 7</dd></td>
-					<td><dd class="med-margin-left"> June 8</dd></td>
+					<td>September 27-28</td>
+					<td>Boys Grades 4-7</td>
 				</tr>
 				<tr>
-					<td>June 28</td>
-					<td> <dd class="med-margin-left"> June 29</dd></td>
-				</tr>
-				<tr>
-					<td>July 12</td>
-					<td><dd class="med-margin-left"> July 13</dd></td>
-				</tr>
-				<tr>
-					<td>July 26</td>
-					<td> <dd class="med-margin-left"> July 27</dd></td>
+					<td>October 4-5</td>
+					<td>Boys Grades 8-12</td>
 				</tr>
 			</table>
-
-			<dt> Where</dt>
-			<dd>Down Town Sports, Mahwah</dd>
-
-			<dt> Entry Free</dt>
-			<dd> $225 per Team</dd>
-
+			<br />
+			<table>
+				<tr>
+					<td><dt> Girls Tournament Dates</dt></td>
+				</tr>
+				<tr>
+					<td>October 25-26</td>
+					<td>Girls Grades 8-12</td>
+				</tr>
+				<tr>
+					<td>November 1-2	</td>
+					<td>Girls Grades 4-7</td>
+				</tr>
+			</table>
+			<br />
+			<table>
+				<tr><td><dt> Where</dt></td></tr>
+				<tr><td><dd> Down Town Sports, Mahwah</dd></td></tr>
+				<tr><td><dt> Entry Free</dt></td></tr>
+				<tr><td><dd> $350 per Team</dd></td></tr>
+			</table>
+			
 		</div>
 		<div class = "col-xs-6">
 			<dt>Select a Date</dt>
 			<%= form_for @tournament, :url => new_organization_url, :html => { :method => 'GET' } do |f| %>
-				<%= f.collection_select :id, Tournament.find_one_day_shootouts,:id,:formatted_name, include_blank: false %> <br /> <br />
+				<%= f.collection_select :id, Tournament.find_tournaments("Fall"),:id,:formatted_name, include_blank: false %> <br /> <br />
 				<%= f.submit "Register Online",:class => 'button-look'%>
 			<% end %>
+		</div>
+	</div>
+	<br />
+	<div class = "row">
+
+		<div class = "col-xs-3">
+
+		</div>
+		<div class = "col-xs-6">
+
 		</div>
 	</div>
 	<br />
@@ -82,6 +72,7 @@
 			<dt> Please do not delay. Teams are registered on a First Come Basis!</dt>
 	</div>
 </div>
+
 <div class = "static-cols-green">
 	<h3>Down Town AAU Youth League</h3>
 	<p> 

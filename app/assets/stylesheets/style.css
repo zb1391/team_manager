@@ -387,8 +387,9 @@ form{
 
 .dark-green-content h1{
 	color: #FFA319;
-	padding-right:40px;
+	padding-right:5px;
 	padding-left:0;
+	letter-spacing: -1px;
 	text-align: right;
 }
 .dark-green-content p{
@@ -658,7 +659,29 @@ footer ul li a:hover{
 	overflow: hidden;
 	background:#009933;
 }
-
+.organization-form .field input.text{
+	width:800px;
+}
+.organization-form{
+	overflow: hidden;
+	background: #eee;
+}
+.organization-form .field{
+	padding: 10px;
+	border-radius: 10px;
+}
+.organization-form table tr td, table, table tr{
+	border: none;
+}
+.organization-form div.field label {
+	color: #006600;
+}
+.organization-form .field em{
+	color:black;
+}
+.organization-form .field select{
+	margin-right: 20px;
+}
 .static-gray-content{
 	overflow: hidden;
 	background: #d1d1d1;
@@ -669,6 +692,9 @@ footer ul li a:hover{
 }
 .static-green-content strong{
 	color: #ffe77d;
+}
+.organization-form strong{
+	color: #006600;
 }
 .static-gray-content strong{
 	color:#ffe77d;
@@ -700,6 +726,11 @@ footer ul li a:hover{
 	font-weight: bold;
 	color: #006600;
 }
+.organization-form h1{
+	font-size: 50px;
+	font-weight: bold;
+	color: #006600;
+}
 .static-gray-content h1{
 	font-size: 50px;
 	font-weight: bold;
@@ -709,6 +740,12 @@ footer ul li a:hover{
 	color:#ffe77d;
 	border-bottom: 4px solid #ffe77d;
 	margin-bottom: 5px;
+}
+.organization-form h2{
+	margin-bottom: 5px;
+	color: #323232;
+	border-bottom: none;
+	border-bottom: 2px solid #323232
 }
 .static-gray-content h2{
 	color:#006600;
@@ -731,6 +768,7 @@ footer ul li a:hover{
 	border-radius:10px;
 	border: 1px solid #006600;
 }
+
 .static-gray-content p{
 	text-align: justify;
 	font-size: 14px;
@@ -955,13 +993,16 @@ footer ul li a:hover{
 	color: black;
 }
 
+.add-club{
+	border-bottom: 1px solid black;
+}
 .add-club table{
 	border: 1px solid black;
 }
 .add-club{
 	margin-top: 10px;
-	padding: 20px;
-	background:white;
+	padding: 0 20px;
+	background:#d1d1d1;
 }
 .add-club label{
 	color: #006600;

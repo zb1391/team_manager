@@ -31,6 +31,16 @@
     <%= f.label :active %>
     <%= f.check_box :active %>
   </div>
+  <div class="field">
+    <%= f.label :genders %>
+    <%= f.select :genders, options_for_select(%w[Both Boys Girls], @tournament.genders)%>
+  </div>
+  <div class="field">
+    <%= f.label "Age Range" %>
+    <%= f.select :min_grade, options_for_select(3..12, @tournament.min_grade)%> - 
+    <%= f.select :max_grade, options_for_select([12, 11, 10, 9, 8, 7, 6, 5, 4, 3], @tournament.max_grade)%>
+  </div>
+
   <div class="actions">
     <%= f.submit %>
   </div>

@@ -6,6 +6,7 @@ class Organization < ActiveRecord::Base
 	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validates :name, :contact_name, :email, :phone, presence: true
 	validate :atleast_one_club
+	validate :club_in_tournament_range
 	before_create :initial_pay_values
 	def atleast_one_club
 		if clubs.empty?
@@ -60,6 +61,18 @@ class Organization < ActiveRecord::Base
 			update_attribute(:amount_owe, tournament.price*clubs.size)
 		end
 
+	end
+
+	def club_in_tournament_range
+		
+		clubs.each do |club|
+			unless tournament.gender_select.include?(club.gender)
+				errors.add("Teams", "This tournament is only for #{tournament.genders}")
+			end
+			unless tournament.grade_select.include?(club.grade)
+				errors.add("Teams","This tournament only allows grades #{tournament.age_range}")
+			end
+		end
 	end
 
 end
