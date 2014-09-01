@@ -1,14 +1,13 @@
 <div id="main-carousel" class="carousel slide" data-ride="carousel">
 
 	<ol class="carousel-indicators">
-		<li data-target="#main-carousel" data-slide-to="0" ></li>
-		<li data-target="#main-carousel" data-slide-to="1" class="active"></li>
+		<li data-target="#main-carousel" data-slide-to="0" class="active"></li>
+		<li data-target="#main-carousel" data-slide-to="1"></li>
 		<li data-target="#main-carousel" data-slide-to="2"></li>
-		<li data-target="#main-carousel" data-slide-to="3"></li>
 	</ol>
 
 	<div class="carousel-inner">
-		<div class="item gray-content content-height content-padding">
+		<div class="item gray-content content-height content-padding active">
 			<p id="gymratz-desc">
 			<strong> Join Us For Fall Ball AAU Tryouts. </strong> <br /> <br />
 			We offer a program for serious players to develop team skill and maximize individual potential
@@ -17,26 +16,6 @@
 			</p>
 			<h2>Fall Tryouts</h2>
 			<h1>GymRatz AAU Basketball</h1>
-		</div>
-		<div class="item active orange-content content-height content-padding">
-			<p>
-			Step Up Your Game Before School Starts! <br />	<br />
-			<strong>Boys & Girls, Grades 3-9 <br /> </strong>
-			August 25-29 (Monday-Friday) <br /> <br/ >
-			<%= link_to "Sign Up For Camp Today!", new_summer_camper_url, :class => "underlined" %>
-			</p>
-			<h2>1 Week Left!!</h2>
-			<h1>Summer Basketball Camp</h1>
-		</div>
-		<div class="item gray-content content-height content-padding">
-			<p id = "gymratz-desc">
-			<strong>Basketball Boot Camps Are Coming!</strong> <br /> <br />
-			Our Basketball Boot Camps are a progressive training clinic encompassing all aspects of basketball, focusing on 
-			individual development for competition. <br /> <br />
-			<%= link_to "Fall Sessions Starting in September", page_clinics_path, :class => "underlined" %>
-			<h2>Basketball Boot Camp</h2>
-			<h1>Think You're Ready?</h1>
-
 		</div>
 		<div class=" item dark-green-content content-height content-padding">
 			<p>
@@ -49,6 +28,16 @@
 
 			<h2>Fall Ball AAU Basketball</h2>
 			<h1>Invitational Tournament</h1>
+		</div>		
+		<div class="item gray-content content-height content-padding">
+			<p id = "gymratz-desc">
+			<strong>Basketball Boot Camps Are Coming!</strong> <br /> <br />
+			Our Basketball Boot Camps are a progressive training clinic encompassing all aspects of basketball, focusing on 
+			individual development for competition. <br /> <br />
+			<%= link_to "Fall Sessions Starting in September", page_clinics_path, :class => "underlined" %>
+			<h2>Basketball Boot Camp</h2>
+			<h1>Think You're Ready?</h1>
+
 		</div>
 	</div>
 
