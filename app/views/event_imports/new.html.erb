@@ -1,0 +1,31 @@
+<div id="event-imports-container">  
+  <h1>Upload a Spreadsheet</h1>
+
+  <p>A CSV or Excel file can be uploaded to add games/practices/tournaments </p>
+  <p>
+    All names must be entered <strong>EXACTLY</strong> as they are on the website <br>
+    i.e. 12th Grade Boys Elite will work, Boys 12th Grade elite will not <br>
+    <strong>Capitalization Matters</strong> <br>
+  </p>
+  <p>Please download <a href="/upload_template.xls">this example</a> file to use as a shell when creating new events</p>
+
+
+  <%= form_for @event_import do |f| %>
+    <p> <p id="notice"><%= notice %></p> </p>
+    <% if @event_import.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@event_import.errors.count, "error") %> prohibited this import from completing:</h2>
+        <ul>
+        <% @event_import.errors.full_messages.each do |msg| %>
+          <li id="black-text"><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= f.file_field :file %>
+    </div>
+    <div class="buttons"><%= f.submit "Import" %></div>
+  <% end %>
+</div>

@@ -58,11 +58,11 @@
 							    	<% end %>
 							    </ul>
 							</li>
-							<li><%=link_to "Master Schedule", events_path %></li>
 							<% if is_admin? %>
 							<li><%= link_to "Manage Teams", teams_path %></li>
 							<li><%= link_to "All Players", players_path %></li>
 							<li><%= link_to "All Tournaments", page_tournament_manager_path %></li>
+							<li><%=link_to "Master Schedule", events_path %></li>
 							<% end %>
 						</ul>
 

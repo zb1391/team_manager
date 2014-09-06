@@ -1,262 +1,30 @@
-<% @events.each do |event| %>
-  <%= event.formatted_date %>
-  <%= event.description%>
+<div class="centered" id="event-imports-container">  
+  <h1 id="notice"><%= notice %></h1>
+    <table>
+      <th>Date</th>
+      <th>Time</th>
+      <th>Team</th>
+      <th>Type</th>
+      <th>Location</th>
+      <th>Options</th>
+      <% @events.each do |event| %>
+        <tr>
+          <td> <%= event.formatted_date %></td>
+          <td> <%="#{event.the_time.strftime('%l:%M %P')}"%></td>
+          <td> <%= event.team_name %></td>
+          <td> <%= event.eventtype_name %></td>
+          <td> <%= event.location_name %></td>
+          <td>
+           <%= link_to "details", event_path(event.id) %> |
+           <%= link_to "send email", event_email_path(event) %> |
+           <%= link_to "destroy", event, method: :delete, data: { confirm: 'Are you sure?' } %>
 
-<%end %>
-<div class = "static-green-content" id= "allow-overflow">
-<h1 class="centered">Gym Ratz AAU Schedule</h1>
-  <li class="dropdown no-bullet">
-    <a class="dropdown-toggle huge" href="#" data-toggle="dropdown">Schedule Search<strong class="caret"></strong></a>
-    <div class="dropdown-menu" style="padding:2px;">
-      <%= search_form_for @q, url: events_path do |f| %>
-        <div class = "weekly-calendar-search weekly-calendar">
-          <h3> Schedule Search </h3>
-          <h4> Leaving A Section Unchecked is Equivaltent to Checking All Boxes </h4> 
-          <h6>Ex) Leave All checkboxes unmarked to receive the weekly schedule for all teams and all events </h6>
-          <h6>You must choose a location</h6>
-            <table>
-            <tr>
-              <th>Boys</th>
-              <th>Girls</th>
-              <th>Type</th>
-              <th>Location</th>
-            </tr>
-
-            <tr>
-              <td>
-                <%= check_box_tag('q[team_gender_matches_any[]', "Boys") %> 
-                <%= "All Boys Teams" %> <br />
-                <% Team.all_teams_of_gender("Boys").each do |t| %>
-                  <%= check_box_tag('q[team_name_eq_any[]', t.name) %>
-                  <%= t.name %> <br />
-                <% end %>                  
-              </td>
-              <td>
-                <%= check_box_tag('q[team_gender_matches_any[]', "Girls") %> 
-                <%= "All Girls Teams" %> <br />
-                <% Team.all_teams_of_gender("Girls").each do |t| %>
-                  <%= check_box_tag('q[team_name_eq_any[]', t.name) %>
-                  <%= t.name %> <br />
-                <% end %>                  
-              </td>
-              <td>
-                <% Eventtype.order(:name).each do |e| %>
-
-                  <%= check_box_tag('q[eventtype_id_eq_any[]', e.id) %>
-                  <%= e.name %> <br /> 
-                <% end %>
-              </td>
-              <td>
-                <% Location.order(:id).each do |l| %>
-                  <% if l.name == "Down Town Sports" %>
-                    <%= radio_button_tag('q[location_id_eq_any[]', l.id, :checked => true) %>
-                  <% else %>
-                    <%= radio_button_tag('q[location_id_eq_any[]', l.id) %>
-                  <% end %>
-                  <%= "#{l.name}-#{l.city}" %> <br />                  
-                <% end %>
-                <dt> You <em>Must</em> Select a Location</dt>
-                </td>
-            </tr>
-           <br />
-           </table>
-            <%= f.submit "Search" %>
-          </div>
+         </td>
+        </tr>
       <% end %>
-    </div>
-  </li>
-<% if params[:q].nil? %>
-  <h3>Please Select Calendar Search Fields From Above</h3>
-<% else %>
-<h3 class="centered"> <%="#{Event.start_of_week} --- #{Event.end_of_week}"%></h3>
-<table class="weekly-calendar">
-  <tr>
-    <th>Sunday</th>
-    <th>Monday</th>
-    <th>Tuesday</th>
-    <th>Wednesday</th>
-    <th>Thursday</th>
-    <th>Friday</th>
-    <th>Saturday</th>
-  </tr>
-  <tr>
-    <% (begin_weekly_calendar..end_weekly_calendar(1)).each do |d| %>
-      <% if d.wday == 0 %></tr><tr><% end %>
-        <td>
-          <dd><%= d.day %></dd>
-        </td>
-    <% end %>
-  </tr>
-    <% cur_time = Event.begin_time; while cur_time <= (Event.stopping_time) %>
-    <tr>
-    <% (begin_weekly_calendar..end_weekly_calendar(1)).each do |d| %>
-      <% if d.wday == 0 %></tr><tr><% end %>
-        <td>
-          <ul>
-            <% Event.events_on_court_at_time(d, cur_time, 1).search(params[:q]).result(distinct: true).to_a.each do |p| %>
-              <%if is_admin? %>
-                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id), :id => "black-link" %></li>
-              <% else %>
-                <li style = "color:#006600;"><%=p.team.short_team_name%></li>
-               <%end %>
-            <%end%>
-            <% unique_event = Event.events_on_court_at_time(d, cur_time, 1).search(params[:q]).result(distinct: true).to_a.first %>
-              <% if !unique_event.nil? %>
-                  <li class="bold-text">      
-                  <%= "#{unique_event.the_time.strftime('%l:%M %P')}" %>
-                  <%if !unique_event.end_time.nil? %>
-                    <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
-                  <%end%>
-                  </li>
-                <li> <%= unique_event.eventtype.formatted_name %></li>
-                <li> <%="#{unique_event.location.name}-Court 1" %></li>
-              <% end %>
-            </ul>
-          <ul>
-            <% Event.events_on_court_at_time(d, cur_time+30.minutes, 1).search(params[:q]).result(distinct: true).to_a.each do |p| %>
-              <%if is_admin? %>
-                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id), :id => "black-link"%></li>
-              <% else %>
-                <li style = "color:#006600;"><%=p.team.short_team_name%></li>
-               <%end %>
-            <%end%>
-            <% unique_event = Event.events_on_court_at_time(d, cur_time+30.minutes, 1).search(params[:q]).result(distinct: true).to_a.first %>
-              <% if !unique_event.nil? %>
-                  <li class="bold-text">      
-                  <%= "#{unique_event.the_time.strftime('%l:%M %P')}" %>
-                  <%if !unique_event.end_time.nil? %>
-                    <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
-                  <%end%>
-                  </li>
-                <li> <%= unique_event.eventtype.formatted_name %></li>
-                <li> <%="#{unique_event.location.name}-Court 1" %></li>
-              <% end %>
-            </ul>
-          <ul>
-            <% Event.events_on_court_at_time(d, cur_time, 2).search(params[:q]).result(distinct: true).to_a.each do |p| %>
-              <%if is_admin? %>
-                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id), :id => "black-link"%></li>
-              <% else %>
-                <li style = "color:#006600;"><%=p.team.short_team_name%></li>
-               <%end %>
-              <%end%>
-            <% unique_event = Event.events_on_court_at_time(d, cur_time, 2).search(params[:q]).result(distinct: true).to_a.first %>
-              <% if !unique_event.nil? %>
-                  <li class="bold-text">      
-                  <%= "#{unique_event.the_time.strftime('%l:%M %P')}" %>
-                  <%if !unique_event.end_time.nil? %>
-                    <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
-                  <%end%>
-                  </li>
-                <li> <%= unique_event.eventtype.formatted_name %></li>
-                <li> <%="#{unique_event.location.name}-Court 2" %></li>
-              <% end %>
-            </ul>
-          <ul>
-            <% Event.events_on_court_at_time(d, cur_time+30.minutes, 2).search(params[:q]).result(distinct: true).to_a.each do |p| %>
-              <%if is_admin? %>
-                <li style = "color:#006600;"><%=link_to p.team.short_team_name, edit_event_path(p.id), :id => "black-link"%></li>
-              <% else %>
-                <li style = "color:#006600;"><%=p.team.short_team_name%></li>
-               <%end %>
-              <%end%>
-            <% unique_event = Event.events_on_court_at_time(d, cur_time+30.minutes, 2).search(params[:q]).result(distinct: true).to_a.first %>
-              <% if !unique_event.nil? %>
-                  <li class="bold-text">      
-                  <%= "#{unique_event.the_time.strftime('%l:%M %P')}" %>
-                  <%if !unique_event.end_time.nil? %>
-                    <%= "-#{unique_event.end_time.strftime('%l:%M %P')}"%>
-                  <%end%>
-                  </li>
-                <li> <%= unique_event.eventtype.formatted_name %></li>
-                <li> <%="#{unique_event.location.name}-Court 2" %></li>
-              <% end %>
-            </ul>
+    </table>
 
-      <%end%>
-      <% cur_time += 1.hour; %>
-    <%end %>
-  </tr>
-</table>
-<dd>
-  Download:
-  <%= link_to "Excel", events_path(params.merge(format: 'xls')) %>
-</dd>
-<%end%>
-<br>
-
-<% if is_admin? %>
-<%= calendar @events do |event| %>
-  <%logger.debug "Events start_time: #{event.start_time}" %>
-  <ul>
-    <dd><%= "#{event.eventtype.name}: "%></dd>
-    <dt>
-      <%= "#{event.team.name}" %> <br />
-      <%= "#{event.location.name}:" %> <br />
-      <%= "#{event.the_time.strftime('%l:%M %P')}"%>
-      <% if !event.end_time.nil? %>
-      <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
-      <% end %>
-      <br />
-      <%= "Court #{event.court}" %>
-
-    </dt>
-        <% if proper_coach?(event.team.coach) || is_admin? %>
-          <%= link_to 'Edit', edit_event_path(event),  :id => "black-link" %>
-          <%= link_to 'Destroy', event,  :id => "black-link", method: :delete, data: { confirm: 'Are you sure?' } %>
-        <% end %>
-  </ul>
-<% end %>
-  <%= link_to 'New Event', new_event_path %>
-<% end %>
+    <div style="margin-left: 50px;"><%= paginate @events %></div>
 </div>
-<div class = "static-cols-green">
-  <div class = "row">
-    <h3 class = "centered">Team Schedules</h3>
-  </div>
-  <div class ="row">
-    <div class = "col-xs-6">
-      <h3 class ="centered"> Gym Ratz AAU Girls Elite</h3>
-      <div class ="row">
-        <ul>
-        <% Team.all_teams_of_gender_and_type("Girls","Elite").each do |team| %>
-          <li class = "no-bullet centered"> <%= link_to team.short_team_name, team, :class => "black-text" %></li>
-        <% end %>
-      </ul>
-      </div>
-    </div>
-    <div class = "col-xs-6">
-      <h3 class ="centered">Gym Ratz AAU Boys Elite</h3>
-      <div class ="row">
-        <ul>
-        <% Team.all_teams_of_gender_and_type("Boys","Elite").each do |team| %>
-          <li class = "no-bullet centered"> <%= link_to team.short_team_name, team, :class => "black-text" %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class ="row">
-    <div class = "col-xs-6">
-      <h3 class ="centered"> Gym Ratz AAU Girls Select</h3>
-      <div class ="row">
-        <ul>
-        <% Team.all_teams_of_gender_and_type("Girls","Select").each do |team| %>
-          <li class = "no-bullet centered"> <%= link_to team.short_team_name, team, :class => "black-text" %></li>
-        <% end %>
-      </ul>
-      </div>
-    </div>
-    <div class = "col-xs-6">
-      <h3 class ="centered">Gym Ratz AAU Boys Select</h3>
-      <div class ="row">
-        <ul>
-        <% Team.all_teams_of_gender_and_type("Boys","Select").each do |team| %>
-          <li class = "no-bullet centered"> <%= link_to team.short_team_name, team, :class => "black-text" %></li>
-        <% end %>
-        </ul>
-      </div>
-    </div>
-  </div>
-</div>
+
 

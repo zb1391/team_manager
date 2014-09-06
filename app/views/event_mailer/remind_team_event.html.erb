@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1><%= @event.eventtype.formatted_name %> Reminder</h1>
+    This is to remind you that
+    <% if @event.eventtype.name == "tournament" %>
+    a <%=@team.name %> <%= @event.eventtype.name %> has been scheduled for <b><%= @event.the_date %></b>
+    -- <b><%= @event.end_date %> </b>
+    <%else %>
+    <p>
+    a <%=@team.name %> <%= @event.eventtype.name %> has been scheduled for
+    <b><%= @event.the_date %></b> at <b><%= @event.the_time.strftime('%l:%M %P')%></b> will be held at <b><%=@event.location.name%></b> 
+    <% end %>
+    <br />
+
+    <% @event.hotels.each do |hotel| %>
+      Hotel Information: <br />
+      <%= hotel.name %> <br />
+      <%= hotel.unformatted_location %> <br />
+      <%="#{number_to_currency(hotel.price)}/Night"%> <br />
+      <% if !hotel.addtional_link.empty? %>
+        <%= link_to "booking information", hotel.addtional_link %> <br />
+      <% end %>
+    <%end%>
+    <% if !@event.description.empty? %>
+      <p class = "full-width auto-margin">
+        <strong> Details:</strong> <br />
+        <%=raw sanitize(simple_format(@event.description), :tags => %w(br) ) %>
+      </p>
+    <% end %>
+    More information can be found be checking the schedule by clicking <%= team_url(@event.team, host: 'www.downtownsports.org')%> 
+    </p>
+    <p>
+      This is an automated email. Please do not reply
+    </p>
+    <p>Thanks and have a great day!</p>
+  </body>
+</html>
+

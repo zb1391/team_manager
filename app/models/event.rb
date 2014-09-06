@@ -7,55 +7,36 @@ class Event < ActiveRecord::Base
 	belongs_to :location
 	validates  :the_date, :the_time, presence: true
 	validate   :tournament_has_end_date
+	validates :team_name, :presence =>  { :message => " can't find team with that name" }
+	validates :location_name, :presence => { :message => " can't find location with that name" }
+	validates :eventtype_name, :presence => { :message => " can't find eventtype with that name" }
+	#Getter/Setter for using user_name instead of user_id in form
+	def team_name
+		team.try(:name)
+	end
 
-	def self.import(file)
-	  CSV.foreach(file.path, headers: true) do |row|
-	    cur_row = row.to_hash
-	    db = Hash.new
-	    db["the_date"] = Date.parse(cur_row["the_date"])
-	    #Parse date - leave this in case format is dd/mm/yy
-	    #date = cur_row["the_date"].split("/")
-	    #db["the_date"] = Date.new(date[2].to_i, date[0].to_i)
-	    
-	    #Convert the time to proper value
-	    time = cur_row["the_time"].split(":")
-	    hour = 0
-	    if time[2][-2 .. -1] == "PM"
-	    	hour = time[0].to_i % 12 + 12
-	    else
-	    	hour = time[0].to_i
-	    end
-	    db["the_time"] = Time.utc(2000,"jan",1,hour,time[1].to_i,0)
+	def team_name=(name)
+		self.team = Team.where(:name => name)[0] if name.present?
+	end
 
-	    #Get the eventtype_id from the string provided in the file
-	    type = Eventtype.find_by name: cur_row["eventtype"]
-	    db["eventtype_id"] = type[:id]
+	def location_name
+		location.try(:name)
+	end
 
-	    #Get the location from the string name provided in file
-	    location = Location.find_by name: cur_row["location"]
-	    db["location_id"] = location[:id]
+	def location_name=(name)
+		self.location = Location.where(:name => name)[0] if name.present?
+	end
 
-	    #Get the court number
-	    db["court"] = cur_row["court"]
+	def eventtype_name
+		eventtype.try(:name)
+	end
 
-	    #Get a description
-	    db["description"] = cur_row["description"]
-
-	    #Get the team by the string provided
-	    team = Team.find_by name: cur_row["team"]
-	    puts "looking for #{cur_row["team"]}"
-	    puts "got #{team}"
-	    db["team_id"] = team.id
-
-	    puts db
-
-	    Event.create! db
-
-	  end
+	def eventtype_name=(name)
+		self.eventtype = Eventtype.where(:name => name)[0] if name.present?
 	end
 
 	def tournament_has_end_date
-		if eventtype.name == "tournament" && end_date.nil?
+		if eventtype_name == "tournament" && end_date.nil?
 			errors.add(:end_date, "Tournament must have an end_date")
 		end
 	end

@@ -1,6 +1,4 @@
 <h1>Listing Teams</h1>
-
-
 <table>
   <thead>
     <tr>
@@ -370,12 +368,7 @@
 </table>
 <%= link_to 'New Team', new_team_path %>
 
-
-<%= form_tag import_events_path, multipart: true do %>
-<h1> Import Events</h1>
-  <p> This is still in testing - it will provide a way to create calendar events
-      by uploading a CSV file - dont use just yet...
-  </p>
-  <%= file_field_tag :file %>
-  <%= submit_tag "Import" %>
-<% end %>
+<div>
+  <h3><%= link_to "Upload A SpreadSheet", new_event_import_path %></h3>
+  
+</div>

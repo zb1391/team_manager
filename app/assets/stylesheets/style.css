@@ -662,6 +662,9 @@ footer ul li a:hover{
 .organization-form .field input.text{
 	width:800px;
 }
+.organization-form h3{
+	color:black;
+}
 .organization-form{
 	overflow: hidden;
 	background: #eee;
@@ -1023,4 +1026,39 @@ footer ul li a:hover{
 	font-weight: bold;
 	letter-spacing: -2px;
 	font-size: 48px;
+}
+
+#event-imports-container{
+	background: #eee;
+}
+#event-imports-container h1{
+	color: #006600;
+}
+#event-imports-container p{
+	width: 90%;
+	margin-bottom: 10px;
+	color:black;
+	font-size: 14px;
+}
+#event-imports-container form{
+	background: #ccc;
+}
+#event-imports-container table{
+	padding: 5px;
+	margin: auto;
+}
+#event-imports-container table tr{
+	border: 1px solid black;
+	padding: 3px;
+}
+#event-imports-container table tr td{
+	border: 1px solid black;
+	color:black;
+	padding: 10px;
+}
+#event-imports-container a{
+	color: blue;
+}
+#event-imports-container table th{
+	color:black;
 }

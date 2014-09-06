@@ -1,19 +1,11 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate, :only => [:new, :destroy,:edit, :update]
+  before_filter :authenticate, :only => [:index,:new, :destroy,:edit, :update]
 
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all
-    @q = Event.search(params[:q])
-    @filtered_events = @q.result(distinct: true)
-    @filtered_ids = @filtered_events.to_a.map(&:team_id).uniq
-    @filtered_teams = Event.search(:team_id_in => @filtered_events.to_a.map(&:team_id).uniq).result.to_a
-    respond_to do |format|
-      format.html
-      format.xls
-    end
+    @events = Event.all.order('id DESC').page(params[:page]).per(10)
   end
 
   # GET /events/1
@@ -23,7 +15,7 @@ class EventsController < ApplicationController
 
   def import
     Event.import(params[:file])
-    redirect_to teams_path, notice: "Products imported."
+    redirect_to teams_path, notice: "Events imported."
   end
 
   # GET /events/new
@@ -37,6 +29,11 @@ class EventsController < ApplicationController
     2.times {@event.hotelifications.build}
   end
 
+  def email
+    event = Event.find(params[:event_id])
+    EventMailer.remind_team_event(event.team, event).deliver
+    redirect_to events_path, notice: 'Email was sent to all players!'
+  end
   # POST /events
   # POST /events.json
   def create

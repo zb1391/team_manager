@@ -1,4 +1,5 @@
-<%= form_for(@player) do |f| %>
+<div id="organization-form">
+<%= form_for(@player, :html => {:class => "organization-form"}) do |f| %>
   <% if @player.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
@@ -38,7 +39,6 @@
   </div>
 
   <h2>Parent Info</h2>
-  <h3>Please Fill The Following For One Parent </h3>
   <div class="field">
     <%= f.label :parent_first_name %><br>
     <%= f.text_field :parent_first_name %>
@@ -56,7 +56,7 @@
     <%= f.text_field :parent_email %>
   </div>
     <div class="field">
-    <%= f.label :parent_email2 %> (Optional Email Address for Second Parent/Guardian)<br>
+    <%= f.label :parent_email2 %> <em>(Optional Email Address for Second Parent/Guardian)</em><br>
     <%= f.text_field :parent_email2 %>
   </div>
   <div class="field">
@@ -74,3 +74,4 @@
     <%= f.submit %>
   </div>
 <% end %>
+</div>

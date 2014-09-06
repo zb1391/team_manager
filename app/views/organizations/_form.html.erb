@@ -1,4 +1,6 @@
-<div id = "organization-form">
+
+
+
 <%= form_for@organization, :html => {:class => "organization-form"} do |f| %>
   <% if @organization.errors.any? %>
     <div id="error_explanation">
@@ -64,4 +66,3 @@
     <%= f.submit "Register For Tournament", :id => "black-text"%>
   </div>
 <% end %>
-</div>

@@ -15,11 +15,11 @@ TeamManager::Application.routes.draw do  resources :tournaments
   resources :eventtypes
   
   resources :events do
-    collection { post :import }
+    get :email
   end
 
   resources :players  
-
+  resources :event_imports
   root 'page#home'
 
   get "page/clinics"
