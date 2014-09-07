@@ -89,9 +89,10 @@ class Team < ActiveRecord::Base
 			self.age = get_age(grade)
 		end
 		def name_setup
-			if !color.nil?
+			if color.nil?
 				self.name = namemake("#{grade} Grade #{gender} #{team_type}")
 			else
+
 				self.name = namemake("#{grade} Grade #{gender} #{team_type} #{color}")
 			end
 		end

@@ -20,7 +20,10 @@ class EventImport
   def save
     
     if imported_events.map(&:valid?).all?
-      imported_events.each(&:save!)
+      imported_events.each do |event|
+        event.save!
+        EventMailer.new_team_event(event.team,event).deliver
+      end
       true
     else
       imported_events.each_with_index do |event, index|
