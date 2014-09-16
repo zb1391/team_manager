@@ -1,3 +1,3 @@
 
       <%= f.label :content, "Hotel" %> <br />
-      <%= f.collection_select :hotel_id, Hotel.order(:id),:id,:name, include_blank: true %> <br />
+      <%= f.collection_select :hotel_id, Hotel.order(:id),:id,:name_and_date, include_blank: true %> <br />
