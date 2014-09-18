@@ -25,6 +25,14 @@
     </table>
 
     <div style="margin-left: 50px;"><%= paginate @events %></div>
+    <%= search_form_for @q do |f| %>
+
+    <%= f.label "Search by date" %>
+    <%= f.date_field :the_date_eq%>
+
+    <%= f.submit %>
+    <%= link_to "View All Events", events_path %>
+    <% end %>
 </div>
 
 

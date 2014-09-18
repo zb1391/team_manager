@@ -5,7 +5,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @events = Event.all.order('id DESC').page(params[:page]).per(10)
+    @q = Event.search(params[:q])
+    @events = @q.result(distinct: true).order('id DESC').page(params[:page]).per(10)
   end
 
   # GET /events/1
