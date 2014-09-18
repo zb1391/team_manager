@@ -13,17 +13,15 @@ ActionMailer::Base.delivery_method = :smtp
 
 
   #FOR TEAM EVENTS
-  def remind_team_event(team,event, email)
-    puts "EMAILING #{email}"
+  def remind_team_event(team,event)
     @event = event
     @team = team
-    # emails = "zmb1391@gmail.com,"
-    # team.players.each do |player|
-    #   emails += "#{player.email},#{player.parent_email},#{player.parent_email2},"
-    # end
+    emails = "zmb1391@gmail.com,"
+    team.players.each do |player|
+      emails += "#{player.email},#{player.parent_email},#{player.parent_email2},"
+    end
+    mail(to: team.coach.email, bcc: emails, subject: "#{event.eventtype.name} reminder")
 
-    # mail(to: team.coach.email, bcc: emails, subject: "#{event.eventtype.name} reminder")
-    mail(to: email, subject: "#{event.eventtype.name} reminder")
   end
   def new_team_event(team,event)
     @event = event
