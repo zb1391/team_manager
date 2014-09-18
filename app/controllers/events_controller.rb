@@ -34,9 +34,9 @@ class EventsController < ApplicationController
     event.team.players.each do |player|
       EventMailer.remind_team_event(event.team, event,player.email).deliver
       EventMailer.remind_team_event(event.team, event,player.parent_email).deliver
-      if !player.parent_email2.nil?
-        EventMailer.remind_team_event(event.team, event,player.parent_email2).deliver
-      end
+      # if !player.parent_email2.nil?
+      #   EventMailer.remind_team_event(event.team, event,player.parent_email2).deliver
+      # end
     end
     # EventMailer.remind_team_event(event.team, event).deliver
     redirect_to events_path, notice: 'Email was sent to all players!'
