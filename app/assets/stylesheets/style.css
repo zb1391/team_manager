@@ -123,7 +123,7 @@
 }
 #banner-container{
 	background:black;
-	height:130px;
+	min-height:130px;
 }
 
 #logo{
@@ -142,7 +142,6 @@
 	padding-bottom:0;
 	margin-bottom:0;
 }
-
 #main-menu{
 	position: relative;
 	float:left;
@@ -651,12 +650,9 @@ footer ul li a:hover{
 
 
 .static-orange-content{
-	overflow:hidden;
 	background: #E6782E;
-
 }
 .static-green-content{
-	overflow: hidden;
 	background:#009933;
 }
 .organization-form .field input.text{
