@@ -154,6 +154,7 @@
 	border-right:1px solid white;
 }
 #main-menu  li{
+	text-align: left;
 	display: inline;
 	padding: 0 10px;
 	border-left:1px solid white;
