@@ -651,11 +651,16 @@ footer ul li a:hover{
 
 #full-width{
     width:95%;
+    margin: auto;
+
+    /*padding:;*/
 }
 .static-orange-content{
+	padding: 5px;
 	background: #E6782E;
 }
 .static-green-content{
+	padding: 5px;
 	background:#009933;
 }
 .organization-form .field input.text{
