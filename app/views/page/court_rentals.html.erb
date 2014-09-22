@@ -2,11 +2,18 @@
 <h1 class = "centered">Court Rentals</h1>
 
 <h2>Our Gym</h2>
-<%=image_tag("court1.jpg", :id => "courts-page-img") %>
-<p> 
-	Down Town Sports contains <strong>Two Full Hardwood Basketball Courts</strong>, fully equipped with state of the art Spalding Equipment. Perfect for basketball, volleyball, or any indoor event.
-	Rent gym time to run your own practices, schedule games, and even manage your own basketball league or tournament.
-</p>
+<div class="row">
+	<div class="col-xs-6">
+		<p id="full-width"> 
+			Down Town Sports contains <strong>Two Full Hardwood Basketball Courts</strong>, fully equipped with state of the art Spalding Equipment. Perfect for basketball, volleyball, or any indoor event.
+			Rent gym time to run your own practices, schedule games, and even manage your own basketball league or tournament.
+		</p>
+	</div>
+	<div class="col-xs-6">
+		<%=image_tag("court1.jpg", :id => "courts-page-img") %>
+	</div>
+</div>
+
 </div>
 <div class = "static-cols-orange">
 	<h3 class = "centered">Rent Court Time Today!</h3>
