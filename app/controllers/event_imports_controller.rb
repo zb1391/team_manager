@@ -1,5 +1,6 @@
 class EventImportsController < ApplicationController
   def new
+      ## test
     @event_import = EventImport.new
   end
 
