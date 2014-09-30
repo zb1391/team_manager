@@ -70,7 +70,7 @@ gem "roo"
 #using Amazing file hosting
 gem 'aws-sdk'
 gem "kaminari"
-ruby "2.0.0"
+ruby "2.1.2"
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

@@ -54,11 +54,11 @@ ActiveRecord::Schema.define(version: 20140823233803) do
     t.date     "the_date"
     t.time     "the_time"
     t.time     "end_time"
+    t.integer  "hotel_id"
     t.integer  "location_id"
     t.integer  "court"
     t.date     "end_date"
     t.text     "description"
-    t.integer  "hotel_id"
   end
 
   create_table "eventtypes", force: true do |t|
