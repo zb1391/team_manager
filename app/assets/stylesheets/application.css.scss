@@ -1,0 +1,26 @@
+$navbar-default-bg: black;
+$light-orange: #ff8c00;
+$navbar-default-color: $light-orange;
+$navbar-default-link-color: white;
+$navbar-default-link-hover-color: #ff8c00;
+
+@import "bootstrap-sprockets";
+@import 'bootstrap';
+@import "partials/home";
+
+body{
+	background: #1b1b1b;
+}
+ul.nav.navbar-nav{
+  margin-top: 75px;
+}
+
+nav.navbar.navbar-default{
+	margin-bottom: 0;
+}
+// Collapse width fix
+@media (max-width: $screen-sm-max) {
+  ul.nav.navbar-nav{
+    margin-top: 0
+  }
+}
