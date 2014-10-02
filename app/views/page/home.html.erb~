@@ -45,8 +45,8 @@
 
 	<a class="carousel-control right" href="#main-carousel" data-slide="next"> > </a>
 </div>
-<div class= "centered static-cols-green">
-	<h1> New Jersey Gym Ratz <strong> Fall </strong> Invitational</h1>
+<div class= "static-cols-green">
+	<h1 class="centered"> New Jersey Gym Ratz <strong> Fall </strong> Invitational</h1>
 	<br />
 	<div class ="row">
 		<div class="col-x6-6">
