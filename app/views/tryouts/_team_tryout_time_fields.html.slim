@@ -1,0 +1,2 @@
+= f.label "Team"
+= f.collection_select :team_id, Team.order(:gender), :id, :name, include_blank: false

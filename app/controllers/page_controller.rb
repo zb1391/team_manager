@@ -21,7 +21,6 @@ class PageController < ApplicationController
   end
 
   def gym_ratz_about
-    @instagram = Instagram.user_liked_media
   end
 
   def photo_gallery

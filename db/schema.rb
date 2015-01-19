@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823233803) do
+ActiveRecord::Schema.define(version: 20150119034248) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -175,6 +175,11 @@ ActiveRecord::Schema.define(version: 20140823233803) do
     t.datetime "updated_at"
   end
 
+  create_table "team_tryout_times", force: true do |t|
+    t.integer "tryout_time_id"
+    t.integer "team_id"
+  end
+
   create_table "teams", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -200,6 +205,20 @@ ActiveRecord::Schema.define(version: 20140823233803) do
     t.string   "genders",    default: "Both"
     t.integer  "min_grade",  default: 3
     t.integer  "max_grade",  default: 12
+  end
+
+  create_table "tryout_dates", force: true do |t|
+    t.date    "date"
+    t.integer "tryout_id"
+  end
+
+  create_table "tryout_times", force: true do |t|
+    t.time    "time"
+    t.integer "tryout_date_id"
+  end
+
+  create_table "tryouts", force: true do |t|
+    t.string "season"
   end
 
 end

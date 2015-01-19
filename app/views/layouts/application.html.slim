@@ -21,20 +21,7 @@ body
         	= image_tag("title.png", style: "max-width:150px;")
       .collapse.navbar-collapse id="navbar-collapse-1"
         ul.nav.navbar-nav
-          li.dropdown
-            a.dropdown-toggle href="#" data-toggle="dropdown" 
-          	  | Gym Ratz AAU
-              span.caret
-            ul.dropdown-menu role="menu"
-              li 
-                a href="#" Gym Ratz AAU Boys Elite
-              li
-                a href="#" Gym Ratz AAU Boys Select
-              li.divider
-              li
-                a href="#" Gym Ratz AAU Girls Elite
-              li
-                a href="#" Gym Ratz AAU Girls Select
+          li = link_to "Gym Ratz AAU", tryout_path(Tryout.last)
           li = link_to "Clinics", page_clinics_path
           li = link_to "Court Rentals", page_court_rentals_path
           li = link_to "Parties", page_parties_path
@@ -42,22 +29,6 @@ body
           li = link_to "Leagues/Tournaments", page_leagues_path
           li = link_to "Pictures", page_photo_gallery_url
           li = link_to "Contact", page_contact_path
-          
-        ul.nav.navbar-nav.navbar-right
-          li
-            a href="#" Link
-          li.dropdown
-            a.dropdown-toggle href="#" data-toggle="dropdown" 
-              | Dropdown
-              span.caret
-            ul.dropdown-menu role="menu"
-              li
-                a href="#" Action
-              li
-                a href="#" Another Action
-              li.divider
-              li
-                a href="#" Separated
       
 
   / .navbar.navbar-default.navbar-fixed-top
@@ -106,8 +77,8 @@ body
 
 
 
-  .container
-    = yield
+  
+  = yield
 
 
 

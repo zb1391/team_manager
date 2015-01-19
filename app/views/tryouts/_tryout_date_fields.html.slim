@@ -1,0 +1,7 @@
+= f.label "Date"
+= f.date_field :date
+
+= f.fields_for :tryout_times do |builder|
+  = render 'tryout_time_fields', f: builder
+= link_to_add_fields "Add Time", f, :tryout_times
+br

@@ -1,0 +1,7 @@
+= f.label "Time"
+= f.time_field :time
+
+= f.fields_for :team_tryout_times do |builder|
+	= render 'team_tryout_time_fields', f: builder
+= link_to_add_fields "Add Team", f, :team_tryout_times
+br

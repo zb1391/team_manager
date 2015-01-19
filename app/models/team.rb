@@ -5,6 +5,7 @@ class Team < ActiveRecord::Base
 	attr_accessor :color
 	has_many :players
 	has_many :events
+	has_many :tryout_times
 	belongs_to :coach
 	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}, :on => :create
 	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
