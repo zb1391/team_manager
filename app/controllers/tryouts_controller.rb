@@ -26,6 +26,7 @@ class TryoutsController < ApplicationController
     if @tryout.update(tryout_params)
       redirect_to @tryout, notice: 'Tryout was updated'
     else
+      setup_javascript_vars
       render action: 'edit'
     end
   end
@@ -38,8 +39,8 @@ class TryoutsController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def tryout_params
   	params.require(:tryout).permit(:season, tryout_dates_attributes: 
-  																	[:id, :date, tryout_times_attributes: 
-  																		[:id, :time, team_tryout_times_attributes:
-  																			[:id, :team_id]]])
+  																	[:_destroy, :id, :date, tryout_times_attributes: 
+  																		[:_destroy, :id, :time, team_tryout_times_attributes:
+  																			[:_destroy, :id, :team_id]]])
   end
 end

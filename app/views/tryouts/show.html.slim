@@ -17,7 +17,7 @@
 	  			- @tryout.girls_tryout_dates.each do |tryout_date|
 	  				h4 = tryout_date.date.strftime("%A, %b %d")
 	  				table
-	  					- tryout_date.tryout_times.each do |tryout_time|
+	  					- tryout_date.sorted_tryout_times.each do |tryout_time|
 	  						tr
 	  							td = tryout_time.time.strftime("%I:%M")
 	  							td = tryout_time.time.strftime("%P")
@@ -28,7 +28,7 @@
 	  			- @tryout.boys_tryout_dates.each do |tryout_date|
 	  				h4 = tryout_date.date.strftime("%A, %b %d")
 	  				table
-	  					- tryout_date.tryout_times.each do |tryout_time|
+	  					- tryout_date.sorted_tryout_times.each do |tryout_time|
 	  						tr
 	  							td = tryout_time.time.strftime("%I:%M")
 	  							td = tryout_time.time.strftime("%P")

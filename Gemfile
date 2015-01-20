@@ -1,14 +1,17 @@
 source 'https://rubygems.org'
 
+
+gem 'dynamic_form'
+
 gem 'instagram'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.0.2'
 
-# Use sqlite3 as the database for Active Record
 gem 'pg'
 
-#Use pry for debugging
 gem 'pry'
+# use gon to pass javascript variables from the controller
+gem 'gon'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.0'

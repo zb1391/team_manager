@@ -25,11 +25,16 @@ $navbar-default-link-hover-color: #ff8c00;
 $grid-float-breakpoint: 960px;
 //point at which the navbar begins collapsing
 $grid-float-breakpoint-max: 959px;
+
+//button stuff
+$btn-primary-bg: $light-green;
+$btn-danger-bg: $orange;
 @import "bootstrap-sprockets";
 @import 'bootstrap';
 @import "partials/home";
 @import "partials/static_pages";
-
+@import "partials/forms";
+@import "partials/buttons";
 body{
 	background: #1b1b1b;
 }
@@ -48,6 +53,9 @@ nav.navbar.navbar-default{
 }
 
 
+.centered-text{
+	text-align: center;
+}
 .margin-bottom-10{
 	margin-bottom: 10px !important;
 }

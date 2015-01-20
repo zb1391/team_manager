@@ -1,7 +1,16 @@
-= f.label "Time"
-= f.time_field :time
+.nested-attributes	
+	= f.label "Time"
+	= f.time_field :time
+	= f.hidden_field :_destroy, class: '_destroy'
+	= link_to 'x', '#', class: 'remove_nested_attribute'
 
-= f.fields_for :team_tryout_times do |builder|
-	= render 'team_tryout_time_fields', f: builder
-= link_to_add_fields "Add Team", f, :team_tryout_times
-br
+	- f.object.errors[:time].each do |msg|
+		.validation-error = msg
+	- f.object.errors[:team_tryout_times].each do |msg|
+		.validation-error = msg
+
+
+	.team-tryout-time-attributes-container
+		= f.fields_for :team_tryout_times do |builder|
+			= render 'team_tryout_time_fields', f: builder
+		= link_to_add_fields "Add Team", f, :team_tryout_times, class: 'nested-link'

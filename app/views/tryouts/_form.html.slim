@@ -1,19 +1,23 @@
-
 = form_for @tryout do |f|
   - if @tryout.errors.any?
-    #error_explanation
-      h2 
-        = pluralize(@tryout.errors.count, "error") 
-        | prohibited this tryout from being saved
-      ul
-        - @tryout.errors.full_messages.each do |msg|
-          li msg
-  = f.label "Season"
-  = f.select :season, options_for_select(["Winter", "Spring", "Summer", "Fall"], @tryout.season)
-  br
-  = f.fields_for :tryout_dates do |builder|
-    = render 'tryout_date_fields', f: builder
-  = link_to_add_fields "Add Date", f, :tryout_dates
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+  .form-panel
+    = f.label "Season"
+    = f.select :season, options_for_select(["Winter", "Spring", "Summer", "Fall"], @tryout.season)
+  
+  - @tryout.errors[:tryout_dates].each do |msg|
+    .validation-error = msg
 
-  = f.submit "Create Tryouts"
+  .tryout-date-attributes-container
+    = f.fields_for :tryout_dates do |builder|
+      = render 'tryout_date_fields', f: builder
+    = link_to_add_fields "Add Date", f, :tryout_dates
+  
+  .form-actions
+    = f.submit "Submit", class: "btn btn-primary"
+    = link_to "Cancel", root_path, class: "btn btn-cancel"
+
+
+
   

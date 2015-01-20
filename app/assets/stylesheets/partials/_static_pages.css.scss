@@ -56,6 +56,14 @@
 			padding: 0;
 		}
 	}
+	.full-image{
+		img{
+			border: 1px solid black;
+			width: 98%;
+			height: auto;
+			margin-bottom: 10px;
+		}
+	}
 	&.green{
 		h1{
 			background-color: $light-green;

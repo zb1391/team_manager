@@ -1,7 +1,16 @@
-= f.label "Date"
-= f.date_field :date
+.form-panel.clearfix
+	= f.hidden_field :_destroy, class: '_destroy'
+	= link_to 'x', '#', class: 'remove_nested_attribute'
+	= f.label "Date"
+	= f.date_field :date
+	
+	- f.object.errors[:date].each do |msg|
+		.validation-error = msg
+	- f.object.errors[:tryout_times].each do |msg|
+		.validation-error = msg
 
-= f.fields_for :tryout_times do |builder|
-  = render 'tryout_time_fields', f: builder
-= link_to_add_fields "Add Time", f, :tryout_times
-br
+	.tryout-time-attributes-container
+		= f.fields_for :tryout_times do |builder|
+		  = render 'tryout_time_fields', f: builder
+		= link_to_add_fields "Add Time", f, :tryout_times, class: "nested-link"
+

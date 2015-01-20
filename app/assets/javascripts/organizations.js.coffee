@@ -8,3 +8,7 @@ jQuery ->
     regexp = new RegExp($(this).data('id'), 'g')
     $(this).before($(this).data('fields').replace(regexp, time))
     event.preventDefault()
+  $('form').on 'click', '.remove_nested_attribute', (event) ->
+  	$(this).siblings('._destroy').val('1')
+  	$(this).parent().hide()
+  	event.preventDefault()
