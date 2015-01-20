@@ -26,7 +26,6 @@ class TryoutsController < ApplicationController
     if @tryout.update(tryout_params)
       redirect_to @tryout, notice: 'Tryout was updated'
     else
-      setup_javascript_vars
       render action: 'edit'
     end
   end

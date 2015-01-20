@@ -1,0 +1,168 @@
+.static-page.green
+	h1 Party Central
+	.content
+		h2 Celebrate At Down Town Sports
+		.row
+			.col-md-6
+				div#party-carousel.carousel.slide data-ride='carousel'
+					ol.carousel-indicators
+						li data-target="#party-carousel" data-slide-to="0" class="active"
+						li data-target="#party-carousel" data-slide-to="1"
+						li data-target="#party-carousel" data-slide-to="2"
+
+					div.carousel-inner
+						div.item.active
+							= image_tag('party1.jpg')
+						div.item
+							= image_tag('party4.jpg')
+						div.item
+							= image_tag('party3.jpg')
+					a.carousel-control.left href='#party-carousel' data-slide='prev' <
+					a.carousel-control.right href='#party-carousel' data-slide='next' >
+			.col-md-6
+				p
+					| Have the most talked about
+					strong = " Sports Party of the Year "
+					| at our new facility and party lounge, completely organized by a select party staff who will cater to your every need. It is your child's special day and we are honored to have been chosen to share it with your family, and provide you with the most memorable event. We would love to host your private birthday party, bar/bat mitzvah, holiday party, sweet sixteen, fundraiser, graduation or awards party. Use the basketball courts, private lounges and lobby for all of your party/event needs.
+		.row
+			.col-md-8
+				h3 Birthday Party Packages
+				h4 Slam Dunk Package
+				dl
+					dd 1 Basketball Court + 1 Basketball Instructor for an hour (up to 15 children): $299
+				h3 Party Package Includes:
+				ul
+					li 1 Hour of Party Sports Court Time
+					li Party Coach and Host
+					li 30 Minutes in our Private Party Lounge
+					li Unlimited Drinks (for children only)
+					li Paper Goods (tablecloths, napkins, plates, cups, plasticware)
+					li Parties are set up, supervised and cleaned by our Down Town Sports Party Staff
+					li 
+						strong Free
+						| Down Town Sports Party T-Shirt for the guest of honor
+				dl
+					dt Additional:
+					dd $12/each additional child (over limit)
+			.col-md-4
+				h3 Your Choice of Sports
+				table.medium-spacing
+					tr
+						td Basketball
+						td Soccer
+					tr
+						td Dodge Ball
+						td Wiffle Ball
+					tr
+						td Football
+						td Kickball
+					tr
+						td Hockey
+						td Number Call
+					tr
+						td Relay Races
+						td Knock Out
+		dl.centered-text
+			dd Book your Party Today by calling (201) 848-0017
+			dd $100 non-refundable deposit is required at time of booking the party
+			dd = '***Please call for appt for Special Event Pricing and Availability'
+
+
+
+
+
+/ <div id="party-carousel" class="carousel slide" data-ride="carousel">
+
+/ 	<ol class="carousel-indicators">
+/ 		<li data-target="#party-carousel" data-slide-to="0" class="active"></li>
+/ 		<li data-target="#party-carousel" data-slide-to="1"></li>
+/ 		<li data-target="#party-carousel" data-slide-to="2"></li>
+/ 	</ol>
+
+/ 	<div class="carousel-inner">
+/ 		<div class=" item active carousel-padding party-image content-height">
+/ 			<%= image_tag("party1.jpg"); %>
+/ 		</div>
+/ 		<div class="item content-padding party-image content-height">
+/ 			<%= image_tag("party4.jpg"); %>
+/ 		</div>
+/ 		<div class="item content-padding party-image content-height">
+/ 			<%= image_tag("party3.jpg"); %>
+/ 		</div>
+/ 	</div>
+
+/ 	<a class="carousel-control left" href="#party-carousel" data-slide="prev"> < </a>
+
+/ 	<a class="carousel-control right" href="#party-carousel" data-slide="next"> > </a>
+/ </div>
+/ <div class = "static-green-content">
+/ 	<h1 class="centered">Party Central</h1>
+/ 	<h2>Celebrate At Down Town Sports</h2>
+/ 	<p class ="full-width auto-margin small-padding"> Have the most talked about <strong>Sports Party of the Year</strong> at our new facility and party lounge, completely organized by a select party staff who will cater to your every need.  It is your child's special day and we are honored to have been chosen to share it with your family, and provide you with the most memorable event.  We would love to host your private birthday party, bar/bat mitzvah, holiday party, sweet sixteen, fundraiser, graduation or awards party.  Use the basketball courts, tennis courts, private lounges and lobby's for all of your party/event needs.
+/ 	</p>
+/ </div>
+/ <div class = "static-cols-green">
+/ 	<div class = "row">
+/ 		<div class = "col-xs-8">
+/ 			<h3>Birthday Party Packages</h3>
+/ 			<h4>Slam Dunk Package</h4>
+/ 			<dd> 1 Basketball Court + 1 Basketball Instructor for an hour (up to 15 Children): $299</dd>
+/ 			<h4> Triple Threat Package</h4>
+/ 			<dd>1 Basketball Court + 2 Basketball Instructors for an hour (16-30 Children): $399</dd>
+/ 		</div>
+/ 		<div>
+/ 			<h3>Your Choice of Sports</h3>
+/ 			<table class="centered-table" id="party-table">
+/ 				<tr>
+/ 					<td><li>Basketball</li></td>
+/ 					<td><li>Soccer</li></td>
+/ 				</tr>
+/ 				<tr>
+/ 					<td><li>Dodge Ball</li></td>
+/ 					<td><li>"Tee" Ball</li></td>
+/ 				</tr>
+/ 				<tr>
+/ 					<td><li>Football</li></td>
+/ 					<td><li>Tennis</li></td>
+/ 				</tr>
+/ 				<tr>
+/ 					<td><li>Hockey</li></td>
+/ 					<td><li>Tug-O-War</li></td>
+/ 				</tr>
+/ 				<tr>
+/ 					<td><li>Kickball</li></td>
+/ 					<td><li>Volleyball</li></td>
+/ 				</tr>
+/ 				<tr>
+/ 					<td><li>Color War</li></td>
+/ 					<td><li>Knock Out</li></td>
+/ 				</tr>
+/ 			</table>
+/ 		</div>
+/ 	</div>
+/ 	<div class ="row">
+/ 		<h4></h4>
+/ 		<div class ="col-xs-10">
+/ 			<h3>Both Packages Include:</h3>
+/ 			<ul>
+/ 				<li>1 Hour of Party Sports Court Time</li>
+/ 				<li>Party Coach(s) and Host</li>
+/ 				<li>30 Minutes in our Private Party Lounge</li>
+/ 				<li>Unlimited Drinks (for children only)</li>
+/ 				<li>Paper Goods (tablecloths, napkins, plates, cups, plasticware)</li>
+/ 				<li>Parties are set up, supervised and cleaned by our Down Town Sports Party Staff</li>
+/ 				<li><strong>Free</strong> Down Town Party T-Shirt for the guest of honor</li>
+/ 			</ul>
+/ 			<dt>Additional:</dt>
+/ 			<dd>$12/each additional child (over package limit)</dd>
+/ 		</div>
+/ 	</div>
+/ 	<div>
+/ 		<p class = "centered">
+/ 			<br /> <br />
+/ 			Book your Party Today by calling (201)848-0017<br />
+/ 			$100 non-refundable deposit is required at time of booking the party <br />
+/ 			***Please call for appt for Special Event Pricing and Availability <br />
+/ 		</p>
+/ 	</div>
+/ </div>

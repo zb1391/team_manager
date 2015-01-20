@@ -13,6 +13,16 @@
 				padding-left: 0;
 			}
 		}
+		&.medium-spacing{
+			tr{
+				td{
+					padding: 8px 20px;
+				}
+				// td:first-child{
+				// 	padding-left: 20px;
+				// }
+			}
+		}
 	}
 	h1,h2,h3,h4,p{ margin:0}
 	background-color: white;
