@@ -12,7 +12,7 @@ $light-gray: #eeeeee;
 $yellow: #ffd83d;
 $green: #269626;
 $orange: #ff9d00;
-
+$gray: $light-gray;
 $dark-orange: #e6782e;
 $dark-green: #006600;
 $dark-gray: #656565;
@@ -27,8 +27,17 @@ $grid-float-breakpoint: 960px;
 $grid-float-breakpoint-max: 959px;
 
 //button stuff
+$btn-default-bg: $gray;
+$btn-default-color: $dark-orange;
 $btn-primary-bg: $light-green;
 $btn-danger-bg: $orange;
+
+//panel stuff
+$panel-bg: $light-gray;
+
+//link stuff
+$link-color: $green;
+
 @import "bootstrap-sprockets";
 @import 'bootstrap';
 @import "partials/home";
@@ -46,6 +55,7 @@ body{
 nav.navbar.navbar-default{
 	margin-bottom: 0;
 }
+
 // Collapse width fix
 @media (max-width: $screen-sm-max) {
   ul.nav.navbar-nav{
@@ -57,14 +67,23 @@ nav.navbar.navbar-default{
 .centered-text{
 	text-align: center;
 }
+.padding-bottom-10{
+	padding-bottom: 10px !important;
+}
 .margin-bottom-10{
 	margin-bottom: 10px !important;
 }
 
+.padding-bottom-20{
+	padding-bottom: 20px !important;
+}
 .margin-bottom-20{
 	margin-bottom: 20px !important;
 }
 
+.inline{
+	display: inline;
+}
 .float-left{
 	float: left;
 }
@@ -90,4 +109,34 @@ nav.navbar.navbar-default{
 
 * html .clearfix{
 	height: 1%;
+}
+
+dl{
+	dt{
+		&.inline{
+			margin-right: 10px;
+		}
+	}
+	&.dl-single-line{
+		dt{
+			float: left;
+		}
+		dd{
+			float: right;
+		}
+	}
+}
+
+ul{
+	li{
+		strong{
+			&.orange{
+				color: $light-orange !important;
+			}
+		}
+	}
+}
+.panel{
+	border:none;
+	border-radius: 0;
 }

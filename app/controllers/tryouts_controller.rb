@@ -31,7 +31,9 @@ class TryoutsController < ApplicationController
   end
 
   def destroy
-
+    @tryout = Tryout.find(params[:id])
+    @tryout.destroy
+    redirect_to root_path
   end
 
   private

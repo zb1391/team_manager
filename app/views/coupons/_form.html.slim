@@ -1,0 +1,29 @@
+= form_for @coupon do |f|
+  - if @coupon.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+  .form-panel     
+    = f.label "Title"
+    = f.text_field :title, placeholder: 'Enter Title'
+    = f.check_box :active
+    span Active
+    
+    - @coupon.errors[:title].each do |msg|
+      .validation-error = msg
+
+    = f.label "Active Until"
+    = f.date_field :active_until
+
+
+    = f.label "Description"
+    = f.text_area :description, placeholder: 'Enter Description'
+    - @coupon.errors[:description].each do |msg|
+      .validation-error = msg
+  
+  .form-actions
+    = f.submit "Submit", class: "btn btn-primary"
+    = link_to "Cancel", coupons_path, class: "btn btn-cancel"
+
+
+
+  

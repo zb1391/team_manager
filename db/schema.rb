@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150119034248) do
+ActiveRecord::Schema.define(version: 20150123013724) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,28 @@ ActiveRecord::Schema.define(version: 20150119034248) do
     t.datetime "updated_at"
     t.string   "salt"
     t.boolean  "admin",              default: false
+  end
+
+  create_table "coupons", force: true do |t|
+    t.string  "title"
+    t.string  "description"
+    t.boolean "active",       default: true
+    t.date    "active_until"
+  end
+
+  create_table "display_tournament_locations", force: true do |t|
+    t.integer "display_tournament_id"
+    t.integer "location_id"
+  end
+
+  create_table "display_tournaments", force: true do |t|
+    t.string  "season"
+    t.integer "min_grade"
+    t.integer "max_grade"
+    t.integer "guaranteed_games"
+    t.float   "price"
+    t.string  "genders"
+    t.boolean "active",           default: true
   end
 
   create_table "events", force: true do |t|
@@ -201,10 +223,12 @@ ActiveRecord::Schema.define(version: 20150119034248) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "end_date"
-    t.boolean  "active",     default: true
-    t.string   "genders",    default: "Both"
-    t.integer  "min_grade",  default: 3
-    t.integer  "max_grade",  default: 12
+    t.string   "genders",               default: "Both"
+    t.integer  "min_grade",             default: 3
+    t.integer  "max_grade",             default: 12
+    t.boolean  "display_info"
+    t.boolean  "is_invitational",       default: true
+    t.date     "end_registration_date"
   end
 
   create_table "tryout_dates", force: true do |t|

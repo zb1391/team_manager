@@ -15,9 +15,15 @@ class PageController < ApplicationController
 
   def leagues
     @tournament = Tournament.new
+    @display_tournament = Tournament.find_by_display_info(true)
+    @invitationals = Tournament.find_active_invitationals
+
   end
 
   def camps
+    @coupons = Coupon.active_coupons
+    @summer_camps = SummerCamp.active_summer_camps
+    @tuition = @summer_camps.last.try(:price)
   end
 
   def gym_ratz_about

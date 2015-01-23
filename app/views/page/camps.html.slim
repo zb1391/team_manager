@@ -1,0 +1,102 @@
+.static-page.green
+	h1 Down Town Sports Camps
+	.content
+		h2 Gym Ratz AAU Summer Camp
+		p 
+			|Serving the North Jersey area for 20 years, the Gym Ratz, Down Town Sports Summer Camp directed by Coach Ozzie and Coach Danny Brown, is committed to offering the very best quality instruction with experienced, professional staff in a competitive, enthusiastic, teaching environment. Our goals, work ethic and positive leadership help bridge the gap between personal achievement and team success. 
+			br
+			br
+			| Athletes learn, compete, have fun, make friends, and are immersed in a training camp environment. Building 
+			strong = " self-esteem and confidence "
+			| through skill development and interactive coaching provides the
+			strong = " best basketball camp experience "
+			| for your child today
+		h2 Vacation Mini Camps
+		p Vacation Mini Camps are also offered through the calendar school year. Check back soon for dates and times.
+		.row
+			.col-md-6
+				h3 Program Schedule
+				table.no-spacing
+					tr
+						td 8:30
+						td am
+						td Supervised Practice for Early Players
+					tr
+						td 9:00
+						td am
+						td Camp Attendance-Stretch
+					tr 
+						td 9:15
+						td am
+						td Daily Skill Stations, Instruction
+					tr
+						td 10:15
+						td am
+						td Content of the Day
+					tr
+						td 10:30
+						td am
+						td Game or Team Practice
+					tr
+						td 11:30
+						td am
+						td Lunch; Coaches Chalk Talk
+					tr
+						td 12:00
+						td pm
+						td Game or Team Practice
+					tr
+						td 1:00
+						td pm
+						td Full Court Instruction
+					tr
+						td 2:00
+						td pm
+						td Game or Team Practice
+					tr 
+						td 2:50
+						td pm
+						td Announcements; Awards of the Day!
+					tr
+						td 3:00
+						td pm
+						td Dismissal
+					tr
+						td 3:30
+						td pm
+						td Gym Closes
+			.col-md-6
+				h3 Program (Age) Grouping
+				p
+					strong For Boys & Girls Grades 3-9
+					br
+					| Players are grouped according to age first, and then by Skill Ability and Basketball I.Q. second. Our goal
+					is to challenge each player to maximize their potential and provide the opportunity for all players to promote 
+					themselves in a safe teaching-learning environment.
+				h3 Summer Camp Weeks
+				.row
+					- if @summer_camps.any?
+						.col-md-6
+							dl.dl-single-line	
+								- @summer_camps.each_with_index do |camp,i|
+									.clearfix
+										dt = "Camp #{i+1}"
+										dd = camp.date_range_short
+					- else
+						.col-md-12
+							strong Dates Coming Soon!
+		- if @summer_camps.any?	
+			h2 
+				strong Sign Up Today!
+			dl.standard
+				dt.inline Camp Tuition:
+				dd.inline = number_to_currency(@tuition)
+				br
+				- @coupons.each do |coupon|
+					dt.inline = coupon.title
+					dd.inline = coupon.description
+					br
+				- @coupons.any?
+					dd = '**coupons and special offerings cannot be combined'
+			div.padding-bottom-20 = link_to "Sign Up", new_summer_camper_path, class: 'btn btn-default btn-large'
+

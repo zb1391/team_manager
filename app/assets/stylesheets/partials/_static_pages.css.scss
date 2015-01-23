@@ -1,6 +1,6 @@
 .static-page{
 	.content{
-		padding: 0 30px;
+		padding: 20px 30px;
 	}
 
 	table{
@@ -13,14 +13,26 @@
 				padding-left: 0;
 			}
 		}
+		&.no-spacing{
+			tr{
+				td{
+					padding: 0 5px;
+				}
+			}
+		}
 		&.medium-spacing{
 			tr{
 				td{
 					padding: 8px 20px;
 				}
-				// td:first-child{
-				// 	padding-left: 20px;
-				// }
+			}
+		}
+		&.table{
+			tr{
+				td{
+					padding: 5px;
+					background-color: white;
+				}
 			}
 		}
 	}
@@ -32,7 +44,6 @@
 		text-align: center;
 		color: $yellow;
 		padding-bottom: 40px;
-		margin-bottom: 20px;
 	}
 	h2{
 		font-weight: bold;
@@ -85,12 +96,21 @@
 			}
 		}
 		h3{
-			color: $dark-green;
+			color: $green;
 			text-decoration: underline;
+			strong{
+				color: $light-orange;
+				text-decoration: underline;
+			}
 		}
 		dl{
 			dt{
 				color: $dark-green;
+			}
+			&.standard{
+				dt{
+					color: black;
+				}
 			}
 		}
 	}

@@ -1,3 +1,40 @@
+.static-page.green
+	h1 Leagues and Tournaments
+	.content
+		h2 = "Gym Ratz #{@display_tournament.the_date.season.to_s} Invitational"
+		- if @display_tournament.nil?
+			p The Gym Ratz Spring/Fall Ball Invitationals are seasonal tournaments held yearly and open to both Boys and Girls Teams Grades 4-12.
+		- else
+			p = "The Gym Ratz #{@display_tournament.the_date.season.to_s} Invitational is a tournament open to both Boys and Girls ages Teams Grades 4-12."
+		ul.margin-bottom-20
+			li A Level and B Level Pools
+			li 
+				| Each Team
+				strong = ' Guaranteed 3+ Games'
+			li
+				strong.orange = 'Championship T-Shirts '
+				| will be awarded to top competitors
+			- if @invitationals.empty?
+				li Dates coming soon!
+		.row
+			.col-md-6
+				dl
+					dt Where
+					dd Down Town Sports, Mahwah
+					dt Entry Fee
+					- if @display_tournament.nil?
+						dd $350 per Team
+					- else
+						dd = number_to_currency(@display_tournament.price)
+			.col-md-6
+				dl
+					- unless @invitationals.empty?
+						dt Dates
+					- @invitationals.each do |tournament|
+						dd = tournament.display_date
+					dt Select a Date
+
+
 <div class ="static-green-content">
 	<h1 class="centered">Leagues and Tournaments</h1>
 	<br />
