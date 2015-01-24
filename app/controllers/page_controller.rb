@@ -26,6 +26,7 @@ class PageController < ApplicationController
   end
 
   def gym_ratz_about
+    @tryout = Tryout.last
   end
 
   def photo_gallery

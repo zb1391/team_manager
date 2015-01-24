@@ -1,7 +1,7 @@
 .static-page.green
 	h1 Leagues and Tournaments
 	.content
-		h2 = "Gym Ratz #{@display_tournament.season} Invitational"
+		h2 = "Gym Ratz #{@display_tournament.try(:season)} Invitational"
 		- if @display_tournament.nil?
 			p The Gym Ratz Spring/Fall Ball Invitationals are seasonal tournaments held yearly and open to both Boys and Girls Teams Grades 4-12.
 		- else
