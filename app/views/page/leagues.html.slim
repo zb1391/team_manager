@@ -5,17 +5,16 @@
 		- if @display_tournament.nil?
 			p The Gym Ratz Spring/Fall Ball Invitationals are seasonal tournaments held yearly and open to both Boys and Girls Teams Grades 4-12.
 		- else
-        p 
-          span = "The Gym Ratz " 
-          span#view-season-p = "#{@display_tournament.season} "
-          span = " Invitational is a tournament open to "
-          span#view-gender = "#{@display_tournament.display_gender} "
-          span = " Teams Grades "
-          span#view-min_grade = "#{@display_tournament.min_grade}"
-          span = " - "
-          span#view-max_grade = "#{@display_tournament.max_grade}"
-          span .
-		- if @display_tournament.nil?
+			p
+				span = "The Gym Ratz "
+				span = "#{@display_tournament.season}"
+				span = " Invitational is a tournament open to "
+				span = "#{@display_tournament.display_gender} "
+				span = " Teams Grades "
+				span = "#{@display_tournament.min_grade}"
+				span = " - "
+				span = "#{@display_tournament.max_grade}."
+		- unless @display_tournament.nil?
 			ul.margin-bottom-20
 				li A Level and B Level Pools
 				li 
