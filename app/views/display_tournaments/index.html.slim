@@ -1,1 +1,26 @@
-h1 Displays
+.static-page.green
+	h1 Invitational Displays
+	.content
+		.panel.panel-default
+			table.table
+				thead
+					th Active
+					th Season
+					th Genders
+					th Ages
+					th Price
+					th Actions
+				tbody
+					- @display_tournaments.each do |display_tournament|
+						tr
+							td 
+								strong = display_tournament.active ? 'Active' : ''
+							td = display_tournament.season
+							td = display_tournament.display_gender
+							td = display_tournament.display_grades
+							td = display_tournament.price
+							td
+								= link_to 'Edit', edit_display_tournament_path(display_tournament)
+								span = ' | '
+								= link_to 'Destroy', display_tournament, method: :delete, data: {confirm: 'Are you sure?'}
+		= link_to 'New Display Tournament', new_display_tournament_path, class: 'btn btn-primary'

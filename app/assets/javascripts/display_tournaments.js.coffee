@@ -8,7 +8,6 @@ $ ->
 		if $('#display-tournament-form .form-panel #display_tournament_active').is(':checked')
 			alert("Warning - This tournament's information will be used on the Leagues and Tournament Pages. Please choose a different tournament if you do not want to use this information. If no tournaments are chosen default information will be displayed.")
 
-	test = $('#display_tournament_price')
 
 	$('#display_tournament_price').formPreviewer($('#view-price'), 
 		'keyup', 
@@ -32,10 +31,34 @@ $ ->
 	$('#display_tournament_min_grade').formPreviewer($('#view-min_grade'),'change')
 	$('#display_tournament_max_grade').formPreviewer($('#view-max_grade'),'change')
 
-	$('#display_tournament_display_tournament_locations_attributes_0_location_id').formPreviewer($('#view-location0'),
+
+	$('#display-tournament-form .nested-attributes').each((index) ->
+		if index == 0
+			$(this).children('.remove_nested_attribute').hide()
+		selectField = $(this).children('select')
+		selectField.dynamicFormPreviewer(
+			selectField.siblings('.remove_nested_attribute'),
+			$('dd[data-id=\"'+index+'\"'),
+			'change',
+			formatter: (elem) ->
+				return elem.find('option:selected').text()
+		)
+	)
+	# $('#display_tournament_display_tournament_locations_attributes_0_location_id').dynamicFormPreviewer(
+	# 	$('#display_tournament_display_tournament_locations_attributes_0_location_id').siblings('.remove_nested_attribute'),
+	# 	$('dd[data-id="0"]'),
+	# 	'change',
+	# 	formatter: (elem) ->
+	# 		return elem.find('option:selected').text()
+	# 	)
+
+	$('#display-tournament-form .dynamic_preview_creator').dynamicFormPreviewerCreator(
+		'nested-attributes',
+		$('#locations-preview-container'),
+		'remove_nested_attribute',
 		'change',
 		formatter: (elem) ->
-			return elem.find('option:selected').text()
+			return elem.find('option:selected').text()		
 		)
 
 

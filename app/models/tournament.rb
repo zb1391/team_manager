@@ -1,5 +1,7 @@
 class Tournament < ActiveRecord::Base
 	has_many :organizations, :dependent => :destroy
+	has_many :tournament_locations, dependent: :destroy
+	has_many :locations, through: :tournament_locations
 
 	validates :name, presence:{message: 'You must enter a name'}, unless: "self.is_invitational"
 	validates :the_date, presence:{message: 'You must enter a date'}

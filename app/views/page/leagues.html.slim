@@ -1,26 +1,51 @@
 .static-page.green
 	h1 Leagues and Tournaments
 	.content
-		h2 = "Gym Ratz #{@display_tournament.the_date.season.to_s} Invitational"
+		h2 = "Gym Ratz #{@display_tournament.season} Invitational"
 		- if @display_tournament.nil?
 			p The Gym Ratz Spring/Fall Ball Invitationals are seasonal tournaments held yearly and open to both Boys and Girls Teams Grades 4-12.
 		- else
-			p = "The Gym Ratz #{@display_tournament.the_date.season.to_s} Invitational is a tournament open to both Boys and Girls ages Teams Grades 4-12."
-		ul.margin-bottom-20
-			li A Level and B Level Pools
-			li 
-				| Each Team
-				strong = ' Guaranteed 3+ Games'
-			li
-				strong.orange = 'Championship T-Shirts '
-				| will be awarded to top competitors
-			- if @invitationals.empty?
-				li Dates coming soon!
+        p 
+          span = "The Gym Ratz " 
+          span#view-season-p = "#{@display_tournament.season} "
+          span = " Invitational is a tournament open to "
+          span#view-gender = "#{@display_tournament.display_gender} "
+          span = " Teams Grades "
+          span#view-min_grade = "#{@display_tournament.min_grade}"
+          span = " - "
+          span#view-max_grade = "#{@display_tournament.max_grade}"
+          span .
+		- if @display_tournament.nil?
+			ul.margin-bottom-20
+				li A Level and B Level Pools
+				li 
+					| Each Team
+					strong =  "Guaranteed #{@display_tournament.guaranteed_games}+ Games"
+				li
+					strong.orange = 'Championship T-Shirts '
+					| will be awarded to top competitors
+				- if @invitationals.empty?
+					li Dates coming soon!
+		- else
+			ul.margin-bottom-20
+				li A Level and B Level Pools
+				li
+					| Each Team
+					strong = " Guaranteed 3+ Games"
+				li
+					strong.orange = 'Championship T-Shirts '
+					| will be awarded to top competitors 
+				- if @invitationals.empty?
+					li Dates coming soon!
 		.row
 			.col-md-6
 				dl
 					dt Where
-					dd Down Town Sports, Mahwah
+					- if @display_tournament.nil?
+						dd Down Town Sports, Mahwah
+					- else
+						- @display_tournament.display_tournament_locations.each do |dlocation|
+							dd = "#{dlocation.location.name_and_city}"	
 					dt Entry Fee
 					- if @display_tournament.nil?
 						dd $350 per Team

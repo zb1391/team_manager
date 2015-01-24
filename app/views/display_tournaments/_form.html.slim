@@ -30,13 +30,15 @@
         = f.select :min_grade, options_for_select(3..12, @display_tournament.min_grade), class: 'inline'
         span = ' - '
         = f.select :max_grade, options_for_select([12, 11, 10, 9, 8, 7, 6, 5, 4, 3], @display_tournament.max_grade), class: 'inline'
-
+        - @display_tournament.errors[:min_grade].each do |msg|
+          .validation-error = msg
+        end
       .form-panel
         = f.label "Locations"
         .tryout-date-attributes-container
           = f.fields_for :display_tournament_locations do |builder|
             = render 'display_tournament_location_fields', f: builder
-          = link_to_add_fields "Add Location", f, :display_tournament_locations
+          = link_to_dynamic_preview_fields "Add Location", f, :display_tournament_locations
       - @display_tournament.errors[:display_tournament_locations].each do |msg|
         .validation-error = msg
 
@@ -62,7 +64,6 @@
             span#view-min_grade = "#{@display_tournament.min_grade || 'MIN_GRADE'}"
             span = " - "
             span#view-max_grade = "#{@display_tournament.max_grade || 'MAX_GRADE'}"
-
             span .
           ul.margin-bottom-20
             li A Level and B Level Pools
@@ -81,10 +82,12 @@
             .col-md-6
               dl
                 dt Where
-                - @display_tournament.locations.empty?
-                  dd LOCATIONS
                 - @display_tournament.display_tournament_locations.each_with_index do |dlocation,i|
-                  dd[id="view-location#{i}"] = "#{dlocation.location.name}, #{dlocation.location.city}"
+                  #locations-preview-container
+                    - if dlocation.location
+                      dd[data-id="#{i}"] = "#{dlocation.location.name}, #{dlocation.location.city}"
+                    - else
+                      dd[data-id="#{i}"]
                 dt Entry Fee
                 dd 
                   span#view-price = "#{number_to_currency(@display_tournament.price) || 'PRICE'}" 

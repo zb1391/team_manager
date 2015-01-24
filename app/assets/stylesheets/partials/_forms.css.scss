@@ -64,14 +64,14 @@ form{
 		margin-top: 0px;
 		font-size: 50px;
 		font-weight: bold;
-		text-align: center;
 		color: $yellow;
 		background-color: $light-green;
-		padding-bottom: 40px;
+		padding: 20px 0 20px 30px;
 		margin-bottom: 20px;
 	}
 	background-color: white;
 	.form-panel{
+		max-width: 960px;
 		background-color: $light-gray;
 		padding: 15px;
 		margin-bottom: 20px;

@@ -9,6 +9,9 @@ class Location < ActiveRecord::Base
 		end
 	end
 	
+	def name_and_city
+		"#{name}, #{city}"
+	end	
 	def glocation
 		gaddress = ""+"#{address}"
 		gcity = ""+"#{city}"

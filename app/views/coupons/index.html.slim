@@ -19,6 +19,8 @@
 							td = coupon.active_until.nil? ? 'Indefinitely' : coupon.active_until.strftime('%m/%d/%Y')
 							td = coupon.active?
 							td
+								= link_to 'Show', coupon_path(coupon)
+								span = ' | '
 								= link_to 'Edit', edit_coupon_path(coupon)
 								span = ' | '
 								= link_to 'Destroy', coupon, method: :delete, data: {confirm: 'Are you sure?'}

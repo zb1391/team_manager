@@ -15,7 +15,7 @@ class TournamentsController < ApplicationController
   # GET /tournaments/new
   def new
     @tournament = Tournament.new
-    @tournament.tournament_locations.build
+    # @tournament.tournament_locations.build
   end
 
   # GET /tournaments/1/edit
@@ -26,7 +26,6 @@ class TournamentsController < ApplicationController
   # POST /tournaments.json
   def create
     @tournament = Tournament.new(tournament_params)
-    binding.pry
     respond_to do |format|
       if @tournament.save
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
@@ -74,7 +73,7 @@ class TournamentsController < ApplicationController
     def tournament_params
       params.require(:tournament).permit(:name, :the_date, 
         :end_date, :price, :active, :genders, :min_grade, 
-        :max_grade, :display_info, :is_invitational,
+        :max_grade, :display_info, :is_invitational,:end_registration_date,
         tournament_locations_attributes: [:_destroy,:id, :location_id])
     end
 end

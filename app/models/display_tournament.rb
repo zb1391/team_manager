@@ -1,5 +1,5 @@
 class DisplayTournament < ActiveRecord::Base
-	has_many :display_tournament_locations
+	has_many :display_tournament_locations, dependent: :destroy
 	has_many :locations, through: :display_tournament_locations
 
 	validates :season, presence:{message: 'You must enter a season'}
@@ -9,6 +9,7 @@ class DisplayTournament < ActiveRecord::Base
 	validates :price, numericality: {greater_than: 0, message: 'Must be a valid number'}
 	validates :genders, presence: {message: 'You must select which genders`'}
 	validates_presence_of :display_tournament_locations, message: 'You must select at least one location'
+	validate  :grade_range_validation
 
 	accepts_nested_attributes_for :display_tournament_locations,
 		allow_destroy: true,
@@ -21,9 +22,16 @@ class DisplayTournament < ActiveRecord::Base
 	end
 
 	def display_gender
-		genders.downcase == "both" ? "Boys and Girls" : gender
+		try(:genders).try(:downcase) == "both" ? "Boys and Girls" : genders
 	end
 	private
+	# max grade should be greater than min grade
+	def grade_range_validation
+		unless min_grade < max_grade
+			errors.add(:min_grade, "Minimum Grade must be smaller than Maximum Grade")
+		end
+	end
+
 	# set the previous tournament for display content to false
 	def set_display_content
 		if active

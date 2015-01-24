@@ -3,6 +3,7 @@ class DisplayTournamentsController < ApplicationController
   # GET /tournaments
   # GET /tournaments.json
   def index
+    @display_tournaments = DisplayTournament.all.order(active: :desc)
     # @tournaments = Tournament.order("the_date DESC").page(params[:page]).per(7)
   end
 
@@ -17,12 +18,15 @@ class DisplayTournamentsController < ApplicationController
   # GET /tournaments/new
   def new
     @invitationals = Tournament.find_active_invitationals
-    @display_tournament = DisplayTournament.new
+    @display_tournament = DisplayTournament.new(genders: 'Both', min_grade: 3, max_grade: 12)
     @display_tournament.display_tournament_locations.build
   end
 
   # GET /tournaments/1/edit
   def edit
+    @display_tournament = DisplayTournament.find(params[:id])
+    @display_tournament.display_tournament_locations.build if @display_tournament.display_tournament_locations.empty?
+    @invitationals = Tournament.find_active_invitationals
   end
 
   # POST /tournaments
@@ -49,6 +53,7 @@ class DisplayTournamentsController < ApplicationController
         format.html { redirect_to @display_tournament, notice: 'Tournament was successfully updated.' }
         format.json { head :no_content }
       else
+        @invitationals = Tournament.find_active_invitationals
         @display_tournament.display_tournament_locations.build if @display_tournament.display_tournament_locations.empty?
         format.html { render action: 'edit' }
         format.json { render json: @display_tournament.errors, status: :unprocessable_entity }

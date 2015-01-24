@@ -15,9 +15,8 @@ class PageController < ApplicationController
 
   def leagues
     @tournament = Tournament.new
-    @display_tournament = Tournament.find_by_display_info(true)
+    @display_tournament = DisplayTournament.find_by_active(true)
     @invitationals = Tournament.find_active_invitationals
-
   end
 
   def camps
