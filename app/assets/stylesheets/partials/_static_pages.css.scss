@@ -39,19 +39,20 @@
 	h1,h2,h3,h4,p{ margin:0}
 	background-color: white;
 	h1{
-		font-size: 50px;
+		padding: 0 15px 40px;
+		font-size: 400%;
 		font-weight: bold;
 		text-align: center;
 		color: $yellow;
-		padding-bottom: 40px;
 	}
 	h2{
 		font-weight: bold;
 		padding-bottom: 10px;
 		border-bottom: 1px solid $light-gray;
 		margin: 0 0 10px;
+		font-size: 250%;
 		strong{
-			font-size: 120%;
+			font-size: 270%;
 		}
 	}
 	h3{
