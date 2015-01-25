@@ -3,6 +3,9 @@
 		padding: 20px 30px;
 	}
 
+	.sub-content{
+		padding: 20px 0;
+	}
 	table{
 		margin-bottom: 20px;
 		tr{
@@ -55,11 +58,12 @@
 		}
 	}
 	h3{
+		font-size: 30px;
 		margin-bottom: 10px;
 		font-weight: bold;
 	}
 	h4{
-		font-size: 18px;
+		font-size: 20px;
 		color: $dark-orange;
 	}
 	p{
