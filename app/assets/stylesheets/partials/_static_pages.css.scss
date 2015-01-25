@@ -8,6 +8,7 @@
 		tr{
 			td{
 				padding: 5px;
+				font-size: 100%;
 			}
 			td:first-child{
 				padding-left: 0;
@@ -62,7 +63,7 @@
 	}
 	h4{
 		font-size: 200%;
-		// font-size: 18px;
+		// font-size: 18px;	
 		color: $dark-orange;
 	}
 	p{
@@ -75,8 +76,10 @@
 		margin-bottom: 20px;
 		dt{
 			font-weight: bold;
+			font-size: 100%;
 		}
 		dd{
+			font-size: 100%;
 			padding: 0;
 		}
 	}
