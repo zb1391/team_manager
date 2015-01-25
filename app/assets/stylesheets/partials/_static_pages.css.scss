@@ -87,12 +87,7 @@
 	}
 	&.green{
 		h1{
-			@media (max-width: 600px){
-				background-color: $mobile-light-green;
-			}
-			@media(min-width: 601px){
-				background-color: $light-green;
-			}
+			background-color: $light-green;
 		}
 		h2{
 			color: $green;
