@@ -15,27 +15,27 @@
 				span = " - "
 				span = "#{@display_tournament.max_grade}."
 		- unless @display_tournament.nil?
-			ul.margin-bottom-20
-				li A Level and B Level Pools
-				li 
+			dl.margin-bottom-20
+				dd A Level and B Level Pools
+				dd 
 					| Each Team
 					strong =  "Guaranteed #{@display_tournament.guaranteed_games}+ Games"
-				li
+				dd
 					strong.orange = 'Championship T-Shirts '
 					| will be awarded to top competitors
 				- if @invitationals.empty?
-					li Dates coming soon!
+					dd Dates coming soon!
 		- else
 			ul.margin-bottom-20
-				li A Level and B Level Pools
-				li
+				dd A Level and B Level Pools
+				dd
 					| Each Team
 					strong = " Guaranteed 3+ Games"
-				li
-					strong.orange = 'Championship T-Shirts '
+				dd
+					strong.orange-text = 'Championship T-Shirts '
 					| will be awarded to top competitors 
 				- if @invitationals.empty?
-					li Dates coming soon!
+					dd Dates coming soon!
 		.row
 			.col-md-6
 				dl

@@ -7,30 +7,31 @@
 	  	strong =" improve and develop "
 	  	|their individual and team skills. Our goal is to assist each player to reach their personal potential and highest level of play, and to offer exposure needed to be
 	  	strong =" recruited at the next level. "
-	  	| Each player will participate in highly competitve practices, league games, travel tournaments, and high schoole/college show case events against some of the best teams on the East Coast.	  
-		- if @tryout  
-		  h2
-		  	strong = "Gym Ratz AAU #{@tryout.season} Tryouts"
-		  .row
-		  	- if @tryout.girls_teams.any?
-		  		.col-md-6
-		  			h3 Girls Tryouts
-		  			- @tryout.girls_tryout_dates.each do |tryout_date|
-		  				h4 = tryout_date.date.strftime("%A, %b %d")
-		  				table
-		  					- tryout_date.sorted_tryout_times.each do |tryout_time|
-		  						tr
-		  							td = tryout_time.time.strftime("%I:%M")
-		  							td = tryout_time.time.strftime("%P")
-		  							td = tryout_time.team_grades("Girls")
-		  	- if @tryout.boys_teams.any?
-		  		.col-md-6
-		  			h3 Boys Tryouts
-		  			- @tryout.boys_tryout_dates.each do |tryout_date|
-		  				h4 = tryout_date.date.strftime("%A, %b %d")
-		  				table
-		  					- tryout_date.sorted_tryout_times.each do |tryout_time|
-		  						tr
-		  							td = tryout_time.time.strftime("%I:%M")
-		  							td = tryout_time.time.strftime("%P")
-		  							td = tryout_time.team_grades("Boys")
+	  	| Each player will participate in highly competitve practices, league games, travel tournaments, and high schoole/college show case events against some of the best teams on the East Coast.
+	  br
+		- if @tryout
+			h2
+				strong = "Gym Ratz AAU #{@tryout.season} Tryouts"
+			.row
+				- if @tryout.girls_tryout_dates.any?
+					.col-md-6
+						h3 Girls Tryouts
+						- @tryout.girls_tryout_dates.each do |tryout_date|
+							h4 = tryout_date.date.strftime("%A, %b %d")
+							table
+								- tryout_date.sorted_tryout_times.each do |tryout_time|
+									tr
+										td = tryout_time.time.strftime("%I:%M")
+										td = tryout_time.time.strftime("%P")
+										td = tryout_time.team_grades("Girls")
+				- if @tryout.boys_tryout_dates.any?
+					.col-md-6
+						h3 Boys Tryouts
+						- @tryout.boys_tryout_dates.each do |tryout_date|
+							h4 = tryout_date.date.strftime("%A, %b %d")
+							table
+								- tryout_date.sorted_tryout_times.each do |tryout_time|
+									tr
+										td = tryout_time.time.strftime("%I:%M")
+										td = tryout_time.time.strftime("%P")
+										td = tryout_time.team_grades("Boys")
