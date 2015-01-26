@@ -15,7 +15,7 @@
 				span = " - "
 				span = "#{@display_tournament.max_grade}."
 		- unless @display_tournament.nil?
-			dl.margin-bottom-20
+			dl
 				dd A Level and B Level Pools
 				dd 
 					| Each Team
@@ -26,7 +26,7 @@
 				- if @invitationals.empty?
 					dd Dates coming soon!
 		- else
-			ul.margin-bottom-20
+			dl
 				dd A Level and B Level Pools
 				dd
 					| Each Team
@@ -38,7 +38,7 @@
 					dd Dates coming soon!
 		.row
 			.col-md-6
-				dl
+				dl.green
 					dt Where
 					- if @display_tournament.nil?
 						dd Down Town Sports, Mahwah
@@ -51,7 +51,7 @@
 					- else
 						dd = number_to_currency(@display_tournament.price)
 			.col-md-6
-				dl
+				dl.orange
 					- unless @invitationals.empty?
 						dt Dates
 					- @invitationals.each do |tournament|

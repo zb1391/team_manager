@@ -2,6 +2,8 @@
 // -----------------------------
 // Similar styling between mobile and desktop
 
+$gray: #454545;
+
 $navbar-default-bg: black;
 $nav-orange: #ff8c00;
 
@@ -15,7 +17,7 @@ $grid-float-breakpoint: 1060px;
 $grid-float-breakpoint-max: 1059px;
 
 //button stuff
-$btn-default-bg: $gray;
+$btn-default-bg: $light-gray;
 $btn-default-color: $dark-orange;
 $btn-primary-bg: $light-green;
 $btn-danger-bg: $orange;
@@ -25,6 +27,7 @@ $panel-bg: $light-gray;
 
 //link stuff
 $link-color: $green;
+
 
 @import "bootstrap-sprockets";
 @import 'bootstrap';
@@ -36,6 +39,13 @@ $link-color: $green;
 body{
 	font-size: 18px;
 	background: #1b1b1b;
+	color: $gray
+}
+p{
+	color: black;
+}
+strong{
+	color: black;
 }
 // ul.nav.navbar-nav{
 //   margin-top: 75px;
