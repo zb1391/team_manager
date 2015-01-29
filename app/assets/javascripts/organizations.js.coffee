@@ -4,19 +4,18 @@
 
 jQuery ->
 	$('#organization-form').on 'change', '.use_organization_info', (event) ->
-		console.log($(this))
 		if $(this).is(':checked')
 			contact = $('#organization_contact_name').val()
 			email = $('#organization_email').val()
 			phone = $('#organization_phone').val()
 			if !!contact && !!email && !!phone
-				$(this).siblings('.club_coach_name').val(contact)
-				$(this).siblings('.club_coach_email').val(email)
-				$(this).siblings('.club_coach_cell').val(phone)
+				$(this).parent().find('.club_coach_name').val(contact)
+				$(this).parent().find('.club_coach_email').val(email)
+				$(this).parent().find('.club_coach_cell').val(phone)
 			else
 				alert('Please fill in all organization info before using this checkbox')
 				$(this).attr('checked', false)
 		else
-			$(this).siblings('.club_coach_name').val('')
-			$(this).siblings('.club_coach_email').val('')
-			$(this).siblings('.club_coach_cell').val('')
+			$(this).parent().find('.club_coach_name').val('')
+			$(this).parent().find('.club_coach_email').val('')
+			$(this).parent().find('.club_coach_cell').val('')
