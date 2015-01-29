@@ -24,6 +24,7 @@ class DisplayTournament < ActiveRecord::Base
 	def display_gender
 		try(:genders).try(:downcase) == "both" ? "Boys and Girls" : genders
 	end
+	
 	private
 	# max grade should be greater than min grade
 	def grade_range_validation

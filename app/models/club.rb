@@ -1,5 +1,8 @@
 class Club < ActiveRecord::Base
+	attr_accessor :use_organization_info
 	belongs_to :organization
+	validates :coach, presence: {message: 'You must enter a coach name'}
+	validates :email, presence: {message: 'You muster enter a coach email'}
 	validates :cell, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	def team_name
 		"#{gender} #{grade} Grade"

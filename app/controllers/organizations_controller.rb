@@ -15,7 +15,9 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/new
   def new
-    @organization = Organization.new
+    @organization = Organization.new(manual_fee_entry: false)
+    @organization.clubs.build
+    @invitationals = Tournament.find_active_invitationals
     if !params[:id].blank?
       @tournament = Tournament.find(params[:id])
       @organization.tournament_id = params[:id]
@@ -46,6 +48,8 @@ class OrganizationsController < ApplicationController
         format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
       else
+        @invitationals = Tournament.find_active_invitationals
+        @organization.clubs.build if @organization.clubs.empty?
         format.html { render action: 'new' }
         format.json { render json: @organization.errors, status: :unprocessable_entity }
       end
@@ -88,6 +92,7 @@ class OrganizationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
       params.require(:organization).permit(:name, :contact_name, :email, :phone, :tournament_id, :manual_fee_entry,
-      :amount_owe, :amount_paid, :paid_at, clubs_attributes: [:coach, :id, :_destroy, :gender, :grade, :email, :cell])
+      :amount_owe, :amount_paid, :paid_at,
+      clubs_attributes: [:coach, :id, :_destroy, :gender, :grade, :email, :cell,:use_organization_info])
     end
 end

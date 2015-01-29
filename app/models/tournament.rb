@@ -9,8 +9,8 @@ class Tournament < ActiveRecord::Base
 										numericality: {greater_than: 0}
 	validates_presence_of :tournament_locations, message: 'You must select at least one location'
 	validate :tournament_date_validation
-
-
+	validates :end_registration_date, presence: {message: 'You must enter a date'}
+	accepts_nested_attributes_for :tournament_locations, allow_destroy: true
 	def age_range
 		"#{self.min_grade}-#{self.max_grade}"
 	end
@@ -31,16 +31,28 @@ class Tournament < ActiveRecord::Base
 		(self.min_grade..self.max_grade).map{|x| "#{x.ordinalize}"}
 	end
 
+	def display_grades
+		"#{self.min_grade}-#{self.max_grade}"
+	end
+
+	def display_gender
+		try(:genders).try(:downcase) == "both" ? "Boys and Girls" : genders
+	end
+
+	def gender_and_grade
+		"#{display_gender} Grades #{display_grades}"
+	end
 
 	def formatted_date
 		the_date.strftime("%b-%d-%y")
 	end
 
 	def formatted_name
+		tournament_name = is_invitational ? "Gym Ratz Invitational" : name
 		if end_date.blank?
-			"#{name}: #{the_date.strftime("%b %d")}"
+			"#{tournament_name}: #{the_date.strftime("%b %d")}"
 		else
-			"#{name}: #{the_date.strftime("%b %d")} - #{end_date.strftime("%b %d")}"
+			"#{tournament_name}: #{the_date.strftime("%b %d")} - #{end_date.strftime("%b %d")}"
 		end
 	end
 
@@ -53,10 +65,10 @@ class Tournament < ActiveRecord::Base
 	end
 
 	def self.find_active_invitationals
-		Tournament.search(is_invitational_eq: true, the_date_gt: Date.today).result.order(:the_date)
+		Tournament.search(is_invitational_eq: true, end_registration_date_gt: Date.today).result.order(:the_date)
 	end
 	def self.find_active_tournaments
-		Tournament.search(:the_date_gt => Date.today).result.order(:the_date)
+		Tournament.search(:end_registration_date_gt => Date.today).result.order(:the_date)
 	end
 	def self.find_tournaments(name)
 		Tournament.search(:name_cont => "#{name}", :the_date_gt => DateTime.now, :active_eq => true).result.order(:the_date).to_a

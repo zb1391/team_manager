@@ -1,0 +1,96 @@
+.static-page.green
+	h1 = @organization.tournament.formatted_name
+	.content
+		h2 = "#{@organization.name} Registration"
+		- if @organization.amount_owe != @organization.amount_paid
+			h4.margin-bottom-20 Your team(s) will not be entered into this tournament until payment is received
+
+			dl
+				dd Please call Down Town Sports
+				dd (201) 848-0017 with a credit card
+
+			h4.margin-bottom-20 OR
+
+			dl
+				dd Mail a check payable to Down Town Sports
+				dd 7 Leighton Place, Mahwah, NJ, 07430
+		h2 Teams
+		h4.margin-bottom-10 = "#{number_to_currency(@organization.tournament.price)} per team"
+		dl
+			dt = @organization.contact_name
+			dd = @organization.email
+			dd = number_to_phone(@organization.phone, area_code: true)
+		.panel.panel-default	
+			table.table
+				thead
+					tr
+						th Team
+						th Coach
+						th Email
+						th Phone
+						th Price
+				tbody
+					- cur_amount = @organization.amount_paid
+					- @organization.clubs.each do |club|
+						- cur_amount -= @organization.tournament.price
+						tr
+							td = "#{club.grade} Grade #{club.gender}"
+							td = club.coach
+							td = club.email
+							td = number_to_phone(club.cell, area_code: true)
+							td
+								- if cur_amount >= 0
+									span Paid
+								- else
+									span = number_to_currency(@organization.tournament.price)
+
+		- if is_admin?
+			= link_to 'Add More Teams', edit_organization_path(@organization), class: 'btn btn-primary margin-bottom-10'
+		h2 Summary
+		table
+			tr
+				td.right-text 
+					strong Teams Entered:
+				td.right-text = @organization.clubs.count
+			tr
+				td.right-text 
+					strong Total:
+				td.right-text = number_to_currency(@organization.amount_owe)
+			tr
+				td.right-text
+					strong Amount Paid:
+				td.right-text = number_to_currency(@organization.amount_paid)
+/ <% if is_admin? %>
+/ 	<%= link_to 'Add More Teams', edit_organization_path(@organization), id: "large-text", class: "med-margin-left" %> <br /> <br />
+/ <% end %>
+/ <div class = "row">
+/ 	<div class = "col-xs-6">
+/ 	<h2>Contact</h2>
+/ 		<dt class = "med-margin-left"> <%= @organization.contact_name %></dt>
+/ 		<dd class = "med-margin-left"> <%= @organization.email %></dd>
+/ 		<dd class = "med-margin-left"> <%= number_to_phone(@organization.phone, area_code: true) %></dd>
+/ 	</div>
+/ 	<div class ="col-xs-6">
+/ <h2> Summary </h2>
+/ 	<table class = "med-margin-left">
+/ 		<tr>
+/ 			<td> <dt>Teams Entered:</dt></td>
+/ 			<td><dd> <%= @organization.clubs.size %></dd>  </td>
+/ 		</tr>
+/ 		<tr>
+/ 			<td> <dt>Total</dt></td>
+/ 			<td><dd> <%= number_to_currency @organization.amount_owe %></dd></td>
+/ 		</tr>
+/ 		<tr>
+/ 			<td> <dt>Amount Paid</dt></td>
+/ 			<td> <dd> <%= number_to_currency @organization.amount_paid %></dd></td>
+/ 		</tr>
+/ 	</table>
+/ 	</div>
+	
+/ </div>
+/ <% if is_admin? %>
+/ 	<br />
+/ 	<%= link_to 'Back', organizations_path %>
+/ <% end %>
+/ </div>

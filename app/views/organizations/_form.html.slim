@@ -1,0 +1,56 @@
+= form_for @organization,html: {id: 'organization-form'} do |f|
+  - if @organization.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+
+  .form-panel
+    = f.label "Tournament"
+    = f.collection_select :tournament_id, @invitationals, :id, :formatted_name, include_blank: false
+
+  h2 Club/Organization Name
+  .form-panel
+    = f.label "Club Name"
+    = f.text_field :name, placeholder: 'Enter Club Name'
+    - @organization.errors[:name].each do |msg|
+      .validation-error = msg
+    
+    = f.label "Contact Name"
+    = f.text_field :contact_name, placeholder: 'Enter Name'
+    - @organization.errors[:contact_name].each do |msg|
+      .validation-error = msg
+    
+    = f.label "Email"
+    = f.text_field :email, placeholder: 'Enter Email'
+    - @organization.errors[:email].each do |msg|
+      .validation-error = msg
+    
+    = f.label "Phone Number"
+    = f.text_field :phone, placeholder: 'Ex. 2018480017'
+    - @organization.errors[:phone].each do |msg|
+      .validation-error = msg
+    
+  h2 Teams
+  = f.fields_for :clubs do |builder|
+    = render 'club_fields', f: builder
+  - @organization.errors[:clubs].each do |msg|
+    .validation-error = msg
+  = link_to_add_fields "Add Another Team", f, :clubs, class: 'btn btn-primary add_organization_team'
+
+
+
+  - if is_admin?
+    .form-panel
+      = f.label "Amount Owe"
+      = f.text_field :amount_owe
+      
+      = f.check_box :manual_fee_entry
+      span Check this box if you want to manually enter the amount owe
+
+      = f.label "Amount Paid"
+      = f.text_field :amount_paid
+  - else
+    - @organization.manual_fee_entry = "0"
+
+  .form-actions
+    = f.submit "Register For Tournament", class: "btn btn-primary"
+    = link_to "Cancel", page_leagues_path, class: 'btn btn-cancel'

@@ -19,9 +19,9 @@
 				dd A Level and B Level Pools
 				dd 
 					| Each Team
-					strong =  "Guaranteed #{@display_tournament.guaranteed_games}+ Games"
+					strong =  " Guaranteed #{@display_tournament.guaranteed_games}+ Games"
 				dd
-					strong.orange = 'Championship T-Shirts '
+					strong.orange-text = 'Championship T-Shirts '
 					| will be awarded to top competitors
 				- if @invitationals.empty?
 					dd Dates coming soon!
@@ -51,10 +51,14 @@
 					- else
 						dd = number_to_currency(@display_tournament.price)
 			.col-md-6
-				dl.orange
+				dl.green
 					- unless @invitationals.empty?
 						dt Dates
 					- @invitationals.each do |tournament|
-						dd = tournament.display_date
+						dd = "#{tournament.display_date} - #{tournament.gender_and_grade}"
+
 					dt Select a Date
+					= form_for @tournament, url: new_organization_url, html: {method: 'GET', class: 'inner-form'} do |f|
+						= f.collection_select :id, @invitationals, :id, :formatted_name, include_blank: false
+						= f.submit 'Register Online', class: 'btn btn-primary btn-inline'
 

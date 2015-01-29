@@ -1,0 +1,31 @@
+.form-panel
+  = f.hidden_field :_destroy, class: '_destroy'
+  = link_to 'x', '#', class: 'remove_nested_attribute'
+
+  = f.label "Team"
+  = f.select :gender, options_for_select(%w[Boys Girls], f.object.gender)
+  span = " - "
+  = f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th 10th 11th 12th], f.object.grade)
+  span = " Grade"
+  
+  br
+  - f.object.errors[:team].each do |msg|
+    .validation-error = msg
+    
+  = f.check_box :use_organization_info, class: 'use_organization_info'
+  span = ' Use Club/Organization Contact Information'
+
+  = f.label :coach
+  = f.text_field :coach, placeholder: 'Enter Coach Name', class: 'club_coach_name'
+  - f.object.errors[:coach].each do |msg|
+    .validation-error = msg
+  
+  = f.label "Coach Email"
+  = f.text_field :email, placeholder: 'Enter Email', class: 'club_coach_email'
+  - f.object.errors[:email].each do |msg|
+    .validation-error = msg
+
+  = f.label "Coach Cell"
+  = f.text_field :cell, placeholder: 'Ex. 2018480017', class: 'club_coach_cell'
+  - f.object.errors[:cell].each do |msg|
+    .validation-error = msg

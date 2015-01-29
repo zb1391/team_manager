@@ -33,7 +33,6 @@ class Tryout < ActiveRecord::Base
   end
 
 	def at_least_one_date
-		binding.pry
 		unless tryout_dates.any?
 			errors.add(:tryout_dates, "you must choose at least one date")
 		end

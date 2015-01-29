@@ -65,22 +65,22 @@
             span = " - "
             span#view-max_grade = "#{@display_tournament.max_grade || 'MAX_GRADE'}"
             span .
-          ul.margin-bottom-20
-            li A Level and B Level Pools
-            li 
+          dl.margin-bottom-20
+            dd A Level and B Level Pools
+            dd 
               | Each Team
               strong 
                 span = " Guaranteed "
                 span#view-guaranteed_games = "#{@display_tournament.guaranteed_games || 'GUARANTEED_GAMES'}"
                 span+ Games
-            li
-              strong.orange = 'Championship T-Shirts '
+            dd
+              strong.orange-text = 'Championship T-Shirts '
               | will be awarded to top competitors
             - if @invitationals.empty?
-              li Dates coming soon!
+              dd Dates coming soon!
           .row
             .col-md-6
-              dl
+              dl.green
                 dt Where
                 - @display_tournament.display_tournament_locations.each_with_index do |dlocation,i|
                   #locations-preview-container
@@ -93,7 +93,7 @@
                   span#view-price = "#{number_to_currency(@display_tournament.price) || 'PRICE'}" 
                   span = " per Team"
             .col-md-6
-              dl
+              dl.green
                 - unless @invitationals.empty?
                   dt Dates
                 - @invitationals.each do |tournament|
