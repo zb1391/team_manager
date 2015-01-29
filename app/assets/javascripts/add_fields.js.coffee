@@ -13,7 +13,7 @@ jQuery ->
 
 	$('form').on('click', '.remove_nested_attribute', (event) ->
 		$(this).siblings('._destroy').val('1')
-		$(this).parent().hide()
+		$(this).closest('.nested-attributes').hide()
 		event.preventDefault()
 
 	)

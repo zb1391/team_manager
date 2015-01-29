@@ -1,6 +1,7 @@
-.nested-attributes.tryout-team-selects	
-	/ = f.label "Team"
-	= f.collection_select :team_id, Team.order(:gender), :id, :name, include_blank: false
-	= f.hidden_field :_destroy, class: '_destroy'
-	= link_to "x", '#', class: 'remove_nested_attribute'
-	br
+.nested-attributes.tryout-team-selects
+	.row
+		.col-xs-6
+			= f.collection_select :team_id, Team.order(:gender), :id, :name, {include_blank: false},{class: 'form-control'}
+		.col-xs-1
+			= f.hidden_field :_destroy, class: '_destroy'
+			= link_to 'x', '#', class: 'remove_nested_attribute'

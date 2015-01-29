@@ -34,8 +34,9 @@ $ ->
 
 	$('#display-tournament-form .nested-attributes').each((index) ->
 		if index == 0
-			$(this).children('.remove_nested_attribute').hide()
-		selectField = $(this).children('select')
+			$(this).find('.remove_nested_attribute').hide()
+		selectField = $(this).find('select')
+		removeLink = $(this).find('.remove_nested_attribute')
 		selectField.dynamicFormPreviewer(
 			selectField.siblings('.remove_nested_attribute'),
 			$('dd[data-id=\"'+index+'\"'),

@@ -28,6 +28,8 @@ $panel-bg: $light-gray;
 //link stuff
 $link-color: $green;
 
+//form stuff
+$input-border-focus: $green;
 
 @import "bootstrap-sprockets";
 @import 'bootstrap';
@@ -91,7 +93,7 @@ nav.navbar.navbar-default{
 }
 
 .float-right{
-	float: right
+	float: right !important;
 }
 
 .clearfix{

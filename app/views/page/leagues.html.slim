@@ -51,14 +51,17 @@
 					- else
 						dd = number_to_currency(@display_tournament.price)
 			.col-md-6
-				dl.green
-					- unless @invitationals.empty?
+				- unless @invitationals.empty?
+					dl.green.clearfix
 						dt Dates
-					- @invitationals.each do |tournament|
-						dd = "#{tournament.display_date} - #{tournament.gender_and_grade}"
+						- @invitationals.each do |tournament|
+							dd = "#{tournament.display_date} - #{tournament.gender_and_grade}"
 
-					dt Select a Date
-					= form_for @tournament, url: new_organization_url, html: {method: 'GET', class: 'inner-form'} do |f|
-						= f.collection_select :id, @invitationals, :id, :formatted_name, include_blank: false
-						= f.submit 'Register Online', class: 'btn btn-primary btn-inline'
+						dt Select a Date
+						= form_for @tournament, url: new_organization_url, html: {method: 'GET', class: 'inner-form'} do |f|
+							.row
+								.col-md-8
+									= f.collection_select :id, @invitationals, :id, :formatted_name, {include_blank: false}, {class: 'form-control margin-bottom-10'}
+								.col-md-4
+									= f.submit 'Register Online', class: 'btn btn-primary btn-inline'
 

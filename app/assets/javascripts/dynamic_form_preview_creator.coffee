@@ -68,7 +68,7 @@ $.fn.extend
 				newPreviewElem.show()
 				
 				# get the remove link for the new input
-				remover = newInput.children('.'+removerClass)
+				remover = newInput.find('.'+removerClass)
 
 				newInput.dynamicFormPreviewer(
 					remover,

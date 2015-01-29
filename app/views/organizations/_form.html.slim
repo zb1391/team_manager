@@ -5,29 +5,36 @@
 
   .form-panel
     = f.label "Tournament"
-    = f.collection_select :tournament_id, @invitationals, :id, :formatted_name, include_blank: false
+    .row
+      .col-md-6
+        = f.collection_select :tournament_id, @invitationals, :id, :formatted_name, {include_blank: false},{class: 'form-control'}
 
   h2 Club/Organization Name
   .form-panel
-    = f.label "Club Name"
-    = f.text_field :name, placeholder: 'Enter Club Name'
-    - @organization.errors[:name].each do |msg|
-      .validation-error = msg
-    
-    = f.label "Contact Name"
-    = f.text_field :contact_name, placeholder: 'Enter Name'
-    - @organization.errors[:contact_name].each do |msg|
-      .validation-error = msg
-    
-    = f.label "Email"
-    = f.text_field :email, placeholder: 'Enter Email'
-    - @organization.errors[:email].each do |msg|
-      .validation-error = msg
-    
-    = f.label "Phone Number"
-    = f.text_field :phone, placeholder: 'Ex. 2018480017'
-    - @organization.errors[:phone].each do |msg|
-      .validation-error = msg
+    .row
+      .col-md-6
+        = f.label "Club Name"
+        = f.text_field :name, placeholder: 'Enter Club Name', class: 'form-control'
+        - @organization.errors[:name].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label "Contact Name"
+        = f.text_field :contact_name, placeholder: 'Enter Name', class: 'form-control'
+        - @organization.errors[:contact_name].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label "Email"
+        = f.text_field :email, placeholder: 'Enter Email', class: 'form-control'
+        - @organization.errors[:email].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label "Phone Number"
+        = f.text_field :phone, placeholder: 'Ex. 2018480017', class: 'form-control'
+        - @organization.errors[:phone].each do |msg|
+          .validation-error = msg
     
   h2 Teams
   = f.fields_for :clubs do |builder|
@@ -41,13 +48,16 @@
   - if is_admin?
     .form-panel
       = f.label "Amount Owe"
-      = f.text_field :amount_owe
-      
-      = f.check_box :manual_fee_entry
-      span Check this box if you want to manually enter the amount owe
-
-      = f.label "Amount Paid"
-      = f.text_field :amount_paid
+      .row
+        .col-md-6
+          = f.text_field :amount_owe, class: 'form-control'
+        .col-md-6
+          = f.check_box :manual_fee_entry
+          span Check this box if you want to manually enter the amount owe
+      .row
+        .col-md-6
+          = f.label "Amount Paid"
+          = f.text_field :amount_paid, class: 'form-control'
   - else
     - @organization.manual_fee_entry = "0"
 

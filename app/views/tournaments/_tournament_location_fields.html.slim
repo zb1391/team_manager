@@ -1,5 +1,7 @@
 .nested-attributes.tournament-location-selects.no-padding
-	= f.collection_select :location_id, Location.order(:name), :id, :name, prompt: 'Select Location'
-	= f.hidden_field :_destroy, class: '_destroy'
-	= link_to "x", '#', class: 'remove_nested_attribute'
-	br
+	.row
+		.col-xs-6
+			= f.collection_select :location_id, Location.order(:name), :id, :name, {prompt: 'Select Location'},{class: 'form-control'} 
+		.col-xs-1
+			= f.hidden_field :_destroy, class: '_destroy'
+			= link_to "x", '#', class: 'remove_nested_attribute'

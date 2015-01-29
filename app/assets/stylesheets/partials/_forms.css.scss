@@ -13,6 +13,10 @@ form{
 	display: block;
 	margin-top: -$input-margin-bottom;
 	margin-bottom: $input-margin-bottom;
+
+	&.zeroed{
+		margin-top: 0;
+	}
 }
 .add_fields{
 	display:block;
@@ -96,11 +100,5 @@ form{
 	}
 	.nested-link{
 		padding: 0 15px;
-	}
-	.tryout-team-selects{
-		display: inline;
-		select{
-			display: inline;
-		}
 	}
 }

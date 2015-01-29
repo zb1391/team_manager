@@ -1,13 +1,17 @@
-.nested-attributes	
-	= f.label "Time"
-	= f.time_field :time
-	= f.hidden_field :_destroy, class: '_destroy'
-	= link_to 'x', '#', class: 'remove_nested_attribute'
+.nested-attributes							
+	.row
+		.col-xs-6
+			= f.label "Time"
+			= f.time_field :time, class: 'form-control'
+			- f.object.errors[:time].each do |msg|
+				.validation-error = msg
+		.col-xs-6
+			br
+			= f.hidden_field :_destroy, class: '_destroy'
+			= link_to 'x', '#', class: 'remove_nested_attribute'		
 
-	- f.object.errors[:time].each do |msg|
-		.validation-error = msg
 	- f.object.errors[:team_tryout_times].each do |msg|
-		.validation-error = msg
+		.validation-error.zeroed = msg
 
 
 	.team-tryout-time-attributes-container

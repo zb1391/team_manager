@@ -3,8 +3,10 @@
     #error-explanation
       div Oh No! There were errors in your form. Please fill in all information before continuing
   .form-panel
-    = f.label "Season"
-    = f.select :season, options_for_select(["Winter", "Spring", "Summer", "Fall"], @tryout.season)
+    .row
+      .col-md-6
+        = f.label "Season"
+        = f.select :season, options_for_select(["Winter", "Spring", "Summer", "Fall"], @tryout.season), {}, {class: 'form-control'}
   
   - @tryout.errors[:tryout_dates].each do |msg|
     .validation-error = msg

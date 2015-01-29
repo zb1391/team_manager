@@ -1,6 +1,8 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate, :only => [:index, :destroy, :edit, :update]
+  before_filter :get_grades
+
   # GET /organizations
   # GET /organizations.json
   def index
@@ -84,6 +86,13 @@ class OrganizationsController < ApplicationController
   end
 
   private
+
+    def get_grades
+      @grades = [['3rd Grade','3rd'], ['4th Grade','4th'], ['5th Grade','5th'],
+                 ['6th Grade','6th'], ['7th Grade','7th'], ['8th Grade','8th'],
+                 ['9th Grade','9th'], ['10th Grade','10th'],['11th Grade','11th'],
+                 ['12th Grade','12th']]
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:id])
