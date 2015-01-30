@@ -41,7 +41,7 @@
     = render 'club_fields', f: builder
   - @organization.errors[:clubs].each do |msg|
     .validation-error = msg
-  = link_to_add_fields "Add Another Team", f, :clubs, class: 'btn btn-primary add_organization_team'
+  = link_to_add_fields "Add Another Team", f, :clubs, class: 'btn btn-primary btn-nested-attributes'
 
 
 

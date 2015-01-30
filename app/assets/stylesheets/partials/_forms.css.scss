@@ -35,6 +35,11 @@ form{
 	margin-bottom: 20px;
 }
 .form-container{
+	p{
+		padding: 8px;
+		border: 2px solid $dark-gray;
+		text-align: justify;
+	}
 	a{
 		color: $dark-green;
 	}
@@ -75,6 +80,15 @@ form{
 		background-color: $light-green;
 		padding: 20px 0 20px 30px;
 		margin-bottom: 20px;
+	}
+	h2{
+		font-weight: bold;
+		padding-bottom: 10px;
+		border-bottom: 1px solid $light-gray;
+		margin: 0 0 10px;
+		strong{
+			font-size: 120%;
+		}
 	}
 	background-color: white;
 	.form-panel{

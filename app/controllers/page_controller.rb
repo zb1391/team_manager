@@ -21,7 +21,7 @@ class PageController < ApplicationController
 
   def camps
     @coupons = Coupon.active_coupons
-    @summer_camps = SummerCamp.active_summer_camps
+    @summer_camps = SummerCamp.summer_camps_this_year
     @tuition = @summer_camps.last.try(:price)
   end
 

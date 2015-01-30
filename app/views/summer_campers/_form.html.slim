@@ -1,0 +1,104 @@
+= form_for @summer_camper, html: {id: 'summer-camper-form'} do |f|
+  - if @summer_camper.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+  h2 Select Camps
+  .form-panel
+    = f.label "Locations"
+    .tryout-date-attributes-container
+      = f.fields_for :campifications do |builder|
+        = render 'campification_fields', f: builder
+      = link_to_add_fields "Add Camp Date", f, :campifications, class: 'btn btn-primary btn-nested-attributes'
+  - @summer_camper.errors[:campifications].each do |msg|
+    .validation-error = msg
+
+  h2 Camper Information
+  .form-panel
+    .row
+      .col-md-6
+        = f.label "First Name"
+        = f.text_field :first_name, placeholder: 'Enter First Name', class: 'form-control', class: 'form-control'
+        - @summer_camper.errors[:first_name].each do |msg|
+          .validation-error = msg
+    .row  
+      .col-md-6
+        = f.label "Last Name"
+        = f.text_field :last_name, placeholder: 'Enter Last Name', class: 'form-control'
+        - @summer_camper.errors[:last_name].each do |msg|
+          .validation-error = msg
+
+    .row
+      .col-md-3
+        = f.label 'Gender'
+        = f.select :gender, options_for_select(%w[Boys Girls], @summer_camper.gender), {},{class: 'form-control'}
+        - @summer_camper.errors[:gender].each do |msg|
+          .validation-error = msg
+      .col-md-3
+        = f.label 'Grade'
+        = f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th], @summer_camper.grade), {}, {class: 'form-control'} 
+        - @summer_camper.errors[:grade].each do |msg|
+          .validation-error = msg
+  
+  h2 Contact Information
+  .form-panel
+    .row
+      .col-md-6
+        = f.label "Street Address"
+        = f.text_field :address, placeholder: 'Enter Street Address', class: 'form-control'
+        - @summer_camper.errors[:address].each do |msg|
+          .validation-error = msg
+    .row  
+      .col-md-6
+        = f.label "City"
+        = f.text_field :city, placeholder: 'Enter City', class: 'form-control'
+        - @summer_camper.errors[:city].each do |msg|
+          .validation-error = msg
+    .row  
+      .col-md-3
+        = f.label "State"
+        = f.select :state, options_for_select(us_states, @summer_camper.state),{},{class: 'form-control'}
+        - @summer_camper.errors[:state].each do |msg|
+          .validation-error = msg
+      .col-md-3
+        = f.label 'Zip Code'
+        = f.text_field :zip, placeholder: 'Enter Zip', class: 'form-control'
+        - @summer_camper.errors[:zip].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label 'Email'
+        = f.text_field :email, placeholder: 'Enter Email', class: 'form-control'
+        - @summer_camper.errors[:email].each do |msg|
+          .validation-error = msg
+    .row  
+      .col-md-6
+        = f.label 'Home Phone'
+        = f.phone_field :home_phone, placeholder: 'Ex. 2018480017', class: 'form-control'
+        - @summer_camper.errors[:home_phone].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label 'Cell Phone'
+        = f.phone_field :cell_phone, placeholder: 'Ex. 2018480017', class: 'form-control'
+        - @summer_camper.errors[:cell_phone].each do |msg|
+          .validation-error = msg
+
+  h2 Waiver and Release
+  .form-panel
+    .row
+      .col-xs-12
+        p I, being the parent or legal guardian of the above enrolled minor, do hereby certify that my child is in good health and may participate in all program activities.I hereby appoint the directors of the Down Town Sports Companies to act on my behalf in authorizing medical attention and understand that neither Down Town Sports, TSI, NYSC, nor its directors or staff are responsible for any medical costs incurred due to accident or injury.
+    .row
+      .col-md-3
+        = f.label "Signature"
+        = f.text_field :waiver_name, placeholder: 'Enter Name', class: 'form-control'
+        - @summer_camper.errors[:waiver_name].each do |msg|
+          .validation-error = msg
+      .col-md-3
+        = f.label "Date"
+        = f.date_field :waiver_date, class: 'form-control'
+        - @summer_camper.errors[:waiver_date].each do |msg|
+          .validation-error = msg
+  .form-actions
+    = f.submit 'Register Camper', class: 'btn btn-primary'
+    = link_to 'Cancel', page_camps_path, class: 'btn btn-cancel'

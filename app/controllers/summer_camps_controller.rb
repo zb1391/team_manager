@@ -1,6 +1,8 @@
 class SummerCampsController < ApplicationController
   before_action :set_summer_camp, only: [:show, :edit, :update, :destroy]
-   before_filter :authenticate
+  before_filter :authenticate
+  before_filter :get_summer_camp_price
+
   # GET /summer_camps
   # GET /summer_camps.json
   def index
@@ -14,7 +16,7 @@ class SummerCampsController < ApplicationController
 
   # GET /summer_camps/new
   def new
-    @summer_camp = SummerCamp.new
+    @summer_camp = SummerCamp.new(price: gon.summer_camp_price)
   end
 
   # GET /summer_camps/1/edit
@@ -67,8 +69,13 @@ class SummerCampsController < ApplicationController
       @summer_camp = SummerCamp.find(params[:id])
     end
 
+    def get_summer_camp_price
+      gon.summer_camp_price = SummerCamp.this_year_price
+    end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     def summer_camp_params
-      params.require(:summer_camp).permit(:start_date, :end_date, :price)
+      params.require(:summer_camp).permit(:start_date, :end_date, 
+        :end_registration_date,:price)
     end
 end

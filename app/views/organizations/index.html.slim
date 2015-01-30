@@ -4,7 +4,7 @@
     - @tournaments.each do |tournament|
       h2 = tournament.formatted_name
       - if tournament.organizations.any?
-        .panel.panel-default
+        .panel.panel-default.table-responsive
           table.table
             thead
               th Name

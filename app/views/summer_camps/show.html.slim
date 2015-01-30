@@ -1,0 +1,48 @@
+.static-page.green
+	h1 Summer Camp
+	.content
+		h2 Camp Dates
+		.row
+			.col-md-4
+				dl
+					dt Start Date
+					dd = @summer_camp.start_date.strftime('%m/%d/%Y')
+			.col-md-4
+				dl
+					dt End Date
+					dd =  @summer_camp.end_date.strftime('%m/%d/%Y')
+			.col-md-4
+				dl
+					dt End Registration Date
+					dd = @summer_camp.end_registration_date.strftime('%m/%d/%Y')
+		- to_xls = "#{summer_camp_path(@summer_camp.id)}.xls"
+		= link_to "Download Spreadsheet", to_xls, class: 'btn btn-primary margin-bottom-20'
+		- if @summer_camp.campers.any?
+			.panel.panel-default.table-responsive
+				table.table
+					thead
+						th Gender
+						th Grade
+						th Name
+						th Email
+						th Home
+						th Cell
+						th Amount Owe
+						th Amount Paid
+					tbody
+						- @summer_camp.campers.each do |camper|
+							tr
+								td = camper.gender
+								td = camper.grade
+								td = camper.last_first_name
+								td = camper.email
+								td = number_to_phone camper.home_phone, area_code: true
+								td = number_to_phone camper.cell_phone, area_code: true
+								td = number_to_currency camper.amount_owe
+								td = number_to_currency camper.amount_paid
+		- else
+			h4.margin-bottom-20 No Campers Have Signed Up
+		= link_to 'Edit', edit_summer_camp_path(@summer_camp), class: 'btn btn-primary'
+		= link_to 'Back', summer_camps_path, class: 'btn btn-cancel'
+
+
