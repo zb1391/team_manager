@@ -7,7 +7,7 @@
 
 			dl
 				dd Please call Down Town Sports
-				dd (201) 848-0017 with a credit card
+				dd = '(201) 848-0017 with a credit card'
 
 			h4.margin-bottom-20 OR
 
@@ -60,6 +60,9 @@
 				td.right-text
 					strong Amount Paid:
 				td.right-text = number_to_currency(@organization.amount_paid)
+		- if is_admin?
+			= link_to 'Edit', edit_organization_path(@organization), class: 'btn btn-primary'
+			= link_to 'Back', organizations_path
 / <% if is_admin? %>
 / 	<%= link_to 'Add More Teams', edit_organization_path(@organization), id: "large-text", class: "med-margin-left" %> <br /> <br />
 / <% end %>

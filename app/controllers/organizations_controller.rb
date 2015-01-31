@@ -35,6 +35,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1/edit
   def edit
+    @invitationals = Tournament.find_active_invitationals
   end
 
   # POST /organizations
@@ -69,6 +70,8 @@ class OrganizationsController < ApplicationController
         format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
         format.json { head :no_content }
       else
+        @invitationals = Tournament.find_active_invitationals
+        @organization.clubs.build if @organization.clubs.empty?
         format.html { render action: 'edit' }
         format.json { render json: @organization.errors, status: :unprocessable_entity }
       end

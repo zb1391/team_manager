@@ -1,5 +1,5 @@
 .static-page.green
-  h1 Gym Ratz AAU Basketball
+  h1 Gym Ratz AAU Basketball (Preview)
   .content
 	  h2 The Gym Ratz Program
 	  p 
@@ -33,3 +33,6 @@
 	  							td = tryout_time.time.strftime("%I:%M")
 	  							td = tryout_time.time.strftime("%P")
 	  							td = tryout_time.team_grades("Boys")
+	  .row
+      = link_to 'Edit', edit_tryout_path(@tryout), class: 'btn btn-primary'
+      = link_to 'Back', tryouts_path, class: 'btn btn-cancel'

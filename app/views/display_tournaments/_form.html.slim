@@ -92,9 +92,3 @@
                 dd 
                   span#view-price = "#{number_to_currency(@display_tournament.price) || 'PRICE'}" 
                   span = " per Team"
-            .col-md-6
-              dl.green
-                - unless @invitationals.empty?
-                  dt Dates
-                - @invitationals.each do |tournament|
-                  dd = tournament.display_date

@@ -1,0 +1,46 @@
+.static-page.green
+  h1 Thank You
+  .content
+    - if @summer_camper.amount_owe != @summer_camper.amount_paid
+      h2 Please Note
+      h4.margin-bottom-20 Your child is not enrolled in camp until the payment process is complete
+      
+      dl
+        dd Please call Down Town Sports
+        dd = '(201) 848-0017 with a credit card'
+
+      h4.margin-bottom-20 OR
+
+      dl
+        dd Mail a check payable to Down Town Sports
+        dd 7 Leighton Place, Mahwah, NJ, 07430
+    .row
+      .col-md-6
+        h3 Contact Information
+        h4 = @summer_camper.first_last_name
+        dl
+          dt Home
+          dd = number_to_phone @summer_camper.home_phone, area_code: true
+          dt Cell Phone
+          dd = number_to_phone @summer_camper.cell_phone, area_code: true
+      .col-md-6
+        h3 Summer Camps
+        dl.green
+          - @summer_camper.summer_camps.each do |c|
+            dd = c.date_range
+    h2 Summary
+    .row    
+      table
+        tr
+          td.right-text 
+            strong Camps Entered:
+          td.right-text = @summer_camper.summer_camps.count
+        tr
+          td.right-text 
+            strong Total:
+          td.right-text = number_to_currency(@summer_camper.amount_owe)
+        tr
+          td.right-text
+            strong Amount Paid:
+          td.right-text = number_to_currency(@summer_camper.amount_paid)
+    p = "An email of this sumamry has been sent to #{@summer_camper.email}"

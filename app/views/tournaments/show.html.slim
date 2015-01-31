@@ -41,6 +41,7 @@
 								td = link_to organization.name, organization_path(organization)
 								td = organization.clubs.size
 								td = number_to_currency organization.amount_owe
+								td = number_to_currency organization.amount_paid
 								td = organization.contact_name
 								td = organization.email
 								td = number_to_phone organization.phone, area_code: true

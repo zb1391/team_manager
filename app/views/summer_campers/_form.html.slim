@@ -4,7 +4,7 @@
       div Oh No! There were errors in your form. Please fill in all information before continuing
   h2 Select Camps
   .form-panel
-    = f.label "Locations"
+    = f.label "Camp Dates"
     .tryout-date-attributes-container
       = f.fields_for :campifications do |builder|
         = render 'campification_fields', f: builder
