@@ -1,0 +1,25 @@
+.static-page.green
+  h1 Tryouts
+  .content
+    - if @tryouts.any?
+      .panel.panel-default.table-responsive
+        table.table
+          thead
+            th Active
+            th Season
+            th Year
+            th Actions
+
+          tbody
+            - @tryouts.each_with_index do |tryout,i|
+              tr
+                td = i == 0 ? 'Active' : ''
+                td = tryout.season
+                td = tryout.tryout_dates.first.date.strftime('%Y')
+                td
+                  = link_to 'Show', tryout_path(tryout)
+                  span = ' | '
+                  = link_to 'Edit', edit_tryout_path(tryout)
+    - else
+      h4.margin-bottom-20 No Tryouts
+    = link_to 'New Tryout', new_tryout_path, class: 'btn btn-primary'

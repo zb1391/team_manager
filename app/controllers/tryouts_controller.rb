@@ -13,6 +13,9 @@ class TryoutsController < ApplicationController
   	end
   end
 
+  def index
+    @tryouts = Tryout.order('id DESC')
+  end
   def show
     @tryout = Tryout.find(params[:id])
   end
