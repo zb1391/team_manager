@@ -1,39 +1,33 @@
-.row.green-row
-  h1
-    strong Gym Ratz AAU Tryouts
-  .col-md-4
-    p We offer a program for serious players to develop team skill and maximize individual potential through structured practices, games, and tournament competition.
-    div = link_to "View Tryout Schedule", page_gym_ratz_about_path
-  .col-md-4.col-xs-6
-    h3 Here is a Header
-    ul
-      li Option One
-      li Option Two
-      li Option Three
-  .col-md-4.col-xs-6
-    h3 Here is a Header
-    ul
-      li Option One
-      li Option Two
-      li Option Three
-.row.home-page-row
-  h2 Fall Ball Invitational
-  .col-md-6
-    ul
-      li Boys and Girls Grades 4-12
-      li 3+ Game Guarantee, A and B Pool Levels
-      li Division Pool Championships
-      li = link_to "Sign Up Your Team Today!", page_leagues_path
-.row.home-page-row
-  h2 Basketball Bootcamp
-  .col-md-6
-    p Description of bootcamps goes here. it will be very good i will like how it looks
+div#home-carousel
+  div
+    div.item
+      = image_tag('dts1_bw_qt.png')
+    div.item
+      = image_tag('gym_ratz_bw_qt.png')
+    div.item
+      = image_tag('court_bw_qt.png')
+  / a.carousel-control.left href='#home-carousel' data-slide='prev' <
+  / a.carousel-control.right href='#home-carousel' data-slide='next' >
+.row.header.gray
+    h1 Gym Ratz AAU
+    h2 Spring Tryouts
+    .row
+      .col-md-6
+        p The Gym Ratz AAU Spring Tryouts are here! BLAh blah blah. Adam will fill this information in himself
+      .col-md-6
+        dl.green
+          dt Thing One
+          dd Sub thing
+          dt Thing Two
+          dd Different Thing
+          dd = link_to 'Sign Up Today!', '#'
+
 .row.home-page-row
   .col-md-4
     h3 Who We Are
     p 
       | Down Town Sports, located in Mahwah, NJ, is a new facility consisting of
-      | two full-sized basketball courts, party rooms, spacious lobby, team locker
+      | two full-sized basketball courts, rooms, spacious lobby, team locker
       | rooms, and a full vending service.
   .col-md-4
     h3 What We Do
@@ -41,8 +35,8 @@
       | Programs include Gym Ratz AAU basketball, basketball boot camps, 
       | specialized player position clinics, summer camps, individual training, 
       | and youth and adult basketball leagues.  Down Town Sports is also fully equipped 
-      | for all of your party needs.  Birthday's, and Bar/Bat Mitzvah's are available, 
-      | with access to both basketball courts and our party rooms.
+      | for all of your needs.  Birthday's, and Bar/Bat Mitzvah's are available, 
+      | with access to both basketball courts and our rooms.
   .col-md-4
     h3 Important Dates
     ul
@@ -71,7 +65,7 @@
 / 			<h3>Who We Are</h3>
 / 			<p>
 / 				Down Town Sports, located in Mahwah, NJ, is a new facility consisting of
-/ 				two full-sized basketball courts, party rooms, spacious lobby, team locker
+/ 				two full-sized basketball courts, rooms, spacious lobby, team locker
 / 				rooms, and a full vending service.
 				
 / 			</p>
@@ -83,8 +77,8 @@
 / 				Programs include Gym Ratz AAU basketball, basketball boot camps, 
 / 				specialized player position clinics, summer camps, individual training, 
 / 				and youth and adult basketball leagues.  Down Town Sports is also fully equipped 
-/ 				for all of your party needs.  Birthday's, and Bar/Bat Mitzvah's are available, 
-/ 				with access to both basketball courts and our party rooms.
+/ 				for all of your needs.  Birthday's, and Bar/Bat Mitzvah's are available, 
+/ 				with access to both basketball courts and our rooms.
 / 			</p>
 / 		</div>
 / 		<div class="col-xs-4 column3">

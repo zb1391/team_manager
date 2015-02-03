@@ -7,3 +7,15 @@
 		}
 	}
 }
+#home-carousel{
+	.item{
+		display: none;
+		img{
+			width: 100%;
+			height: auto;
+		}
+	}
+	.item:first-child{
+		display: block;
+	}
+}
