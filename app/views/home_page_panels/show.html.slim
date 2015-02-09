@@ -1,0 +1,16 @@
+.static-page.green
+	h1 Home Page Panel Preview
+	.content
+		.row
+			.col-md-4
+				.home-panel.panel.panel-default.green
+					h3 = @home_page_panel.title
+					.panel-body
+						.panel-content
+							= @home_page_panel.html.html_safe
+					- unless @home_page_panel.additional_link.blank?
+						.link-container
+							= link_to "#{@home_page_panel.additional_link_text}", @home_page_panel.additional_link
+
+		= link_to 'Edit', edit_home_page_panel_path(@home_page_panel), class: 'btn btn-primary'
+		= link_to 'Back', home_page_panels_path, class: 'btn btn-cancel'

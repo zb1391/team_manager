@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150130012205) do
+ActiveRecord::Schema.define(version: 20150208001711) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,15 @@ ActiveRecord::Schema.define(version: 20150130012205) do
     t.string   "the_file_content_type"
     t.integer  "the_file_file_size"
     t.datetime "the_file_updated_at"
+  end
+
+  create_table "home_page_panels", force: true do |t|
+    t.text    "html"
+    t.string  "additional_link"
+    t.string  "additional_link_text"
+    t.boolean "is_active",            default: false
+    t.integer "priority_order"
+    t.string  "title"
   end
 
   create_table "hotelifications", force: true do |t|

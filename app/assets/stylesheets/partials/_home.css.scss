@@ -62,12 +62,15 @@
 	padding: 8px 2px;
 	overflow: scroll;
 	h3{
-		color: $light-gray;
+		color: $light-gray !important;
 		text-align: center;
 	}
 	p{
-		background: $light-gray;
-		color: $gray;
+		background: $light-gray !important;
+		color: $gray !important;
+		border: none !important;
+		text-align: justify;
+		padding: 0 !important;
 	}
 	.panel-content{
 		background-color: $light-gray;
@@ -75,7 +78,18 @@
 	}
 	dl{
 		dt{
-			color: black;
+			color: black !important;
+		}
+	}
+	.link-container{
+		padding: 15px;
+		text-align: right;
+		a{
+			text-decoration: underline;
+			color: #fedc3a;
+			&:hover{
+				color: lighten(#fedc3a, 10%);
+			}
 		}
 	}
 }

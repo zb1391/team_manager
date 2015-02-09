@@ -116,3 +116,23 @@ form{
 		padding: 0 15px;
 	}
 }
+
+ul.ui-autocomplete{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background-color: white;
+	border: 1px solid black;
+	li{
+		margin:0;
+		padding:0;
+		cursor: pointer;
+		&.ui-state-focus{
+			background: $light-green !important;
+		}
+		a.ui-state-hover, a.ui-state-actice{
+			background-color: $light-green !important;
+		}
+	}
+}

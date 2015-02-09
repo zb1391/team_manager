@@ -21,7 +21,8 @@ $.fn.extend
 		settings = $.extend
 			test: null,
 			formatter: defaultFormatter,
-			defaultVal: 'EMPTY_VALUE'
+			defaultVal: 'EMPTY_VALUE',
+			elementType: null
 			, options
 
 		$elem = $(this)
@@ -59,6 +60,14 @@ $.fn.extend
 				# create a new element in the dynamicPreviewFieldContainer with the new id
 				# newId = newInput.data('id')
 				newPreviewElemHTML = lastPreviewElemHTML.replace(regexp1, 'data-id=\"'+newId+'\"')
+				
+				# replace the element type if the option is specified
+				if settings.elementType?
+					regexElement1 = new RegExp('<(.*?)>')
+					regexElement2 = new RegExp('<\/(.*?)>')
+					newPreviewElemHTML = newPreviewElemHTML.replace(regexElement1,settings.elementType)
+					newPreviewElemHTML = newPreviewElemHTML.replace(regexElement2, settings.elementType)
+				
 				dynamicPreviewFieldContainer.append(newPreviewElemHTML)
 
 
