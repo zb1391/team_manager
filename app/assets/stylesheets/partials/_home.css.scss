@@ -43,42 +43,87 @@
 	}
 
 	&.green{
-		background: #16362b;
+		background: $downtown-green;
 		h1{
-			color: #fedc3a;
+			color: $downtown-yellow;
 		}
 		h2{
 			color: $light-gray;
-			border-bottom: 1px solid darken(#16362b, 10%);
+			border-bottom: 1px solid darken($downtown-green, 10%);
 		}
 		p{
 			background: $light-gray;
 		}
 	}
-
+	&.header-xs{
+		display: none;
+		@media(max-width: $screen-sm-max){
+			display: block;
+		}
+	}
+}
+.carousel-panel{
+	background-color: rgba(10,10,10,0.7);
+	padding: 20px;
+	position: absolute;
+	top: 50px;
+	display: block;
+	overflow: scroll;
+	@media (max-width: $screen-sm-max) {
+		display: none;
+	}
+	p{
+		color: white !important;
+	}
+	h2{
+		color: $downtown-yellow;
+	}
+	dl{
+		dt{
+			font-weight: normal;
+			color: $downtown-yellow;
+		}
+		dd{
+			color: white;
+		}
+	}
+	.link-container{
+		a{
+			text-decoration: underline;
+			color: $downtown-yellow;
+			&:hover{
+				color: lighten($downtown-yellow, 10%);
+			}
+		}
+	}
 }
 .home-panel{
+	background-color: #1b1b1b;
 	height: 100%;
 	padding: 8px 2px;
 	overflow: scroll;
 	h3{
-		color: $light-gray !important;
+		color: $downtown-yellow !important;
 		text-align: center;
 	}
 	p{
-		background: $light-gray !important;
-		color: $gray !important;
+		background: #1b1b1b;
+		color: $light-gray !important;
 		border: none !important;
 		text-align: justify;
 		padding: 0 !important;
 	}
 	.panel-content{
-		background-color: $light-gray;
-		padding: 10px;
+		background-color: #1b1b1b;
+		padding: 5px 10px;
 	}
 	dl{
 		dt{
-			color: black !important;
+			font-weight: normal;
+			color: $downtown-yellow !important;
+		}
+		dd{
+			color: $light-gray;
 		}
 	}
 	.link-container{
@@ -86,9 +131,9 @@
 		text-align: right;
 		a{
 			text-decoration: underline;
-			color: #fedc3a;
+			color: $downtown-yellow;
 			&:hover{
-				color: lighten(#fedc3a, 10%);
+				color: lighten($downtown-yellow, 10%);
 			}
 		}
 	}
@@ -96,10 +141,10 @@
 .home-footer{
 	h3{
 		text-align: center;
-		color: #fedc3a;
+		color: $downtown-yellow;
 	}
 	p{
-		padding: 10px;
+		padding: 15px 10px;
 		text-align: justify;
 		color: $light-gray;
 	}
@@ -108,6 +153,7 @@
 		color: $light-gray;
 	}
 	a{
+		text-decoration: underline;
 		color: $light-gray;
 		&:hover{
 			color: lighten($orange, 8%);

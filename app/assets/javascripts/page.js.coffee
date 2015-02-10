@@ -4,4 +4,4 @@
 $ = jQuery
 
 $ ->
-	$('#home-carousel').carouselFade()
+	$('#home-carousel').carouselFade(carouselControl: $('#home-carousel').find('.carousel-controls'))

@@ -14,7 +14,7 @@ head
   meta name="google-site-verification" content="tVZYmXLtgRo5u1ulxhrj8JxyFnC52e0g1ijOIE2WwSA"
 body
   nav.navbar.navbar-default role="navigation"
-    .container-fluid
+    .mycontainer
       .navbar-header
         button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar-collapse-1"
           span.sr-only Toggle navigation
@@ -22,9 +22,10 @@ body
           span class="icon-bar"
           span class="icon-bar"
         a href="#{root_path}" class="brand"
-        	= image_tag("logo3.png", style: "width:30%; max-width: 12em")
+        	= image_tag("logo3.png", style: "width: 125px")
         a href="#{root_path}" class="brand"
-        	= image_tag("title.png", style: "width:30%; max-width: 12em;")
+        	= image_tag("title.png", style: "width: 125px;")
+      br
       .collapse.navbar-collapse id="navbar-collapse-1"
         ul.nav.navbar-nav
           li = link_to "Gym Ratz AAU", page_gym_ratz_about_path
