@@ -1,0 +1,21 @@
+= form_for @home_page_file, :html => {:multipart => true} do |f|
+  - if @home_page_file.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+  .form-panel
+    .row
+      .col-md-6
+        = f.label "Name"
+        = f.text_field :name, placeholder: 'Enter name', class: "form-control"
+        - @home_page_file.errors[:name].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label :the_file
+        = f.file_field :the_file, class: 'form-control'
+        - @home_page_file.errors[:the_file].each do |msg|
+          .validation-error = msg
+
+  .form-actions
+    = f.submit "Submit", class: "btn btn-primary"
+    = link_to "Cancel", home_page_files_path, class: "btn btn-cancel"

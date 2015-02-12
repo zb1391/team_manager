@@ -1,10 +1,12 @@
 class Hotel < ActiveRecord::Base
 	has_many :hotelifications
 	has_many :events, :through => :hotelifications
-	validates :price, :address, :city, :state, :phone, presence: true
+	validates :address, presence: {message: 'You must enter an address'}
+	validates :city, presence: {message: 'You must enter a city'}
+	validates :state, presence: {message: 'You must enter a state'}
 	validates :price, numericality: {greater_than_or_equal_to: 0.01}
 	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
-
+	validates :name, presence: {message: 'You must enter a name'}
 	def name_and_date
 		if start_date.nil?
 			"#{name}"
@@ -41,5 +43,9 @@ class Hotel < ActiveRecord::Base
 
 	def collection_format
 		"#{name}-#{unformatted_location}"
+	end
+
+	def hotel_link
+		/^http/i.match(addtional_link) ? addtional_link : "http://#{addtional_link}"
 	end
 end
