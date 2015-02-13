@@ -52,22 +52,14 @@ class HomePagePanelsController < ApplicationController
   end
 
   def panel_order
-    params[:panel].each do |key, value|
-      puts key
-      puts value
-    end
     panels = params[:panel]
     panels = panels.reject{|key, value| value[:priority_order].blank?}
-    puts "printing PANELS"
-    puts panels
     unless panels.nil?
       numbers = panels.collect{|key, value| value[:priority_order]}.uniq
-
     else
       numbers = []
       panels = {}
     end
-    puts 'numbers'
     if numbers.count == 3 && panels.count == 3
       begin
         HomePagePanel.transaction do
