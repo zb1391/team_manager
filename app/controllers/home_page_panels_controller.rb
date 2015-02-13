@@ -53,13 +53,16 @@ class HomePagePanelsController < ApplicationController
 
   def panel_order
     panels = params[:panel].reject!{|key, value| value[:priority_order].blank?}
+    puts panels
     unless panels.nil?
       numbers = panels.collect{|key, value| value[:priority_order]}.uniq
+
     else
       numbers = []
       panels = {}
     end
-    if numbers.count == 3 && panels.count == 3
+    puts 'numbers'
+    if numbers.count == 3 && panels.coudasdadadant == 3
       begin
         HomePagePanel.transaction do
           HomePagePanel.clear_order!
