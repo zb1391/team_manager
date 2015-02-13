@@ -2,7 +2,8 @@ class HomePagePanelsController < ApplicationController
   before_filter :get_link_paths, only: [:new, :create, :edit, :update]
 
   def index
-    @home_page_panel = HomePagePanel.all
+    @home_page_panels = HomePagePanel.all.order("is_active DESC",:priority_order)
+    @active_panels = HomePagePanel.active_panels
   end
   
   def new
@@ -36,8 +37,39 @@ class HomePagePanelsController < ApplicationController
   end
 
   def destroy
-    @home_page_panel = HomePagePanel.find(params[:id])
-    @home_page_panel.destroy
+    if HomePagePanel.count > 3
+      @home_page_panel = HomePagePanel.find(params[:id])
+      if @home_page_panel.is_active
+        flash[:error] = "Cannot destroy an active panel"
+      else
+        @home_page_panel.destroy
+      end
+    else
+      flash[:error] = "There must always be at least 3 panels"
+    end
+    redirect_to home_page_panels_path
+
+  end
+
+  def panel_order
+    panels = params[:panel].reject!{|key, value| value[:priority_order].blank?}
+    numbers = panels.collect{|key, value| value[:priority_order]}.uniq
+    if numbers.count == 3 && panels.count == 3
+      begin
+        HomePagePanel.transaction do
+          HomePagePanel.clear_order!
+          panels.each do |key, value|
+            panel = HomePagePanel.find(key)
+            binding.pry
+            panel.update_attributes!(priority_order: value[:priority_order])
+          end
+        end
+      rescue
+        flash[:error] = "Transaction Failed. Make sure only numbers 1-3"
+      end
+    else
+      flash[:error] = "Error You must provide 3 panels with unique numbers"
+    end
     redirect_to home_page_panels_path
   end
 

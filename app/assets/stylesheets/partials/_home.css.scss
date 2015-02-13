@@ -103,11 +103,12 @@
 	padding: 8px 2px;
 	overflow: scroll;
 	h3{
+		padding: 2px 5px;
 		color: $downtown-yellow !important;
 		text-align: center;
 	}
 	p{
-		background: #1b1b1b;
+		background: #1b1b1b !important;
 		color: $light-gray !important;
 		border: none !important;
 		text-align: justify;
@@ -128,7 +129,6 @@
 	}
 	.link-container{
 		padding: 15px;
-		text-align: right;
 		a{
 			text-decoration: underline;
 			color: $downtown-yellow;

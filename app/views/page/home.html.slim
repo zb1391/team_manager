@@ -2,37 +2,17 @@
   .col-xs-12
     div#home-carousel
       div
-        div.item
-          .row
-            .col-md-6
-              .carousel-panel
-                h2 Gym Ratz Spring Tryouts
-                p The Gym Ratz AAU Tryouts are coming! Blah Blah Blah Adam will fill in the rest. He will write some greate cotent. This is a good example of a text panel
-                dl
-                  dt Boys Dates
-                  dd March 7, 8
-                  dt Grils Dates
-                  dd March 10, 11
-                .link-container
-                  = link_to 'Click Here For More Info', page_gym_ratz_about_path
-            = image_tag('dts1_bw_qt.png')
-
-        div.item
-          .row
-            .col-md-6
-              .carousel-panel
-                h2 Another One
-                p Here is another example of a home page panel. It should include information maybe about a tournament. And it will be able to link to a pdf that adam can upload himself. This will be really cool when its done! This one does not have a link
-
-            = image_tag('gym_ratz_bw_qt.png')
-
-        div.item
-          .row
-            .col-md-6
-              .carousel-panel
-                h2 Last One
-                p Here is the last home page panel. There can only be three on the home page. Adam will have the option to change the order, as well as the content within these three panels. He will also be able to link to any static page or maybe a form
-          = image_tag('court_bw_qt.png')
+        - @active_panels.each_with_index do |panel,i|
+          .item
+            .row
+              .col-md-6
+                .carousel-panel
+                  h2 = panel.title
+                  = panel.html.html_safe
+                  - unless panel.additional_link.blank?
+                    .link-container
+                      = link_to "#{panel.additional_link_text}", panel.additional_link
+              = image_tag(@images[i])
       .carousel-controls
         a.glyphicon.glyphicon-chevron-left href='#home-carousel' data-slide='prev'
         a.glyphicon.glyphicon-pause href='#home-carousel' data-slide='pause'
@@ -40,29 +20,9 @@
         a.glyphicon.glyphicon-chevron-right href='#home-carousel' data-slide='next'
 .row.header-xs.header
   .row-same-height
-    .col-md-4.col-md-height
-      .home-panel.panel.panel-default
-        h3 Gym Ratz Spring Tryouts
-        .panel-body
-          .panel-content
-            p The Gym Ratz Spring AAU Tryouts are coming! Blah Blah Blah Adam will fill in the rest. He will write some great content. This is a good example of a text panel
-            dl
-              dt Boys Dates
-              dd March 7, 8
-              dt Girls Dates
-              dd Match 10, 11
-    .col-md-4.col-md-height
-      .home-panel.panel.panel-default
-        h3 Another 
-        .panel-body
-          .panel-content
-            p Here is another example of a home page panel. It should include information maybe about a tournament. And it will be able to link to a pdf that adam can upload himself. This will be really cool when its done!
-    .col-md-4.col-md-height
-      .home-panel.panel.panel-default
-        h3 One more
-        .panel-body
-          .panel-content
-            p Here is the last home page panel. There can only be three on the home page. Adam will have the option to change the order, as well as the content within these three panels. He will also be able to link to any static page or maybe a form
+    - @active_panels.each do |panel|
+      .col-md-4.col-md-height
+        = render "home_page_panels/panel_display", home_page_panel: panel
 .row
   .col-md-4.home-footer
     h3 Who We Are

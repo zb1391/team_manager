@@ -1,7 +1,7 @@
 class PageController < ApplicationController
   def home
-    @boys_rosters = HomePageFile.search(:name_cont => 'Boys').result
-    @girls_rosters = HomePageFile.search(:name_cont => 'Girls').result
+    @active_panels = HomePagePanel.active_panels
+    @images = ['dts1_bw_qt.png', 'gym_ratz_bw_qt.png', 'court_bw_qt.png']
   end
 
   def clinics

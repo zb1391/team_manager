@@ -214,3 +214,11 @@ ul{
 .col-bottom {
     vertical-align:bottom;
 }
+
+div.error{
+	background-color: $orange;
+	color: white;
+	padding: 10px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}

@@ -11,10 +11,12 @@ TeamManager::Application.routes.draw do  resources :tournaments
   resources :display_tournaments
   resources :sessions, :only => [:new, :create, :destroy]
   resources :coaches
-  resources :home_page_panels
   resources :teams
 
   resources :eventtypes
+
+  resources :home_page_panels
+  post "home_page_panels/panel_order"
   
   resources :events do
     get :email
