@@ -56,7 +56,9 @@ class HomePagePanelsController < ApplicationController
       puts key
       puts value
     end
-    panels = params[:panel].reject!{|key, value| value[:priority_order].blank?}
+    panels = params[:panel]
+    panels = panels.reject{|key, value| value[:priority_order].blank?}
+    puts "printing PANELS"
     puts panels
     unless panels.nil?
       numbers = panels.collect{|key, value| value[:priority_order]}.uniq
