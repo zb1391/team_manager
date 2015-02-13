@@ -52,6 +52,10 @@ class HomePagePanelsController < ApplicationController
   end
 
   def panel_order
+    params[:panel].each do |key, value|
+      puts key
+      puts value
+    end
     panels = params[:panel].reject!{|key, value| value[:priority_order].blank?}
     puts panels
     unless panels.nil?
@@ -62,13 +66,12 @@ class HomePagePanelsController < ApplicationController
       panels = {}
     end
     puts 'numbers'
-    if numbers.count == 3 && panels.coudasdadadant == 3
+    if numbers.count == 3 && panels.count == 3
       begin
         HomePagePanel.transaction do
           HomePagePanel.clear_order!
           panels.each do |key, value|
             panel = HomePagePanel.find(key)
-            binding.pry
             panel.update_attributes!(priority_order: value[:priority_order])
           end
         end
