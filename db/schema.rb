@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150208001711) do
+ActiveRecord::Schema.define(version: 20150223235633) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -97,6 +97,7 @@ ActiveRecord::Schema.define(version: 20150208001711) do
     t.string   "the_file_content_type"
     t.integer  "the_file_file_size"
     t.datetime "the_file_updated_at"
+    t.integer  "team_id"
   end
 
   create_table "home_page_panels", force: true do |t|
@@ -219,11 +220,11 @@ ActiveRecord::Schema.define(version: 20150208001711) do
     t.string   "salt"
     t.integer  "coach_id"
     t.string   "gender"
-    t.string   "grade"
     t.string   "team_type"
     t.string   "name"
     t.string   "color"
     t.integer  "age"
+    t.integer  "grade"
   end
 
   create_table "tournament_locations", force: true do |t|

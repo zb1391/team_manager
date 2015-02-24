@@ -38,6 +38,7 @@ TeamManager::Application.routes.draw do  resources :tournaments
   get "page/page_unavailable"
   get "page/tournament_manager"
   get "page/photo_gallery"
+  get "page/rosters"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

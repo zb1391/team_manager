@@ -1,7 +1,7 @@
 class Event < ActiveRecord::Base
 	has_many :hotelifications
 	has_many :hotels, :through => :hotelifications
-	accepts_nested_attributes_for :hotelifications
+	accepts_nested_attributes_for :hotelifications, reject_if: :all_blank
 	belongs_to :team
 	belongs_to :eventtype
 	belongs_to :location
@@ -96,10 +96,10 @@ class Event < ActiveRecord::Base
 
 	##KEEP THIS
 	def formatted_end_date
-		end_date.strftime("%b-%d-%y")
+		end_date.strftime("%b %d-%y")
 	end
 	def formatted_date
-		the_date.strftime("%b-%d-%y")
+		the_date.strftime("%b %d-%y")
 	end
 	def formatted_eventtype
 		eventtype.name.split.map(&:capitalize).join(' ')

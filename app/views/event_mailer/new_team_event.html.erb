@@ -18,7 +18,7 @@
     <% @event.hotels.each do |hotel| %>
       Hotel Information: <br />
       <%= hotel.name %> <br />
-      <%= hotel.unformatted_location %> <br />
+      <%= hotel.full_address %> <br />
       <%="#{number_to_currency(hotel.price)}/Night"%> <br />
       <% if !hotel.addtional_link.empty? %>
         <%= link_to "booking information", hotel.addtional_link %> <br />

@@ -103,12 +103,12 @@
   <div class="calendar-details" id="calendar-sub">
       <div class="calendar-sub-details" id ="calendar-sub">
         <p><%=event.location.name%></p>
-        <dt><%= event.location.unformatted_location %></dt>
+        <dt><%= event.location.full_address %></dt>
         <dd><%= link_to "directions", event.location.directions %></dd>
         <% event.hotels.each do |hotel| %>
           <p><%=hotel.name%></p>
           <dt><%= number_to_phone(hotel.phone, area_code: true) %></dt>
-          <dt> <%=hotel.unformatted_location %></dt>
+          <dt> <%=hotel.full_address %></dt>
           <dt> <%="#{number_to_currency(hotel.price)}/Night"%></dt>
           <dd><%= link_to "hotel directions", hotel.directions %></dd>
           <% if !hotel.addtional_link.empty? %>
@@ -153,12 +153,12 @@
     <% end %>
   </p>
   <p><%=my_tournaments.location.name%></p>
-  <dt><%= my_tournaments.location.unformatted_location %></dt>
+  <dt><%= my_tournaments.location.full_address %></dt>
   <dd><%= link_to "directions", my_tournaments.location.directions, :id => "black-link", :class => "underlined" %></dd>
   <% my_tournaments.hotels.each do |hotel| %>
     <p><%=hotel.name%></p>
     <dt><%= number_to_phone(hotel.phone, area_code: true) %></dt>
-    <dt> <%=hotel.unformatted_location %></dt>
+    <dt> <%=hotel.full_address %></dt>
     <dt> <%="#{number_to_currency(hotel.price)}/Night"%></dt>
     <dd><%= link_to "hotel directions", hotel.directions, :id => "black-link", :class => "underlined" %></dd>
     <% if !hotel.addtional_link.empty? %>

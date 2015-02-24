@@ -15,7 +15,7 @@
     <%if @event.has_hotel? %>
       Hotel Information: <br />
       <%= @event.hotel.name %> <br />
-      <%= @event.hotel.unformatted_location %> <br />
+      <%= @event.hotel.full_address %> <br />
       <%="#{number_to_currency(@event.hotel.price)}/Night"%> <br />
       <%= link_to "booking information", @event.hotel.addtional_link %> <br />
     <%end%>

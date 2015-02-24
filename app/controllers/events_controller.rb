@@ -22,12 +22,13 @@ class EventsController < ApplicationController
   # GET /events/new
   def new
     @event = Event.new
+    @team_id = params[:team_id]
     2.times {@event.hotelifications.build}
   end
 
   # GET /events/1/edit
   def edit
-    2.times {@event.hotelifications.build}
+    2.times {@event.hotelifications.build} unless @event.hotels.any?
   end
 
   def email
@@ -46,6 +47,7 @@ class EventsController < ApplicationController
         format.html { redirect_to teams_path, notice: 'Event was successfully created.' }
         format.json { render action: 'show', status: :created, location: @event }
       else
+        @event.hotelifications.build unless @event.hotels.any?
         format.html { render action: 'new' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
@@ -62,6 +64,7 @@ class EventsController < ApplicationController
         format.html { redirect_to events_path, notice: 'Event was successfully updated.' }
         format.json { head :no_content }
       else
+        @event.hotelifications.build unless @event.hotels.any?
         format.html { render action: 'edit' }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end

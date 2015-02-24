@@ -6,18 +6,28 @@ class Team < ActiveRecord::Base
 	has_many :players
 	has_many :events
 	has_many :tryout_times
+	has_one :home_page_file, dependent: :destroy
+	accepts_nested_attributes_for :home_page_file, reject_if: :all_blank
+
 	belongs_to :coach
+	
 	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}, :on => :create
 	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
 	before_save :name_setup
 	before_save :age_setup
 
+
+	scope :boys, -> {where(gender: "Boys").order(:grade)}
+	scope :elite_teams, -> {where(team_type: 'Elite').order(:gender, :grade)}
+	scope :select_teams, ->{where(team_type: 'Select').order(:gender, :grade)}
+	scope :girls, -> {where(gender: 'Girls').order(:grade)}
+
 	def short_team_name
-		"#{gender} #{grade} Grade #{team_type}"
+		"#{gender} #{grade.ordinalize} Grade #{team_type}"
 	end
 
 	def dropdown_name
-		"#{grade} Grade #{gender} #{team_type}"
+		"#{grade.ordinalize} Grade #{gender} #{team_type}"
 	end
 
 	def team_color
@@ -48,7 +58,7 @@ class Team < ActiveRecord::Base
 	end
 
 	def my_number
-		grade[0].to_f
+		grade
 	end
 	def my_id 
 		return id
@@ -91,10 +101,10 @@ class Team < ActiveRecord::Base
 		end
 		def name_setup
 			if color.nil?
-				self.name = namemake("#{grade} Grade #{gender} #{team_type}")
+				self.name = namemake("#{grade.ordinalize} Grade #{gender} #{team_type}")
 			else
 
-				self.name = namemake("#{grade} Grade #{gender} #{team_type} #{color}")
+				self.name = namemake("#{grade.ordinalize} Grade #{gender} #{team_type} #{color}")
 			end
 		end
 
@@ -116,7 +126,7 @@ class Team < ActiveRecord::Base
 		end
 
 		def get_age(grade)
-			grade[0..-3].to_i
+			grade
 		end
 
 		def secure_hash(string)

@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate, :only => [:new, :destroy,:edit, :update, :index]
-
+  before_filter :get_coaches
   # GET /teams
   # GET /teams.json
   def index
@@ -21,13 +21,15 @@ class TeamsController < ApplicationController
 
   # GET /teams/new
   def new
-    @not_me = Coach.search(:email_not_eq =>"zmb1391@gmail.com").result.to_a
     @team = Team.new
+    @team.build_home_page_file
   end
 
   # GET /teams/1/edit
   def edit
     @not_me = Coach.search(:email_not_eq =>"zmb1391@gmail.com").result.to_a
+    @team.build_home_page_file unless @team.home_page_file.nil?
+
   end
 
   # POST /teams
@@ -39,6 +41,7 @@ class TeamsController < ApplicationController
         format.html { redirect_to @team, notice: 'Team was successfully created.' }
         format.json { render action: 'show', status: :created, location: @team }
       else
+        @team.build_home_page_file
         format.html { render action: 'new' }
         format.json { render json: @team.errors, status: :unprocessable_entity }
       end
@@ -81,10 +84,14 @@ class TeamsController < ApplicationController
       @team = Team.find(params[:id])
     end
 
+    def get_coaches
+      @not_me = Coach.search(:email_not_eq =>"zmb1391@gmail.com").result.to_a
+    end
     # Never trust parameters from the scary internet, only allow the white list through.
     def team_params
       params.require(:team).permit(:team_name, :encrpyted_password, :password, :password_confirmation, 
         :coach_id, :gender, :grade, :team_type, :color,
-        hotelifications_attributes: [:id, :hotel_id, :event_id])
+        hotelifications_attributes: [:id, :hotel_id, :event_id],
+        home_page_file_attributes: [:id, :name, :the_file])
     end
 end

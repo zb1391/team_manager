@@ -1,5 +1,6 @@
 class HomePageFile < ActiveRecord::Base
-
+	belongs_to :team
+	
 	has_attached_file :the_file,
 					  :s3_host_name => 's3-us-west-2.amazonaws.com'
 					  

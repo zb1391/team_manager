@@ -1,0 +1,10 @@
+.row
+  .col-md-6
+    = f.text_field :name, placeholder: 'Enter Name', class: 'form-control'
+    - f.object.errors[:name].each do |msg|
+      .validation-error = msg
+.row
+  .col-md-6
+    = f.file_field :the_file, class: 'form-control'
+    - f.object.errors[:the_file].each do |msg|
+      .validation-error = msg
