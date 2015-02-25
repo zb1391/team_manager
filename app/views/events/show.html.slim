@@ -13,7 +13,6 @@
 							dt Where
 							dd = @event.location.name
 							- unless @event.court.blank?
-								- binding.pry
 								dd = "Court #{@event.court}"
 							dd = link_to "Directions", "https://maps.google.com/maps?f=d&daddr=#{@event.location.glocation}"
 					.col-md-3

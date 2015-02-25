@@ -46,16 +46,16 @@ end
 		Coach.create(first_name: "Megan", last_name: "Thomas", email: "lo.thomas10@yahoo.com", phone: "2019516804",
 		password: "thomas1", password_confirmation: "thomas1")
 
-be3 = Team.create(gender: "Boys", grade:"3rd", team_type:"Elite", password:"*gratzb3e", password_confirmation:"*gratzb3e")
-be4 = Team.create(gender: "Boys", grade:"4th", team_type:"Elite", password:"*gratzb4e", password_confirmation:"*gratzb4e")
-be5 = Team.create(gender: "Boys", grade:"5th", team_type:"Elite", password:"*gratzb5e", password_confirmation:"*gratzb5e")
-be6 = Team.create(gender: "Boys", grade:"6th", team_type:"Elite", password:"*gratzb6e", password_confirmation:"*gratzb6e")
-be7 = Team.create(gender: "Boys", grade:"7th", team_type:"Elite", password:"*gratzb7e", password_confirmation:"*gratzb7e")
-be8 = Team.create(gender: "Boys", grade:"8th", team_type:"Elite", password:"*gratzb8e", password_confirmation:"*gratzb8e")
-be9 = Team.create(gender: "Boys", grade:"9th", team_type:"Elite", password:"*gratzb9e", password_confirmation:"*gratzb9e")
-be10 = Team.create(gender: "Boys", grade:"10th", team_type:"Elite", password:"*gratzb10e", password_confirmation:"*gratzb10e")
-be11 = Team.create(gender: "Boys", grade:"11th", team_type:"Elite", password:"*gratzb11e", password_confirmation:"*gratzb11e")
-be12 = Team.create(gender: "Boys", grade:"12th", team_type:"Elite", password:"*gratzb12e", password_confirmation:"*gratzb12e")
+be3 = Team.create(gender: "Boys", grade:"3", team_type:"Elite", password:"*gratzb3e", password_confirmation:"*gratzb3e")
+be4 = Team.create(gender: "Boys", grade:"4", team_type:"Elite", password:"*gratzb4e", password_confirmation:"*gratzb4e")
+be5 = Team.create(gender: "Boys", grade:"5", team_type:"Elite", password:"*gratzb5e", password_confirmation:"*gratzb5e")
+be6 = Team.create(gender: "Boys", grade:"6", team_type:"Elite", password:"*gratzb6e", password_confirmation:"*gratzb6e")
+be7 = Team.create(gender: "Boys", grade:"7", team_type:"Elite", password:"*gratzb7e", password_confirmation:"*gratzb7e")
+be8 = Team.create(gender: "Boys", grade:"8", team_type:"Elite", password:"*gratzb8e", password_confirmation:"*gratzb8e")
+be9 = Team.create(gender: "Boys", grade:"9", team_type:"Elite", password:"*gratzb9e", password_confirmation:"*gratzb9e")
+be10 = Team.create(gender: "Boys", grade:"10", team_type:"Elite", password:"*gratzb10e", password_confirmation:"*gratzb10e")
+be11 = Team.create(gender: "Boys", grade:"11", team_type:"Elite", password:"*gratzb11e", password_confirmation:"*gratzb11e")
+be12 = Team.create(gender: "Boys", grade:"12", team_type:"Elite", password:"*gratzb12e", password_confirmation:"*gratzb12e")
 adam.teams<<be3
 adam.teams<<be4
 adam.teams<<be5
@@ -68,16 +68,16 @@ adam.teams<<be11
 adam.teams<<be12
 
 
-ge3 = Team.create(gender: "Girls", grade:"3rd", team_type:"Elite", password:"*gratzg3e", password_confirmation:"*gratzg3e")
-ge4 = Team.create(gender: "Girls", grade:"4th", team_type:"Elite", password:"*gratzg4e", password_confirmation:"*gratzg4e")
-ge5 = Team.create(gender: "Girls", grade:"5th", team_type:"Elite", password:"*gratzg5e", password_confirmation:"*gratzg5e")
-ge6 = Team.create(gender: "Girls", grade:"6th", team_type:"Elite", password:"*gratzg6e", password_confirmation:"*gratzg6e")
-ge7 = Team.create(gender: "Girls", grade:"7th", team_type:"Elite", password:"*gratzg7e", password_confirmation:"*gratzg7e")
-ge8 = Team.create(gender: "Girls", grade:"8th", team_type:"Elite", password:"*gratzg8e", password_confirmation:"*gratzg8e")
-ge9 = Team.create(gender: "Girls", grade:"9th", team_type:"Elite", password:"*gratzg9e", password_confirmation:"*gratzg9e")
-ge10 = Team.create(gender: "Girls", grade:"10th", team_type:"Elite", password:"*gratzg10e", password_confirmation:"*gratzg10e")
-ge11 = Team.create(gender: "Girls", grade:"11th", team_type:"Elite", password:"*gratzg11e", password_confirmation:"*gratzg11e")
-ge12 = Team.create(gender: "Girls", grade:"12th", team_type:"Elite", password:"*gratzg12e", password_confirmation:"*gratzg12e")
+ge3 = Team.create(gender: "Girls", grade:"3", team_type:"Elite", password:"*gratzg3e", password_confirmation:"*gratzg3e")
+ge4 = Team.create(gender: "Girls", grade:"4", team_type:"Elite", password:"*gratzg4e", password_confirmation:"*gratzg4e")
+ge5 = Team.create(gender: "Girls", grade:"5", team_type:"Elite", password:"*gratzg5e", password_confirmation:"*gratzg5e")
+ge6 = Team.create(gender: "Girls", grade:"6", team_type:"Elite", password:"*gratzg6e", password_confirmation:"*gratzg6e")
+ge7 = Team.create(gender: "Girls", grade:"7", team_type:"Elite", password:"*gratzg7e", password_confirmation:"*gratzg7e")
+ge8 = Team.create(gender: "Girls", grade:"8", team_type:"Elite", password:"*gratzg8e", password_confirmation:"*gratzg8e")
+ge9 = Team.create(gender: "Girls", grade:"9", team_type:"Elite", password:"*gratzg9e", password_confirmation:"*gratzg9e")
+ge10 = Team.create(gender: "Girls", grade:"10", team_type:"Elite", password:"*gratzg10e", password_confirmation:"*gratzg10e")
+ge11 = Team.create(gender: "Girls", grade:"11", team_type:"Elite", password:"*gratzg11e", password_confirmation:"*gratzg11e")
+ge12 = Team.create(gender: "Girls", grade:"12", team_type:"Elite", password:"*gratzg12e", password_confirmation:"*gratzg12e")
 danny.teams<<ge3
 danny.teams<<ge4
 danny.teams<<ge5
@@ -97,3 +97,11 @@ tryouts = Eventtype.create(name: "try-outs")
 
 dts = Location.create(name: "Down Town Sports", address: "7 Leighton Place", city: "Mahwah",state: "NJ")
 srds = Location.create(name: "Saddle River Day", address: "147 Chestnut Ridge Rd", city: "Saddle River", state: "NJ")
+
+# Home Page Panels
+panel1 = HomePagePanel.create!(is_active: true, title: "Welcome to Down Town Sports", priority_order: 1,
+	html: "<p id=\"paragraph\">Down Town Sports a new State of the Art Basketball/Sports Facility. The gym is open year-round and is one of its kind in Bergen County. With two full hardwood regulation courts, the facility is designed to accommodate a wide variety of sports and programs for kids and adults to enjoy.</p><dl></dl>")
+panel2 = HomePagePanel.create!(is_active: true, title: "Gym Ratz AAU Spring Tryouts", priority_order: 2,
+	html: "<p id=\"paragraph\">Join Us For Fall Ball AAU Tryouts.We offer a program for serious players to develop team skill and maximize individual potentialthrough structured practices, games and tournament competition</p><dl></dl>")
+panel3 = HomePagePanel.create!(is_active: true, title: "Training That Suits You", priority_order: 3,
+	html: "<p id=\"paragraph\">Our goal is to help our players be the best that they can be. We offer a wide variety of training programs appropriate for every skill level including private One-On-One lessons and group clinics.</p><dl></dl>")

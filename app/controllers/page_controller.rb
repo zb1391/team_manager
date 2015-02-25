@@ -77,4 +77,9 @@ class PageController < ApplicationController
   def tournament_manager
     @tournaments = Event.search(:eventtype_name_cont => "tournament",:the_date_gteq => Date.today).result.order(:the_date,:location_id,:team_id).to_a
   end
+
+  def rosters
+    @boys_teams = Team.boys.reject{|t| t.home_page_file.nil?}
+    @girls_teams = Team.girls.reject{|t| t.home_page_file.nil?}
+  end
 end

@@ -1,6 +1,5 @@
 class ChangeTeamGradeToInteger < ActiveRecord::Migration
   def up
-  	binding.pry
   	teams = Team.all.collect{|team| {id: team.id, grade: team.grade}}
   	remove_column :teams, :grade
   	add_column :teams, :grade, :integer
@@ -16,7 +15,6 @@ class ChangeTeamGradeToInteger < ActiveRecord::Migration
   	teams = Team.all.collect{|team| {id: team.id, grade: team.grade}}
   	remove_column :teams, :grade
   	add_column :teams, :grade, :string
-  	binding.pry
   	teams.each do |t|
   		team = Team.find(t[:id])
   		new_grade_value = t[:grade].ordinalize

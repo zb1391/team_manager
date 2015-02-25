@@ -14,7 +14,9 @@
               td = team.name
               td = link_to 'Manage', team
               td
-                = link_to 'Edit'
+                = link_to 'Edit', edit_team_path(team)
+                span = ' | '
+                = link_to 'Change Password', team_password_path(team)
                 span = ' | '
                 = link_to 'Destroy', team, method: :delete, data: {confirm: 'Are you sure?'}
               td = link_to "Add Event", new_event_path(team_id: team.id)
@@ -32,7 +34,9 @@
               td = team.name
               td = link_to 'Manage', team
               td
-                = link_to 'Edit'
+                = link_to 'Edit', edit_team_path(team)
+                span = ' | '
+                = link_to 'Change Password', team_password_path(team)
                 span = ' | '
                 = link_to 'Destroy', team, method: :delete, data: {confirm: 'Are you sure?'}
               td = link_to "Add Event", new_event_path(team_id: team.id)
@@ -50,7 +54,9 @@
               td = team.name
               td = link_to 'Manage', team
               td
-                = link_to 'Edit'
+                = link_to 'Edit', edit_team_path(team)
+                span = ' | '
+                = link_to 'Change Password', team_password_path(team)
                 span = ' | '
                 = link_to 'Destroy', team, method: :delete, data: {confirm: 'Are you sure?'}
               td = link_to "Add Event", new_event_path(team_id: team.id)
@@ -68,7 +74,9 @@
               td = team.name
               td = link_to 'Manage', team
               td
-                = link_to 'Edit'
+                = link_to 'Edit', edit_team_path(team)
+                span = ' | '
+                = link_to 'Change Password', team_password_path(team)
                 span = ' | '
                 = link_to 'Destroy', team, method: :delete, data: {confirm: 'Are you sure?'}
               td = link_to "Add Event", new_event_path(team_id: team.id)

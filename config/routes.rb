@@ -11,7 +11,10 @@ TeamManager::Application.routes.draw do  resources :tournaments
   resources :display_tournaments
   resources :sessions, :only => [:new, :create, :destroy]
   resources :coaches
-  resources :teams
+  resources :teams do
+    get :password
+    post :update_password
+  end
 
   resources :eventtypes
 

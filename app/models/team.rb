@@ -3,6 +3,7 @@ require 'digest'
 class Team < ActiveRecord::Base
 	attr_accessor :password 
 	attr_accessor :color
+	attr_accessor :should_validate_password
 	has_many :players
 	has_many :events
 	has_many :tryout_times
@@ -11,7 +12,8 @@ class Team < ActiveRecord::Base
 
 	belongs_to :coach
 	
-	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}, :on => :create
+	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}, 
+		unless: Proc.new {|a| a.should_validate_password.nil?}
 	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
 	before_save :name_setup
 	before_save :age_setup
