@@ -14,6 +14,7 @@ TeamManager::Application.routes.draw do  resources :tournaments
   resources :teams do
     get :password
     post :update_password
+    get :events
   end
 
   resources :eventtypes

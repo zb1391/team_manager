@@ -111,7 +111,7 @@ class Event < ActiveRecord::Base
 			if the_date == end_date
 				the_date.strftime('%B %d (All Day)')
 			else
-				"#{start_date.strftime('%B %d')} - #{end_date.strftime('%B %d')}"
+				"#{the_date.strftime('%B %d')} - #{end_date.strftime('%B %d')}"
 			end
 		else
 			start_datetime.strftime('%B %d, %I:%M %P')

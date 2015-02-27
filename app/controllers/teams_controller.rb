@@ -2,6 +2,8 @@ class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy, :password, :update_password]
   before_filter :authenticate, :only => [:new, :destroy,:edit, :update, :index]
   before_filter :get_coaches
+  before_filter :prepare_for_mobile, :only => [:show]
+
   # GET /teams
   # GET /teams.json
   def index
@@ -10,12 +12,31 @@ class TeamsController < ApplicationController
     2.times {@event.hotelifications.build}
   end
 
+  def events
+    team = Team.find(params[:team_id])
+    @events = team.events.between(params['start'], params['end']) if (params['start'] && params['end'])
+    @events = @events.where(team_id: team.id)
+    render :json => @events
+  end
+
   # GET /teams/1
   # GET /teams/1.json
   def show
+    gon.team_id = @team.id
+    tournament_type = Eventtype.find_by_name('tournament')
+    @upcoming_events = Event.search(team_id_eq:@team.id, the_date_gteq: Date.today())
+                              .result
+                              .order(:the_date, :the_time)
+                              .page(params[:page])
+                              .per(3)
+    @tournaments = Event.search(eventtype_id_eq: tournament_type.id, team_id_eq: @team.id, the_date_gteq: Date.today())
+                        .result
+                        .order(:the_date, :the_time)
     respond_to do |format|
       format.html
-      format.xls 
+      format.mobile
+      format.xls
+      format.json {render :json => @upcoming_events}
     end
   end
 
@@ -92,6 +113,11 @@ class TeamsController < ApplicationController
   end
 
   private
+    def prepare_for_mobile
+      if mobile_device?
+        request.format = :mobile unless request.format == :json # ajax needs to be json
+      end
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_team
       @team = Team.find(params[:id]||params[:team_id])

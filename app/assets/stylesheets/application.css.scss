@@ -13,3 +13,31 @@ $dark-green: #006600;
 $dark-gray: #656565;
 
 @import "application_similarities";
+
+.event-container{
+	border-bottom: 1px solid $light-gray;
+	padding: 5px;
+	h4{
+		// color: black;
+	}
+	span{
+		display: block;
+		font-size: 16px;
+		strong{
+			color: $gray;
+		}
+	}
+}
+
+.all-events{
+	margin-bottom: 10px;
+
+	.btn-default{
+		width: 100%;
+		display: block;
+		color: black;
+	}
+	.event-container:first-child{
+		margin-top: -10px;
+	}
+}

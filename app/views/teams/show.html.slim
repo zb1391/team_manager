@@ -1,0 +1,290 @@
+.static-page.green
+  h1 = @team.name
+  .content
+    .row
+      .col-lg-4
+        h2 Roster
+        .panel.panel-default.table-responsive
+          table.table
+            thead
+              th Name
+              th Number
+            tbody
+              - @team.players.each do |player|
+                td = player.formatted_name
+                td = player.uniform_number
+      .col-lg-4.col-md-6
+        h2 Upcoming Events
+        .all-events
+          - if @upcoming_events.empty?
+            p There are no upcoming events.
+          - @upcoming_events.each do |event|
+            div.event-container.clearfix
+              = link_to "Details", event, class: 'float-right'
+              h4 = event.eventtype.formatted_name
+              span
+                strong Where:&nbsp;
+                i = event.location_name
+              span
+                strong When:&nbsp;
+                i = event.when
+                 
+
+      .col-lg-4.col-md-6
+        h2 Tournaments
+        .all-events
+          - if @tournaments.empty?
+            p There are no upcoming tournaments.
+          - @tournaments.each_with_index do |event,i|
+            div.event-container style="#{i<2 ? '' : 'display:none;'}"
+              h4 = event.location.name
+              span
+                strong When: &nbsp;
+                i = event.when
+              - unless event.description.blank?  
+                span
+                  strong Description:&nbsp;
+                  i = event.description
+              - if event.hotels.any?
+                span
+                  strong Hotels:
+                  - event.hotels.each do |hotel|
+                    div 
+                      = "#{hotel.name}: "
+                      i = "#{number_to_currency(hotel.price)}/Night"
+              span
+                = link_to "Details", event
+                i = " / "
+                = link_to "Tournament Directions", event.location.directions
+          - if @tournaments.count > 2
+            = link_to 'Show All Tournaments', '#', class: 'btn btn-default', id: 'show-all-tournaments'
+    #master-calendar
+    = render "events/modal"
+- content_for :scripts
+  coffee:
+    $ ->
+      getFormatType = (calEvent) ->
+          if calEvent.allDay
+              return 'MMMM Do'
+          else
+              return 'MMMM Do, hh:mm a'
+
+      setWhen = (calEvent) ->
+        start = calEvent.start.format(getFormatType(calEvent))
+        if calEvent.allDay
+          # if the tournament only lasts one day
+          console.log(calEvent)
+          end   = moment.utc(calEvent.enddate).format(getFormatType(calEvent))
+          if start == end
+            return start+' (All Day)'
+          else
+            return start+' - '+end
+        else
+          return start
+      $('#master-calendar').fullCalendar
+        editable: false,
+        header:
+          left: 'title',
+          right: 'prev,next, month, basicWeek, agendaDay'
+        defaultView: 'month',
+        height: 500,
+        slotMinutes: 15,
+        eventLimit: true,
+        views:{
+          month:{
+            eventLimit: 2
+          }
+        },
+        eventClick: (calEvent, jsEvent, view) ->
+          jsEvent.preventDefault();
+          $('#myModal .eventtype').text(calEvent.eventtype)
+          $('#myModal .team_name').text(calEvent.team_name)
+          $('#myModal .directions').attr('href',calEvent.directions)
+          $('#myModal .when').text(setWhen(calEvent))
+          $('#myModal .where').text(calEvent.location)
+          event_path = $('#myModal .more_info').attr('href')
+          $('#myModal .more_info').attr('href',event_path.replace("ID",calEvent.id))
+          
+          edit_path = $('#myModal .edit').attr('href')
+          if edit_path?
+            $('#myModal .edit').attr('href',edit_path.replace("ID",calEvent.id))  
+
+          reschedule_path = $('#myModal form').attr('action')
+          if reschedule_path?
+            $('#myModal form').attr('action',reschedule_path.replace("ID",calEvent.id))  
+
+          $('#myModal').modal()
+        ,  
+        eventSources:[{
+          url: '/teams/'+gon.team_id+'/events'
+        }]
+/ <div class = "static-green-content" id ="allow-overflow">
+/ <h1 class = "centered"><%=@team.name%></h1>
+
+/ <% if proper_coach?(@team.coach) || is_admin? %>
+/ <table>
+/     <tr>
+/       <th><%=@team.short_team_name%></th>
+/       <th></th>
+/       <th></th>
+/       <th></th>
+/       <th></th>
+/       <th></th>
+/       <th></th>
+/       <th></th>
+/       <th></th>
+/     </tr>
+/     <tr>
+/     	<td>NAME</td>
+/     	<td>PHONE</td>
+/     	<td>EMAIL</td>
+/     	<td>NUMBER</td>
+/       <td>PARENT</td>
+/       <td>PARENT CELL</td>
+/       <td>PARENT EMAIL</td>
+/       <td>EMERGENCY PHONE</td>
+/       <td></td>
+/     </tr>
+/   <tbody>
+/     <% @team.players.each do |player| %>
+/       <tr>
+/         <td><%= "#{player.last_name},#{player.first_name}" %></td>
+/         <td><%= number_to_phone(player.phone, area_code: true) %></td>
+/         <td><%= player.email %></td>
+/         <td><%= player.uniform_number %></td>
+/         <td><%= player.parent_first_name %></td>
+/         <td><%= player.parent_cell %></td>
+/         <td><%= player.parent_email %></td>
+/         <td><%= player.emergency_phone %></td>
+/         <td><%= link_to 'Show', player %>
+/             <%= link_to 'Edit', edit_player_path(player) %>
+/             <%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %>
+/         </td>
+/       </tr>
+/     <% end %>
+/   </tbody>
+/ </table>
+/ <p>
+/   Download:
+/   <% to_xls = "#{team_path(@team.id)}.xls" %>
+/   <%= link_to "Excel", to_xls %>
+/ </p>
+/ <% end %>
+
+/ <h2>Roster</h2>
+/ <table class ="weekly-calendar">
+/   <tr>
+/     <th>Player</th>
+/     <th>Number</th>
+/   </tr>
+/  <% @team.players.each do |player| %>
+/       <tr>
+/         <td class ="black-text"><%= player.formatted_name %></td>
+/         <td class ="black-text"><%= player.uniform_number %></td>
+/       </tr>
+/     <% end %>
+/ </table>
+/ <br />
+/ </div>
+/ <div class = "gray-content">
+/   <% if !@team.todays_events.empty? %>
+/     <h1 class = "centered" id ="today-events">Today's Events: <%= Date.today.strftime("%B %d, %Y") %></h1>
+/     <% @team.todays_events.each do |event| %>
+/       <h2><%= event.eventtype.name.split.map(&:capitalize).join(' ') %></h2>
+/       <h1><%= event.location.name %></h1>
+/       <div class = "row">
+/         <div class = "col-xs-6">  
+/           <p class ="full-width auto-margin">
+/             <strong>When:</strong> <br />
+/             <%=  "#{event.the_time.strftime('%l:%M %P')}"%>
+/             <% if !event.end_time.nil? %>
+/               <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
+/             <% end %>
+/           </p>
+/           <p class = "full-width auto-margin">
+/             <strong>Directions:</strong>
+/             <%= link_to "Click Here!", event.location.directions %></strong>
+/           </p>
+/         </div>
+/         <div class = "col-xs-6">
+/           <% if !event.description.empty? %>
+/             <p class = "full-width auto-margin">
+/               <strong> Details:</strong> <br />
+/               <%=raw sanitize(simple_format(event.description), :tags => %w(br) ) %>
+/             </p>
+/           <% end %>  
+/         </div>
+/     </div>
+/     <% end %>
+/   <% end %>
+/ </div>
+/ <%= calendar @team.events do |event| %>
+/   <%logger.debug "Events start_time: #{event.start_time}" %>
+/   <div class="calendar-details" id="calendar-sub">
+/       <div class="calendar-sub-details" id ="calendar-sub">
+/         <p><%=event.location.name%></p>
+/         <dt><%= event.location.full_address %></dt>
+/         <dd><%= link_to "directions", event.location.directions %></dd>
+/         <% event.hotels.each do |hotel| %>
+/           <p><%=hotel.name%></p>
+/           <dt><%= number_to_phone(hotel.phone, area_code: true) %></dt>
+/           <dt> <%=hotel.full_address %></dt>
+/           <dt> <%="#{number_to_currency(hotel.price)}/Night"%></dt>
+/           <dd><%= link_to "hotel directions", hotel.directions %></dd>
+/           <% if !hotel.addtional_link.empty? %>
+/             <dd><%= link_to "booking information", hotel.addtional_link %></dd>
+/           <% end %>
+/         <% end %>
+/         <dd><%= link_to "more details", event %></dd>
+/         <% if is_admin? %>
+/             <%= link_to 'Edit', edit_event_path(event) %>
+/             <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+/         <% end %>
+/     </div> 
+/     <ul>
+/       <dd><%= "#{event.eventtype.name}: "%></dd>
+/       <dt>
+/         <%= "#{event.location.name}:" %> <br />
+/         <% if event.eventtype.name != "tournament" %>
+/           <%= "#{event.the_time.strftime('%l:%M %P')}"%>
+/           <% if !event.end_time.nil? %>
+/           <%= "-#{event.end_time.strftime('%l:%M %P')}" %>
+/           <% end %>
+/           <%= "Court #{event.court}" %> <br />
+/         <% end %>
+/         <br />
+/         <%= link_to "directions", event.location.directions %>
+/       </dt>
+/           <% if is_admin? %>
+/             <%= link_to 'Edit', edit_event_path(event) %>
+/             <%= link_to 'Destroy', event, method: :delete, data: { confirm: 'Are you sure?' } %>
+/           <% end %>
+/     </ul>
+/   </div>
+/ <% end %>
+/ <% @team.tournaments.each do |my_tournaments| %>
+/ <div class = "static-cols-green">
+/   <h3>Tournament at <%= my_tournaments.location.name %></h3>
+/   <p>
+/     <%=my_tournaments.formatted_date %>  --- <%=my_tournaments.formatted_end_date %> <br /> <br />
+/     <% if !my_tournaments.description.nil? %>
+/       <%=raw sanitize(simple_format(my_tournaments.description), :tags => %w(br p) ) %>
+/        <br /> <br />
+/     <% end %>
+/   </p>
+/   <p><%=my_tournaments.location.name%></p>
+/   <dt><%= my_tournaments.location.full_address %></dt>
+/   <dd><%= link_to "directions", my_tournaments.location.directions, :id => "black-link", :class => "underlined" %></dd>
+/   <% my_tournaments.hotels.each do |hotel| %>
+/     <p><%=hotel.name%></p>
+/     <dt><%= number_to_phone(hotel.phone, area_code: true) %></dt>
+/     <dt> <%=hotel.full_address %></dt>
+/     <dt> <%="#{number_to_currency(hotel.price)}/Night"%></dt>
+/     <dd><%= link_to "hotel directions", hotel.directions, :id => "black-link", :class => "underlined" %></dd>
+/     <% if !hotel.addtional_link.empty? %>
+/       <dd><%= link_to "booking information", hotel.addtional_link, :id => "black-link", :class => "underlined" %></dd>
+/     <% end %>
+/   <% end %>
+/   <dd><%= link_to "more details", my_tournaments, :id => "black-link", :class => "underlined" %></dd>
+/ </div>
+/ <% end %>
