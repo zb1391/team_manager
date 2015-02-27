@@ -6,7 +6,7 @@
     - if is_admin?
       = link_to "New Event", new_event_path, class: 'btn btn-primary margin-bottom-10'
     #master-calendar
-    = render "modal"
+    = render "shared/events_modal"
 - content_for :scripts
   coffee:
     $ ->

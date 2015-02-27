@@ -3,7 +3,7 @@
 div.event-content class="#{active}" id="#{id}"  
     - unless source.any?
         p There are currently no upcoming events.
-    table class= "events"
+    table class= "events calendar-table"
         - source.each_with_index do |event,i|
             tr.event-container data-eventtype="#{event.eventtype.try(:formatted_name)}" data-team="#{event.team_name}" data-when="#{event.when}" data-where="#{event.location_name}" data-id="#{event.id}" data-directions="#{event.location.try(:directions)}"
                 td

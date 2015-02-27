@@ -1,12 +1,12 @@
-.static-page.green
-	h1 Master Schedule
-	.content style= 'padding-left: 0; padding-right: 0;'
-        - if notice
-            p = notice
-        = render 'shared/events_modal'
-        - if is_admin?
-            = link_to "New Event", new_event_path, class: 'btn btn-primary', style: 'margin-left: 10px;'
-        = render "shared/events", events: @events, tournaments: @tournaments
+.event-options style=" padding: 10px;"
+    .row
+        .col-xs-4 style="border-right: 1px solid #eeeeee;"
+            h4.active#all-events All Events
+        .col-xs-8
+            h4#tournaments Tournaments
+.events-container style="height: 500px; overflow: scroll"
+    = render "shared/schedule", source: events, active: 'active', path: "", id: 'all-events-table', show_load_more: true
+    = render "shared/schedule", source: tournaments, active: '', path: "/tournaments", id: 'tournaments-table', show_load_more: false
 
 - content_for :scripts
     coffee:
@@ -85,7 +85,7 @@
                     page = $(this).data('page')
                     $this = $(this)
                     the_path = $this.data('path')
-                    url = '/events'+the_path+'.json'
+                    url = '/teams/'+gon.team_id+the_path+'.json'
                     console.log(url)
                     $.ajax
                         'url': url

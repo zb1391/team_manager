@@ -35,7 +35,7 @@ $dark-gray: #656565;
 		}
 	}
 
-	table{
+	table.calendar-table{
 		width: 100%;
 		border-collapse: collapse;
 		tr{
@@ -98,7 +98,7 @@ $dark-gray: #656565;
 			background: $downtown-green;
 		}
 		&.event5{
-			background: $downtown-yellow;
+			background: $light-orange;
 		}
 		&.event6{
 
