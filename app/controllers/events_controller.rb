@@ -1,6 +1,6 @@
 class EventsController < ApplicationController
   before_action :set_event, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate, :only => [:index,:new, :destroy,:edit, :update]
+  before_filter :authenticate, :only => [:new, :destroy,:edit, :update]
   before_filter :prepare_for_mobile, :only => [:index]
 
   # GET /events

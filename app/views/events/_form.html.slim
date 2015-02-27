@@ -1,27 +1,34 @@
-= form_for @event do |f|
+= form_for @event, html: {id: 'event-form'} do |f|
   - if @event.errors.any?
     #error-explanation
       div Oh No! There were errors in your form. Please fill in all information before continuing
-  .form-panel     
+  .form-panel
+    .row
+      .col-md-6    
+        = f.label "Event Type"
+        = f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, {include_blank: false},{class: 'form-control'} 
+        - @event.errors[:eventtype_id].each do |msg|
+          .validation-error = msg  
     .row
       .col-md-6
         = f.label "Date"
         = f.date_field :the_date, class: 'form-control'
         - @event.errors[:the_date].each do |msg|
           .validation-error = msg
-    .row
+    
+    .row style="#{@event.eventtype_name == 'tournament' ? '' : 'display:none;'}"
       .col-md-6
         = f.label "End Date"
         = f.date_field :end_date, class: 'form-control'
         - @event.errors[:end_date].each do |msg|
           .validation-error = msg
-    .row
+    .row style="#{@event.eventtype_name != 'tournament' ? '' : 'display:none;'}"
       .col-md-6    
         = f.label "Time"
         = f.time_field :the_time, class: 'form-control'
         - @event.errors[:the_time].each do |msg|
           .validation-error = msg
-    .row
+    .row style="#{@event.eventtype_name != 'tournament' ? '' : 'display:none;'}"
       .col-md-6
         = f.label "End Time"
         = f.time_field :end_time, class: 'form-control'
@@ -39,12 +46,6 @@
         = f.label "Location"
         = f.collection_select :location_id, Location.order(:id),:id,:name,{include_blank: false}, {class: 'form-control'}
         - @event.errors[:location_id].each do |msg|
-          .validation-error = msg
-    .row
-      .col-md-6    
-        = f.label "Event Type"
-        = f.collection_select :eventtype_id, Eventtype.order(:name),:id,:name, {include_blank: false},{class: 'form-control'} 
-        - @event.errors[:eventtype_id].each do |msg|
           .validation-error = msg
     .row
       .col-md-6    
