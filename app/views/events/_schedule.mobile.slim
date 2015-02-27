@@ -1,26 +1,26 @@
-table class= "events #{active}" id="#{id}"
-	- source.each_with_index do |event,i|
-        tr.event-container data-eventtype="#{event.eventtype.try(:formatted_name)}" data-team="#{event.team_name}" data-when="#{event.when}" data-where="#{event.location_name}" data-id="#{event.id}" data-directions="#{event.location.try(:directions)}"
-            td
-                div class="event event#{rand((1..6))}" 
-                    h2 = event.eventtype.name[0].upcase
-            td 
-                h4 = event.calendar_title
-                span
-                    strong Where:&nbsp;
-                    i = event.location.name
-                span
-                    strong When:&nbsp;
-                    i = event.when
-                span 
-                    i click for details
-        - if i == source.size-1
-            tr.load-more
-                td colspan="2" style="text-align:center;"
-                    = link_to "Load More Events", '#', class: "load_events btn btn-default", data: {page: 1, path: path}
 
 
-- content_for :scripts
-  javascript:
-    mypath = "#{path}"
-  coffee:
+div.event-content class="#{active}" id="#{id}"  
+    - unless source.any?
+        p There are currently no upcoming events.
+    table class= "events"
+        - source.each_with_index do |event,i|
+            tr.event-container data-eventtype="#{event.eventtype.try(:formatted_name)}" data-team="#{event.team_name}" data-when="#{event.when}" data-where="#{event.location_name}" data-id="#{event.id}" data-directions="#{event.location.try(:directions)}"
+                td
+                    div class="event event#{rand((1..6))}" 
+                        h2 = event.eventtype.name[0].upcase
+                td 
+                    h4 = event.calendar_title
+                    span
+                        strong Where:&nbsp;
+                        i = event.location.name
+                    span
+                        strong When:&nbsp;
+                        i = event.when
+                    span 
+                        i click for details
+            - if i == source.size-1
+                tr.load-more
+                    td colspan="2" style="text-align:center;"
+                        = link_to "Load More Events", '#', class: "load_events btn btn-default", data: {page: 1, path: path}
+

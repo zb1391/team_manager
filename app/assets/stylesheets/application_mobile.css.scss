@@ -28,13 +28,16 @@ $dark-gray: #656565;
 	}
 }
 .events-container{
+	.event-content{
+		display: none;
+		&.active{
+			display: block;
+		}
+	}
+
 	table{
 		width: 100%;
 		border-collapse: collapse;
-		display: none;
-		&.active{
-			display: table;
-		}
 		tr{
 			border: 1px solid $light-gray;
 		}
