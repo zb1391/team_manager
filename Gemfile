@@ -49,10 +49,13 @@ end
 
 #for datepicker()
 gem 'jquery-ui-rails'
+gem 'jquery-rest-rails'
 
 gem "ransack"
 #for displaying a calendar
 gem "simple_calendar", "~> 0.1.9"
+
+gem "momentjs-rails"
 
 #to fix the calendar select
 #gem 'jquery-turbolinks'

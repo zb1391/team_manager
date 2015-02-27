@@ -15,3 +15,91 @@ $dark-green: #006600;
 $dark-gray: #656565;
 
 @import "application_similarities";
+
+.event-options{
+	h4{
+		&:hover{
+			cursor: pointer
+		}
+		color: darken($light-gray,10%);
+		&.active{
+			color: $orange;
+		}
+	}
+}
+.events-container{
+	table{
+		width: 100%;
+		border-collapse: collapse;
+		display: none;
+		&.active{
+			display: table;
+		}
+		tr{
+			border: 1px solid $light-gray;
+		}
+		td{
+			padding: 10px;
+			padding-left: 5px !important;
+
+			a{
+				font-size: 12px;
+			}
+			h4{
+				font-size: 16px;
+				color: black;
+			}
+			span{
+				display: block;
+				font-size: 12px;
+				strong{
+					color: $gray
+				}
+				color: $gray;
+			}
+		}
+		td:first-child{
+			width:100px;
+		}
+		.btn-default{
+			width: 100%;
+			color: black;
+		}
+	}
+	.event{
+		// float: left;
+		width: 80px;
+		height: 80px;
+		// to-upper-case($string);
+		background: $downtown-green;
+		// border-bottom: 1px solid
+		h2{
+			font-size: 50px;
+			padding-top: 10px;
+			color: #fefefe;
+			text-align: center;
+			border-bottom: none;
+			margin-bottom: 0;
+			// text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+		}
+		&.event1{
+			background: $dark-green;
+		}
+		&.event2{
+			background: $light-orange
+		}
+		&.event3{
+			background: $green;
+		}
+		&.event4{
+			background: $downtown-green;
+		}
+		&.event5{
+			background: $downtown-yellow;
+		}
+		&.event6{
+
+			background: $light-green;;
+		}
+	}
+}

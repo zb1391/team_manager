@@ -1,14 +1,14 @@
 .static-page.green
 	h1 = @event.team.name
 	.content
-		h2 = @event.eventtype.name.split.map(&:capitalize).join(' ')
+		h2 = @event.eventtype.formatted_name
 		.panel.panel-default
 			.panel-body
 				.row
 					.col-md-3
 						dl
 							dt When
-							dd = @event.formatted_date
+							dd = @event.when
 						dl
 							dt Where
 							dd = @event.location.name
@@ -38,7 +38,7 @@
 								dd = link_to 'Booking Information', hotel.hotel_link
 		- if is_admin?
 			= link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'
-			= link_to 'Back', events_path(@event), class: 'btn btn-cancel'
+			= link_to 'Back', events_path, class: 'btn btn-cancel'
 
 
 / <% @event.hotels.each do |hotel| %>

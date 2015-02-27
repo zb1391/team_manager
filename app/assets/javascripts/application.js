@@ -11,8 +11,12 @@
 // about supported directives.
 //
 //= require jquery
-//= require jquery-ui
 //= require jquery_ujs
+
+//= require jquery-ui
+
+//= require jquery.rest
+//= require moment
 //= require bootstrap-sprockets
 //= require_directory .
 

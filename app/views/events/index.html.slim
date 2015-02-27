@@ -1,0 +1,105 @@
+.static-page.green
+  h1 Master Schedule
+  .content
+    - if notice
+      p = notice
+    - if is_admin?
+      = link_to "New Event", new_event_path, class: 'btn btn-primary margin-bottom-10'
+    #master-calendar
+    = render "modal"
+- content_for :scripts
+  coffee:
+    $ ->
+      getFormatType = (calEvent) ->
+          if calEvent.allDay
+              return 'MMMM Do'
+          else
+              return 'MMMM Do, hh:mm a'
+
+      setWhen = (calEvent) ->
+        start = calEvent.start.format(getFormatType(calEvent))
+        if calEvent.allDay
+          # if the tournament only lasts one day
+          console.log(calEvent)
+          end   = moment.utc(calEvent.enddate).format(getFormatType(calEvent))
+          if start == end
+            return start+' (All Day)'
+          else
+            return start+' - '+end
+        else
+          return start
+      $('#master-calendar').fullCalendar
+        editable: false,
+        header:
+          left: 'title',
+          right: 'prev,next, month, basicWeek, agendaDay'
+        defaultView: 'month',
+        height: 500,
+        slotMinutes: 15,
+        eventLimit: true,
+        views:{
+          month:{
+            eventLimit: 2
+          }
+        },
+        eventClick: (calEvent, jsEvent, view) ->
+          jsEvent.preventDefault();
+          $('#myModal .eventtype').text(calEvent.eventtype)
+          $('#myModal .team_name').text(calEvent.team_name)
+          $('#myModal .directions').attr('href',calEvent.directions)
+          $('#myModal .when').text(setWhen(calEvent))
+          $('#myModal .where').text(calEvent.location)
+          event_path = $('#myModal .more_info').attr('href')
+          $('#myModal .more_info').attr('href',event_path.replace("ID",calEvent.id))
+          
+          edit_path = $('#myModal .edit').attr('href')
+          if edit_path?
+            $('#myModal .edit').attr('href',edit_path.replace("ID",calEvent.id))  
+
+          reschedule_path = $('#myModal form').attr('action')
+          if reschedule_path?
+            $('#myModal form').attr('action',reschedule_path.replace("ID",calEvent.id))  
+
+          $('#myModal').modal()
+        ,  
+        eventSources:[{
+          url: '/events'
+        }]
+/ <div class="centered" id="event-imports-container">  
+/   <h1 id="notice"><%= notice %></h1>
+/     <table>
+/       <th>Date</th>
+/       <th>Time</th>
+/       <th>Team</th>
+/       <th>Type</th>
+/       <th>Location</th>
+/       <th>Options</th>
+/       <% @events.each do |event| %>
+/         <tr>
+/           <td> <%= event.formatted_date %></td>
+/           <td> <%="#{event.the_time.strftime('%l:%M %P')}"%></td>
+/           <td> <%= event.team_name %></td>
+/           <td> <%= event.eventtype_name %></td>
+/           <td> <%= event.location_name %></td>
+/           <td>
+/            <%= link_to "details", event_path(event.id) %> |
+/            <%= link_to "send email", event_email_path(event) %> |
+/            <%= link_to "destroy", event, method: :delete, data: { confirm: 'Are you sure?' } %>
+
+/          </td>
+/         </tr>
+/       <% end %>
+/     </table>
+
+/     <div style="margin-left: 50px;"><%= paginate @events %></div>
+/     <%= search_form_for @q do |f| %>
+
+/     <%= f.label "Search by date" %>
+/     <%= f.date_field :the_date_eq%>
+
+/     <%= f.submit %>
+/     <%= link_to "View All Events", events_path %>
+/     <% end %>
+/ </div>
+
+

@@ -1,0 +1,136 @@
+.static-page.green
+	h1 Master Schedule
+	.content style= 'padding-left: 0; padding-right: 0;'
+        - if notice
+            p = notice
+        = render 'modal'
+        - if is_admin?
+            = link_to "New Event", new_event_path, class: 'btn btn-primary', style: 'margin-left: 10px;'
+        .event-options style=" padding: 10px;"
+            .row
+                .col-xs-4 style="border-right: 1px solid #eeeeee;"
+                    h4.active#all-events All Events
+                .col-xs-8
+                    h4#tournaments Tournaments
+		.events-container style="height: 500px; overflow: scroll"
+            = render "schedule", source: @events, active: 'active', path: "", id: 'all-events-table'
+            = render "schedule", source: @tournaments, active: '', path: "/tournaments", id: 'tournaments-table'
+
+- content_for :scripts
+    coffee:
+        $ ->
+            $('#all-events').click (e) ->
+                if !$(this).hasClass($(this))
+                    $(this).addClass('active')
+                $('#tournaments').removeClass('active')
+                $('#all-events-table').addClass('active')
+                $('#tournaments-table').removeClass('active')
+
+            $('#tournaments').click (e) ->
+                if !$(this).hasClass($(this))
+                    $(this).addClass('active')
+                $('#all-events').removeClass('active')
+                $('#tournaments-table').addClass('active')
+                $('#all-events-table').removeClass('active')           
+            $ ->
+                getFormatType = (calEvent) ->
+                    if calEvent.allDay
+                        return 'MMMM Do'
+                    else
+                        return 'MMMM Do, hh:mm a'
+                setWhen = (calEvent) ->
+                    start = moment.utc(calEvent.start).format(getFormatType(calEvent))
+                    if calEvent.allDay
+                      # if the tournament only lasts one day
+                      console.log(calEvent)
+                      end   = moment.utc(calEvent.enddate).format(getFormatType(calEvent))
+                      if start == end
+                        return start+' (All Day)'
+                      else
+                        return start+' - '+end
+                    else
+                      return start
+                firstTd = (calEvent) ->
+                    random = Math.floor((Math.random()*6)+1)
+                    return """
+                        <td><div class='event event"""+random+"""'>
+                            <h2>"""+calEvent.eventtype[0]+"""</h2>
+                        </div></td> 
+                    """
+                secondTd = (calEvent) ->
+                    date_format = getFormatType(calEvent)
+                    return """
+                        <td>
+                            <h4>"""+calEvent.title+"""</h4>
+                            <span>
+                                <strong> Where:&nbsp;</strong>
+                                <i>""" +calEvent.location+"""</i>
+                            </span>
+                            <span>
+                                <strong> When:&nbsp; </strong>
+                                <i>"""+setWhen(calEvent)+"""</i>
+                            </span>
+                            <span>
+                                <i> click for details </i>
+                            </span>
+                        </td>
+                    """
+
+                setDataAttrs = (tr,calEvent) ->
+                    tr.data('eventtype', calEvent.eventtype)
+                    tr.data('team', calEvent.team_name)
+                    tr.data('directions', calEvent.directions)
+                    tr.data('when', setWhen(calEvent))
+                    tr.data('where', calEvent.location)
+                    tr.data('id', calEvent.id)
+
+                $('.load_events').click (e) ->
+                    e.preventDefault()
+                    console.log($(this))
+                    console.log($(this).hasClass('active'))            
+
+                    $events = $(this).parents('table')
+                    page = $(this).data('page')
+                    $this = $(this)
+                    the_path = $this.data('path')
+                    url = '/events'+the_path+'.json'
+                    console.log(url)
+                    $.ajax
+                        'url': url
+                        'dataType': 'json'
+                        'data':
+                            'page': page+1
+                        'success': (data, status, jqXHR) ->
+                            if data.length > 0
+                                $this.data('page',parseInt(page)+1)
+                                $.each data, (key, calEvent) ->
+                                    $events.append('<tr class="event-container"></tr>')
+                                    $tr = $events.find('tr').last()
+                                    setDataAttrs($tr, calEvent)
+                                    $tr.append(firstTd(calEvent))
+                                    $tr.append(secondTd(calEvent))
+                                $this.closest('tr').detach().appendTo($events)
+                            else
+                                $this.text('No More Events')
+                        'error': (jqXHR, textStatus, errorThrown) ->
+                            alert("We're sorry but an error has occurred. Please try later.")
+
+                $('.events').on 'click', '.event-container', (e) ->
+                    e.preventDefault()
+
+                    $('#myModal .eventtype').text($(this).data('eventtype'))
+                    $('#myModal .team_name').text($(this).data('team'))
+                    $('#myModal .directions').attr('href',$(this).data('directions'))
+                    $('#myModal .when').text($(this).data('when'))
+                    $('#myModal .where').text($(this).data('where'))
+                    event_path = $('#myModal .more_info').attr('href')
+                    $('#myModal .more_info').attr('href',event_path.replace("ID",$(this).data('id')))
+
+                    edit_path = $('#myModal .edit').attr('href')
+                    if edit_path?
+                        $('#myModal .edit').attr('href',edit_path.replace("ID",$(this).data('id')))  
+
+                    reschedule_path = $('#myModal form').attr('action')
+                    if reschedule_path?
+                        $('#myModal form').attr('action',reschedule_path.replace("ID",$(this).data('id')))  
+                    $('#myModal').modal()

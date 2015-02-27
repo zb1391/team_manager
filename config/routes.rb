@@ -23,6 +23,8 @@ TeamManager::Application.routes.draw do  resources :tournaments
   
   resources :events do
     get :email
+    post :reschedule
+    get :tournaments, on: :collection
   end
 
   resources :players  
