@@ -7,7 +7,7 @@
     = f.label "Tournament"
     .row
       .col-md-6
-        = f.collection_select :tournament_id, @invitationals, :id, :formatted_name, {include_blank: false},{class: 'form-control'}
+        = f.collection_select :tournament_id, @tournaments, :id, :formatted_name, {include_blank: false},{class: 'form-control'}
 
   h2 Club/Organization Name
   .form-panel

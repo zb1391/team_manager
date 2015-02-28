@@ -39,7 +39,7 @@ class DisplayTournament < ActiveRecord::Base
 	def set_display_content
 		if active
 			DisplayTournament.where(active: true, tournament_type_id: self.tournament_type_id).each do |tournament|
-				tournament.update_attributes(active: false)
+				tournament.update_attributes(active: false) unless tournament.id == self.id
 			end
 		end
 	end

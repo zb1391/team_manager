@@ -19,7 +19,7 @@ class OrganizationsController < ApplicationController
   def new
     @organization = Organization.new(manual_fee_entry: false)
     @organization.clubs.build
-    @invitationals = Tournament.find_active_invitationals
+    @tournaments = Tournament.active_tournaments
     if !params[:id].blank?
       @tournament = Tournament.find(params[:id])
       @organization.tournament_id = params[:id]
@@ -35,7 +35,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1/edit
   def edit
-    @invitationals = Tournament.find_active_invitationals
+    @tournaments = Tournament.active_tournaments
   end
 
   # POST /organizations
@@ -51,7 +51,7 @@ class OrganizationsController < ApplicationController
         format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
       else
-        @invitationals = Tournament.find_active_invitationals
+        @tournaments = Tournament.active_tournaments
         @organization.clubs.build if @organization.clubs.empty?
         format.html { render action: 'new' }
         format.json { render json: @organization.errors, status: :unprocessable_entity }
@@ -70,7 +70,7 @@ class OrganizationsController < ApplicationController
         format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
         format.json { head :no_content }
       else
-        @invitationals = Tournament.find_active_invitationals
+        @tournaments = Tournament.active_tournaments
         @organization.clubs.build if @organization.clubs.empty?
         format.html { render action: 'edit' }
         format.json { render json: @organization.errors, status: :unprocessable_entity }
