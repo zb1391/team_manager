@@ -6,7 +6,7 @@
         = render 'shared/events_modal'
         - if is_admin?
             = link_to "New Event", new_event_path, class: 'btn btn-primary', style: 'margin-left: 10px;'
-        = render "shared/events", events: @events, tournaments: @tournaments
+        = render "shared/events", events: @events, tournaments: @tournaments, events_more: true, tournaments_more: true
 
 - content_for :scripts
     coffee:

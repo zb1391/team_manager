@@ -6,6 +6,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    gon.path = events_path
     respond_to do |format|
       format.html
       format.mobile

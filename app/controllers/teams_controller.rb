@@ -22,7 +22,7 @@ class TeamsController < ApplicationController
   # GET /teams/1
   # GET /teams/1.json
   def show
-    gon.team_id = @team.id
+    gon.path = team_path(@team)
     tournament_type = Eventtype.find_by_name('tournament')
     @upcoming_events = Event.search(team_id_eq:@team.id, the_date_gteq: Date.today())
                               .result

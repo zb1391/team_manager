@@ -15,5 +15,5 @@
                         - @team.players.each do |player|
                             td = player.formatted_name
                             td = player.uniform_number
-        = render "shared/events", events: @upcoming_events, tournaments: @tournaments
+        = render "shared/events", events: @upcoming_events, tournaments: @tournaments, events_more: true, tournaments_more: false
 
