@@ -1,6 +1,6 @@
 class HomePagePanelsController < ApplicationController
   before_filter :get_link_paths, only: [:new, :create, :edit, :update]
-
+  before_filter :authenticate
   def index
     @home_page_panels = HomePagePanel.all.order("is_active DESC",:priority_order)
     @active_panels = HomePagePanel.active_panels

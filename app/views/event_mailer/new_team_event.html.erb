@@ -30,7 +30,7 @@
         <%=raw sanitize(simple_format(@event.description), :tags => %w(br) ) %>
       </p>
     <% end %>
-    More information can be found be checking the schedule by clicking <%= team_url(@event.team, host: 'www.downtownsports.org')%> 
+    More information can be found by checking the schedule by clicking <%= team_url(@event.team, host: 'www.downtownsports.org')%> or going to the <%= link_to 'Gym Ratz AAU Page', page_gym_ratz_about_path, host: 'www.downtownsports.org' %> and finding your team's schedule there.
     </p>
     <p>
       This is an automated email. Please do not reply

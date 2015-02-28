@@ -1,4 +1,5 @@
 class TryoutsController < ApplicationController
+  before_filter :authenticate
   def new
   	@tryout = Tryout.new
     @teams = Team.all

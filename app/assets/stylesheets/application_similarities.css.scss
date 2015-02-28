@@ -13,7 +13,8 @@ $nav-orange: #ff8c00;
 $navbar-default-color: $nav-orange;
 $navbar-default-link-color: white;
 $navbar-default-link-hover-color: #ff8c00;
-
+$navbar-inverse-bg: $light-gray;
+$navbar-inverse-link-color: black;
 // point at which navbar becomes uncollapsed
 $grid-float-breakpoint: 1220px;
 //point at which the navbar begins collapsing
@@ -58,7 +59,7 @@ strong{
 //   margin-top: 75px;
 // }
 
-nav.navbar.navbar-default{
+nav.navbar.navbar-default, nav.navbar-inverse{
 	margin-bottom: 0;
 }
 

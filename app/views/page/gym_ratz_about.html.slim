@@ -1,23 +1,38 @@
 .static-page.green
-  h1 Gym Ratz AAU Basketball
-  .content
-	  h2 The Gym Ratz Program
-	  p 
-	  	|The Gym Ratz AAU Basketball Program is dedicated to offering players of all levels the opportunity to
-	  	strong =" improve and develop "
-	  	|their individual and team skills. Our goal is to assist each player to reach their personal potential and highest level of play, and to offer exposure needed to be
-	  	strong =" recruited at the next level. "
-	  	| Each player will participate in highly competitve practices, league games, travel tournaments, and high schoole/college show case events against some of the best teams on the East Coast.
-	  br
+	h1 Gym Ratz AAU Basketball
+	.content
+		h2 The Gym Ratz Program
+		p
+			| The Gym Ratz AAU Basketball Program is dedicated to offering players of all levels the oppportunity to
+			strong &nbsp;improve and develop&nbsp;
+			|their individual and team skills. Our goal is to assist each player to reach their personal potential and highest level of play, and to offer exposure needed to be
+			strong &nbsp;recruited at the next level.&nbsp;
+			|Each player will participate in highly competitive practices, league games, travel tournaments, and high school,college show case events against some of the best teams on the East Coast.
+		br
+		h2 Team Schedules
+		.schedules-container
+			.row
+				- if Team.girls.any?
+					.col-md-3
+						dl.bordered
+							dt Girls Teams
+							- Team.girls.each do |team|
+								dd = link_to team.name, team
+				- if Team.boys.any?
+					.col-md-3
+						dl.bordered
+							dt Boys Teams
+							- Team.boys.each do |team|
+								dd = link_to team.name, team
 		- if @tryout
 			h2
-				strong = "Gym Ratz AAU #{@tryout.season} Tryouts"
+				strong = "Gym Ratz #{@tryout.season} Tryouts"
 			.row
 				- if @tryout.girls_tryout_dates.any?
 					.col-md-6
 						h3 Girls Tryouts
-						- @tryout.girls_tryout_dates.each do |tryout_date|
-							h4 = tryout_date.date.strftime("%A, %b %d")
+						- @tryouts.girls_tryout_dates.each do |tryout_date|
+							h4 = tryout_date.strftime('%A, %b %d')
 							table
 								- tryout_date.sorted_tryout_times.each do |tryout_time|
 									tr
@@ -27,8 +42,8 @@
 				- if @tryout.boys_tryout_dates.any?
 					.col-md-6
 						h3 Boys Tryouts
-						- @tryout.boys_tryout_dates.each do |tryout_date|
-							h4 = tryout_date.date.strftime("%A, %b %d")
+						- @tryouts.boys_tryout_dates.each do |tryout_date|
+							h4 = tryout_date.strftime('%A, %b %d')
 							table
 								- tryout_date.sorted_tryout_times.each do |tryout_time|
 									tr

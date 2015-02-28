@@ -151,5 +151,14 @@
 			color: lighten($dark-gray, 10%);
 		}
 	}
+	.schedules-container{
+		a{
+			color: black;
+			text-decoration: underline;
+			&:hover{
+				color: $orange;
+			}
+		}
+	}
 }
 

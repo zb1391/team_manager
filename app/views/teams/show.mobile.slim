@@ -4,6 +4,10 @@
         - if notice
             p = notice
         = render 'shared/events_modal'
+        - if is_admin?
+            .margin-bottom-20            
+                = link_to "Download Spreadsheet", team_path(@team, format: 'xls'), class: 'btn btn-primary'
+                = link_to "New Event", new_event_path(team_id: @team.id), class: 'btn btn-primary', style: "margin-left: 10px;"
         #roster style="padding: 10px;"
             h2 Roster
             .panel.panel-default.table-responsive

@@ -1,4 +1,5 @@
 class PageController < ApplicationController
+  before_filter :authenticate, only: [:admin_search]
   def admin_search
     if params[:redirect_path]
       if params[:redirect_path].include?('session')

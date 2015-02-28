@@ -1,6 +1,6 @@
 class SummerCampersController < ApplicationController
   before_action :set_summer_camper, only: [:show, :edit, :update, :destroy]
-  before_filter :authenticate, :only => [:index, :show, :edit, :destroy, :new]
+  before_filter :authenticate, :only => [:index, :show, :edit, :destroy]
    #      <%= link_to "Register Online",new_summer_camper_url,:class => "button-look-orange",
    #     :id => "no-hover-orange"
    #   %>
