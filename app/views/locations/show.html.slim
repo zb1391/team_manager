@@ -1,0 +1,16 @@
+.static-page.green
+  h1 Location
+  .content
+    dt Name:
+    dd = @location.name
+    dt Address:
+    dd = link_to @location.full_address, @location.directions
+    dt Additional Link:
+    dd
+      - unless @location.additional_link.blank?
+        = link_to "Additional Link", @location.location_link
+      - else
+        span No Link Provided
+    br
+    = link_to "Edit", edit_location_path(@location), class: 'btn btn-primary  '
+    = link_to "Back", locations_path, class: 'btn btn-cancel'

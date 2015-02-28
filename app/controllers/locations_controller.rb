@@ -4,7 +4,7 @@ class LocationsController < ApplicationController
   # GET /locations
   # GET /locations.json
   def index
-    @locations = Location.all
+    @locations = Location.all.order(:name, :state)
   end
 
   # GET /locations/1
@@ -14,7 +14,7 @@ class LocationsController < ApplicationController
 
   # GET /locations/new
   def new
-    @location = Location.new
+    @location = Location.new(state: "NJ")
   end
 
   # GET /locations/1/edit

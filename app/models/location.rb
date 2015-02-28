@@ -1,6 +1,8 @@
 class Location < ActiveRecord::Base
 	has_many :events
-	validates :address, :city, :state, presence: true
+	validates :address, presence: {message: 'You must enter an address'}
+	validates :city, presence: {message: 'You must enter a city'}
+	validates :name, presence: {message: 'You must enter a name'}
 	before_destroy :check_for_events
 
 	def check_for_events
@@ -32,5 +34,8 @@ class Location < ActiveRecord::Base
 	end
 	def directions
 		"https://maps.google.com/maps?f=d&daddr=#{glocation}"
+	end
+	def location_link
+		/^http/i.match(additional_link) ? additional_link : "http://#{additional_link}"
 	end
 end
