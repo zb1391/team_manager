@@ -1,0 +1,168 @@
+= form_for @player do |f|
+  - if @player.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+  h2 Team Select
+  .form-panel
+    .row
+      .col-md-6
+        = f.label :team_id, "Team"
+        = f.collection_select :team_id, Team.order(:gender,:grade),:id,:name, {include_blank: false}, {class: 'form-control'}
+        / = collection_select :team_id, Team.order(:gender,:grade), :id, :name, include_blank: false, class: 'form-control'
+
+  h2 Player Information
+  .form-panel
+    .row
+      .col-md-6  
+        = f.label :first_name, "First Name"
+        = f.text_field :first_name, placeholder: 'Enter First Name', class: 'form-control'
+        - @player.errors[:first_name].each do |msg|
+          .validation-error = msg        
+      .col-md-6
+        = f.label :last_name, "Last Name"
+        = f.text_field :last_name, placeholder: 'Enter Last Name', class: 'form-control'
+        - @player.errors[:last_name].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label :phone, "Phone Number"
+        = f.text_field :phone, placeholder: 'Ex. 2018480017', class: 'form-control'
+        - @player.errors[:phone].each do |msg|
+          .validation-error = msg
+      .col-md-6
+        = f.label :email, "Email"
+        = f.text_field :email, placeholder: 'Enter email', class: 'form-control'
+        - @player.errors[:email].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label :uniform_number, "Uniform Number"
+        = f.number_field :uniform_number, placeholder: 'Enter Uniform Number',class: 'form-control'
+        - @player.errors[:uniform_number].each do |msg|
+          .validation-error = msg
+  h2 Parent Information
+  .form-panel
+    .row
+      .col-md-6
+        = f.label :parent_first_name, "Parent First Name"
+        = f.text_field :parent_first_name, placeholder: "Enter Parent First Name", class: 'form-control'
+        - @player.errors[:parent_first_name].each do |msg|
+          .validation-error = msg
+      .col-md-6
+        = f.label :parent_last_name, "Parent Last Name"
+        = f.text_field :parent_last_name, placeholder: 'Enter Parent Last Name', class: 'form-control'
+        - @player.errors[:parent_last_name].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label :parent_email, "Parent Email"
+        = f.text_field :parent_email, placeholder: 'Enter Parent Email', class: 'form-control'
+        - @player.errors[:parent_email].each do |msg|
+          .validation-error = msg
+      .col-md-6
+        = f.label :parent_email2, "Additional Email"
+        = f.text_field :parent_email2, placeholder: 'Optional', class: 'form-control'
+        - @player.errors[:parent_email2].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label :parent_cell, "Parent Phone Number"
+        = f.text_field :parent_cell, placeholder: 'Ex. 2018480017', class: 'form-control'
+        - @player.errors[:parent_cell].each do |msg|
+          .validation-error = msg
+      .col-md-6
+        = f.label :emergency_phone, "Emergency Phone Number"
+        = f.text_field :emergency_phone, placeholder: 'Ex. 2018480017', class: 'form-control'
+        - @player.errors[:emergency_phone].each do |msg|
+          .validation-error = msg
+  - unless @player.persisted?  
+    h2 Team Password
+    .form-panel
+      .row
+        .col-md-6    
+          span You Received the Team Password in an Email.
+          = f.label :password, "Password"
+          = f.password_field :password, placeholder: 'Enter Password', class: 'form-control'
+          - @player.errors[:password].each do |msg|
+            .validation-error = msg
+  .form-actions
+    = f.submit "Submit", class: 'btn btn-primary'
+    = link_to 'Cancel', root_path, class: 'btn btn-cancel'
+
+/ <div id="organization-form">
+/ <%= form_for(@player, :html => {:class => "organization-form"}) do |f| %>
+/   <% if @player.errors.any? %>
+/     <div id="error_explanation">
+/       <h2><%= pluralize(@player.errors.count, "error") %> prohibited this player from being saved:</h2>
+
+/       <ul>
+/       <% @player.errors.full_messages.each do |msg| %>
+/         <li class="black-text"><%= msg %></li>
+/       <% end %>
+/       </ul>
+/     </div>
+/   <% end %>
+/   <h2>Team Select</h2>
+/   <div class="field">
+/     <%= f.label :team_id %><br>
+/     <%= f.collection_select :team_id, Team.order(:id),:id,:name, include_blank: false %>
+/   </div>
+/   <h2>Player Info </h2>
+/   <div class="field">
+/     <%= f.label :first_name %><br>
+/     <%= f.text_field :first_name %>
+/   </div>
+/   <div class="field">
+/     <%= f.label :last_name %><br>
+/     <%= f.text_field :last_name %>
+/   </div>
+/   <div class="field">
+/     <%= f.label :uniform_number %><br>
+/     <%= f.number_field :uniform_number %>
+/   </div>
+/   <div class="field">
+/     <%= f.label :phone %><em>(ex. 2018480017)</em><br>
+/     <%= f.text_field :phone %>
+/   </div>
+/   <div class="field">
+/     <%= f.label :email %><br>
+/     <%= f.text_field :email %>
+/   </div>
+
+/   <h2>Parent Info</h2>
+/   <div class="field">
+/     <%= f.label :parent_first_name %><br>
+/     <%= f.text_field :parent_first_name %>
+/   </div>
+/   <div class="field">
+/     <%= f.label :parent_last_name %><br>
+/     <%= f.text_field :parent_last_name %>
+/   </div>
+/   <div class="field">
+/     <%= f.label :parent_cell %><em>(ex. 2018480017)</em><br>
+/     <%= f.text_field :parent_cell %>
+/   </div>
+/   <div class="field">
+/     <%= f.label :parent_email %><br>
+/     <%= f.text_field :parent_email %>
+/   </div>
+/     <div class="field">
+/     <%= f.label :parent_email2 %> <em>(Optional Email Address for Second Parent/Guardian)</em><br>
+/     <%= f.text_field :parent_email2 %>
+/   </div>
+/   <div class="field">
+/     <%= f.label :emergency_phone %><em>(ex. 2018480017)</em><br>
+/     <%= f.text_field :emergency_phone %>
+/   </div>
+
+/   <h2>Team Password</h2>
+/   <h3>You Received the Team Password in an Email </h3>
+/   <div class="field">
+/     <%= f.label :password %><br>
+/     <%= f.password_field :password %>
+/   </div>
+/   <div class="actions">
+/     <%= f.submit %>
+/   </div>
+/ <% end %>
+/ </div>

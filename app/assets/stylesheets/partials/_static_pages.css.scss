@@ -144,5 +144,12 @@
 			text-decoration: underline;
 		}
 	}
+	a.player-link{
+		color: $dark-gray;
+		text-decoration: underline;
+		&:hover{
+			color: lighten($dark-gray, 10%);
+		}
+	}
 }
 

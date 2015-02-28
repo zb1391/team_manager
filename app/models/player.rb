@@ -8,7 +8,7 @@ class Player < ActiveRecord::Base
 	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validates :parent_cell, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validates :emergency_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
-	validate :password_matches_team
+	validate :password_matches_team, on: :create
 	validate :valid_uniform_number, :on => :create
 	validate :unique_name, :on => :create
 	def password_matches_team
@@ -21,10 +21,13 @@ class Player < ActiveRecord::Base
 		end
 	end
 
+
 	def formatted_name
-		last = last_name.slice(0,1).capitalize + last_name.slice(1..-1)
-		first = first_name.slice(0,1).capitalize + first_name.slice(1..-1)
-		return "#{last}, #{first}"
+		format_name(self.first_name, self.last_name)
+	end
+
+	def parent_formatted_name
+		format_name(self.parent_first_name, self.parent_last_name)
 	end
 
 
@@ -34,7 +37,12 @@ class Player < ActiveRecord::Base
 			errors.add(:first_name, "A player with the name #{first_name} #{last_name} has already registered. 
 				Check the team roster to verify you are already there")			
 		end
+	end
 
+	def format_name(first_name, last_name)
+		last = last_name.slice(0,1).capitalize + last_name.slice(1..-1)
+		first = first_name.slice(0,1).capitalize + first_name.slice(1..-1)
+		return "#{last}, #{first}"
 	end
 	#No Player can have a uniform number with any digit > 5
 	#Therefore the highest number a player can have is 55
@@ -56,7 +64,7 @@ class Player < ActiveRecord::Base
 		end
 
 		if 5 % ones_digit == 5
-			errors.add(:uniform_number, "c- AAU Regulation no digit greter than 5 (use numbers 0-5,10-15,20-25...)")
+			errors.add(:uniform_number, "AAU Regulation: no digit greater than 5 (use numbers 0-5,10-15,20-25...)")
 		end
 	end
 

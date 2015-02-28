@@ -1,0 +1,79 @@
+.static-page.green
+  h1 Players
+  .content
+    .row.margin-bottom-10
+      .col-xs-1
+        = link_to "New Player", new_player_path, class: 'btn btn-primary'
+      .col-xs-1
+        = link_to "Download Excel", players_path(format: "xls"), class: 'btn btn-primary'
+    .panel.panel-default.table-responsive
+      table.table
+        thead
+          th Name
+          th Phone
+          th Email
+          th Team
+          th Parent
+          th Parent Cell
+          th Parent Email
+          th Emergency Phone
+          th Actions
+        tbody
+          - @players.each do |player|
+            tr
+              td = link_to player.formatted_name, player, class: 'player-link'
+              td = number_to_phone(player.phone, area_code: true)
+              td = player.email
+              td = link_to player.team.name, player.team
+              td = player.parent_formatted_name
+              td = number_to_phone(player.parent_cell, area_code: true)
+              td = player.parent_email
+              td = number_to_phone(player.emergency_phone, area_code: true)
+              td = link_to "Edit", edit_player_path(player)
+/ <h1>Listing players</h1>
+
+/ <table>
+/   <thead>
+/     <tr>
+/       <th>First name</th>
+/       <th>Last name</th>
+/       <th>Phone</th>
+/       <th>Email</th>
+/       <th>Team</th>
+/       <th>Uniform Number</td>
+/       <th>Parent</th>
+/       <th>Parent Cell</th>
+/       <th>Parent Email</th>
+/       <th>Emergency Phone</th>
+/       <th></th>
+/     </tr>
+/   </thead>
+
+/   <tbody>
+/     <% @players.each do |player| %>
+/       <tr>
+/         <td><%= player.first_name %></td>
+/         <td><%= player.last_name %></td>
+/         <td><%= number_to_phone(player.phone, area_code: true) %></td>
+/         <td><%= player.email %></td>
+/         <td><%= link_to player.team.name, player.team%></td>
+/         <td><%= player.uniform_number %></td>
+/         <td><%= player.parent_first_name %></td>
+/         <td><%= player.parent_cell %></td>
+/         <td><%= player.parent_email %></td>
+/         <td><%= player.emergency_phone %></td>
+/         <td><%= link_to 'Show', player %>
+/             <%= link_to 'Edit', edit_player_path(player) %>
+/             <%= link_to 'Destroy', player, method: :delete, data: { confirm: 'Are you sure?' } %>
+/         </td>
+/       </tr>
+/     <% end %>
+/   </tbody>
+/ </table>
+/ <p>
+/   Download:
+/   <%= link_to "Excel", players_path(format: "xls") %>
+/ </p>
+/ <br>
+
+/ <%= link_to 'New Player', new_player_path %>
