@@ -9,21 +9,27 @@
 			strong &nbsp;recruited at the next level.&nbsp;
 			|Each player will participate in highly competitive practices, league games, travel tournaments, and high school,college show case events against some of the best teams on the East Coast.
 		br
-		h2 Team Schedules
-		.schedules-container
-			.row
-				- if Team.girls.any?
-					.col-md-3
-						dl.bordered
-							dt Girls Teams
-							- Team.girls.each do |team|
-								dd = link_to team.name, team
-				- if Team.boys.any?
-					.col-md-3
-						dl.bordered
-							dt Boys Teams
-							- Team.boys.each do |team|
-								dd = link_to team.name, team
+		.row
+			.col-lg-6
+				.schedules-container
+					h2 Team Schedules
+					.row
+						- if Team.girls.any?
+							.col-md-6
+								dl.bordered
+									dt Girls Teams
+									- Team.girls.each do |team|
+										dd = link_to team.name, team
+						- if Team.boys.any?
+							.col-md-6
+								dl.bordered
+									dt Boys Teams
+									- Team.boys.each do |team|
+										dd = link_to team.name, team
+			.col-lg-6
+				h2 Team Rosters
+				p Team Rosters are currently available. Please note that these rosters are available as soon as each team is finialized. If your team is not currently present, please check back again soon!
+				= link_to "View Rosters", page_rosters_path, class: 'btn btn-primary'
 		- if @tryout
 			h2
 				strong = "Gym Ratz #{@tryout.season} Tryouts"

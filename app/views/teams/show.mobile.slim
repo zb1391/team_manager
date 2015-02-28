@@ -8,6 +8,7 @@
             .margin-bottom-20            
                 = link_to "Download Spreadsheet", team_path(@team, format: 'xls'), class: 'btn btn-primary'
                 = link_to "New Event", new_event_path(team_id: @team.id), class: 'btn btn-primary', style: "margin-left: 10px;"
+                = link_to "All Teams", teams_path, class: 'btn btn-primary', style: "margin-left: 10px;"
         #roster style="padding: 10px;"
             h2 Roster
             .panel.panel-default.table-responsive
@@ -15,9 +16,19 @@
                     thead
                         th Name
                         th Number
+                        - if is_admin?
+                            th Phone
+                            th Email
+                            th Parent
+                            th Cell
                     tbody
                         - @team.players.each do |player|
                             td = player.formatted_name
                             td = player.uniform_number
+                            - if is_admin?
+                                td = number_to_phone(player.phone, area_code:true)
+                                td = player.email
+                                td = player.parent_formatted_name
+                                td = number_to_phone(player.parent_cell, area_code: true)
         = render "shared/events", events: @upcoming_events, tournaments: @tournaments, events_more: true, tournaments_more: false
 

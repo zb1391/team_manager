@@ -2,7 +2,7 @@
   h1 = @team.name
   .content
     .row
-      .col-lg-4
+      div class="#{is_admin? ? "col-lg-12 col-md-12" : "col-lg-4"}"
         h2 Roster
         .panel.panel-default.table-responsive
           table.table
@@ -27,12 +27,13 @@
           .margin-bottom-20
             .row
               .col-md-6
-                = link_to "Download Spreadsheet", team_path(@team, format: 'xls'), class: 'btn btn-primary'
+                = link_to "Download Spreadsheet", team_path(@team, format: 'xls'), class: 'btn btn-primary margin-bottom-10'
               .col-md-3  
-                = link_to "New Event", new_event_path(team_id: @team.id), class: 'btn btn-primary'
+                = link_to "New Event", new_event_path(team_id: @team.id), class: 'btn btn-primary margin-bottom-10'
               .col-md-3  
-                = link_to "All Teams", teams_path, class: 'btn btn-primary'
-      .col-lg-4.col-md-6
+                = link_to "All Teams", teams_path, class: 'btn btn-primary margin-bottom-10'
+
+      div class="#{is_admin? ? 'col-lg-6 col-md-6' : 'col-lg-4 col-md-6'}"
         h2 Upcoming Events
         .all-events
           - if @upcoming_events.empty?
@@ -49,7 +50,7 @@
                 i = event.when
                  
 
-      .col-lg-4.col-md-6
+      div class="#{is_admin? ? 'col-lg-6 col-md-6' : 'col-lg-4 col-md-6'}"
         h2 Tournaments
         .all-events
           - if @tournaments.empty?
