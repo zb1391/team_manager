@@ -45,6 +45,7 @@ class PageController < ApplicationController
   def gym_ratz_about
     @boys_teams = Team.boys.reject{|t| t.home_page_file.nil?}
     @girls_teams = Team.girls.reject{|t| t.home_page_file.nil?}
+    binding.pry
     @tryout = Tryout.last
   end
 

@@ -26,10 +26,11 @@
 									dt Boys Teams
 									- Team.boys.each do |team|
 										dd = link_to team.name, team
-			.col-lg-6
-				h2 Team Rosters
-				p Team Rosters are currently available. Please note that these rosters are available as soon as each team is finialized. If your team is not currently present, please check back again soon!
-				= link_to "View Rosters", page_rosters_path, class: 'btn btn-primary'
+			- if @boys_teams.any? || @girls_teams.any?
+				.col-lg-6
+					h2 Team Rosters
+					p Team Rosters are currently available. Please note that these rosters are available as soon as each team is finialized. If your team is not currently present, please check back again soon!
+					= link_to "View Rosters", page_rosters_path, class: 'btn btn-primary'
 		- if @tryout
 			h2
 				strong = "Gym Ratz #{@tryout.season} Tryouts"
