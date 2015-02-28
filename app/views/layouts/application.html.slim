@@ -23,7 +23,7 @@ body
           span class="icon-bar"
         a href="#{root_path}" class="brand"
         	= image_tag("logo3.png", style: "width: 125px")
-        a href="#{root_path}" class="brand"
+        a href="#{root_path}" class="brand" id="#{is_admin? ? "admin_nav" : ""}"
         	= image_tag("title.png", style: "width: 125px;")
       br
       .collapse.navbar-collapse id="navbar-collapse-1"
@@ -87,5 +87,4 @@ body
   
   = yield
 
-
-
+  = render "shared/search_modal"

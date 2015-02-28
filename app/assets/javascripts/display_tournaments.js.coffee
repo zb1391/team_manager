@@ -4,6 +4,11 @@
 $ = jQuery
 
 $ ->
+
+	# Hide season if one day shootout
+	if $('#display_tournament_tournament_type_id').data('name') != 'Invitational'
+		$('#season-container').hide()
+
 	$('#display-tournament-form').submit () ->
 		if $('#display-tournament-form .form-panel #display_tournament_active').is(':checked')
 			alert("Warning - This tournament's information will be used on the Leagues and Tournament Pages. Please choose a different tournament if you do not want to use this information. If no tournaments are chosen default information will be displayed.")

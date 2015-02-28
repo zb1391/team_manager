@@ -5,6 +5,7 @@
 			table.table
 				thead
 					th Active
+					th Type
 					th Season
 					th Genders
 					th Ages
@@ -15,6 +16,7 @@
 						tr
 							td 
 								strong = display_tournament.active ? 'Active' : ''
+							td = display_tournament.tournament_type.name
 							td = display_tournament.season
 							td = display_tournament.display_gender
 							td = display_tournament.display_grades
@@ -23,4 +25,9 @@
 								= link_to 'Edit', edit_display_tournament_path(display_tournament)
 								span = ' | '
 								= link_to 'Destroy', display_tournament, method: :delete, data: {confirm: 'Are you sure?'}
-		= link_to 'New Display Tournament', new_display_tournament_path, class: 'btn btn-primary'
+		= form_for DisplayTournament.new, url: new_display_tournament_path, method: :get do |f|
+			.row
+				.col-md-3
+					= f.select :tournament_type_id, options_for_select(@tournament_types.collect{|t| [t.name, t.id]}), {}, {class: 'form-control'}
+				.col-md-3
+					= f.submit 'New Display Tournament', class: 'btn btn-primary'

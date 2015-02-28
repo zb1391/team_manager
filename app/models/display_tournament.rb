@@ -1,8 +1,10 @@
 class DisplayTournament < ActiveRecord::Base
 	has_many :display_tournament_locations, dependent: :destroy
 	has_many :locations, through: :display_tournament_locations
+	belongs_to :tournament_type
 
-	validates :season, presence:{message: 'You must enter a season'}
+	validates :season, presence:{message: 'You must enter a season'},
+		if: Proc.new{|a| a.tournament_type.name == "Invitational"}
 	validates :min_grade, presence: {message: 'You must select a min grade'}
 	validates :max_grade, presence: {message: 'You must select a max grade'}
 	validates :guaranteed_games, presence:{message: 'You must enter a number'}
@@ -36,7 +38,7 @@ class DisplayTournament < ActiveRecord::Base
 	# set the previous tournament for display content to false
 	def set_display_content
 		if active
-			DisplayTournament.where(active: true).each do |tournament|
+			DisplayTournament.where(active: true, tournament_type_id: self.tournament_type_id).each do |tournament|
 				tournament.update_attributes(active: false)
 			end
 		end

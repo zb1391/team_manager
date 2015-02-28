@@ -1,4 +1,16 @@
 class PageController < ApplicationController
+  def admin_search
+    if params[:redirect_path]
+      if params[:redirect_path].include?('session')
+        sign_out
+        redirect_to root_path
+      else
+        redirect_to params[:redirect_path]
+      end
+    else
+      redirect_to root_path
+    end
+  end
   def home
     @active_panels = HomePagePanel.active_panels
     @images = ['dts1_bw_qt.png', 'gym_ratz_bw_qt.png', 'court_bw_qt.png']
@@ -15,8 +27,12 @@ class PageController < ApplicationController
 
   def leagues
     @tournament = Tournament.new
-    @display_tournament = DisplayTournament.find_by_active(true)
-    @invitationals = Tournament.find_active_invitationals
+    one_day_shootout = TournamentType.find_by_name('One Day Shootout')
+    invitational = TournamentType.find_by_name('Invitational')
+    @one_day_shootout_display = one_day_shootout.display_tournaments.find_by_active(true)
+    @invitational_display = invitational.display_tournaments.find_by_active(true)
+    @one_day_shootouts = one_day_shootout.tournaments.active_tournaments
+    @invitationals = invitational.tournaments.active_tournaments
   end
 
   def camps

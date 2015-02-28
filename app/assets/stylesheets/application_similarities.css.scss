@@ -225,3 +225,15 @@ div.error{
 	margin-bottom: 20px;
 }
 
+#draggable{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.ui-autocomplete{
+	z-index: 4000;
+}
+.ui-helper-hidden-accessible{
+	display: none;
+}

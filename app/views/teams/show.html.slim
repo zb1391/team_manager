@@ -13,6 +13,10 @@
               - @team.players.each do |player|
                 td = player.formatted_name
                 td = player.uniform_number
+        - if is_admin?
+          .margin-bottom-20
+            = link_to "Download Spreadsheet", team_path(@team, format: 'xls'), class: 'btn btn-primary'
+            = link_to "New Event", new_event_path(team_id: @team.id), class: 'btn btn-primary', style: "margin-left: 10px;"
       .col-lg-4.col-md-6
         h2 Upcoming Events
         .all-events

@@ -73,7 +73,7 @@ class TournamentsController < ApplicationController
     def tournament_params
       params.require(:tournament).permit(:name, :the_date, 
         :end_date, :price, :active, :genders, :min_grade, 
-        :max_grade, :display_info, :is_invitational,:end_registration_date,
+        :max_grade, :tournament_type_id,:end_registration_date,
         tournament_locations_attributes: [:_destroy,:id, :location_id])
     end
 end

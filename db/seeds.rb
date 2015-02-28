@@ -93,7 +93,6 @@ danny.teams<<ge12
 practice = Eventtype.create(name: "practice")
 game = Eventtype.create(name: "game")
 tournament = Eventtype.create(name: "tournament")
-tryouts = Eventtype.create(name: "try-outs")
 
 dts = Location.create(name: "Down Town Sports", address: "7 Leighton Place", city: "Mahwah",state: "NJ")
 srds = Location.create(name: "Saddle River Day", address: "147 Chestnut Ridge Rd", city: "Saddle River", state: "NJ")
@@ -105,3 +104,8 @@ panel2 = HomePagePanel.create!(is_active: true, title: "Gym Ratz AAU Spring Tryo
 	html: "<p id=\"paragraph\">Join Us For Fall Ball AAU Tryouts.We offer a program for serious players to develop team skill and maximize individual potentialthrough structured practices, games and tournament competition</p><dl></dl>")
 panel3 = HomePagePanel.create!(is_active: true, title: "Training That Suits You", priority_order: 3,
 	html: "<p id=\"paragraph\">Our goal is to help our players be the best that they can be. We offer a wide variety of training programs appropriate for every skill level including private One-On-One lessons and group clinics.</p><dl></dl>")
+
+# Tournament Types
+TournamentType.create!(name: 'Invitational')
+TournamentType.create!(name: 'One Day Shootout')
+TournamentType.create!(name: 'Other')

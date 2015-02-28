@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150223235633) do
+ActiveRecord::Schema.define(version: 20150228042445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -65,7 +65,8 @@ ActiveRecord::Schema.define(version: 20150223235633) do
     t.integer "guaranteed_games"
     t.float   "price"
     t.string  "genders"
-    t.boolean "active",           default: true
+    t.boolean "active",             default: true
+    t.integer "tournament_type_id"
   end
 
   create_table "events", force: true do |t|
@@ -232,6 +233,10 @@ ActiveRecord::Schema.define(version: 20150223235633) do
     t.integer "tournament_id"
   end
 
+  create_table "tournament_types", force: true do |t|
+    t.string "name"
+  end
+
   create_table "tournaments", force: true do |t|
     t.string   "name"
     t.date     "the_date"
@@ -242,9 +247,8 @@ ActiveRecord::Schema.define(version: 20150223235633) do
     t.string   "genders",               default: "Both"
     t.integer  "min_grade",             default: 3
     t.integer  "max_grade",             default: 12
-    t.boolean  "display_info"
-    t.boolean  "is_invitational",       default: true
     t.date     "end_registration_date"
+    t.integer  "tournament_type_id"
   end
 
   create_table "tryout_dates", force: true do |t|

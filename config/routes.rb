@@ -17,7 +17,6 @@ TeamManager::Application.routes.draw do  resources :tournaments
     get :events
   end
 
-  resources :eventtypes
 
   resources :home_page_panels
   post "home_page_panels/panel_order"
@@ -45,6 +44,7 @@ TeamManager::Application.routes.draw do  resources :tournaments
   get "page/tournament_manager"
   get "page/photo_gallery"
   get "page/rosters"
+  get "page/admin_search"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

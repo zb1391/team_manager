@@ -4,18 +4,23 @@
 $ = jQuery
 
 $ ->
-	# hide the name if is invitational
-	if $('#tournament-form .form-panel #tournament_is_invitational').is(':checked')
+	# hide the name if is invitational or one day shootout
+	if $('#tournament_tournament_type_id option:selected').text() != 'Other'
 		$('#tournament-form .form-panel .tournament_name').hide()
 
-	$('#tournament-form .form-panel #tournament_is_invitational').on 'change', () ->
-		if this.checked
+	# hide the end date if one day shootout
+	if $('#tournament_tournament_type_id option:selected').text() == 'One Day Shootout'
+		$('#tournament-form .form-panel .tournament_end_date').hide()
+
+	$('#tournament_tournament_type_id').on 'change', () ->
+		if $(this).find('option:selected').text() != 'Other'
 			$('#tournament-form .form-panel .tournament_name').hide()
 			# $('#tournament-form .form-panel #tournament_name').val('')
 		else
 			$('#tournament-form .form-panel .tournament_name').show()
 
+		if $('#tournament_tournament_type_id option:selected').text() == 'One Day Shootout'
+			$('#tournament-form .form-panel #tournament_end_date_container').hide()
+		else
+			$('#tournament-form .form-panel #tournament_end_date_container').show()
 
-	$('#tournament-form').submit () ->
-		if $('#tournament-form .form-panel #tournament_display_info').is(':checked')
-			alert("Warning - This tournament's information will be used on the Leagues and Tournament Pages. Please choose a different tournament if you do not want to use this information. If no tournaments are chosen default information will be displayed.")

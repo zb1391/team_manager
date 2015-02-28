@@ -1,4 +1,5 @@
 = form_for @display_tournament, html: {id: 'display-tournament-form'} do |f|
+  = f.hidden_field :tournament_type_id, data:{name: @display_tournament.tournament_type.name}
   .row
     .col-lg-6.col-md-12   
       - if @display_tournament.errors.any?
@@ -8,11 +9,12 @@
 
         = f.check_box :active
         span Active on Leagues Page?
-      
-        = f.label "Season"
-        = f.select :season, options_for_select(%w[Winter Spring Summer Fall], @display_tournament.season), prompt: 'Enter Season'
-        - @display_tournament.errors[:season].each do |msg|
-          .tournament_name.validation-error = msg  
+        
+        #season-container    
+          = f.label "Season"
+          = f.select :season, options_for_select(%w[Winter Spring Summer Fall], @display_tournament.season), prompt: 'Enter Season'
+          - @display_tournament.errors[:season].each do |msg|
+            .tournament_name.validation-error = msg  
 
         = f.label 'Price'
         = f.text_field :price, placeholder: 'Enter Price'
@@ -55,16 +57,26 @@
             span = "Gym Ratz "
             span#view-season-header ="#{@display_tournament.season || 'SEASON'} "
             span = " Invitational"
-          p 
-            span = "The Gym Ratz " 
-            span#view-season-p = "#{@display_tournament.season || 'SEASON'} "
-            span = " Invitational is a tournament open to "
-            span#view-gender = "#{@display_tournament.display_gender || 'GENDERS'} "
-            span = " Teams Grades "
-            span#view-min_grade = "#{@display_tournament.min_grade || 'MIN_GRADE'}"
-            span = " - "
-            span#view-max_grade = "#{@display_tournament.max_grade || 'MAX_GRADE'}"
-            span .
+          - if @display_tournament.tournament_type.name == "Invitational"  
+            p 
+              span = "The Gym Ratz " 
+              span#view-season-p = "#{@display_tournament.season || 'SEASON'} "
+              span = " Invitational is a tournament open to "
+              span#view-gender = "#{@display_tournament.display_gender || 'GENDERS'} "
+              span = " Teams Grades "
+              span#view-min_grade = "#{@display_tournament.min_grade || 'MIN_GRADE'}"
+              span = " - "
+              span#view-max_grade = "#{@display_tournament.max_grade || 'MAX_GRADE'}"
+              span .
+          - else
+            p
+              span = "The Gym Ratz One Day Shootouts are single day events open to "
+              span#view-gender = "#{@display_tournament.display_gender || 'GENDERS'} "
+              span = " Teams Grades "
+              span#view-min_grade = "#{@display_tournament.min_grade || 'MIN_GRADE'}"
+              span = " - "
+              span#view-max_grade = "#{@display_tournament.max_grade || 'MAX_GRADE'}"
+              span .
           dl.margin-bottom-20
             dd A Level and B Level Pools
             dd 

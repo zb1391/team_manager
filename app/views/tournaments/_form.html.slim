@@ -4,12 +4,9 @@
       div Oh No! There were errors in your form. Please fill in all information before continuing
   .form-panel
     .row
-      .col-md-3
-        = f.check_box :display_info
-        span Display Info
-      .col-md-3
-        = f.check_box :is_invitational
-        span Gym Ratz Invitational
+      .col-md-6
+        = f.label :tournament_type_id, "Tournament Type"
+        = f.collection_select :tournament_type_id, TournamentType.order(:name), :id, :name,{include_blank: false}, {class: 'form-control'}
     .row
       .col-md-6
         = f.label "Name", class: 'tournament_name'
@@ -23,7 +20,7 @@
         = f.date_field :the_date, class: 'form-control'
         - @tournament.errors[:the_date].each do |msg|
           .validation-error = msg
-    .row
+    .row#tournament_end_date_container
       .col-md-6
         = f.label 'End Date'
         = f.date_field :end_date, class: 'form-control'
