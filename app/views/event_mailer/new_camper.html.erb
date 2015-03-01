@@ -29,10 +29,8 @@
     <dd>Cell Phone: <%= number_to_phone(@camper.cell_phone, area_code: true) %></dd>
 
     <h2>Summer Camps</h2>
-
     <% @camper.summer_camps.each do |summer_camp| %>
-      <dd> INSIDE HERE </dd>
-      <h2><%= summer_camp.date_range %></h2>
+      <dd><%= summer_camp.date_range %></dd>
     <% end %>
 
     <h2>Total</h2>
