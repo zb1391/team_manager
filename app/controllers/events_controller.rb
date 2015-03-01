@@ -69,7 +69,7 @@ class EventsController < ApplicationController
   # PATCH/PUT /events/1
   # PATCH/PUT /events/1.json
   def update
-    oldevent = @event.clone
+    oldevent = Event.new(@event.attributes)
     respond_to do |format|
       if @event.update(event_params)
         EventMailer.changed_team_event(@event.team,@event,oldevent).deliver
