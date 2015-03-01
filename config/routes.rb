@@ -10,7 +10,7 @@ TeamManager::Application.routes.draw do  resources :tournaments
   resources :coupons
   resources :display_tournaments
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :coaches
+  resources :coaches, except: [:show]
   resources :teams do
     get :password
     post :update_password

@@ -6,7 +6,9 @@ class CoachesController < ApplicationController
   # GET /coaches.json
   def index
     @coaches = Coach.all.order(:last_name)
-    @not_me = Coach.search(:email_not_eq =>"zmb1391@gmail.com").result.order(:id)
+    not_me = Coach.search(:email_not_eq =>"zmb1391@gmail.com").result.order(:last_name)
+    @admins = not_me.select{|coach| coach.admin == true}
+    @coaches = not_me.select{|coach| coach.admin == false}
   end
 
   # GET /coaches/1
