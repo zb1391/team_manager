@@ -29,7 +29,10 @@
               td = number_to_phone(player.parent_cell, area_code: true)
               td = player.parent_email
               td = number_to_phone(player.emergency_phone, area_code: true)
-              td = link_to "Edit", edit_player_path(player)
+              td 
+                = link_to "Edit", edit_player_path(player)
+                span = ' | '
+                = link_to "Destroy", player, method: :delete, data: {confirm: 'Are you sure?'}
 / <h1>Listing players</h1>
 
 / <table>

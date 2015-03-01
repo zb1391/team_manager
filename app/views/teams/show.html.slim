@@ -14,6 +14,7 @@
                 th Email
                 th Parent
                 th Cell
+                th Actions
             tbody
               - @team.players.each do |player|
                 td = player.formatted_name
@@ -23,6 +24,10 @@
                   td = player.email
                   td = player.parent_formatted_name
                   td = number_to_phone(player.parent_cell, area_code: true)
+                  td
+                    = link_to 'Edit', edit_player_path(player)
+                    span = ' | '
+                    = link_to 'Destroy', player, method: :delete, data: {confirm: 'Are you sure?'}
         - if is_admin?
           .margin-bottom-20
             .row
