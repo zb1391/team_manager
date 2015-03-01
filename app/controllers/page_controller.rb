@@ -1,5 +1,5 @@
 class PageController < ApplicationController
-  before_filter :authenticate, only: [:admin_search]
+  before_filter :authenticate, only: [:admin_search, :admin_home]
   def admin_search
     if params[:redirect_path]
       if params[:redirect_path].include?('session')
@@ -12,6 +12,10 @@ class PageController < ApplicationController
       redirect_to root_path
     end
   end
+  
+  def admin_home
+  end
+
   def home
     @active_panels = HomePagePanel.active_panels
     @images = ['dts1_bw_qt.png', 'gym_ratz_bw_qt.png', 'court_bw_qt.png']

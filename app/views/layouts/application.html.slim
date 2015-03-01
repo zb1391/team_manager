@@ -37,7 +37,7 @@ body
           / li = link_to "Pictures", page_photo_gallery_url
           li = link_to "Contact", page_contact_path
           - if is_admin?
-            li = link_to "Admin", '#', id: "admin_nav"
+            li = link_to "Admin", page_admin_home_path
 
   / .navbar.navbar-default.navbar-fixed-top
   /   .navbar-inner
@@ -87,5 +87,3 @@ body
 
   
   = yield
-
-  = render "shared/search_modal"

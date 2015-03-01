@@ -238,3 +238,13 @@ div.error{
 .ui-helper-hidden-accessible{
 	display: none;
 }
+
+.admin-home{
+	a{
+		color: $gray;
+		text-decoration: underline;
+		&:hover{
+			color: lighten($gray, 10%);
+		}
+	}
+}
