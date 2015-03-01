@@ -9,6 +9,9 @@ class TryoutTime < ActiveRecord::Base
 	validates_presence_of :team_tryout_times, message: "You must enter at least one team"
 	validates :time, presence: {message: "You must enter a time"}
 	def team_grades(gender)
-		"#{gender} #{teams.where(gender: gender).order(:grade).collect{|team| team.grade}.join(", ")} Grade"
+		tryout_teams = teams.where(gender: gender).order(:grade)
+		if tryout_teams.any?
+			"#{gender} #{teams.where(gender: gender).order(:grade).collect{|team| team.grade.ordinalize}.join(", ")} Grade"
+		end
 	end
 end

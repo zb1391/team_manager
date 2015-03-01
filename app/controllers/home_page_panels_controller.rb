@@ -92,5 +92,6 @@ class HomePagePanelsController < ApplicationController
     gon.links << {label: "Clinics Page", value: page_clinics_path}
     gon.links << {label: "Camps Page", value: page_camps_path}
     gon.links << {label: "Leagues and Tournaments Page", value: page_leagues_path}
+    gon.links << {label: "Rosters Page", value: page_rosters_path}
   end
 end

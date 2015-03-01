@@ -31,28 +31,28 @@
 					h2 Team Rosters
 					p Team Rosters are currently available. Please note that these rosters are available as soon as each team is finialized. If your team is not currently present, please check back again soon!
 					= link_to "View Rosters", page_rosters_path, class: 'btn btn-primary'
-		- if @tryout
+		- if @tryouts
 			h2
-				strong = "Gym Ratz #{@tryout.season} Tryouts"
+				strong = "Gym Ratz #{@tryouts.season} Tryouts"
 			.row
-				- if @tryout.girls_tryout_dates.any?
+				- if @tryouts.girls_tryout_dates.any?
 					.col-md-6
 						h3 Girls Tryouts
 						- @tryouts.girls_tryout_dates.each do |tryout_date|
-							h4 = tryout_date.strftime('%A, %b %d')
+							h4 = tryout_date.date.strftime('%A, %b %d')
 							table
-								- tryout_date.sorted_tryout_times.each do |tryout_time|
+								- tryout_date.girls_tryout_times.each do |tryout_time|
 									tr
 										td = tryout_time.time.strftime("%I:%M")
 										td = tryout_time.time.strftime("%P")
 										td = tryout_time.team_grades("Girls")
-				- if @tryout.boys_tryout_dates.any?
+				- if @tryouts.boys_tryout_dates.any?
 					.col-md-6
 						h3 Boys Tryouts
 						- @tryouts.boys_tryout_dates.each do |tryout_date|
-							h4 = tryout_date.strftime('%A, %b %d')
+							h4 = tryout_date.date.strftime('%A, %b %d')
 							table
-								- tryout_date.sorted_tryout_times.each do |tryout_time|
+								- tryout_date.boys_tryout_times.each do |tryout_time|
 									tr
 										td = tryout_time.time.strftime("%I:%M")
 										td = tryout_time.time.strftime("%P")

@@ -11,11 +11,11 @@ class TryoutDate < ActiveRecord::Base
 	end
 
 	def girls_tryout_times
-		sorted_tryout_times.collect{|time| time.teams.where(gender: "Girls")}.flatten
+		tryout_times.search(teams_gender_eq: 'Girls').result.order(:time).try(:uniq)
 	end
 
 	def boys_tryout_times
-		sorted_tryout_times.collect{|time| time.teams.where(gender: 'Boys')}.flatten
+		tryout_times.search(teams_gender_eq: 'Boys').result.order(:time).try(:uniq)
 	end
 
 	def has_girls_tryouts?

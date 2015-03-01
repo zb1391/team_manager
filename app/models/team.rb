@@ -11,11 +11,12 @@ class Team < ActiveRecord::Base
 	accepts_nested_attributes_for :home_page_file, reject_if: :all_blank
 
 	belongs_to :coach
-	
+	# validate :unique_name
+	validates :name, uniqueness: {message: 'A team with this name already exists'}
 	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}, 
 		unless: Proc.new {|a| a.should_validate_password.nil?}
 	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
-	before_save :name_setup
+	before_validation :name_setup
 	before_save :age_setup
 
 
@@ -98,11 +99,18 @@ class Team < ActiveRecord::Base
 	end
 
 	private
+		def unique_name
+			binding.pry
+			if Team.where(name: self.name).any?
+				errors.add(:name, "A team with this name already exists")
+				return false
+			end
+		end
 		def age_setup
 			self.age = get_age(grade)
 		end
 		def name_setup
-			if color.nil?
+			if color.blank?
 				self.name = namemake("#{grade.ordinalize} Grade #{gender} #{team_type}")
 			else
 
