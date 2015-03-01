@@ -18,7 +18,7 @@ class SummerCamp < ActiveRecord::Base
 	end
 
 	def date_range
-		"#{self.start_date.strftime("%b-%d-%y")} - #{self.end_date.strftime("%b-%d-%y")}"
+		"#{start_date.strftime("%b-%d-%y")} - #{end_date.strftime("%b-%d-%y")}"
 	end
 
 	def date_range_short
