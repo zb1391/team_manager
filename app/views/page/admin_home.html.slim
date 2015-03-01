@@ -15,32 +15,37 @@
 
 		.admin-home	
 			h2 Home Page Management
-			ul
-				li = link_to "Attachments", home_page_files_path
-				li = link_to "Home Page Panels", home_page_panels_path
+			.margin-bottom-20
+				ul
+					li = link_to "Attachments", home_page_files_path
+					li = link_to "Home Page Panels", home_page_panels_path
 			h2 Teams Management
-			ul
-				li = link_to "Teams", teams_path
-				li = link_to "Players", players_path
-				li = link_to "Tryouts", tryouts_path
-				li = link_to "Coaches", coaches_path
+			.margin-bottom-20
+				ul
+					li = link_to "Teams", teams_path
+					li = link_to "Players", players_path
+					li = link_to "Tryouts", tryouts_path
+					li = link_to "Coaches", coaches_path
 
 			h2 Team Event Management
-			ul
-				li = link_to "Master Schedule", events_path
-				li = link_to "Locations", locations_path
-				li = link_to "Hotels", hotels_path
+			.margin-bottom-20
+				ul
+					li = link_to "Master Schedule", events_path
+					li = link_to "Locations", locations_path
+					li = link_to "Hotels", hotels_path
 
 			h2 Tournament Managment
-			ul
-				li = link_to "Tournaments", tournaments_path
-				li = link_to "Display Tournaments", display_tournaments_path
-				li = link_to "Registered Teams", organizations_path
+			.margin-bottom-20
+				ul
+					li = link_to "Tournaments", tournaments_path
+					li = link_to "Display Tournaments", display_tournaments_path
+					li = link_to "Registered Teams", organizations_path
 			h2 Summer Camps Management
-			ul
-				li = link_to "Summer Camps", summer_camps_path
-				li = link_to "Summer Campers", summer_campers_path
-				li = link_to "Coupons", coupons_path
+			.margin-bottom-20
+				ul
+					li = link_to "Summer Camps", summer_camps_path
+					li = link_to "Summer Campers", summer_campers_path
+					li = link_to "Coupons", coupons_path
 
 		div
 			= link_to "Sign Out", session_path(:id), :method => :delete, class: 'btn btn-primary'
