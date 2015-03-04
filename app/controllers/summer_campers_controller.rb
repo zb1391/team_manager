@@ -1,7 +1,6 @@
 class SummerCampersController < ApplicationController
   before_action :set_summer_camper, only: [:show, :edit, :update, :destroy]
-   before_filter :authenticate, :only => [:index, :show, :edit, :destroy, :new]
-   
+  before_filter :authenticate, :only => [:index, :show, :edit, :destroy]
    #      <%= link_to "Register Online",new_summer_camper_url,:class => "button-look-orange",
    #     :id => "no-hover-orange"
    #   %>
@@ -20,29 +19,30 @@ class SummerCampersController < ApplicationController
 
   # GET /summer_campers/new
   def new
-    @summer_camper = SummerCamper.new
+    @summer_camper = SummerCamper.new(waiver_date: Date.today, state: "NJ")
+    @summer_camper.campifications.build
+    @active_summer_camps = SummerCamp.active_summer_camps
   end
 
   # GET /summer_campers/1/edit
   def edit
+    @active_summer_camps = SummerCamp.active_summer_camps
+    @summer_camper.campifications.build if @summer_camper.campifications.empty?
+
   end
 
   # POST /summer_campers
   # POST /summer_campers.json
   def create
     @summer_camper = SummerCamper.new(summer_camper_params)
-    if summer_camper_params[:manual_fee_entry] == "0" || summer_camper_params[:manual_fee_entry].nil?
-      @summer_camper.amount_owe = 0
-      @summer_camper.summer_camps.each do |summer_camp|
-        @summer_camper.amount_owe += summer_camp.price
-      end
-    end
+    @active_summer_camps = SummerCamp.active_summer_camps
     respond_to do |format|
       if @summer_camper.save
         EventMailer.new_camper(@summer_camper).deliver
         format.html { redirect_to page_summer_camper_registration_path(:param1 => @summer_camper.id)}
         format.json { render action: 'show', status: :created, location: @summer_camper }
       else
+        @summer_camper.campifications.build if @summer_camper.campifications.empty?
         format.html { render action: 'new' }
         format.json { render json: @summer_camper.errors, status: :unprocessable_entity }
       end
@@ -52,6 +52,7 @@ class SummerCampersController < ApplicationController
   # PATCH/PUT /summer_campers/1
   # PATCH/PUT /summer_campers/1.json
   def update
+    @active_summer_camps = SummerCamp.active_summer_camps
     respond_to do |format|
       if @summer_camper.update(summer_camper_params)
       if summer_camper_params[:manual_fee_entry] == "0"
@@ -64,6 +65,7 @@ class SummerCampersController < ApplicationController
         format.html { redirect_to @summer_camper, notice: 'Summer camper was successfully updated.' }
         format.json { head :no_content }
       else
+        @summer_camper.campifications.build if @summer_camper.campifications.empty?
         format.html { render action: 'edit' }
         format.json { render json: @summer_camper.errors, status: :unprocessable_entity }
       end
@@ -93,7 +95,6 @@ class SummerCampersController < ApplicationController
         :gender, :grade, :email, 
         :home_phone, :cell_phone, :waiver_name, :waiver_date,
         :amount_owe, :amount_paid, :manual_fee_entry,
-        {:summer_camp_ids => []},
-        campifications_attributes: [:id,:summer_camp_id, :summer_camper_id])
+        campifications_attributes: [:id,:summer_camp_id, :summer_camper_id, :_destroy])
     end
 end

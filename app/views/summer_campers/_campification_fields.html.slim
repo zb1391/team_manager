@@ -1,0 +1,9 @@
+.nested-attributes.no-padding
+	.row
+		.col-xs-6
+			= f.collection_select :summer_camp_id, @active_summer_camps, :id, :date_range, {prompt: 'Select Date'}, {class: 'form-control'}
+			- f.object.errors[:summer_camp_id].each do |msg|
+				.validation-error msg
+		.col-xs-1
+			= f.hidden_field :_destroy, class: '_destroy'
+			= link_to 'x', '#', class: 'remove_nested_attribute'

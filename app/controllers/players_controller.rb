@@ -4,7 +4,7 @@ class PlayersController < ApplicationController
   # GET /players
   # GET /players.json
   def index
-    @players = Player.all
+    @players = Player.all.order(:last_name, :first_name, :team_id)
     respond_to do |format|
       format.html
       format.xls 

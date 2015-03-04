@@ -1,0 +1,35 @@
+= form_for @summer_camp, html: {id: 'summer-camp-form'} do |f|
+  - if @summer_camp.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing.
+
+  .form-panel
+    .row
+      .col-md-6
+        = f.label "Start Date"
+        = f.date_field :start_date, class: 'form-control'
+        - @summer_camp.errors[:start_date].each do |msg|
+          .validation-error = msg
+
+    .row
+      .col-md-6
+        = f.label "End Date"
+        = f.date_field :end_date, class: 'form-control'
+        - @summer_camp.errors[:end_date].each do |msg|
+          .validation-error = msg
+
+    .row
+      .col-md-6
+        = f.label "End Registration Date"
+        = f.date_field :end_registration_date, class: 'form-control'
+        - @summer_camp.errors[:end_registration_date].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label "Price"
+        = f.text_field :price, placeholder: 'Enter Price', class: 'form-control'
+        - @summer_camp.errors[:price].each do |msg|
+          .validation-error = msg
+  .form-actions
+    = f.submit "Submit", class: "btn btn-primary"
+    = link_to "Cancel", summer_camps_path, class: "btn btn-cancel"

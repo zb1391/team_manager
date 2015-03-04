@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+html
+head
+  title Down Town Sports
+  = include_gon
+  - if mobile_device?
+    = stylesheet_link_tag    "application_mobile", :media => "all"
+  - else
+    = stylesheet_link_tag    "application", :media => "all"
+  = javascript_include_tag "application"
+  = yield :scripts if content_for? :scripts
+  = csrf_meta_tags 
+  meta name="viewport" content="width=device-width, initial-scale=1"
+  meta name="google-site-verification" content="tVZYmXLtgRo5u1ulxhrj8JxyFnC52e0g1ijOIE2WwSA"
+body
+  nav.navbar.navbar-default role="navigation"
+    .mycontainer
+      .navbar-header
+        button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar-collapse-1"
+          span.sr-only Toggle navigation
+          span class="icon-bar"
+          span class="icon-bar"
+          span class="icon-bar"
+        a href="#{root_path}" class="brand"
+        	= image_tag("logo3.png", style: "width: 125px")
+        a href="#{root_path}" class="brand"
+        	= image_tag("title.png", style: "width: 125px;")
+      br
+      .collapse.navbar-collapse id="navbar-collapse-1"
+        ul.nav.navbar-nav
+          li = link_to "Gym Ratz AAU", page_gym_ratz_about_path
+          li = link_to "Clinics", page_clinics_path
+          li = link_to "Court Rentals", page_court_rentals_path
+          li = link_to "Parties", page_parties_path
+          li = link_to "Camps", page_camps_path
+          li = link_to "Leagues/Tournaments", page_leagues_path
+          / li = link_to "Pictures", page_photo_gallery_url
+          li = link_to "Contact", page_contact_path
+          - if is_admin?
+            li = link_to "Admin", page_admin_home_path
+
+  / .navbar.navbar-default.navbar-fixed-top
+  /   .navbar-inner
+	 /  .container
+	 /    a.btn.btn-navbar data-toggle="collapse" data-target=".nav-collapse"
+	 /      span.icon-bar
+	 /      span.icon-bar
+	 /      span.icon-bar
+	 /    / a class="navbar-brand" href="#{root_path}"
+	 /      / = image_tag("logo3.png", style: "max-width:150px;")
+	 /    / a class="navbar-brand" href="#{root_path}"
+	 /      / = image_tag("title.png", style: "max-width:150px;")
+	    
+	 /    / a.brand href="#" Down Town Sports
+	 /    / a.brand href="#" 7 Leighton Place
+	 /    .nav-collapse
+	 /      ul.nav
+	 /        li.dropdown
+		/ 	  a.dropdown-toggle href="#" data-toggle="dropdown" 
+		/ 	    | Gym Ratz Boys
+		/ 	    b.caret
+		/ 	  ul.dropdown-menu
+		/ 	    - Team.all_teams_of_gender_and_type("Boys","Elite").each do |t|
+		/ 	      li = link_to t.name, t
+		/ 	    li.divider
+		/ 	    - Team.all_teams_of_gender_and_type("Boys","Select").each do |t|
+		/ 	      li = link_to t.name, t
+		/ 	li.dropdown
+		/ 	  a.dropdown-toggle href="#" data-toggle="dropdown" 
+		/ 	    | Gym Ratz Girls
+		/ 	    b.caret
+		/ 	  ul.dropdown-menu
+		/ 	    - Team.all_teams_of_gender_and_type("Girls","Elite").each do |t|
+		/ 	      li = link_to t.name, t
+		/ 	    li.divider
+		/ 	    - Team.all_teams_of_gender_and_type("Girls","Select").each do |t|
+		/ 	      li = link_to t.name, t
+		/ 	li = link_to "Clinics", page_clinics_path
+		/ 	li = link_to "Court Rentals", page_court_rentals_path
+		/ 	li = link_to "Parties", page_parties_path
+		/ 	li = link_to "Camps", page_camps_path
+		/ 	li = link_to "Leagues/Tournaments", page_leagues_url
+		/ 	li = link_to "Pictures", page_photo_gallery_url
+		/ 	li = link_to "Contact", page_contact_path		
+
+
+
+  
+  = yield

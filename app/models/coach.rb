@@ -4,10 +4,11 @@ class Coach < ActiveRecord::Base
 	has_many :teams
 	
 	attr_accessor :password 
-	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40}
+	validates :password, :confirmation => true, :presence => true, :length => {:within => 6..40},
+		if: Proc.new {|a| a.admin == true}
 	validates :first_name, :last_name, :phone, :email, presence: true
 	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
-	before_save :encrypt_password #before we save the row to the database, we will encrypt the password
+	# before_save :encrypt_password #before we save the row to the database, we will encrypt the password
 	before_destroy :check_for_teams #before deleting make sure hes not running any teams
 
 	#return true if the user's password matches the submitted password
@@ -17,6 +18,9 @@ class Coach < ActiveRecord::Base
 
 	end
 
+	def last_first_name
+		"#{last_name}, #{first_name}"
+	end
 	def self.authenticate(email,submitted_password)
 		user = find_by_email(email)
 		return nil if user.nil?

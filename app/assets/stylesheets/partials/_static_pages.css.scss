@@ -1,0 +1,164 @@
+.static-page{
+	.content{
+		padding: 20px 30px;
+	}
+
+	.sub-content{
+		padding: 20px 0;
+	}
+	table{
+		margin-bottom: 20px;
+		tr{
+			td{
+				padding: 5px;
+			}
+			td:first-child{
+				padding-left: 0;
+			}
+		}
+		&.no-spacing{
+			tr{
+				td{
+					padding: 0 5px;
+				}
+			}
+		}
+		&.medium-spacing{
+			tr{
+				td{
+					padding: 8px 20px;
+				}
+			}
+		}
+		&.table{
+			tr{
+				td{
+					padding: 5px;
+					background-color: white;
+				}
+			}
+		}
+	}
+	h1,h2,h3,h4,p{ margin:0}
+	background-color: white;
+	h1{
+		font-size: 50px;
+		font-weight: bold;
+		text-align: center;
+		color: $yellow;
+		padding-bottom: 40px;
+	}
+	h2{
+		font-weight: bold;
+		padding-bottom: 10px;
+		border-bottom: 1px solid $light-gray;
+		margin: 0 0 10px;
+		strong{
+			font-size: 120%;
+		}
+	}
+	h3{
+		font-size: 30px;
+		margin-bottom: 10px;
+		font-weight: bold;
+	}
+	h4{
+		font-size: 20px;
+		color: $dark-orange;
+	}
+	p{
+		padding: 10px;
+		background-color: $light-gray;
+		margin-bottom: 20px;
+		text-align: justify;
+	}
+	.full-image{
+		img{
+			border: 1px solid black;
+			width: 98%;
+			height: auto;
+			margin-bottom: 10px;
+		}
+	}
+	&.green{
+		h1{
+			background-color: $light-green;
+		}
+		h2{
+			color: $green;
+			strong{
+				color: $light-orange;
+			}
+		}
+		h3{
+			color: $green;
+			strong{
+				color: $light-orange;
+				text-decoration: underline;
+			}
+		}
+		dl{
+			margin-bottom: 30px;
+			dt{
+				color: $dark-green;
+				font-weight: bold;
+			}
+			&.standard{
+				dt{
+					color: black;
+				}
+			}
+			dd{
+				padding: 0;
+			}
+			&.green{
+				padding: 10px 5px 8px 15px;
+				border-left: 10px solid $green;
+			}
+			&.orange{
+				padding: 10px 5px 8px 15px;
+				border-left: 10px solid $border-orange;
+			}
+			&.bordered{
+				dd{
+					border-bottom: 1px solid $light-gray;
+				}
+				dd:last-child{
+					border-bottom:none;
+				}
+			}
+		}
+	}
+	&.orange{
+		h1{
+			background-color: $orange;
+		}
+		h2{
+			color: $orange;
+			strong{
+				color: black;	
+			}
+		}
+		h3{
+			color: $dark-gray;
+			text-decoration: underline;
+		}
+	}
+	a.player-link{
+		color: $dark-gray;
+		text-decoration: underline;
+		&:hover{
+			color: lighten($dark-gray, 10%);
+		}
+	}
+	.schedules-container{
+		a{
+			color: black;
+			text-decoration: underline;
+			&:hover{
+				color: $orange;
+			}
+		}
+	}
+}
+

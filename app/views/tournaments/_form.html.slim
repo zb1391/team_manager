@@ -1,0 +1,61 @@
+= form_for @tournament, html: {id: 'tournament-form'} do |f|
+  - if @tournament.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+  .form-panel
+    .row
+      .col-md-6
+        = f.label :tournament_type_id, "Tournament Type"
+        = f.collection_select :tournament_type_id, TournamentType.order(:name), :id, :name,{include_blank: false}, {class: 'form-control'}
+    .row
+      .col-md-6
+        = f.label "Name", class: 'tournament_name'
+        = f.text_field :name, placeholder: 'Enter name', class: 'tournament_name form-control'
+        - @tournament.errors[:name].each do |msg|
+          .tournament_name.validation-error = msg  
+
+    .row
+      .col-md-6
+        = f.label 'Start Date'
+        = f.date_field :the_date, class: 'form-control'
+        - @tournament.errors[:the_date].each do |msg|
+          .validation-error = msg
+    .row#tournament_end_date_container
+      .col-md-6
+        = f.label 'End Date'
+        = f.date_field :end_date, class: 'form-control'
+
+    .row
+      .col-md-6
+        = f.label 'End Registation Date'
+        = f.date_field :end_registration_date, class: 'form-control'
+        - @tournament.errors[:end_registration_date].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label 'Price'
+        = f.text_field :price, placeholder: 'Enter Price', class: 'form-control'
+        - @tournament.errors[:price].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label 'Genders'
+        = f.select :genders, options_for_select(%w[Both Boys Girls], @tournament.genders),{},{class: 'form-control'}
+
+    = f.label "Age Range"
+    = f.select :min_grade, options_for_select(3..12, @tournament.min_grade), class: 'inline'
+    span = ' - '
+    = f.select :max_grade, options_for_select([12, 11, 10, 9, 8, 7, 6, 5, 4, 3], @tournament.max_grade), class: 'inline'
+  .form-panel
+    = f.label "Locations"
+    .tryout-date-attributes-container
+      = f.fields_for :tournament_locations do |builder|
+        = render 'tournament_location_fields', f: builder
+      = link_to_add_fields "Add Location", f, :tournament_locations
+  - @tournament.errors[:tournament_locations].each do |msg|
+    .validation-error = msg
+
+
+  .form-actions
+    = f.submit "Submit", class: "btn btn-primary"
+    = link_to "Cancel", tournaments_path, class: "btn btn-cancel"

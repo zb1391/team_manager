@@ -1,0 +1,35 @@
+.static-page.green
+	h1 Coupons
+	.content
+		- flash.each do |name, msg|
+			= content_tag :div, msg, class: name
+		= form_tag home_page_panels_panel_order_path, method: "post" do |f|
+			.panel.panel-default.table-responsive
+				table.table
+					thead
+						th Order
+						th Title
+						th Actions
+					tbody
+						- @home_page_panels.each do |home_page_panel|
+							tr
+								td = text_field_tag "panel[#{home_page_panel.id}][priority_order]", home_page_panel.priority_order, {class: 'form-control'}
+								td = home_page_panel.title
+								td
+									= link_to 'Show', home_page_panel
+									span = ' | '
+									= link_to 'Edit', edit_home_page_panel_path(home_page_panel)
+									span = ' | '
+									= link_to 'Destroy', home_page_panel, method: :delete, data: {confirm: 'Are you sure?'}
+			= submit_tag "Change Order", class: 'btn btn-warning'
+		br
+		= link_to 'New Home Page Panel', new_home_page_panel_path, class: 'btn btn-primary'
+		br
+		br
+		h2 Active Panels
+		div style="background: #eeeeee;"
+			.row
+				.row-same-height
+					- @active_panels.each do |active_panel|
+						.col-md-4.col-md-height
+							= render "panel_display", home_page_panel: active_panel

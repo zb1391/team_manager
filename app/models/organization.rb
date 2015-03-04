@@ -2,15 +2,21 @@ class Organization < ActiveRecord::Base
 	attr_accessor :manual_fee_entry
 	belongs_to :tournament
 	has_many :clubs, :dependent => :destroy
-	accepts_nested_attributes_for :clubs, :reject_if => lambda { |a| a[:coach].blank? }, allow_destroy: true
-	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
-	validates :name, :contact_name, :email, :phone, presence: true
+	accepts_nested_attributes_for :clubs, allow_destroy: true
+	
+	validates :name, presence:{message: 'You must enter a club name'}
+	validates :contact_name, presence:{message: 'You must enter a contact name'} 
+	validates :email, presence:{message: 'You must enter an email'}
+	validates :phone, presence: {message: 'You must enter a phone number'}
 	validate :atleast_one_club
 	validate :club_in_tournament_range
+	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
+	
 	before_create :initial_pay_values
+
 	def atleast_one_club
 		if clubs.empty?
-			errors.add(:clubs, "You Must Register at least One Team --- Please click the Add Team button below")
+			errors.add(:clubs, "You Must Register at least One Team ")
 		end
 	end
 
@@ -64,13 +70,12 @@ class Organization < ActiveRecord::Base
 	end
 
 	def club_in_tournament_range
-		
 		clubs.each do |club|
 			unless tournament.gender_select.include?(club.gender)
-				errors.add("Teams", "This tournament is only for #{tournament.genders}")
+				club.errors.add(:team, "This tournament is only for #{tournament.genders}")
 			end
 			unless tournament.grade_select.include?(club.grade)
-				errors.add("Teams","This tournament only allows grades #{tournament.age_range}")
+				club.errors.add(:team,"This tournament only allows grades #{tournament.age_range}")
 			end
 		end
 	end

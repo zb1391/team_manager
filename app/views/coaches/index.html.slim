@@ -1,0 +1,39 @@
+.static-page.green
+  h1 Coaches
+  .content
+    = link_to "New Coach", new_coach_path, class: 'btn btn-primary margin-bottom-10'
+
+    h2 Admins
+    .panel.panel-default.table-responsive
+      table.table
+        thead
+          th Name
+          th Phone
+          th Email
+          th Actions
+        tbody
+          - @admins.each do |admin|
+            tr
+              td = admin.last_first_name
+              td = number_to_phone(admin.phone, area_code: true)
+              td = admin.email
+              td
+                = link_to 'Edit', edit_coach_path(admin)
+    h2 Coaches
+    .panel.panel-default.table-responsive
+      table.table
+        thead
+          th Name
+          th Phone
+          th Email
+          th Actions
+        tbody
+          - @coaches.each do |coach|
+            tr
+              td = coach.last_first_name
+              td = number_to_phone(coach.phone, area_code: true)
+              td = coach.email
+              td
+                = link_to 'Edit', edit_coach_path(coach)
+                span = ' | '
+                = link_to 'Destroy', coach, method: :delete, data: {confirm: 'Are you sure?'}

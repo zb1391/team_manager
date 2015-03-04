@@ -1,0 +1,250 @@
+// Application Similarities
+// -----------------------------
+// Similar styling between mobile and desktop
+
+$downtown_green: #16362b;
+$downtown_yellow: #fedc3a;
+
+$gray: #454545;
+
+$navbar-default-bg: black;
+$nav-orange: #ff8c00;
+
+$navbar-default-color: $nav-orange;
+$navbar-default-link-color: white;
+$navbar-default-link-hover-color: #ff8c00;
+$navbar-inverse-bg: $light-gray;
+$navbar-inverse-link-color: black;
+// point at which navbar becomes uncollapsed
+$grid-float-breakpoint: 1220px;
+//point at which the navbar begins collapsing
+$grid-float-breakpoint-max: 1219px;
+
+//button stuff
+$btn-default-bg: $light-gray;
+$btn-default-color: $dark-orange;
+$btn-primary-bg: $light-green;
+$btn-danger-bg: $orange;
+
+//panel stuff
+$panel-bg: $light-gray;
+
+//link stuff
+$link-color: $green;
+
+//form stuff
+$input-border-focus: $green;
+
+@import "bootstrap-sprockets";
+@import 'bootstrap';
+@import "partials/home";
+@import "partials/static_pages";
+@import "partials/forms";
+@import "partials/buttons";
+@import "partials/carousels";
+@import "partials/fullcalendar";
+@import "partials/modals";
+body{
+	font-size: 18px;
+	background: #1b1b1b;
+	color: $gray
+}
+p{
+	color: black;
+}
+strong{
+	color: black;
+}
+// ul.nav.navbar-nav{
+//   margin-top: 75px;
+// }
+
+nav.navbar.navbar-default, nav.navbar-inverse{
+	margin-bottom: 0;
+}
+
+// Collapse width fix
+@media (max-width: $screen-sm-max) {
+  ul.nav.navbar-nav{
+    margin-top: 0;
+  }
+}
+
+
+.centered-text{
+	text-align: center;
+}
+.right-text{
+	text-align: right;
+}
+.padding-bottom-10{
+	padding-bottom: 10px !important;
+}
+.margin-bottom-10{
+	margin-bottom: 10px !important;
+}
+
+.padding-bottom-20{
+	padding-bottom: 20px !important;
+}
+.margin-bottom-20{
+	margin-bottom: 20px !important;
+}
+
+.inline{
+	display: inline;
+}
+.float-left{
+	float: left;
+}
+
+.float-right{
+	float: right !important;
+}
+
+.clearfix{
+	display:block;
+}
+
+.clearfix:after{
+	clear: both;
+	content: ' ';
+	display: block;
+	font-size: 0;
+	line-height: 0;
+	visibility: hidden;
+	width: 0;
+	height:0;
+}
+
+* html .clearfix{
+	height: 1%;
+}
+
+dl{
+	dt{
+		&.inline{
+			margin-right: 10px;
+		}
+	}
+	&.dl-single-line{
+		dt{
+			float: left;
+		}
+		dd{
+			float: right;
+		}
+	}
+}
+
+.orange-text{
+	color: $light-orange !important;
+}
+ul{
+	li{
+		strong{
+			&.orange{
+				color: $light-orange !important;
+			}
+		}
+	}
+}
+.panel{
+	border:none;
+	border-radius: 0;
+	&.green{
+		background: $downtown_green;
+	}
+}
+
+/* columns of same height styles */
+.container-xs-height {
+    display:table;
+    padding-left:0px;
+    padding-right:0px;
+}
+.row-xs-height {
+    display: table;
+    width: 100%;
+}
+.col-xs-height {
+    display: table-cell;
+    float: none !important;
+}
+
+@media (min-width: 768px) {
+    .row-sm-height {
+        display: table;
+        width: 100%;
+    }
+    .col-sm-height {
+        display: table-cell;
+        float: none !important;
+    }
+}
+@media (min-width: 992px) {
+    .row-md-height {
+        display: table;
+        width: 100%;
+    }
+    .col-md-height {
+        display: table-cell;
+        float: none !important;
+    }
+}
+@media (min-width: 1200px) {
+    .row-lg-height {
+        display: table;
+        width: 100%;
+    }
+    .col-lg-height {
+        display: table-cell;
+        float: none !important;
+    }
+}
+/* firefox fix */
+.img-responsive {
+    width: 100%;
+}
+
+/* vertical alignment styles */
+.col-top {
+    vertical-align:top;
+}
+.col-middle {
+    vertical-align:middle;
+}
+.col-bottom {
+    vertical-align:bottom;
+}
+
+div.error{
+	background-color: $orange;
+	color: white;
+	padding: 10px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+#draggable{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+
+.ui-autocomplete{
+	z-index: 4000;
+}
+.ui-helper-hidden-accessible{
+	display: none;
+}
+
+.admin-home{
+	a{
+		color: $gray;
+		text-decoration: underline;
+		&:hover{
+			color: lighten($gray, 10%);
+		}
+	}
+}

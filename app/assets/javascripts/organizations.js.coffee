@@ -3,8 +3,19 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 jQuery ->
-  $('form').on 'click', '.add_fields', (event) ->
-    time = new Date().getTime()
-    regexp = new RegExp($(this).data('id'), 'g')
-    $(this).before($(this).data('fields').replace(regexp, time))
-    event.preventDefault()
+	$('#organization-form').on 'change', '.use_organization_info', (event) ->
+		if $(this).is(':checked')
+			contact = $('#organization_contact_name').val()
+			email = $('#organization_email').val()
+			phone = $('#organization_phone').val()
+			if !!contact && !!email && !!phone
+				$(this).parent().find('.club_coach_name').val(contact)
+				$(this).parent().find('.club_coach_email').val(email)
+				$(this).parent().find('.club_coach_cell').val(phone)
+			else
+				alert('Please fill in all organization info before using this checkbox')
+				$(this).attr('checked', false)
+		else
+			$(this).parent().find('.club_coach_name').val('')
+			$(this).parent().find('.club_coach_email').val('')
+			$(this).parent().find('.club_coach_cell').val('')

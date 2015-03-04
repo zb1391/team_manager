@@ -1,0 +1,138 @@
+$input-margin-bottom: 10px;
+form{
+	padding: 0 30px;
+}
+.inner-form{
+	padding: 0;
+}
+.field_with_errors{
+	display: inline-block;
+}
+.validation-error{
+	color: $dark-orange;
+	display: block;
+	margin-top: -$input-margin-bottom;
+	margin-bottom: $input-margin-bottom;
+
+	&.zeroed{
+		margin-top: 0;
+	}
+}
+.add_fields{
+	display:block;
+}
+.form-actions{
+	margin-top: 20px;
+	.btn-cancel{
+		margin-top: -10px;
+	}
+}
+#error-explanation{
+	background-color: $orange;
+	color: white;
+	padding: 10px;
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+.form-container{
+	p{
+		padding: 8px;
+		border: 2px solid $dark-gray;
+		text-align: justify;
+	}
+	a{
+		color: $dark-green;
+	}
+	label{
+		display: block;
+	}
+	input,select{
+		padding: 5px;
+	}
+	input[type=checkbox]{
+		margin: 0 5px;
+	}
+	input, select, textarea{
+		display: inline-block;
+		margin-bottom: 10px;
+		border-radius: 4px;
+		border: 1px solid black;
+		margin-bottom: $input-margin-bottom;
+		line-height: normal !important;
+	}
+	input, select, textarea{
+		&:focus{
+			border-color: rgba(75,191,75,0.8);
+			box-shadow: 0 1px 1px rgba(0,0,0,0.75) inset, 0, 0 8px rgba(75,191, 75, 0.6);
+			outline: 0 none;
+		}
+	}
+	select{
+		background-color: white;
+		// padding: 3px;
+	}
+
+	h1{
+		margin-top: 0px;
+		font-size: 50px;
+		font-weight: bold;
+		color: $yellow;
+		background-color: $light-green;
+		padding: 20px 0 20px 30px;
+		margin-bottom: 20px;
+	}
+	h2{
+		font-weight: bold;
+		padding-bottom: 10px;
+		border-bottom: 1px solid $light-gray;
+		margin: 0 0 10px;
+		strong{
+			font-size: 120%;
+		}
+	}
+	background-color: white;
+	.form-panel{
+		max-width: 960px;
+		background-color: $light-gray;
+		padding: 15px;
+		margin-bottom: 20px;
+		.remove_nested_attribute{
+			color: #616161;
+			float: right;
+		}
+	}
+	.nested-attributes{
+		padding: 0 15px;
+		.remove_nested_attribute{
+			white-space: nowrap;
+			float: none;
+			margin: 0 5px;
+		}
+		&.no-padding{
+			padding: 0;
+		}
+	}
+	.nested-link{
+		padding: 0 15px;
+	}
+}
+
+ul.ui-autocomplete{
+	position: absolute;
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	background-color: white;
+	border: 1px solid black;
+	li{
+		margin:0;
+		padding:0;
+		cursor: pointer;
+		&.ui-state-focus{
+			background: $light-green !important;
+		}
+		a.ui-state-hover, a.ui-state-actice{
+			background-color: $light-green !important;
+		}
+	}
+}

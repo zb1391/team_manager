@@ -1,0 +1,21 @@
+.static-page.green
+	h1 Gym Ratz AAU Rosters
+	.content
+		p 
+			span Thank you for trying out for the Gym Ratz AAU Basketball Club. Below are the rosters for each team this season. Please click the link of your team to view a pdf of the current roster.
+			- unless @all_present
+				strong &nbsp;If your team is not currently present, please check back later. Each team's roster is displayed as soon as it is finalized. Check back often!
+
+		.row
+			- if @boys_teams.any?
+				.col-md-6
+					h3 Gym Ratz AAU Boys
+					dl.green.bordered
+						- @boys_teams.each do |team|
+							dd = link_to "#{team.name}", team.home_page_file.the_file.url
+			- if @girls_teams.any?
+				.col-md-6
+					h3 Gym Ratz AAU Girls
+					dl.green.bordered
+						- @girls_teams.each do |team|
+							dd = link_to "#{team.name}", team.home_page_file.the_file.url

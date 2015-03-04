@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
   def new
-  	@my_status="sign in"
+  	@my_status="Sign in"
   end
 
   def create
@@ -11,13 +11,13 @@ class SessionsController < ApplicationController
   		render 'new'
   	else
   		sign_in user
-  		redirect_to coaches_path
+  		redirect_to root_path
   	end
 
   end
 
   def destroy
   	sign_out
-  	redirect_to coaches_path
+  	redirect_to root_path
   end
 end

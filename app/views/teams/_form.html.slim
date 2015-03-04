@@ -1,0 +1,55 @@
+= form_for(@team) do |f|
+  - if @team.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+  .form-panel
+    = f.label "Name"
+    .row
+      .col-md-3 = f.select :gender, options_for_select(%w[Boys Girls], @team.gender),{}, {class: 'form-control'}
+      .col-md-3 = f.select :grade, options_for_select((3..12).map{|i| [i.ordinalize,i]},@team.grade),{}, {class: 'form-control'}
+      .col-md-3 = f.select :team_type, options_for_select(%w[Elite Select], @team.team_type),{}, {class: 'form-control'}
+      .col-md-3 = f.text_field :color, value: @team.try(:team_color), placeholder: 'Optional Color', class: 'form-control'
+    - @team.errors[:name].each do |msg|
+      .validation-error = msg
+    .row
+      .col-md-6
+        = f.label "Coach"
+        = f.collection_select :coach_id, @not_me, :id, :first_name, {include_blank: false}, {class: 'form-control'}
+    - unless @team.persisted? 
+      = f.hidden_field :should_validate_password, value: true 
+      .row  
+        .col-md-6
+          = f.label "Password"
+          = f.password_field :password, class: 'form-control'
+          - @team.errors[:password].each do |msg|
+            .validation-error = msg
+      .row
+        .col-md-6
+          = f.label "Password Confirmation"
+          = f.password_field :password_confirmation, class: 'form-control'
+          - @team.errors[:password_confirmation].each do |msg|
+            .validation-error = msg
+
+  .form-panel
+    = f.label :home_page_file, "Upload Roster"
+    = f.fields_for :home_page_file do |builder|
+      = render 'home_page_file_fields', f: builder
+    / = link_to_add_fields "Add Date", f, :home_page_files
+
+  .form-actions
+    = f.submit "Submit", class: 'btn btn-primary'
+    = link_to "Cancel", teams_path, class: 'btn btn-cancel'
+
+
+- content_for :scripts
+  coffee:
+    $ ->
+      if gon.already_uploaded? && gon.already_uploaded == true
+        $('#team_home_page_file_attributes_the_file').hide()
+        $('.change_file').show()
+        $('.change_file').click (e) ->
+          e.preventDefault()
+          $(this).hide()
+          $('#team_home_page_file_attributes_the_file').show()
+      else
+        $('.change_file').hide()

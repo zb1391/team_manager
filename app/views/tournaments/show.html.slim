@@ -1,0 +1,68 @@
+.static-page.green
+	h1 Tournament
+	.content
+		h2 General
+		.row
+			.col-md-3
+				dl
+					dt Start Date
+					dd = @tournament.the_date.strftime('%m/%d/%Y')
+			- unless @tournament.end_date.nil?	
+				.col-md-3
+					dl
+						dt End Date
+						dd =  @tournament.end_date.strftime('%m/%d/%Y')
+			.col-md-3
+				dl
+					dt End Registration Date
+					dd = @tournament.end_registration_date.strftime('%m/%d/%Y')
+			.col-md-3
+				dl
+					dt Price
+					dd = number_to_currency @tournament.price
+
+		- to_xls = "#{tournament_path(@tournament.id)}.xls"
+		= link_to "Download Spreadsheet", to_xls, class: 'btn btn-primary margin-bottom-20'
+		- if @tournament.organizations.any?
+			h2 Clubs Summary
+			.panel.panel-default.table-responsive
+				table.table
+					thead
+						th Organization
+						th Teams Entered
+						th Amount Owe
+						th Amount Paid
+						th Contact Name
+						th Contact Email
+						th Contact Phone
+					tbody
+						- @tournament.organizations.each do |organization|
+							tr
+								td = link_to organization.name, organization_path(organization)
+								td = organization.clubs.size
+								td = number_to_currency organization.amount_owe
+								td = number_to_currency organization.amount_paid
+								td = organization.contact_name
+								td = organization.email
+								td = number_to_phone organization.phone, area_code: true
+			h2 Teams Summary
+			.panel.panel-default.table-responsive
+				table.table
+					thead
+						th Gender
+						th Age
+						th Team
+						th Coach
+						th Coach Email
+					tbody
+						- @tournament.tournament_teams.each do |team|
+							tr
+								td = team.gender
+								td = team.grade
+								td = team.organization.name
+								td = team.coach
+								td = team.email
+		- else
+			h4.margin-bottom-20 No Teams Have Signed Up
+		= link_to 'Edit', edit_tournament_path(@tournament), class: 'btn btn-primary'
+		= link_to 'Back', tournaments_path, class: 'btn btn-cancel'

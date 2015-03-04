@@ -1,0 +1,45 @@
+#party-carousel{
+	margin-bottom: 10px;
+	.item{	
+		img{
+			width: 100%;
+			height: auto;		
+		}
+	}
+}
+#home-carousel{
+	.item{
+		display: none;
+		img{
+			width: 100%;
+			height: auto;
+		}
+	}
+	.item:first-child{
+		display: block;
+	}
+	.carousel-controls{
+		position: absolute;
+		bottom: 30px;
+		left: 45%;
+		text-align: center;
+		// margin-top: -50px;
+		// margin-bottom: 50px;
+		@media (max-width: $screen-sm-max) {
+			display: none;
+			a{
+				display: none;
+			}
+		}
+		a{
+			background: rgba(20,20,20,0.5);
+			padding: 10px;
+			font-size: 20px;
+			color: white;
+			&:hover{
+				text-decoration: none;
+				color: $orange;
+			}
+		}
+	}
+}

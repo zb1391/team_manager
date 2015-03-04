@@ -1,0 +1,27 @@
+.static-page.green
+	h1 Coupons
+	.content
+		.panel.panel-default.table-responsive
+			table.table
+				thead
+					th = '#'
+					th Title
+					th Description
+					th Until
+					th Active
+					th Actions
+				tbody
+					- @coupons.each do |coupon|
+						tr
+							td = coupon.id
+							td = coupon.title
+							td = coupon.description
+							td = coupon.active_until.nil? ? 'Indefinitely' : coupon.active_until.strftime('%m/%d/%Y')
+							td = coupon.active?
+							td
+								= link_to 'Show', coupon_path(coupon)
+								span = ' | '
+								= link_to 'Edit', edit_coupon_path(coupon)
+								span = ' | '
+								= link_to 'Destroy', coupon, method: :delete, data: {confirm: 'Are you sure?'}
+		= link_to 'New Coupon', new_coupon_path, class: 'btn btn-primary'

@@ -1,6 +1,8 @@
 class OrganizationsController < ApplicationController
   before_action :set_organization, only: [:show, :edit, :update, :destroy]
   before_filter :authenticate, :only => [:index, :destroy, :edit, :update]
+  before_filter :get_grades
+
   # GET /organizations
   # GET /organizations.json
   def index
@@ -15,7 +17,9 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/new
   def new
-    @organization = Organization.new
+    @organization = Organization.new(manual_fee_entry: false)
+    @organization.clubs.build
+    @tournaments = Tournament.active_tournaments
     if !params[:id].blank?
       @tournament = Tournament.find(params[:id])
       @organization.tournament_id = params[:id]
@@ -31,6 +35,7 @@ class OrganizationsController < ApplicationController
 
   # GET /organizations/1/edit
   def edit
+    @tournaments = Tournament.active_tournaments
   end
 
   # POST /organizations
@@ -46,6 +51,8 @@ class OrganizationsController < ApplicationController
         format.html { redirect_to @organization, notice: 'Organization was successfully created.' }
         format.json { render action: 'show', status: :created, location: @organization }
       else
+        @tournaments = Tournament.active_tournaments
+        @organization.clubs.build if @organization.clubs.empty?
         format.html { render action: 'new' }
         format.json { render json: @organization.errors, status: :unprocessable_entity }
       end
@@ -63,6 +70,8 @@ class OrganizationsController < ApplicationController
         format.html { redirect_to @organization, notice: 'Organization was successfully updated.' }
         format.json { head :no_content }
       else
+        @tournaments = Tournament.active_tournaments
+        @organization.clubs.build if @organization.clubs.empty?
         format.html { render action: 'edit' }
         format.json { render json: @organization.errors, status: :unprocessable_entity }
       end
@@ -80,6 +89,13 @@ class OrganizationsController < ApplicationController
   end
 
   private
+
+    def get_grades
+      @grades = [['3rd Grade','3rd'], ['4th Grade','4th'], ['5th Grade','5th'],
+                 ['6th Grade','6th'], ['7th Grade','7th'], ['8th Grade','8th'],
+                 ['9th Grade','9th'], ['10th Grade','10th'],['11th Grade','11th'],
+                 ['12th Grade','12th']]
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_organization
       @organization = Organization.find(params[:id])
@@ -88,6 +104,7 @@ class OrganizationsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def organization_params
       params.require(:organization).permit(:name, :contact_name, :email, :phone, :tournament_id, :manual_fee_entry,
-      :amount_owe, :amount_paid, :paid_at, clubs_attributes: [:coach, :id, :_destroy, :gender, :grade, :email, :cell])
+      :amount_owe, :amount_paid, :paid_at,
+      clubs_attributes: [:coach, :id, :_destroy, :gender, :grade, :email, :cell,:use_organization_info])
     end
 end

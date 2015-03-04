@@ -1,0 +1,43 @@
+= form_for(@coach) do |f|
+  - if @coach.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+  .form-panel
+    .row
+      .col-md-6
+        = f.label :first_name, "First Name"
+        = f.text_field :first_name, placeholder: 'Enter First Name', class: 'form-control'
+        - @coach.errors[:first_name].each do |msg|
+          .validation-error = msg
+      .col-md-6
+        = f.label :last_name, "Last Name"
+        = f.text_field :last_name, placeholder: 'Enter Last Name', class: 'form-control'
+        - @coach.errors[:last_name].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label :phone, "Phone Number"
+        = f.text_field :phone, placeholder: 'Ex. 2018480017', class: 'form-control'
+        - @coach.errors[:phone].each do |msg|
+          .validation-error = msg
+      .col-md-6
+        = f.label :email
+        = f.text_field :email, placeholder: 'Enter Email', class: 'form-control'
+        - @coach.errors[:email].each do |msg|
+          .validation-error = msg
+    - if @coach.admin
+      .row  
+        .col-md-6
+          = f.label :password
+          = f.password_field :password, class: 'form-control'
+          - @coach.errors[:password].each do |msg|
+            .validation-error = msg
+      .row
+        .col-md-6
+          = f.label "Password Confirmation"
+          = f.password_field :password_confirmation, class: 'form-control'
+          - @coach.errors[:password_confirmation].each do |msg|
+            .validation-error = msg
+  .form-actions
+    = f.submit "Submit", class: 'btn btn-primary'
+    = link_to "Cancel", coaches_path, class: 'btn btn-cancel'

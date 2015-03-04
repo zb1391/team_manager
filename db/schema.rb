@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140823233803) do
+ActiveRecord::Schema.define(version: 20150228042445) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,6 +46,29 @@ ActiveRecord::Schema.define(version: 20140823233803) do
     t.boolean  "admin",              default: false
   end
 
+  create_table "coupons", force: true do |t|
+    t.string  "title"
+    t.string  "description"
+    t.boolean "active",       default: true
+    t.date    "active_until"
+  end
+
+  create_table "display_tournament_locations", force: true do |t|
+    t.integer "display_tournament_id"
+    t.integer "location_id"
+  end
+
+  create_table "display_tournaments", force: true do |t|
+    t.string  "season"
+    t.integer "min_grade"
+    t.integer "max_grade"
+    t.integer "guaranteed_games"
+    t.float   "price"
+    t.string  "genders"
+    t.boolean "active",             default: true
+    t.integer "tournament_type_id"
+  end
+
   create_table "events", force: true do |t|
     t.integer  "eventtype_id"
     t.integer  "team_id"
@@ -75,6 +98,16 @@ ActiveRecord::Schema.define(version: 20140823233803) do
     t.string   "the_file_content_type"
     t.integer  "the_file_file_size"
     t.datetime "the_file_updated_at"
+    t.integer  "team_id"
+  end
+
+  create_table "home_page_panels", force: true do |t|
+    t.text    "html"
+    t.string  "additional_link"
+    t.string  "additional_link_text"
+    t.boolean "is_active",            default: false
+    t.integer "priority_order"
+    t.string  "title"
   end
 
   create_table "hotelifications", force: true do |t|
@@ -173,6 +206,12 @@ ActiveRecord::Schema.define(version: 20140823233803) do
     t.float    "price"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "end_registration_date"
+  end
+
+  create_table "team_tryout_times", force: true do |t|
+    t.integer "tryout_time_id"
+    t.integer "team_id"
   end
 
   create_table "teams", force: true do |t|
@@ -182,11 +221,20 @@ ActiveRecord::Schema.define(version: 20140823233803) do
     t.string   "salt"
     t.integer  "coach_id"
     t.string   "gender"
-    t.string   "grade"
     t.string   "team_type"
     t.string   "name"
     t.string   "color"
     t.integer  "age"
+    t.integer  "grade"
+  end
+
+  create_table "tournament_locations", force: true do |t|
+    t.integer "location_id"
+    t.integer "tournament_id"
+  end
+
+  create_table "tournament_types", force: true do |t|
+    t.string "name"
   end
 
   create_table "tournaments", force: true do |t|
@@ -196,10 +244,25 @@ ActiveRecord::Schema.define(version: 20140823233803) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.date     "end_date"
-    t.boolean  "active",     default: true
-    t.string   "genders",    default: "Both"
-    t.integer  "min_grade",  default: 3
-    t.integer  "max_grade",  default: 12
+    t.string   "genders",               default: "Both"
+    t.integer  "min_grade",             default: 3
+    t.integer  "max_grade",             default: 12
+    t.date     "end_registration_date"
+    t.integer  "tournament_type_id"
+  end
+
+  create_table "tryout_dates", force: true do |t|
+    t.date    "date"
+    t.integer "tryout_id"
+  end
+
+  create_table "tryout_times", force: true do |t|
+    t.time    "time"
+    t.integer "tryout_date_id"
+  end
+
+  create_table "tryouts", force: true do |t|
+    t.string "season"
   end
 
 end

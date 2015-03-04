@@ -1,0 +1,7 @@
+.nested-attributes.no-padding
+	.row
+		.col-xs-6
+			= f.collection_select :hotel_id, Hotel.order(:id),:id,:name_and_date, {include_blank: true},{class: 'form-control'}
+		.col-xs-1
+			= f.hidden_field :_destroy, class: '_destroy'
+			= link_to 'x', '#', class: 'remove_nested_attribute'

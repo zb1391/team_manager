@@ -1,0 +1,19 @@
+.static-page.green
+  h1 Home Page Files
+  .content
+    .panel.panel-default.table-responsive
+      table.table
+        thead
+          th Name
+          th Actions
+        tbody
+          - @home_page_files.each do |home_page_file|
+            tr
+              td = home_page_file.name
+              td
+                = link_to 'Show', home_page_file_path(home_page_file)
+                span = ' | '
+                = link_to 'Edit', edit_home_page_file_path(home_page_file)
+                span = ' | '
+                = link_to 'Destroy', home_page_file, method: :delete, data: {confirm: 'Are you sure?'}
+    = link_to 'New File', new_home_page_file_path, class: 'btn btn-primary'

@@ -1,0 +1,32 @@
+.static-page.green
+	h1 Leagues and Tournaments (Preview)
+	.content
+		h2 = "Gym Ratz #{@display_tournament.season} Invitational"
+		p = "The Gym Ratz #{@display_tournament.season} Invitational is a tournament open to #{@display_tournament.display_gender} Teams Grades #{@display_tournament.display_grades}."
+		ul.margin-bottom-20
+			li A Level and B Level Pools
+			li 
+				| Each Team
+				strong =  " Guaranteed #{@display_tournament.guaranteed_games}+ Games"
+			li
+				strong.orange = 'Championship T-Shirts '
+				| will be awarded to top competitors
+			- if @invitationals.empty?
+				li Dates coming soon!
+		.row
+			.col-md-6
+				dl
+					dt Where
+					- @display_tournament.locations.each do |location|
+						dd = "#{location.name}, #{location.city}"
+					dt Entry Fee
+					dd = "#{number_to_currency(@display_tournament.price)} per Team" 
+			.col-md-6
+				dl
+					- unless @invitationals.empty?
+						dt Dates
+					- @invitationals.each do |tournament|
+						dd = tournament.display_date
+
+		= link_to 'Edit', edit_display_tournament_path(@display_tournament), class: 'btn btn-primary'
+		= link_to 'Back', display_tournaments_path, class: 'btn btn-cancel'

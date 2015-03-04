@@ -1,0 +1,66 @@
+= form_for @organization,html: {id: 'organization-form'} do |f|
+  - if @organization.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+
+  .form-panel
+    = f.label "Tournament"
+    .row
+      .col-md-6
+        = f.collection_select :tournament_id, @tournaments, :id, :formatted_name, {include_blank: false},{class: 'form-control'}
+
+  h2 Club/Organization Name
+  .form-panel
+    .row
+      .col-md-6
+        = f.label "Club Name"
+        = f.text_field :name, placeholder: 'Enter Club Name', class: 'form-control'
+        - @organization.errors[:name].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label "Contact Name"
+        = f.text_field :contact_name, placeholder: 'Enter Name', class: 'form-control'
+        - @organization.errors[:contact_name].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label "Email"
+        = f.text_field :email, placeholder: 'Enter Email', class: 'form-control'
+        - @organization.errors[:email].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
+        = f.label "Phone Number"
+        = f.text_field :phone, placeholder: 'Ex. 2018480017', class: 'form-control'
+        - @organization.errors[:phone].each do |msg|
+          .validation-error = msg
+    
+  h2 Teams
+  = f.fields_for :clubs do |builder|
+    = render 'club_fields', f: builder
+  - @organization.errors[:clubs].each do |msg|
+    .validation-error = msg
+  = link_to_add_fields "Add Another Team", f, :clubs, class: 'btn btn-primary btn-nested-attributes'
+
+
+
+  - if is_admin?
+    .form-panel
+      = f.label "Amount Owe"
+      .row
+        .col-md-6
+          = f.text_field :amount_owe, class: 'form-control'
+        .col-md-6
+          = f.check_box :manual_fee_entry
+          span Check this box if you want to manually enter the amount owe
+      .row
+        .col-md-6
+          = f.label "Amount Paid"
+          = f.text_field :amount_paid, class: 'form-control'
+  - else
+    - @organization.manual_fee_entry = "0"
+
+  .form-actions
+    = f.submit "Register For Tournament", class: "btn btn-primary"
+    = link_to "Cancel", page_leagues_path, class: 'btn btn-cancel'

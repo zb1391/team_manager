@@ -1,0 +1,25 @@
+#myModal.modal.fade data-show='true'
+	.modal-dialog
+		.modal-content
+			.modal-header
+				h3.eventtype
+				h3.team_name 
+			.modal-body
+				.row
+					.col-md-6
+						dl
+							dt When
+							dd.when
+					.col-md-6
+						dl
+							dt Where
+							dd.where
+							dd
+								a.directions href="#" Directions
+			.modal-footer
+				a.btn.btn-cancel data-dismiss="modal" Close
+				a.more_info.btn href="/events/ID" More Info
+				- if is_admin?
+					a.edit.btn.btn-default href="/events/ID/edit" Edit
+					= form_tag('/events/ID/reschedule') do |f|
+						= submit_tag "Reschedule For Next Week", class: 'btn btn-default'

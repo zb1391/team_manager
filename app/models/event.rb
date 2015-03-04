@@ -1,11 +1,16 @@
 class Event < ActiveRecord::Base
+	scope :between, lambda {|the_start_time, the_end_time|
+		{:conditions => ["? < the_date  AND the_date < ?", Date.parse(the_start_time.to_s), Date.parse(the_end_time.to_s)]}
+	}
 	has_many :hotelifications
 	has_many :hotels, :through => :hotelifications
-	accepts_nested_attributes_for :hotelifications
+	accepts_nested_attributes_for :hotelifications, reject_if: :all_blank
 	belongs_to :team
 	belongs_to :eventtype
 	belongs_to :location
-	validates  :the_date, :the_time, presence: true
+	validates  :the_date, presence: true
+	validates   :the_time, presence: true,
+		unless: Proc.new {|a| a.eventtype_name == "tournament"}
 	validate   :tournament_has_end_date
 	validates :team_name, :presence =>  { :message => " can't find team with that name" }
 	validates :location_name, :presence => { :message => " can't find location with that name" }
@@ -41,9 +46,43 @@ class Event < ActiveRecord::Base
 		end
 	end
 	def start_time
-		DateTime.new(the_date.year, the_date.month, the_date.day, the_time.hour, the_time.min, the_time.sec)
+		time = the_time || Time.new()
+		DateTime.new(the_date.year, the_date.month, the_date.day, time.hour, time.min, time.sec)
 	end
 
+	def start_datetime
+		start_time()
+	end
+	def end_datetime
+		time = the_time || Time.new()
+		endtime = end_time || time+1.hour
+		unless end_date.blank?
+			return DateTime.new(end_date.year, end_date.month, end_date.day, endtime.hour, endtime.min, endtime.sec)
+		else
+			return DateTime.new(the_date.year, the_date.month, the_date.day, endtime.hour, endtime.min, endtime.sec)
+		end
+	end
+
+	def calendar_title
+		"#{eventtype.formatted_name} - #{team.name}"
+	end
+
+	def as_json(options = {})
+		{
+			id: self.id,
+			title: calendar_title,
+			description: self.description,
+			location: self.location_name,
+			directions: self.location.try(:directions),
+			eventtype: self.eventtype.formatted_name,
+			team_name: self.team_name,
+			start: start_datetime,
+			enddate: end_datetime,
+			allDay: eventtype_name=="tournament",
+			recurring: false,
+			url: Rails.application.routes.url_helpers.event_path(id) 
+		}
+	end
 	#Times for Creating Weekly Calendar
 	def self.begin_time
 		#8 AM
@@ -66,40 +105,24 @@ class Event < ActiveRecord::Base
 		Date.today.end_of_week(start_day= :sunday).strftime('%b-%d-%y')
 	end
 
-	#Return all Events on A Particular Date on a Particular Time on A Particular Court
-	def self.events_on_court_at_time(cur_date,cur_time,cur_court)
-		Event.where("the_date =? AND the_time >= ? AND the_time < ? AND court = ?", cur_date, cur_time, 
-			(cur_time+30.minutes), cur_court,).order(:the_time 	)
-	end
 
-	#Return a Single Event on A Particular Date on a Particular Time on A Particular Court
-	def self.unique_event_on_court_at_time(cur_date,cur_time,cur_court)
-		
-		the_events = Event.where("the_date =? AND the_time >= ? AND the_time < ? AND court = ? AND eventtype_id = ?", cur_date, cur_time, 
-			(cur_time+30.minutes), cur_court,1 ).order(:the_time)
-		if the_events.nil?
-			return nil 
+	def when
+		if eventtype_name == "tournament"
+			if the_date == end_date
+				the_date.strftime('%B %d (All Day)')
+			else
+				"#{the_date.strftime('%B %d')} - #{end_date.strftime('%B %d')}"
+			end
 		else
-			return the_events[0]
+			start_datetime.strftime('%B %d, %I:%M %P')
 		end
 	end
-	#Return a String of all TeamNames for an Event at a Particular Time On A Particular Court
-	def self.teams_on_court_at_time(cur_date, cur_time, cur_court)
-		the_event = events_on_court_at_time(cur_date,cur_time,cur_court)
-		the_teams = ""
-		the_event.each do |e|
-			the_teams += "#{e.team.team_name}/"
-		end
-		return the_teams[0..-2]
-	end
 
-
-	##KEEP THIS
 	def formatted_end_date
-		end_date.strftime("%b-%d-%y")
+		end_date.strftime("%b %d-%y")
 	end
 	def formatted_date
-		the_date.strftime("%b-%d-%y")
+		the_date.strftime("%b %d-%y")
 	end
 	def formatted_eventtype
 		eventtype.name.split.map(&:capitalize).join(' ')

@@ -6,16 +6,25 @@ TeamManager::Application.routes.draw do  resources :tournaments
   resources :locations
   resources :home_page_files
   resources :hotels
-
+  resources :tryouts
+  resources :coupons
+  resources :display_tournaments
   resources :sessions, :only => [:new, :create, :destroy]
-  resources :coaches
+  resources :coaches, except: [:show]
+  resources :teams do
+    get :password
+    post :update_password
+    get :events
+  end
 
-  resources :teams
 
-  resources :eventtypes
+  resources :home_page_panels
+  post "home_page_panels/panel_order"
   
   resources :events do
     get :email
+    post :reschedule
+    get :tournaments, on: :collection
   end
 
   resources :players  
@@ -34,6 +43,9 @@ TeamManager::Application.routes.draw do  resources :tournaments
   get "page/page_unavailable"
   get "page/tournament_manager"
   get "page/photo_gallery"
+  get "page/rosters"
+  get "page/admin_search"
+  get "page/admin_home"
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

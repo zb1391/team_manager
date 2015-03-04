@@ -1,0 +1,11 @@
+.static-page.green
+	h1 Home Page File
+	.content
+		.panel.panel-default
+			.panel-body
+				dl
+					dt Name: 
+					dd = @home_page_file.name
+					dd = link_to "File", @home_page_file.the_file.url
+		= link_to 'Back', home_page_files_path, class: 'btn btn-cancel'
+

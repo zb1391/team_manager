@@ -1,0 +1,86 @@
+= form_for @home_page_panel, html: {id: 'home-page-panel-form'} do |f|
+  - if @home_page_panel.errors.any?
+    #error-explanation
+      div Oh No! There were errors in your form. Please fill in all information before continuing
+  .row
+    .col-lg-6.col-md-12
+      .form-panel
+        .row
+          .col-md-6      
+            = f.label "Title"
+            = f.text_field :title, placeholder: 'Enter Title', class: 'form-control'
+            - @home_page_panel.errors[:title].each do |msg|
+              .validation-error = msg
+            = f.hidden_field :html
+
+      h2 Panel Content
+      .form-panel
+        .row
+          .col-md-6
+            = f.label "Paragraph"
+            = text_area_tag :home_page_panel_p, f.object.paragraph.text, {class: 'form-control'}
+            br
+            = link_to 'Hide', '#', class: 'hide_p'
+            span = " | "
+            = link_to "Show", '#', class: 'show_p'
+            - @home_page_panel.errors[:p].each do |msg|
+              .validation-error = msg
+      .form-panel
+        .list-items
+          = f.label "List"
+          - f.object.list.list_items.each_with_index do |list_item,i|
+            .nested-attributes
+              .row
+                .col-xs-6
+                  = label_tag "list_item_#{i}", "#{list_item.tag}"
+                  = text_field_tag "list_item_#{i}", list_item.text, {class: 'form-control', data:{type: "#{list_item.tag}"}}
+                .col-xs-1  
+                  br
+                  = link_to 'x', '#', class: 'remove_list_item'
+        br
+        = link_to "Add Term", '#', id: 'add_term'
+        span = ' | '
+        = link_to "Add Detail", '#', id: 'add_definition'
+      - @home_page_panel.errors[:html].each do |msg|
+        .validation-error = msg
+
+      .form-panel
+        .row
+          .col-md-6
+            = f.label "Additional Link Text"
+            = f.text_field :additional_link_text, placeholder: 'Enter link', class: 'form-control'
+            - @home_page_panel.errors[:additional_link_text].each do |msg|
+              .validation-error = msg
+        .row
+          .col-md-6
+            = f.label "Additional Link"
+            = f.text_field :additional_link, placeholder: 'Type for Results', class: 'form-control' 
+            - @home_page_panel.errors[:additional_link].each do |msg|
+              .validation-error = msg
+
+      .form-actions
+        = f.submit "Submit", class: "btn btn-primary"
+        = link_to "Cancel", home_page_panels_path, class: "btn btn-cancel"
+
+    .col-lg-6.col-md-12
+      .home-panel.panel.panel-default
+        h3#title = @home_page_panel.title
+        .panel-body
+          .panel-content
+            p#paragraph = f.object.paragraph.try(:text) || ''
+            .display_list_items
+              dl
+                - f.object.list.list_items.each do |list_item|
+                  = list_item.renderHtmlElement
+        .link-container
+          a href='#' id='display_link' = @home_page_panel.additional_link_text
+
+- content_for :scripts
+  coffee:
+    $ ->
+      $('#home-page-panel-form #home_page_panel_additional_link').autocomplete(
+        source: gon.links
+        messages:
+          noResults: 'asdasda',
+          results: () ->
+      )

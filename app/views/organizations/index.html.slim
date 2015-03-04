@@ -1,0 +1,28 @@
+.static-page.green
+  h1 Tournament Organizations
+  .content
+    - @tournaments.each do |tournament|
+      h2 = tournament.formatted_name
+      - if tournament.organizations.any?
+        .panel.panel-default.table-responsive
+          table.table
+            thead
+              th Name
+              th Amount Owe
+              th Amount Paid
+              th Actions
+            tbody
+              - tournament.organizations.each do |organization|
+                tr
+                  td = organization.name
+                  td = number_to_currency(organization.amount_owe)
+                  td = number_to_currency(organization.amount_paid)
+                  td
+                    = link_to 'Show', organization
+                    span = ' | '
+                    = link_to 'Edit', edit_organization_path(organization)
+                    span = ' | '
+                    = link_to 'Destroy', organization, method: :delete, data: {confirm: 'Are you sure'}
+      - else
+        h4.margin-bottom-20 No Clubs Have Signed Up
+

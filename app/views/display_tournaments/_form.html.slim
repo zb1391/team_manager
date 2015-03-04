@@ -1,0 +1,106 @@
+= form_for @display_tournament, html: {id: 'display-tournament-form'} do |f|
+  = f.hidden_field :tournament_type_id, data:{name: @display_tournament.tournament_type.name}
+  .row
+    .col-lg-6.col-md-12   
+      - if @display_tournament.errors.any?
+        #error-explanation
+          div Oh No! There were errors in your form. Please fill in all information before continuing
+      .form-panel
+
+        = f.check_box :active
+        span Active on Leagues Page?
+        
+        #season-container    
+          = f.label "Season"
+          = f.select :season, options_for_select(%w[Winter Spring Summer Fall], @display_tournament.season), prompt: 'Enter Season'
+          - @display_tournament.errors[:season].each do |msg|
+            .tournament_name.validation-error = msg  
+
+        = f.label 'Price'
+        = f.text_field :price, placeholder: 'Enter Price'
+        - @display_tournament.errors[:price].each do |msg|
+          .validation-error = msg
+
+        = f.label 'Guaranteed Games'
+        = f.text_field :guaranteed_games, placeholder: 'Enter Number'
+        - @display_tournament.errors[:guaranteed_games].each do |msg|
+          .tournament_name.validation-error = msg 
+
+        = f.label "For Gender(s)"
+        = f.select :genders, options_for_select(%w[Both Boys Girls], @display_tournament.genders), class: 'inline'
+        span = ' Grades '
+        = f.select :min_grade, options_for_select(3..12, @display_tournament.min_grade), class: 'inline'
+        span = ' - '
+        = f.select :max_grade, options_for_select([12, 11, 10, 9, 8, 7, 6, 5, 4, 3], @display_tournament.max_grade), class: 'inline'
+        - @display_tournament.errors[:min_grade].each do |msg|
+          .validation-error = msg
+        end
+      .form-panel
+        = f.label "Locations"
+        .tryout-date-attributes-container
+          = f.fields_for :display_tournament_locations do |builder|
+            = render 'display_tournament_location_fields', f: builder
+          = link_to_dynamic_preview_fields "Add Location", f, :display_tournament_locations
+      - @display_tournament.errors[:display_tournament_locations].each do |msg|
+        .validation-error = msg
+
+
+      .form-actions
+        = f.submit "Submit", class: "btn btn-primary"
+        = link_to "Cancel", display_tournaments_path, class: "btn btn-cancel"
+    .col-lg-6.col-md-12
+      = f.label "Preview (Dates determined by active tournaments)"
+      .static-page.green
+        h1 Leagues and Tournaments
+        .content
+          h2  
+            span = "Gym Ratz "
+            span#view-season-header ="#{@display_tournament.season || 'SEASON'} "
+            span = " Invitational"
+          - if @display_tournament.tournament_type.name == "Invitational"  
+            p 
+              span = "The Gym Ratz " 
+              span#view-season-p = "#{@display_tournament.season || 'SEASON'} "
+              span = " Invitational is a tournament open to "
+              span#view-gender = "#{@display_tournament.display_gender || 'GENDERS'} "
+              span = " Teams Grades "
+              span#view-min_grade = "#{@display_tournament.min_grade || 'MIN_GRADE'}"
+              span = " - "
+              span#view-max_grade = "#{@display_tournament.max_grade || 'MAX_GRADE'}"
+              span .
+          - else
+            p
+              span = "The Gym Ratz One Day Shootouts are single day events open to "
+              span#view-gender = "#{@display_tournament.display_gender || 'GENDERS'} "
+              span = " Teams Grades "
+              span#view-min_grade = "#{@display_tournament.min_grade || 'MIN_GRADE'}"
+              span = " - "
+              span#view-max_grade = "#{@display_tournament.max_grade || 'MAX_GRADE'}"
+              span .
+          dl.margin-bottom-20
+            dd A Level and B Level Pools
+            dd 
+              | Each Team
+              strong 
+                span = " Guaranteed "
+                span#view-guaranteed_games = "#{@display_tournament.guaranteed_games || 'GUARANTEED_GAMES'}"
+                span+ Games
+            dd
+              strong.orange-text = 'Championship T-Shirts '
+              | will be awarded to top competitors
+            - if @invitationals.empty?
+              dd Dates coming soon!
+          .row
+            .col-md-6
+              dl.green
+                dt Where
+                - @display_tournament.display_tournament_locations.each_with_index do |dlocation,i|
+                  #locations-preview-container
+                    - if dlocation.location
+                      dd[data-id="#{i}"] = "#{dlocation.location.name}, #{dlocation.location.city}"
+                    - else
+                      dd[data-id="#{i}"]
+                dt Entry Fee
+                dd 
+                  span#view-price = "#{number_to_currency(@display_tournament.price) || 'PRICE'}" 
+                  span = " per Team"

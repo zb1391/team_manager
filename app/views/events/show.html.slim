@@ -1,0 +1,89 @@
+.static-page.green
+	h1 = @event.team.name
+	.content
+		h2 = @event.eventtype.formatted_name
+		.panel.panel-default
+			.panel-body
+				.row
+					.col-md-3
+						dl
+							dt When
+							dd = @event.when
+						dl
+							dt Where
+							dd = @event.location.name
+							- unless @event.court.blank?
+								dd = "Court #{@event.court}"
+							dd = link_to "Directions", "https://maps.google.com/maps?f=d&daddr=#{@event.location.glocation}"
+					.col-md-3
+						- unless @event.description.blank?
+							strong Description:
+							br
+							span = @event.description || "No description provided"	
+
+		- if @event.hotels.any?
+			h2 Hotels
+			.row
+				- @event.hotels.each do |hotel|
+					.col-md-4
+						dl.green
+							dt Name
+							dd = hotel.name
+							dt Address
+							dd = hotel.full_address
+							dt Price
+							dd = "#{number_to_currency(hotel.price)}/Night"
+							dd = link_to 'Directions', "https://maps.google.com/maps?f=d&daddr=#{hotel.glocation}"
+							- unless hotel.addtional_link.blank?
+								dd = link_to 'Booking Information', hotel.hotel_link
+		- if is_admin?
+			= link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'
+			= link_to 'Back', events_path, class: 'btn btn-cancel'
+
+
+/ <% @event.hotels.each do |hotel| %>
+/ <div class="green-content no-padding">
+/   <div class="smaller-content">
+/  <h2>Hotel Information</h2>
+/   <%= image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{hotel.glocation}&zoom=13&size=200x200&markers=#{hotel.glocation}&sensor=false", class: "float-right"); %>
+/ <p>
+/   <strong>Name:</strong>
+/   <%= hotel.name %>
+/ </p>
+
+/ <p>
+/   <strong>Address:</strong>
+/   <%= hotel.address %>
+/ </p>
+
+/ <p>
+/   <strong>City:</strong>
+/   <%= hotel.city %>
+/ </p>
+/ <p>
+/   <strong>State:</strong>
+/   <%= hotel.state %>
+/ </p>
+
+/ <p>
+/   <strong>Price:</strong>
+/   <%= hotel.price %>
+/ </p>
+/ <p>
+/   <strong> Directions:</strong>
+/   <%= link_to 'Click Here!', "https://maps.google.com/maps?f=d&daddr=#{hotel.glocation}" %>
+/ </p>
+/ <% if !hotel.addtional_link.nil? %>
+/ 	<p>
+/ 	  <strong>Addtional link:</strong>
+/ 	  <%= link_to 'Booking Information', hotel.addtional_link %>
+/ 	</p>
+/ <% end %>
+/ </div>
+/ </div>
+/ <% end %>
+/ <% if is_admin? %>
+/ <%= link_to 'Edit', edit_event_path(@event) %> |
+/ <% end %>
+/ <%= link_to 'Back To Team', @event.team %> |
+/ <%= link_to 'Gym Ratz Home', events_path %>

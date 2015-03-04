@@ -60,9 +60,9 @@ ActionMailer::Base.delivery_method = :smtp
   end
 
   #FOR CAMPERS
-  def new_camper(camper)
-    @camper = camper
-    mail(to: camper.email, subject: "Camper Registration Confirmation")
+  def new_camper(camper_id)
+    @camper = SummerCamper.find(camper_id)
+    mail(to: @camper.email, subject: "Camper Registration Confirmation")
   end
 
   #FOR TOURNAMENTS

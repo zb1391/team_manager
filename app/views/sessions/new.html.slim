@@ -1,0 +1,17 @@
+.form-container
+	h1 Sign In
+	= form_for(:session, :url => sessions_path) do |f|
+		h2 = @my_status
+		.form-panel
+			.row
+				.col-md-6
+					= f.label :email
+					= f.text_field :email, prompt: "Enter email", class: 'form-control'
+			.row	
+				.col-md-6
+					= f.label :password
+					= f.password_field :password, prompt: "Enter password", class: 'form-control'
+		.form-actions
+			= f.submit "Sign In", class: 'btn btn-primary'
+			= link_to "Cancel", root_path, class: 'btn btn-cancel'
+

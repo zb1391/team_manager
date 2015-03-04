@@ -1,0 +1,33 @@
+.static-page.green
+  h1 Hotel
+  .content
+    h2 = @hotel.name
+
+    .row
+      .col-md-4
+        .full-image
+          = link_to image_tag("https://maps.googleapis.com/maps/api/staticmap?center=#{@hotel.glocation}&zoom=13&size=200x200&markers=#{@hotel.glocation}&sensor=false"), "https://maps.google.com/maps?f=d&daddr=#{@hotel.glocation}"
+      .col-md-4
+        h3 Address
+        dl.green
+          dt Address
+          dd = @hotel.address
+          dt City
+          dd = @hotel.city
+          dt State
+          dd = @hotel.state
+
+      .col-md-4
+        h3 Hotel Information
+        dl.green
+          dt Price
+          dd = "#{number_to_currency(@hotel.price)}/Night"
+          dt Directions
+          dd = link_to 'Click Here!', "https://maps.google.com/maps?f=d&daddr=#{@hotel.glocation}"
+          - unless @hotel.addtional_link.blank?
+            dt Additional Link
+            dd = link_to 'Booking Information', @hotel.hotel_link      
+
+    - if is_admin?
+      = link_to "Edit", edit_hotel_path(@hotel), class: 'btn btn-primary'
+      = link_to 'Back', hotels_path, class: 'btn btn-cancel'

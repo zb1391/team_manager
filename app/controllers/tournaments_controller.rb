@@ -15,6 +15,7 @@ class TournamentsController < ApplicationController
   # GET /tournaments/new
   def new
     @tournament = Tournament.new
+    # @tournament.tournament_locations.build
   end
 
   # GET /tournaments/1/edit
@@ -25,12 +26,12 @@ class TournamentsController < ApplicationController
   # POST /tournaments.json
   def create
     @tournament = Tournament.new(tournament_params)
-
     respond_to do |format|
       if @tournament.save
         format.html { redirect_to @tournament, notice: 'Tournament was successfully created.' }
         format.json { render action: 'show', status: :created, location: @tournament }
       else
+        @tournament.tournament_locations.build
         format.html { render action: 'new' }
         format.json { render json: @tournament.errors, status: :unprocessable_entity }
       end
@@ -45,6 +46,7 @@ class TournamentsController < ApplicationController
         format.html { redirect_to @tournament, notice: 'Tournament was successfully updated.' }
         format.json { head :no_content }
       else
+        @tournament.tournament_locations.build
         format.html { render action: 'edit' }
         format.json { render json: @tournament.errors, status: :unprocessable_entity }
       end
@@ -69,6 +71,9 @@ class TournamentsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def tournament_params
-      params.require(:tournament).permit(:name, :the_date, :end_date, :price, :active, :genders, :min_grade, :max_grade)
+      params.require(:tournament).permit(:name, :the_date, 
+        :end_date, :price, :active, :genders, :min_grade, 
+        :max_grade, :tournament_type_id,:end_registration_date,
+        tournament_locations_attributes: [:_destroy,:id, :location_id])
     end
 end

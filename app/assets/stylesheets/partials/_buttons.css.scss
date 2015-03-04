@@ -1,0 +1,19 @@
+.btn-cancel{
+	color: $orange !important;
+	display: inline-block;
+	&:hover{
+		color: $dark-orange !important;
+	}
+}
+
+.btn-inline{
+	display: inline;
+	margin: 0 10px;
+}
+
+.btn-nested-attributes{
+	border: 1px solid black;
+	display: inline-block;
+	color: white !important;
+}
+

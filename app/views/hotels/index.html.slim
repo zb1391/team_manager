@@ -1,0 +1,35 @@
+.static-page.green
+  h1 Hotels
+  .content
+    .panel.panel-default.table-responsive
+      table.table
+        thead
+          th Name
+          th Street
+          th City
+          th State
+          th Price
+          th Phone
+          th Additional Link
+          th Actions
+        tbody
+          - @hotels.each do |hotel|
+            tr
+              td = hotel.name_and_date
+              td = hotel.address
+              td = hotel.city
+              td = hotel.state
+              td = number_to_currency(hotel.price)
+              td = number_to_phone(hotel.phone, area_code: true)
+              td
+                - unless hotel.addtional_link.blank?
+                  = link_to 'Booking Information', hotel.hotel_link
+                - else
+                  = 'None Provided'
+              td
+                = link_to 'Show', hotel_path(hotel)
+                span = ' | '
+                = link_to 'Edit', edit_hotel_path(hotel)
+                span = ' | '
+                = link_to 'Destroy', hotel, method: :delete, data: {confirm: 'Are you sure?'}
+    = link_to 'New Hotel', new_hotel_path, class: 'btn btn-primary'

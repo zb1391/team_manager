@@ -1,0 +1,15 @@
+.static-page.green
+	h1 Coupon
+	.content
+		.panel.panel-default
+			.panel-body
+				dl
+					dt Title
+					dd = @coupon.title
+				dl
+					dt Description
+					dd = @coupon.description
+				dl
+					dd = @coupon.display_active_message
+		= link_to 'Edit', edit_coupon_path(@coupon), class: 'btn btn-primary'
+		= link_to 'Back', coupons_path, class: 'btn btn-cancel'
