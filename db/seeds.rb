@@ -14,7 +14,7 @@ ActiveRecord::Base.connection.tables.each do |table|
 end
 #ADD ALL COACHES
 	#ADMINS
-	binding.pry
+
 	danny = Coach.create!(needs_encryption: true, first_name: "Danny", last_name: "Brown", email: "dbrown@downtownsports.org", phone: "2013411959",
 		password: ENV['db_password'], password_confirmation: ENV['db_password'])
 	danny.toggle!(:admin)

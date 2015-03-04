@@ -100,7 +100,6 @@ class Team < ActiveRecord::Base
 
 	private
 		def unique_name
-			binding.pry
 			if Team.where(name: self.name).any?
 				errors.add(:name, "A team with this name already exists")
 				return false

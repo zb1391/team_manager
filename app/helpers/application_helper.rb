@@ -99,7 +99,6 @@ end
 #         end
 
 # 				def render
-# 					binding.pry
 # 					super
 # 				end
 # 			end

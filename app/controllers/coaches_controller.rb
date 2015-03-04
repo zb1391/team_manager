@@ -44,7 +44,6 @@ class CoachesController < ApplicationController
   # PATCH/PUT /coaches/1
   # PATCH/PUT /coaches/1.json
   def update
-    binding.pry
     respond_to do |format|
       if @coach.update(coach_params)
         format.html { redirect_to coaches_path, notice: 'Coach was successfully updated.' }
