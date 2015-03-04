@@ -95,7 +95,7 @@ srds = Location.create(name: "Saddle River Day", address: "147 Chestnut Ridge Rd
 panel1 = HomePagePanel.create!(is_active: true, title: "Welcome to Down Town Sports", priority_order: 1,
 	html: "<p id=\"paragraph\">Down Town Sports a new State of the Art Basketball/Sports Facility. The gym is open year-round and is one of its kind in Bergen County. With two full hardwood regulation courts, the facility is designed to accommodate a wide variety of sports and programs for kids and adults to enjoy.</p><dl></dl>")
 panel2 = HomePagePanel.create!(is_active: true, title: "Gym Ratz AAU Spring Tryouts", priority_order: 2,
-	html: "<p id=\"paragraph\">Join Us For Spring AAU Tryouts. We offer a program for serious players to develop team skill and maximize individual potentialthrough structured practices, games and tournament competition</p><dl></dl>")
+	html: "<p id=\"paragraph\">Join Us For Spring AAU Tryouts. We offer a program for serious players to develop team skill and maximize individual potential through structured practices, games and tournament competition</p><dl></dl>")
 panel3 = HomePagePanel.create!(is_active: true, title: "Training That Suits You", priority_order: 3,
 	html: "<p id=\"paragraph\">Our goal is to help our players be the best that they can be. We offer a wide variety of training programs appropriate for every skill level including private One-On-One lessons and group clinics.</p><dl></dl>")
 
