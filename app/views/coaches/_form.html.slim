@@ -26,7 +26,8 @@
         - @coach.errors[:email].each do |msg|
           .validation-error = msg
     - if @coach.admin
-      .row  
+      .row
+        = f.hidden_field :needs_encryption, value: true  
         .col-md-6
           = f.label :password
           = f.password_field :password, class: 'form-control'

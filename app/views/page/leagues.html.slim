@@ -36,34 +36,8 @@
 					| will be awarded to top competitors 
 				- if @invitationals.empty?
 					dd Dates coming soon!
-		.row
-			.col-md-6
-				dl.green
-					dt Where
-					- if @invitational_display.nil?
-						dd Down Town Sports, Mahwah
-					- else
-						- @invitational_display.display_tournament_locations.each do |dlocation|
-							dd = "#{dlocation.location.name_and_city}"	
-					dt Entry Fee
-					- if @invitational_display.nil?
-						dd $350 per Team
-					- else
-						dd = number_to_currency(@invitational_display.price)
-			.col-md-6
-				- unless @invitationals.empty?
-					dl.green.clearfix
-						dt Dates
-						- @invitationals.each do |tournament|
-							dd = "#{tournament.display_date} - #{tournament.gender_and_grade}"
+		= render 'page/partials/gym_ratz_invitational_display.html'
 
-						dt Select a Date
-						= form_for @tournament, url: new_organization_url, html: {method: 'GET', class: 'inner-form'} do |f|
-							.row
-								.col-md-8
-									= f.collection_select :id, @invitationals, :id, :formatted_name, {include_blank: false}, {class: 'form-control margin-bottom-10'}
-								.col-md-4
-									= f.submit 'Register Online', class: 'btn btn-primary btn-inline'
 		h2 = "Gym Ratz One Day Shootouts"
 		- if @one_day_shootout_display.nil?
 			p The Gym Ratz Spring/Fall Ball Invitationals are seasonal tournaments held yearly and open to both Boys and Girls Teams Grades 4-12.
@@ -97,33 +71,34 @@
 					| will be awarded to top competitors 
 				- if @one_day_shootouts.empty?
 					dd Dates coming soon!
-		.row
-			.col-md-6
-				dl.green
-					dt Where
-					- if @one_day_shootout_display.nil?
-						dd Down Town Sports, Mahwah
-					- else
-						- @one_day_shootout_display.display_tournament_locations.each do |dlocation|
-							dd = "#{dlocation.location.name_and_city}"	
-					dt Entry Fee
-					- if @one_day_shootout_display.nil?
-						dd $350 per Team
-					- else
-						dd = number_to_currency(@one_day_shootout_display.price)
-			.col-md-6
-				- unless @one_day_shootouts.empty?
-					dl.green.clearfix
-						dt Dates
-						- @one_day_shootouts.each do |tournament|
-							dd = "#{tournament.display_date} - #{tournament.gender_and_grade}"
+		- unless @one_day_shootout_display.nil?
+			.row
+				.col-md-6
+					dl.green
+						dt Where
+						- if @one_day_shootout_display.nil?
+							dd Down Town Sports, Mahwah
+						- else
+							- @one_day_shootout_display.display_tournament_locations.each do |dlocation|
+								dd = "#{dlocation.location.name_and_city}"	
+						dt Entry Fee
+						- if @one_day_shootout_display.nil?
+							dd $350 per Team
+						- else
+							dd = number_to_currency(@one_day_shootout_display.price)
+				.col-md-6
+					- unless @one_day_shootouts.empty?
+						dl.green.clearfix
+							dt Dates
+							- @one_day_shootouts.each do |tournament|
+								dd = "#{tournament.display_date} - #{tournament.gender_and_grade}"
 
-						dt Select a Date
-						= form_for @tournament, url: new_organization_url, html: {method: 'GET', class: 'inner-form'} do |f|
-							.row
-								.col-md-8
-									= f.collection_select :id, @one_day_shootouts, :id, :formatted_name, {include_blank: false}, {class: 'form-control margin-bottom-10'}
-								.col-md-4
-									= f.submit 'Register Online', class: 'btn btn-primary btn-inline'
+							dt Select a Date
+							= form_for @tournament, url: new_organization_url, html: {method: 'GET', class: 'inner-form'} do |f|
+								.row
+									.col-md-8
+										= f.collection_select :id, @one_day_shootouts, :id, :formatted_name, {include_blank: false}, {class: 'form-control margin-bottom-10'}
+									.col-md-4
+										= f.submit 'Register Online', class: 'btn btn-primary btn-inline'
 
 

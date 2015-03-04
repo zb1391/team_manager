@@ -44,6 +44,7 @@ class CoachesController < ApplicationController
   # PATCH/PUT /coaches/1
   # PATCH/PUT /coaches/1.json
   def update
+    binding.pry
     respond_to do |format|
       if @coach.update(coach_params)
         format.html { redirect_to coaches_path, notice: 'Coach was successfully updated.' }
@@ -77,7 +78,8 @@ class CoachesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def coach_params
-      params.require(:coach).permit(:first_name, :last_name, :phone, :email, :password, :password_confirmation)
+      params.require(:coach).permit(:first_name, :last_name, :phone, :email, 
+        :password, :password_confirmation, :needs_encryption)
     end
 
 end

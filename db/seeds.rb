@@ -14,37 +14,31 @@ ActiveRecord::Base.connection.tables.each do |table|
 end
 #ADD ALL COACHES
 	#ADMINS
-	danny = Coach.create(first_name: "Danny", last_name: "Brown", email: "dbrown@downtownsports.org", phone: "2013411959",
-		password: "db2323?", password_confirmation: "db2323?")
+	binding.pry
+	danny = Coach.create!(needs_encryption: true, first_name: "Danny", last_name: "Brown", email: "dbrown@downtownsports.org", phone: "2013411959",
+		password: ENV['db_password'], password_confirmation: ENV['db_password'])
 	danny.toggle!(:admin)
-	adam = Coach.create(first_name: "Adam", last_name: "Brown", email: "abrown@downtownsports.org", phone: "5853038053",
-		password: "!ab33basketball", password_confirmation: "!ab33basketball")
+	adam = Coach.create!(needs_encryption: true, first_name: "Adam", last_name: "Brown", email: "abrown@downtownsports.org", phone: "5853038053",
+		password: ENV['ab_password'], password_confirmation: ENV['ab_password'])
 	adam.toggle!(:admin)
-	zac = Coach.create(first_name: "Zac", last_name: "Brown", email: "zmb1391@gmail.com", phone: "2018350411",
-		password: "**ph0335", password_confirmation: "**ph0335")
+	zac = Coach.create!(needs_encryption: true, first_name: "Zac", last_name: "Brown", email: "zmb1391@gmail.com", phone: "2018350411",
+		password: ENV['zb_password'], password_confirmation: ENV['zb_password'])
 	zac.toggle!(:admin)
 
 	#ALL OTHER COACHES
-		Coach.create(first_name: "Donald", last_name: "Osbourne", email: "coachozzie34@aol.com", phone: "2018517504",
-		password: "osbourne1", password_confirmation: "osbourne1")
+		Coach.create(first_name: "Donald", last_name: "Osbourne", email: "coachozzie34@aol.com", phone: "2018517504")
 
-		Coach.create(first_name: "Billy", last_name: "Downes", email: "bmka90@yahoo.com", phone: "8455362116",
-		password: "downes1", password_confirmation: "downes1")
+		Coach.create(first_name: "Billy", last_name: "Downes", email: "bmka90@yahoo.com", phone: "8455362116")
 
-		Coach.create(first_name: "Brad", last_name: "Allen", email: "bradockallen@hotmail.com", phone: "4047844778",
-		password: "allen1", password_confirmation: "allen1")
+		Coach.create(first_name: "Brad", last_name: "Allen", email: "bradockallen@hotmail.com", phone: "4047844778")
 
-		Coach.create(first_name: "Anthony", last_name: "Gallo", email: "agallo0523@gmail.com", phone: "2017247515",
-		password: "gallo1", password_confirmation: "gallo1")
+		Coach.create(first_name: "Anthony", last_name: "Gallo", email: "agallo0523@gmail.com", phone: "2017247515")
 
-		Coach.create(first_name: "Jevon", last_name: "Drakeford", email: "drakefordjevon@gmail.com", phone: "2018732630",
-		password: "drakeford1", password_confirmation: "drakeford1")
+		Coach.create(first_name: "Jevon", last_name: "Drakeford", email: "drakefordjevon@gmail.com", phone: "2018732630")
 
-		Coach.create(first_name: "Nate", last_name: "Seabrook", email: "coachnate5@yahoo.com", phone: "2019230722",
-		password: "seabrook1", password_confirmation: "seabrook1")
+		Coach.create(first_name: "Nate", last_name: "Seabrook", email: "coachnate5@yahoo.com", phone: "2019230722")
 
-		Coach.create(first_name: "Megan", last_name: "Thomas", email: "lo.thomas10@yahoo.com", phone: "2019516804",
-		password: "thomas1", password_confirmation: "thomas1")
+		Coach.create(first_name: "Megan", last_name: "Thomas", email: "lo.thomas10@yahoo.com", phone: "2019516804")
 
 be3 = Team.create(gender: "Boys", grade:"3", team_type:"Elite", password:"*gratzb3e", password_confirmation:"*gratzb3e")
 be4 = Team.create(gender: "Boys", grade:"4", team_type:"Elite", password:"*gratzb4e", password_confirmation:"*gratzb4e")
