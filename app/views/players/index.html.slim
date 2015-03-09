@@ -2,9 +2,9 @@
   h1 Players
   .content
     .row.margin-bottom-10
-      .col-xs-1
+      .col-md-1.margin-bottom-10
         = link_to "New Player", new_player_path, class: 'btn btn-primary'
-      .col-xs-1
+      .col-md-1
         = link_to "Download Excel", players_path(format: "xls"), class: 'btn btn-primary'
     .panel.panel-default.table-responsive
       table.table
