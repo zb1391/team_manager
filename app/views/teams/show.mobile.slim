@@ -24,16 +24,17 @@
                             th Actions
                     tbody
                         - @team.players.each do |player|
-                            td = player.formatted_name
-                            td = player.uniform_number
-                            - if is_admin?
-                                td = number_to_phone(player.phone, area_code:true)
-                                td = player.email
-                                td = player.parent_formatted_name
-                                td = number_to_phone(player.parent_cell, area_code: true)
-                                td
-                                    = link_to 'Edit', edit_player_path(player)
-                                    span = ' | '
-                                    = link_to 'Destroy', player, method: :delete, data: {confirm: 'Are you sure?'}
+                            tr
+                                td = player.formatted_name
+                                td = player.uniform_number
+                                - if is_admin?
+                                    td = number_to_phone(player.phone, area_code:true)
+                                    td = player.email
+                                    td = player.parent_formatted_name
+                                    td = number_to_phone(player.parent_cell, area_code: true)
+                                    td
+                                        = link_to 'Edit', edit_player_path(player)
+                                        span = ' | '
+                                        = link_to 'Destroy', player, method: :delete, data: {confirm: 'Are you sure?'}
         = render "shared/events", events: @upcoming_events, tournaments: @tournaments, events_more: true, tournaments_more: false
 
