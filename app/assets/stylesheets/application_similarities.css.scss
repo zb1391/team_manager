@@ -248,3 +248,22 @@ div.error{
 		}
 	}
 }
+
+#store-container{
+	background: #eeeeee;
+	color: black;
+	margin-bottom: 20px;
+	dl{
+		padding: 0 10px;
+		dt{
+			color: black;
+		}
+		a{
+			color: black !important;
+			text-decoration: underline;
+			&:hover{
+				color: $orange;
+			}
+		}
+	}
+}

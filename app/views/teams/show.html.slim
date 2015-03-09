@@ -84,6 +84,24 @@
                 = link_to "Tournament Directions", event.location.directions
           - if @tournaments.count > 2
             = link_to 'Show All Tournaments', '#', class: 'btn btn-default', id: 'show-all-tournaments'
+    h2 Spirit Gear
+    div#store-container
+      p 
+        | Show your&nbsp;
+        strong support
+        |&nbsp;for the Gym Ratz Community! 
+        br
+        |Gear up with the latest and greatest Gym Ratz AAU uniforms, shirts, shorts, hoodies, and more available in all sizes.
+      .row
+        .col-md-4
+          dl
+            dt Uniforms
+            dd = link_to "Click here to purchase uniforms", "https://shirtsandskins.tuosystems.com/stores/njgymratzuniforms"
+        .col-md-4
+          dl
+            dt Spirit Gear
+            dd = link_to "Click here for all other spirit gear", "http://shirtsandskins.tuosystems.com/stores/njgymratzbasketball"
+
     #master-calendar
     = render "shared/events_modal"
 - content_for :scripts
