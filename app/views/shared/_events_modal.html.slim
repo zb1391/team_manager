@@ -21,6 +21,6 @@
 				a.more_info.btn href="/events/ID" More Info
 				- if is_admin?
 					a.edit.btn.btn-default href="/events/ID/edit" Edit
-					a.resend.btn.btn-default "Resend Email", "events/ID/email"
+					a.resend.btn.btn-default href="events/ID/email" Resend Email
 					= form_tag('/events/ID/reschedule') do |f|
 						= submit_tag "Reschedule For Next Week", class: 'btn btn-default'

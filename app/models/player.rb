@@ -5,9 +5,15 @@ class Player < ActiveRecord::Base
 	validates :first_name, :last_name, :phone, :email,
 		 :parent_first_name,:parent_last_name,:parent_email,:parent_cell,
 		 :uniform_number, :emergency_phone,presence: true
-	validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
-	validates :parent_email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}
-	validates :parent_email2, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i}, allow_blank: true
+	validates :email, 
+		format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'you must provide a valid email (no spaces no commas)'}, 
+		allow_blank: true
+	validates :parent_email, 
+		format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'you must provide a valid email (no spaces no commas)'}, 
+		allow_blank: true
+	validates :parent_email2, 
+		format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i, message: 'you must provide a valid email (no spaces no commas)'}, 
+		allow_blank: true
 	validates :phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validates :parent_cell, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
 	validates :emergency_phone, format:  { with:  /\A[0-9]+\z/, message: "should only contain numbers"}, length: {is: 10}
