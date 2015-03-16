@@ -127,5 +127,5 @@
                         $('#myModal form').attr('action',reschedule_path.replace("ID",$(this).data('id')))
                     resend_path = $('#myModal .resend').attr('href')
                     if resend_path?
-                        $('#myModal .resend').attr('href', resend_path.replace("ID"),$(this).data('id'))  
+                        $('#myModal .resend').attr('href', resend_path.replace("ID",$(this).data('id')))
                     $('#myModal').modal()
