@@ -157,6 +157,10 @@
           if reschedule_path?
             $('#myModal form').attr('action',reschedule_path.replace("ID",calEvent.id))  
 
+          resend_path = $('#myModal .resend').attr('href')
+          if resend_path?  
+            $('#myModal .resend').attr('href', resend_path.replace("ID", calEvent.id))
+
           $('#myModal').modal()
         ,  
         eventSources:[{
