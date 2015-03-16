@@ -57,9 +57,7 @@ class Player < ActiveRecord::Base
 	#Therefore the highest number a player can have is 55
 	#This also confirms that the number is unique to the team
 	def valid_uniform_number
-		if uniform_number.blank?
-			errors.add(:uniform_number, "can't be blank")
-		else
+		unless uniform_number.blank?
 			ones_digit = uniform_number % 10
 			if ones_digit == 0
 				ones_digit =1;
