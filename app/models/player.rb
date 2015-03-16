@@ -57,23 +57,27 @@ class Player < ActiveRecord::Base
 	#Therefore the highest number a player can have is 55
 	#This also confirms that the number is unique to the team
 	def valid_uniform_number
-		ones_digit = uniform_number % 10
-		if ones_digit == 0
-			ones_digit =1;
-		end
-		number = Team.search(:id_eq => team_id, :players_uniform_number_eq => uniform_number).result.to_a
-		if !number.empty?
-			errors.add(:uniform_number, "is already taken")
-		end
-		if uniform_number <= -1
-			errors.add(:uniform_number, "can't be negative")
-		end
-		if uniform_number > 55
-			errors.add(:uniform_number, "can't be greater than 55")
-		end
+		if uniform_number.blank?
+			errors.add(:uniform_number, "can't be blank")
+		else
+			ones_digit = uniform_number % 10
+			if ones_digit == 0
+				ones_digit =1;
+			end
+			number = Team.search(:id_eq => team_id, :players_uniform_number_eq => uniform_number).result.to_a
+			if !number.empty?
+				errors.add(:uniform_number, "is already taken")
+			end
+			if uniform_number <= -1
+				errors.add(:uniform_number, "can't be negative")
+			end
+			if uniform_number > 55
+				errors.add(:uniform_number, "can't be greater than 55")
+			end
 
-		if 5 % ones_digit == 5
-			errors.add(:uniform_number, "AAU Regulation: no digit greater than 5 (use numbers 0-5,10-15,20-25...)")
+			if 5 % ones_digit == 5
+				errors.add(:uniform_number, "AAU Regulation: no digit greater than 5 (use numbers 0-5,10-15,20-25...)")
+			end
 		end
 	end
 
