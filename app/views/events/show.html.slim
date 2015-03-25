@@ -39,8 +39,7 @@
 		- if is_admin?
 			= link_to 'Edit', edit_event_path(@event), class: 'btn btn-primary'
 			= link_to 'Back', events_path, class: 'btn btn-cancel'
-
-
+			= link_to "Destroy", @event, method: :delete, data: {confirm: 'Are you sure?'}, class: 'btn btn-default'
 / <% @event.hotels.each do |hotel| %>
 / <div class="green-content no-padding">
 /   <div class="smaller-content">
