@@ -27,13 +27,13 @@ class Location < ActiveRecord::Base
 		if gstate.include? ' '
 			gstate=gstate.gsub!(' ','+')
 		end
-		return "#{gaddress},#{gcity},#{gstate}"
+		return "#{gaddress}+#{gcity}+#{gstate}"
 	end
 	def full_address
 		"#{address}, #{city}, #{state}"
 	end
 	def directions
-		"https://maps.google.com/maps?f=d&daddr=#{glocation}"
+		"https://google.com/maps/place/#{glocation}"
 	end
 	def location_link
 		/^http/i.match(additional_link) ? additional_link : "http://#{additional_link}"
