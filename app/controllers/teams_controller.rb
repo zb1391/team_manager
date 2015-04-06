@@ -1,6 +1,6 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: [:show, :edit, :update, :destroy, :password, :update_password]
-  before_filter :authenticate, :except => [:show]
+  before_filter :authenticate, :except => [:show, :events]
   before_filter :get_coaches
   before_filter :prepare_for_mobile, :only => [:show]
 
