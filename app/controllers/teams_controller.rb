@@ -14,9 +14,12 @@ class TeamsController < ApplicationController
 
   def events
     team = Team.find(params[:team_id])
-#    @events = team.events.between(params['start'], params['end']) if (params['start'] && params['end'])
+    puts params
+    #    @events = team.events.between(params['start'], params['end']) if (params['start'] && params['end'])
     @events = Event.between(params['start'], params['end']) if params['start'] && params['end']
+    puts @events
     @events = @events.where(team_id: team.id)
+    puts @events
     render :json => @events
   end
 
