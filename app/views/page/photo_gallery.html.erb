@@ -1,71 +1,32 @@
-<div class="instagram-container instagram-content-height">
-
-	<%= link_to "<", page_photo_gallery_url(:img_id => @prev), :class => "instagram-leftarrow float-left" %>
-	<img class = "float-left" src="<%= @pic.images.standard_resolution.url%>" id = "mainpic" picid="<%=@picid%>">
-	<%= link_to ">",page_photo_gallery_url(:img_id => @next), :class => "float-left" %>
-	
-	<%count=0;%>
-	<ul class = "instacomments">
-		<% if @pic.caption %>
-			<li class = "no-bullet">
-				<h2>@<%= @pic.user.username%></h2>
-				<dt><%= @pic.caption.text %></dt>
-			</li>
-		<% end %>
-
-		<% @pic.comments[:data].each_with_index do |comment, index| %>
-			<li class="no-bullet">
-				<h2>@<%=comment[:from].username%></h2>
-				<dt><%=comment.text%></dt>
-			</li>
-			
-		<% end %>
-	</ul>
-
+<div class="static-page green">
+  <h1>Photo Gallery</h1>
+  <div class="content instagram-gallery">
+    <div class="row">
+      <% @instagram.each do |pic| %>
+        <div class="col-md-4 col-lg-4">
+          <div class="pic">
+            <img style="width:100%" src="<%=pic.images.standard_resolution.url%>" />
+            <p><%= pic.caption.try(:text)%></p>
+            <% if pic.comments[:data].any? %>  
+              <dl>
+                <% pic.comments[:data].each do |comment| %>
+                  <dd>
+                    <strong>@<%= comment[:from].username %>:</strong>
+                    <%= comment.text %>
+                  </dd>
+                <% end %>
+              </dl>
+            <% end %>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <h2>Help Contribute</h2>
+    <p>
+      The Down Town Sports Photo Gallery is a project to show love and support for our Gym Ratz Family. Powered by Instagram, all pictures within this album were taken by players, parents, coaches, and members of the Gym Ratz community. 
+    </p>
+    <p>
+      Follow us on Instagram: <strong>@downtownsportsnj</strong> <br /> Tag your pictures with <em>#gymratzaau</em> to help build our Photo Gallery!
+    </p>
+  </div>
 </div>
-<div class ="instagram-album">
-	<h1>Down Town Sports Photo Gallery</h1>
-	<p>
-		The Down Town Sports Photo Gallery is a project to show love and support for our Gym Ratz Family.
-		Powered by Instagram, all pictures within this album were taken by players, parents, coaches, and members of 
-		the Gym Ratz community. 
-	</p>
-	<h2>Help Contribute</h2>
-	<p>
-		Follow us on Instagram: @downtownsportsnj <br /> 
-		Tag your pictures with <em>#gymratzaau</em>
-		to help build our Photo Gallery!
-	</p>
-
-	<% count = 0; %>
-	<%@instagram.each_with_index do |instagram, index| %>
-		<%if count == 0 %>
-			<div class = "row instagram-margin">
-		<%end%>
-
-		<div class = "col-xs-4">
-			<%= link_to(image_tag(instagram.images.standard_resolution.url, :id =>"tournament-pic-small"),
-			 page_photo_gallery_url(:img_id => index)) %>
-		</div>
-		<%if count == 2 %>
-			</div>
-			<%count = 0; %>
-		<% else %>
-			<% count = count+1;%>
-		<% end %>
-	<% end %>
-</div>
-</div>
-<script>
-	$(document).keydown(function(e){
-	    if (e.keyCode == 37) {
-	    	window.location = "/page/photo_gallery?img_id=" + "<%=@prev%>"; 
-	       return false;
-	    }
-	    if (e.keyCode == 39) {
-	    	window.location = "/page/photo_gallery?img_id=" + "<%=@next%>"; 
-	       return false;
-	    }
-	});
-
-</script>
