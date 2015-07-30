@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   include SessionsHelper
   include EventsHelper
   before_filter :set_admin_routes
-
+    
   def set_admin_routes
     gon.admin_routes = admin_routes
   end
