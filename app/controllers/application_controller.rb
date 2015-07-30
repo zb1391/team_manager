@@ -15,6 +15,10 @@ class ApplicationController < ActionController::Base
   end
   helper_method :mobile_device?
 
+
+  # =~ /downtownsports.org/
+
+  
   private 
   def admin_index_pages
     [
@@ -37,6 +41,12 @@ class ApplicationController < ActionController::Base
       {label: "Sign Out", value: session_path(:id)},
       {label: "Schedule", value: events_path}
     ]
+  end
+  
+  def ensure_domain
+    unless request.env['HTTP_HOST'] =~ /downtownsports/ || Rails.env.development?
+      redirect_to "http://www.downtownsports.org", :status =&gt; 301
+    end
   end
 
   def admin_routes
