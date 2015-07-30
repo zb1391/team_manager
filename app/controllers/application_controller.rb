@@ -45,7 +45,7 @@ class ApplicationController < ActionController::Base
   
   def ensure_domain
     unless request.env['HTTP_HOST'] =~ /downtownsports/ || Rails.env.development?
-      redirect_to "http://www.downtownsports.org", :status =&gt; 301
+      redirect_to "http://www.downtownsports.org", status: 301
     end
   end
 
