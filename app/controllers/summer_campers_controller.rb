@@ -19,23 +19,23 @@ class SummerCampersController < ApplicationController
 
   # GET /summer_campers/new
   def new
-    @summer_camper = SummerCamper.new(waiver_date: Date.today, state: "NJ")
+    @summer_camper = SummerCamper.new(waiver_date: Date.today, state: "NJ",camp_type: params[:camp_type] || "SummerCamp")
     @summer_camper.campifications.build
-    @active_summer_camps = SummerCamp.active_summer_camps
+    @active_summer_camps = SummerCamp.active_camps(params[:camp_type] || "SummerCamp")
   end
 
   # GET /summer_campers/1/edit
   def edit
-    @active_summer_camps = SummerCamp.active_summer_camps
+    @active_summer_camps = SummerCamp.active_camps(params[:camp_type])
     @summer_camper.campifications.build if @summer_camper.campifications.empty?
-
+    @summer_camper.camp_type = @summer_camper.summer_camps.first.camp_type
   end
 
   # POST /summer_campers
   # POST /summer_campers.json
   def create
     @summer_camper = SummerCamper.new(summer_camper_params)
-    @active_summer_camps = SummerCamp.active_summer_camps
+    @active_summer_camps = SummerCamp.active_camps(@summer_camper.camp_type)
     respond_to do |format|
       if @summer_camper.save
         EventMailer.new_camper(@summer_camper).deliver
@@ -52,7 +52,7 @@ class SummerCampersController < ApplicationController
   # PATCH/PUT /summer_campers/1
   # PATCH/PUT /summer_campers/1.json
   def update
-    @active_summer_camps = SummerCamp.active_summer_camps
+    @active_summer_camps = SummerCamp.active_camps(@summer_camper.camp_type)
     respond_to do |format|
       if @summer_camper.update(summer_camper_params)
       if summer_camper_params[:manual_fee_entry] == "0"
@@ -94,7 +94,7 @@ class SummerCampersController < ApplicationController
         :address, :city, :state, :zip, 
         :gender, :grade, :email, 
         :home_phone, :cell_phone, :waiver_name, :waiver_date,
-        :amount_owe, :amount_paid, :manual_fee_entry,
+        :amount_owe, :amount_paid, :manual_fee_entry, :camp_type,
         campifications_attributes: [:id,:summer_camp_id, :summer_camper_id, :_destroy])
     end
 end

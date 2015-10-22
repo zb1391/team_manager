@@ -22,6 +22,7 @@ class PageController < ApplicationController
   end
 
   def clinics
+    @active_p3 = SummerCamp.active_camps("P3")
   end
 
   def court_rentals

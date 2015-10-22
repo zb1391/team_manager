@@ -26,12 +26,16 @@ class SummerCamp < ActiveRecord::Base
 	end
 
 	def self.active_summer_camps
-		SummerCamp.search(end_registration_date_gt: Date.today).result.order(:start_date)
+		SummerCamp.search(camp_type_eq: "SummerCamp",end_registration_date_gt: Date.today).result.order(:start_date)
 	end
-	
+
+        def self.active_camps(camp_type)
+		SummerCamp.search(camp_type_eq: camp_type,end_registration_date_gt: Date.today).result.order(:start_date)
+        end
+
 	def self.summer_camps_this_year
 		cur_year = Date.new(Date.today.year, 1,1)
-		SummerCamp.search(start_date_gt: cur_year).result.order(:start_date)
+		SummerCamp.search(camp_type_eq: "SummerCamp",start_date_gt: cur_year).result.order(:start_date)
 	end
 
 	def self.this_year_price

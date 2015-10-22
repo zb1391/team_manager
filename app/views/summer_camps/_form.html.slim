@@ -6,6 +6,11 @@
   .form-panel
     .row
       .col-md-6
+        = f.label "Type"
+        = f.select :camp_type, @types, {class: "form-control"}
+
+    .row
+      .col-md-6
         = f.label "Start Date"
         = f.date_field :start_date, class: 'form-control'
         - @summer_camp.errors[:start_date].each do |msg|

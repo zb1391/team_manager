@@ -59,7 +59,9 @@
 				br
 				|Come 
 				strong = " train with pro's and take your game to the top level " 
-				|while you prepare for the upcoming season. 
+				|while you prepare for the upcoming season.
+			- if @active_p3.any?
+				= link_to "Sign Up Today!", new_summer_camper_path(camp_type: "P3"), class: "btn btn-primary"  
 		.sub-content
 			h2 Private One-on-One Lessons
 			h4.margin-bottom-10 Coaching that Suits You

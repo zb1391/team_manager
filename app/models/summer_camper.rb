@@ -1,5 +1,7 @@
 class SummerCamper < ActiveRecord::Base
-	attr_accessor :manual_fee_entry
+	# camp_type - my workaround for now for the create/update controller methods
+	# its how i know what type of camps to get in the event of an error
+	attr_accessor :manual_fee_entry, :camp_type
 
 	has_many :campifications
 	has_many :summer_camps, :through => :campifications
