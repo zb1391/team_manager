@@ -10,7 +10,7 @@
   <body>
     <h1>Camper Registration Confirmation </h1>
     <p>
-    Thank you for registering <%= "#{@camper.first_name} #{@camper.last_name}"%> for the Down Town Sports Summer Camps<br />
+    Thank you for registering <%= "#{@camper.first_name} #{@camper.last_name}"%>.<br />
     Below is a confirmation of the registration form. <br />
     </p>
     
@@ -28,7 +28,7 @@
     <dd>Home Phone: <%= number_to_phone(@camper.home_phone, area_code: true) %></dd>
     <dd>Cell Phone: <%= number_to_phone(@camper.cell_phone, area_code: true) %></dd>
 
-    <h2>Summer Camps</h2>
+    <h2>Camps</h2>
     <% @camper.summer_camps.each do |summer_camp| %>
       <dd><%= summer_camp.date_range %></dd>
     <% end %>
