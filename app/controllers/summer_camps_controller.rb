@@ -29,7 +29,7 @@ class SummerCampsController < ApplicationController
   # POST /summer_camps.json
   def create
     @summer_camp = SummerCamp.new(summer_camp_params)
-
+    @types = ["SummerCamp","P3"]
     respond_to do |format|
       if @summer_camp.save
         format.html { redirect_to @summer_camp, notice: 'Summer camp was successfully created.' }
@@ -44,6 +44,7 @@ class SummerCampsController < ApplicationController
   # PATCH/PUT /summer_camps/1
   # PATCH/PUT /summer_camps/1.json
   def update
+    @types = ["SummerCamp","P3"]
     respond_to do |format|
       if @summer_camp.update(summer_camp_params)
         format.html { redirect_to @summer_camp, notice: 'Summer camp was successfully updated.' }
