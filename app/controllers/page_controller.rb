@@ -54,35 +54,11 @@ class PageController < ApplicationController
   end
 
   def photo_gallery
-    @instagram = Instagram.user_liked_media({:count => 18})
-    
-    if !params[:img_id].blank?
-      @picid = params[:img_id]
-      @pic = @instagram[params[:img_id].to_i]
-    else
-      @picid = 0
-      @pic = @instagram[0]
+    @instagram = Instagram.user_liked_media({:count => 17, :max_like_id => params[:last]})
+    respond_to do |format|
+      format.html
+      format.json { render json: @instagram }
     end
-    @comments = [];
-    comment=""
-    if @pic.caption
-      comment = @pic.caption
-    else
-      comment = ""
-    end
-    @comments << {:name => @pic.user.name, :comment => comment}
-
-    @prev = @picid.to_i;
-    @prev = @prev -1
-    @next = @picid.to_i; 
-    @next = @next + 1
-    if @picid.to_i == 0
-      @prev = @instagram.size-1;
-    end
-    if @picid.to_i == @instagram.size-1
-      @next = 0;
-    end
-
   end
 
   def contact

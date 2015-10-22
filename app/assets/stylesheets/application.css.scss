@@ -13,7 +13,7 @@ $dark-green: #006600;
 $dark-gray: #656565;
 
 @import "application_similarities";
-
+@import "partials/clearfixes";
 .event-container{
 	border-bottom: 1px solid $light-gray;
 	padding: 5px;
