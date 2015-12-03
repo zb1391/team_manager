@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151022002920) do
+ActiveRecord::Schema.define(version: 20151203012719) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -208,6 +208,9 @@ ActiveRecord::Schema.define(version: 20151022002920) do
     t.datetime "updated_at"
     t.date     "end_registration_date"
     t.string   "camp_type"
+    t.datetime "start_time"
+    t.datetime "end_time"
+    t.boolean  "is_all_day",            default: true
   end
 
   create_table "team_tryout_times", force: true do |t|

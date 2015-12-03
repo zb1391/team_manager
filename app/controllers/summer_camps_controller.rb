@@ -16,20 +16,20 @@ class SummerCampsController < ApplicationController
 
   # GET /summer_camps/new
   def new
-    @types = ["SummerCamp","P3"]
+    @types = SummerCamp.types 
     @summer_camp = SummerCamp.new(price: gon.summer_camp_price)
   end
 
   # GET /summer_camps/1/edit
   def edit
-    @types = ["SummerCamp","P3"]
+    @types = SummerCamp.types 
   end
 
   # POST /summer_camps
   # POST /summer_camps.json
   def create
     @summer_camp = SummerCamp.new(summer_camp_params)
-    @types = ["SummerCamp","P3"]
+    @types = SummerCamp.types
     respond_to do |format|
       if @summer_camp.save
         format.html { redirect_to @summer_camp, notice: 'Summer camp was successfully created.' }
@@ -44,7 +44,7 @@ class SummerCampsController < ApplicationController
   # PATCH/PUT /summer_camps/1
   # PATCH/PUT /summer_camps/1.json
   def update
-    @types = ["SummerCamp","P3"]
+    @types = SummerCamp.types
     respond_to do |format|
       if @summer_camp.update(summer_camp_params)
         format.html { redirect_to @summer_camp, notice: 'Summer camp was successfully updated.' }
@@ -79,6 +79,6 @@ class SummerCampsController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def summer_camp_params
       params.require(:summer_camp).permit(:start_date, :end_date, 
-        :end_registration_date,:price,:camp_type)
+        :end_registration_date,:price,:camp_type,:start_time,:end_time,:is_all_day)
     end
 end

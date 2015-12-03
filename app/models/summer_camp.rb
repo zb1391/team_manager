@@ -10,8 +10,13 @@ class SummerCamp < ActiveRecord::Base
 	validates :price, presence: {message: 'You must enter a price'},
 		numericality: {greater_than: 0}
 
+        validate :start_before_end,
+		if: Proc.new {|a| !a.is_all_day}
+
 	before_save :update_other_prices, 
 		if: Proc.new {|a| SummerCamp.summer_camps_this_year.any?}
+
+	before_save :clear_all_day_times
 
 	def campers
 		self.summer_campers.order(:gender,:grade,:last_name)
@@ -43,6 +48,10 @@ class SummerCamp < ActiveRecord::Base
 		camp.nil? ? 0 : camp.price
 	end
 
+	def self.types
+		["SummerCamp","P3","HolidayClinic"]
+	end
+
 	private
 	# all camps this year should have the same price
 	def update_other_prices
@@ -51,6 +60,23 @@ class SummerCamp < ActiveRecord::Base
 			if summer_camp.price != self.price && updating_price_internally != true
 				summer_camp.update_attributes(price: self.price, updating_price_internally: true)
 			end
+		end
+	end
+	
+	# all_day camps should have the start/end times as nil
+	def clear_all_day_times
+		if self.is_all_day
+			self.start_time = nil
+			self.end_time = nil
+		end
+	end
+
+	def start_before_end
+		if self.start_time.nil? || self.end_time.nil?
+			errors.add(:start_time, "You must enter a start/end time")
+			errors.add(:end_time, "You must enter a start/end time")
+		elsif self.start_time > self.end_time
+			errors.add(:start_time, "Must be before end time")
 		end
 	end
 end

@@ -11,6 +11,25 @@
 
     .row
       .col-md-6
+        = f.check_box :is_all_day
+        span
+          strong All Day Event?
+
+    .row.time-fields
+      .col-md-6
+        = f.label "Start Time"
+        = f.time_field :start_time, class: 'form-control'
+        - @summer_camp.errors[:start_time].each do |msg|
+          .validation-error = msg
+
+    .row.time-fields
+      .col-md-6
+        = f.label "End Time"
+        = f.time_field :end_time, class: "form-control"
+        - @summer_camp.errors[:end_time].each do |msg|
+          .validation-error = msg
+    .row
+      .col-md-6
         = f.label "Start Date"
         = f.date_field :start_date, class: 'form-control'
         - @summer_camp.errors[:start_date].each do |msg|
