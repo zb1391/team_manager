@@ -38,6 +38,10 @@ class SummerCamper < ActiveRecord::Base
 		"#{last_name}, #{first_name}"
 	end
 
+	def self.GRADES
+		[["2nd (or below)","1st"], "3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th"]
+	end
+
 	private
 
 	def calculate_amount_owe

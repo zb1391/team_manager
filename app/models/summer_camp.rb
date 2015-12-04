@@ -22,14 +22,23 @@ class SummerCamp < ActiveRecord::Base
 		self.summer_campers.order(:gender,:grade,:last_name)
 	end
 
+	# show a single date when start == end
+	# show the times when present
 	def date_range
-		"#{start_date.strftime("%b-%d-%y")} - #{end_date.strftime("%b-%d-%y")}"
+		date = "#{start_date.strftime("%b-%d-%y")}"
+		date += " - #{end_date.strftime("%b-%d-%y")}" if start_date != end_date
+		date += ": #{start_time.strftime("%I:%M%P")} - #{end_time.strftime("%I:%M%P")}" unless start_time.nil?
 	end
 
 	def date_range_short
 		"#{self.start_date.strftime("%b %d")} - #{self.end_date.strftime("%b %d")}"
 	end
 
+	# for the list view - show if its all day vs the time duration
+	def display_times
+		return "All Day" if is_all_day
+		"#{start_time.strftime("%I:%M%P")} - #{end_time.strftime("%I:%M%P")}"
+	end
 	def self.active_summer_camps
 		SummerCamp.search(camp_type_eq: "SummerCamp",end_registration_date_gt: Date.today).result.order(:start_date)
 	end

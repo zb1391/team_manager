@@ -3,7 +3,8 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 jQuery ->
 	changed_price = false
-	if $('#summer_camp_is_all_day')[0].checked
+	checkbox = $('#summer_camp_is_all_day')[0] || {}
+	if checkbox.checked
 		$('.time-fields').hide()
 	
 	$('#summer-camp-form').on 'change', '#summer_camp_price', (event) ->

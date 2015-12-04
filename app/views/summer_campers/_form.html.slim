@@ -37,7 +37,7 @@
           .validation-error = msg
       .col-md-3
         = f.label 'Grade'
-        = f.select :grade, options_for_select(%w[3rd 4th 5th 6th 7th 8th 9th 10th 11th 12th], @summer_camper.grade), {}, {class: 'form-control'} 
+        = f.select :grade, options_for_select(SummerCamper.GRADES, @summer_camper.grade), {}, {class: 'form-control'} 
         - @summer_camper.errors[:grade].each do |msg|
           .validation-error = msg
   
