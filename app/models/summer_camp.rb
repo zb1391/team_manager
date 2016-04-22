@@ -28,6 +28,7 @@ class SummerCamp < ActiveRecord::Base
 		date = "#{start_date.strftime("%b-%d-%y")}"
 		date += " - #{end_date.strftime("%b-%d-%y")}" if start_date != end_date
 		date += ": #{start_time.strftime("%I:%M%P")} - #{end_time.strftime("%I:%M%P")}" unless start_time.nil?
+		date
 	end
 
 	def date_range_short
