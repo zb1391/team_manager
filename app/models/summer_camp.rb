@@ -58,7 +58,7 @@ class SummerCamp < ActiveRecord::Base
 	end
 
 	def self.types
-		["SummerCamp","P3","HolidayClinic"]
+		["SummerCamp","P3","HolidayClinic","Clinic"]
 	end
 
 	private
