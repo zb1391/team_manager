@@ -8,7 +8,7 @@ class SummerCamp < ActiveRecord::Base
 		presence: {message: 'You must enter a date'}
 
 	validates :price, presence: {message: 'You must enter a price'},
-		numericality: {greater_than: 0}
+		numericality: {message: 'You must enter a valid number'}
 
         validate :start_before_end,
 		if: Proc.new {|a| !a.is_all_day}
