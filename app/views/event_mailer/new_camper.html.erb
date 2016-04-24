@@ -14,15 +14,16 @@
     Below is a confirmation of the registration form. <br />
     </p>
     
-    <h4>Please Note</h3>
-    <h4>Your child is not enrolled in camp until the payment process is complete</h4>
-    <h4 id = "black-text" class = "centered">Please call Down Town Sports (201) 848-0017 with a credit card</h4>
-    <h4 id = "black-text" class = "centered"> OR</h4>
-    <h4 id = "black-text" class = "centered">Mail a check payable to</h4>
-    <dd>Down Town Sports</dd>
-    <dd class = "centered"> 7 Leighton Place Mahwah, NJ, 07430</dd>
-    <h3>Coupons / Special Offers Are Not Valid After Expiration Date</h3>
-    
+    <% if @camper.amount_owe > 0 %>
+      <h4>Please Note</h3>
+      <h4>Your child is not enrolled in camp until the payment process is complete</h4>
+      <h4 id = "black-text" class = "centered">Please call Down Town Sports (201) 848-0017 with a credit card</h4>
+      <h4 id = "black-text" class = "centered"> OR</h4>
+      <h4 id = "black-text" class = "centered">Mail a check payable to</h4>
+      <dd>Down Town Sports</dd>
+      <dd class = "centered"> 7 Leighton Place Mahwah, NJ, 07430</dd>
+      <h3>Coupons / Special Offers Are Not Valid After Expiration Date</h3>
+    <% end %>
     <h2><%= "#{@camper.first_name} #{@camper.last_name}"%></h2>
 
     <dd>Home Phone: <%= number_to_phone(@camper.home_phone, area_code: true) %></dd>

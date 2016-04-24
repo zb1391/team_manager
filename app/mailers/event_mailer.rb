@@ -1,15 +1,16 @@
 class EventMailer < ActionMailer::Base
   ActionMailer::Base.smtp_settings = {
     :port =>           '587',
-    :address =>        'smtp.mandrillapp.com',
-    :user_name =>      ENV['MANDRILL_USERNAME'],
-    :password =>       ENV['MANDRILL_APIKEY'],
-    :domain =>         'heroku.com',
-    :authentication => :plain
+    :address =>        'smtp.gmail.com',
+    :user_name =>      ENV['EVENT_MAILER_USERNAME'],
+    :password =>       ENV['EVENT_MAILER_PASSWORD'],
+    :domain =>         'gmail.com',
+    :authentication => :plain,
+    :enable_starttls_auto => true
 }
 
 ActionMailer::Base.delivery_method = :smtp
-  default from: ENV['DWN_TWN_ADDR']
+  default from: ENV['EVENT_MAILER_USERNAME']
 
 
   #FOR TEAM EVENTS
