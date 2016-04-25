@@ -13,8 +13,7 @@ class SummerCamp < ActiveRecord::Base
         validate :start_before_end,
 		if: Proc.new {|a| !a.is_all_day}
 
-	before_save :update_other_prices, 
-		if: Proc.new {|a| SummerCamp.summer_camps_this_year.any?}
+	before_save :update_other_prices
 
 	before_save :clear_all_day_times
 
@@ -49,8 +48,12 @@ class SummerCamp < ActiveRecord::Base
         end
 
 	def self.summer_camps_this_year
-		cur_year = Date.new(Date.today.year, 1,1)
-		SummerCamp.search(camp_type_eq: "SummerCamp",start_date_gt: cur_year).result.order(:start_date)
+		SummerCamp.camps_this_year("SummerCamp")
+	end
+
+	def self.camps_this_year(camp_type)
+		cur_year = Date.new(Date.today.year,1,1)
+		SummerCamp.search(camp_type_eq: camp_type, start_date_gy: cur_year).result.order(:start_date)
 	end
 
 	def self.this_year_price
@@ -65,7 +68,7 @@ class SummerCamp < ActiveRecord::Base
 	private
 	# all camps this year should have the same price
 	def update_other_prices
-		summer_camps = SummerCamp.summer_camps_this_year.search(price_not_eq: self.price).result
+		summer_camps = SummerCamp.camps_this_year(self.camp_type).search(price_not_eq: self.price).result
 		summer_camps.each do |summer_camp|
 			if summer_camp.price != self.price && updating_price_internally != true
 				summer_camp.update_attributes(price: self.price, updating_price_internally: true)
