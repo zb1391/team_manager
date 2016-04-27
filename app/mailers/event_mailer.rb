@@ -1,10 +1,11 @@
 class EventMailer < ActionMailer::Base
   ActionMailer::Base.smtp_settings = {
-    :port =>           '587',
-    :address =>        'smtp.gmail.com',
+    :port =>           ENV['EVENT_MAILER_PORT'],
+    :address =>        ENV['EVENT_MAILER_ADDRESS'],
     :user_name =>      ENV['EVENT_MAILER_USERNAME'],
     :password =>       ENV['EVENT_MAILER_PASSWORD'],
-    :domain =>         'gmail.com',
+    :tls => true,
+    :ssl => true,
     :authentication => :plain,
     :enable_starttls_auto => true
 }
