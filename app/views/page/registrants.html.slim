@@ -12,28 +12,25 @@
         table.table
           thead
             th Name
-            th Phone
+            th Grade
+            th Team Preference
+            th D.O.B
             th Email
-            th Team
-            th Parent
-            th Parent Cell
+            th Parent Name
+            th Parent Phone
             th Parent Email
-            th Emergency Phone
             th Actions
           tbody
             - players.each do |player|
               tr
                 td = link_to player.formatted_name, player, class: 'player-link'
-                td = number_to_phone(player.phone, area_code: true)
+                td = player.grade
+                td = player.team_preference
+                td = player.dob.strftime("%Y-%m-%d")
                 td = player.email
-                - if player.team
-                  td = link_to player.team.name, player.team
-                - else
-                  td N/A
                 td = player.parent_formatted_name
                 td = number_to_phone(player.parent_cell, area_code: true)
                 td = player.parent_email
-                td = number_to_phone(player.emergency_phone, area_code: true)
                 td 
                   = link_to "Edit", edit_player_path(player)
                   span = ' | '
