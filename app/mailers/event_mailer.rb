@@ -1,17 +1,15 @@
 class EventMailer < ActionMailer::Base
   ActionMailer::Base.smtp_settings = {
-    :port =>           ENV['EVENT_MAILER_PORT'],
-    :address =>        ENV['EVENT_MAILER_ADDRESS'],
-    :user_name =>      ENV['EVENT_MAILER_USERNAME'],
-    :password =>       ENV['EVENT_MAILER_PASSWORD'],
-    :tls => true,
-    :ssl => true,
-    :authentication => :plain,
+    :port =>           ENV['AWS_SES_PORT'],
+    :address =>        ENV['AWS_SES_ADDRESS'],
+    :user_name =>      ENV['AWS_SES_ACCESS_KEY_ID'],
+    :password =>       ENV['AWS_SES_SECRET_ACCESS_KEY'],
+    :authentication => :login,
     :enable_starttls_auto => true
 }
 
 ActionMailer::Base.delivery_method = :smtp
-  default from: ENV['EVENT_MAILER_USERNAME']
+  default from: "teammanager@downtownsports.org"
 
 
   #FOR TEAM EVENTS
