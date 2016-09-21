@@ -39,7 +39,7 @@ class SummerCamper < ActiveRecord::Base
 	end
 
 	def self.GRADES
-		[["2nd (or below)","1st"], "3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th"]
+		[["Kindergarten & Below", "Pre-K"],["1st/2nd","1st"], "3rd","4th","5th","6th","7th","8th","9th","10th","11th","12th"]
 	end
 
 	private
