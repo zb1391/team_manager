@@ -6,7 +6,7 @@
     = f.label "Name"
     .row
       .col-md-3 = f.select :gender, options_for_select(%w[Boys Girls], @team.gender),{}, {class: 'form-control'}
-      .col-md-3 = f.select :grade, options_for_select((3..12).map{|i| [i.ordinalize,i]},@team.grade),{}, {class: 'form-control'}
+      .col-md-3 = f.select :grade, options_for_select((1..12).map{|i| [i.ordinalize,i]},@team.grade),{}, {class: 'form-control'}
       .col-md-3 = f.select :team_type, options_for_select(%w[Elite Select], @team.team_type),{}, {class: 'form-control'}
       .col-md-3 = f.text_field :color, value: @team.try(:team_color), placeholder: 'Optional Color', class: 'form-control'
     - @team.errors[:name].each do |msg|
