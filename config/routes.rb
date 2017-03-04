@@ -27,7 +27,8 @@ TeamManager::Application.routes.draw do  resources :tournaments
     get :tournaments, on: :collection
   end
 
-  resources :players  
+  resources :players
+
   resources :event_imports
   root 'page#home'
 
@@ -47,6 +48,7 @@ TeamManager::Application.routes.draw do  resources :tournaments
   get "page/admin_search"
   get "page/admin_home"
   get "page/privacy"
+  get "page/registrants"
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

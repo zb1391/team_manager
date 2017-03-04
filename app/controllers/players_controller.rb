@@ -31,7 +31,6 @@ class PlayersController < ApplicationController
     @player = Player.new(player_params)
     respond_to do |format|
       if @player.save
-        EventMailer.new_player(@player).deliver
         format.html { redirect_to page_thank_you_path }
         format.json { render action: 'show', status: :created, location: @player }
       else
@@ -46,6 +45,9 @@ class PlayersController < ApplicationController
   def update
     respond_to do |format|
       if @player.update(player_params)
+        # TODO: email the player if there is a team associated
+	# This email only goes out if the old_value is nil and new_value
+	# is truthy
         format.html { redirect_to @player, notice: 'Player was successfully updated.' }
         format.json { head :no_content }
       else
@@ -74,7 +76,22 @@ class PlayersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def player_params
-      params.require(:player).permit(:first_name, :last_name, :phone, :email, :team_id, :password,
-        :parent_first_name, :parent_last_name, :parent_email, :parent_email2,:parent_cell, :emergency_phone, :uniform_number)
+      params.require(:player).permit(:first_name, 
+        :last_name, 
+        :phone, 
+        :email, 
+        :team_id, 
+        :password,
+        :parent_first_name, 
+        :parent_last_name, 
+        :parent_email, 
+        :parent_email2,
+        :parent_cell, 
+        :emergency_phone, 
+        :uniform_number,
+        :home_town,
+        :team_preference,
+        :grade,
+        :dob)
     end
 end

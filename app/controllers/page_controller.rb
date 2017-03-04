@@ -1,5 +1,5 @@
 class PageController < ApplicationController
-  before_filter :authenticate, only: [:admin_search, :admin_home]
+  before_filter :authenticate, only: [:admin_search, :admin_home, :registrants]
   def admin_search
     if params[:redirect_path]
       if params[:redirect_path].include?('session')
@@ -81,5 +81,14 @@ class PageController < ApplicationController
   def rosters
     @boys_teams = Team.boys.reject{|t| t.home_page_file.nil?}
     @girls_teams = Team.girls.reject{|t| t.home_page_file.nil?}
+  end
+
+  def registrants
+    @players = Player.all.order(:last_name, :first_name, :team_id)
+    respond_to do |format|
+      format.html
+      format.xls 
+    end
+    
   end
 end
