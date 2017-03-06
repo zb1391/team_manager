@@ -3,13 +3,12 @@
     #error-explanation
       div Oh No! There were errors in your form. Please fill in all information before continuing
  
-  - if is_admin?
-    h2 Team Select
-    .form-panel
-      .row
-        .col-md-6
-          = f.label :team_id, "Team"
-          = f.collection_select :team_id, Team.order(:gender,:grade),:id,:name, {include_blank: false}, {class: 'form-control'}
+  h2 Team Select
+  .form-panel
+    .row
+      .col-md-6
+        = f.label :team_id, "Team"
+        = f.collection_select :team_id, Team.order(:gender,:grade),:id,:name, {include_blank: false}, {class: 'form-control'}
 
   h2 Player Information
   .form-panel
@@ -35,13 +34,12 @@
         = f.text_field :email, placeholder: 'Enter email', class: 'form-control'
         - @player.errors[:email].each do |msg|
           .validation-error = msg
-    -if is_admin?
-      .row
-        .col-md-6
-          = f.label :uniform_number, "Uniform Number"
-          = f.number_field :uniform_number, placeholder: 'Enter Uniform Number',class: 'form-control'
-          - @player.errors[:uniform_number].each do |msg|
-            .validation-error = msg
+    .row
+      .col-md-6
+        = f.label :uniform_number, "Uniform Number"
+        = f.number_field :uniform_number, placeholder: 'Enter Uniform Number',class: 'form-control'
+        - @player.errors[:uniform_number].each do |msg|
+          .validation-error = msg
 
 
   h2 Parent Information
@@ -79,7 +77,16 @@
         = f.text_field :emergency_phone, placeholder: 'Ex. 2018480017', class: 'form-control'
         - @player.errors[:emergency_phone].each do |msg|
           .validation-error = msg
-
+  - unless @player.persisted?  
+    h2 Team Password
+    .form-panel
+      .row
+        .col-md-6    
+          span You Received the Team Password in an Email.
+          = f.label :password, "Password"
+          = f.password_field :password, placeholder: 'Enter Password', class: 'form-control'
+          - @player.errors[:password].each do |msg|
+            .validation-error = msg
   .form-actions
     = f.submit "Submit", class: 'btn btn-primary'
     = link_to 'Cancel', root_path, class: 'btn btn-cancel'

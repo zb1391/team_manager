@@ -1,4 +1,5 @@
 class Player < ActiveRecord::Base
+  attr_accessor :password
   belongs_to :team
 
   validates :first_name,
@@ -54,7 +55,18 @@ class Player < ActiveRecord::Base
             }, 
             length: {is: 10}
 	
-  validate :valid_uniform_number, :on => :update
+  validate :valid_uniform_number, :on => :create
+  validate :password_matches_team, on: :create
+
+  def password_matches_team
+    team = Team.find(team_id)
+    if team.nil?
+      errors.add(:password, "invalid team find")
+    end
+    if !team.has_password?(password)
+      errors.add(:password, "invalid team password")
+    end
+  end
 
   def registered_season
     year = self.created_at.strftime("%Y")
