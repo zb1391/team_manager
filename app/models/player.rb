@@ -10,10 +10,6 @@ class Player < ActiveRecord::Base
             :parent_email, 
             :parent_cell,
             :emergency_phone, 
-            :home_town, 
-            :dob, 
-            :team_preference,
-            :grade,
             presence: true
 
   validates :email, 
@@ -115,6 +111,8 @@ class Player < ActiveRecord::Base
 
   def self.GRADES
     [
+      ["1st",1],
+      ["2nd",2],
       ["3rd",3],
       ["4th",4],
       ["5th",5],

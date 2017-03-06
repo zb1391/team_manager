@@ -43,34 +43,6 @@
           - @player.errors[:uniform_number].each do |msg|
             .validation-error = msg
 
-  .form-panel
-    .row
-      .col-md-6
-        = f.label :home_town, "Home Town"
-        = f.text_field :home_town, placeholder: "Enter Home Town", class: "form-control"
-        - @player.errors[:home_town].each do |msg|
-          .validation-error = msg
-      .col-md-6
-        = f.label :dob, "Date of Birth"
-        = f.date_select :dob, class: "form-control"
-        - @player.errors[:dob].each do |msg|
-          .validation-error = msg
-    .row
-      .col-md-6
-        = f.label :grade, "Grade"
-        = f.select :grade, options_for_select(Player.GRADES, @player.grade), {}, {class: "form-control"}
-        - @player.errors[:grade].each do |msg|
-          .validation-error = msg
-      .col-md-6.team-preference
-        label Select Your Team Preference
-        = f.radio_button :team_preference, "Elite"
-        b Elite&nbsp;
-        = f.radio_button :team_preference, "Select"
-        b Select&nbsp;
-        = f.radio_button :team_preference, "Both"
-        b Both&nbsp;
-        - @player.errors[:team_preference].each do |msg|
-          .validation-error = msg
 
   h2 Parent Information
   .form-panel
