@@ -53,7 +53,7 @@ class SummerCamp < ActiveRecord::Base
 
 	def self.camps_this_year(camp_type)
 		cur_year = Date.new(Date.today.year,1,1)
-		SummerCamp.search(camp_type_eq: camp_type, start_date_gy: cur_year).result.order(:start_date)
+		SummerCamp.search(camp_type_eq: camp_type, start_date_gt: cur_year).result.order(:start_date)
 	end
 
 	def self.this_year_price
