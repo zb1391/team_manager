@@ -51,6 +51,19 @@ $dark-gray: #656565;
 
 #press-page {
     margin-top: 50px;
+    h1 {
+        color: white !important;
+        background-color: white !important;
+        text-align: right !important;
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+    p {
+        color: white !important;
+        background-color: transparent !important;
+        margin-bottom: 0 !important;
+        padding: 0 !important;
+    }
 
     @media(max-width: $screen-sm-min) {
         margin-top: 0;
@@ -119,20 +132,10 @@ $dark-gray: #656565;
 
                     h1 {
                         font-size: 275%; 
-                        color: white;
-                        background-color: white;
-                        text-align: right;
-                        margin: 0;
-                        padding: 0;
                     }
                     p {
                         width: 80%;
                         max-width: 300px;
-                        float: right;
-                        color: white;
-                        background-color: transparent;
-                        margin-bottom: 0;
-                        padding: 0;
                     }
                 }
 
