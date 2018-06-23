@@ -119,11 +119,20 @@ $dark-gray: #656565;
 
                     h1 {
                         font-size: 275%; 
+                        color: white;
+                        background-color: white;
+                        text-align: right;
+                        margin: 0;
+                        padding: 0;
                     }
                     p {
                         width: 80%;
                         max-width: 300px;
                         float: right;
+                        color: white;
+                        background-color: transparent;
+                        margin-bottom: 0;
+                        padding: 0;
                     }
                 }
 
