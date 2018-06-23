@@ -53,7 +53,7 @@ $dark-gray: #656565;
     margin-top: 50px;
     h1 {
         color: white !important;
-        background-color: white !important;
+        background-color: transparent!important;
         text-align: right !important;
         margin: 0 !important;
         padding: 0 !important;
@@ -63,6 +63,7 @@ $dark-gray: #656565;
         background-color: transparent !important;
         margin-bottom: 0 !important;
         padding: 0 !important;
+        text-align: right !important;
     }
 
     @media(max-width: $screen-sm-min) {
