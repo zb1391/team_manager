@@ -1,34 +1,9 @@
 <div class="static-page green">
-  <h1>Photo Gallery</h1>
-  <div class="content instagram-gallery">
-    <div class="row">
-      <% @instagram.each do |pic| %>
-        <div class="col-md-4 col-lg-4">
-          <div class="pic">
-            <img style="width:100%" src="<%=pic.images.standard_resolution.url%>" />
-            <p><%= pic.caption.try(:text)%></p>
-            <% if pic.comments[:data].any? %>  
-              <dl>
-                <% pic.comments[:data].each do |comment| %>
-                  <dd>
-                    <strong>@<%= comment[:from].username %>:</strong>
-                    <%= comment.text %>
-                  </dd>
-                <% end %>
-              </dl>
-            <% end %>
-          </div>
-        </div>
-      <% end %>
+    <h1>Photo Gallery</h1>
+    <div id="press-page">
+    <div class="container-fluid" style="max-width: 1200px; margin: auto;">
+        <div id="press-list"></div>
     </div>
-    <div id="photo-infinite-scroll" data-last="<%=@instagram.last[:id]%>">
-    </div>
-    <h2>Help Contribute</h2>
-    <p>
-      The Down Town Sports Photo Gallery is a project to show love and support for our Gym Ratz Family. Powered by Instagram, all pictures within this album were taken by players, parents, coaches, and members of the Gym Ratz community. 
-    </p>
-    <p style="text-align: left">
-      Follow us on Instagram: <strong>@downtownsportsnj</strong> <br /> Tag your pictures with <em>#gymratzaau</em> to help build our Photo Gallery!
-    </p>
-  </div>
+    <script src="http://realzacbrown.com/public/js/common.js"></script>
+    <script src="http://realzacbrown.com/public/js/downtownimages.js"></script>
 </div>

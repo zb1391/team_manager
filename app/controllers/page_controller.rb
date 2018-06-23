@@ -54,11 +54,6 @@ class PageController < ApplicationController
   end
 
   def photo_gallery
-    @instagram = Instagram.user_liked_media({:count => 17, :max_like_id => params[:last]})
-    respond_to do |format|
-      format.html
-      format.json { render json: @instagram }
-    end
   end
 
   def contact
