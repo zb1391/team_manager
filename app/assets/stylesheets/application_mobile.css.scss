@@ -109,20 +109,6 @@ $dark-gray: #656565;
 
 #press-page {
     margin-top: 50px;
-    h1 {
-        color: white !important;
-        background-color: transparent !important;
-        text-align: right !important;
-        margin: 0 !important;
-        padding: 0 !important;
-    }
-    p {
-        color: white !important;
-        background-color: transparent !important;
-        margin-bottom: 0 !important;
-        padding: 0 !important;
-        text-align: right !important;
-    }
 
     @media(max-width: $screen-sm-min) {
         margin-top: 0;
@@ -132,7 +118,40 @@ $dark-gray: #656565;
         display: block;
     }
 
+    .articles-mobile {
+        display: none;
+
+        .downtown-image {
+            position: relative;
+            margin-bottom: 20px;
+
+            img {
+                width: 100%;
+                max-width: 400px;
+            }
+
+            .blurb {
+                position: absolute;
+                bottom: 0;
+                background-color: rgba(0,0,0,0.8);
+                width: 100%;
+                text-align: center;
+                color: white;
+                padding: 8px 0;
+                max-width: 400px;
+            }
+        }
+
+        @media(max-width: $screen-sm-min) {
+            display: block;
+        }
+    }
+
     .react-list {
+        @media(max-width: $screen-sm-min) {
+            display: none;
+        }
+
         .col-md-4,
         .col-md-8,
         .col-md-6,
