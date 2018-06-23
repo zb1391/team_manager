@@ -51,6 +51,12 @@ $dark-gray: #656565;
 #press-page {
     margin-top: 50px;
 
+    h1 {
+        text-align: right !important;
+        background: transparent !important;
+        color: white !important;
+    }
+
     @media(max-width: $screen-sm-min) {
         margin-top: 0;
     }
